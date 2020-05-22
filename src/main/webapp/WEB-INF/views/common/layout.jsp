@@ -3,11 +3,13 @@
  %>
  <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
  
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
     <style>
       #container {
         width: 100%;
@@ -17,14 +19,12 @@
       }
       #header {
         padding: 5px;
-        margin-bottom: 5px;
         border: 0px solid #bcbcbc;
          background-color: lightgreen;
       }
       #sidebar-left {
-        width: 15%;
+        width: 60px;
         height:700px;
-        padding: 5px;
         margin-right: 5px;
         margin-bottom: 5px;
         float: left;

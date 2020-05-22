@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.side-menu-item{
+	height: 60px; 
+	width: 60px;
+	text-align: center;
+	background-color: red;
+	box-sizing: border-box;
+};

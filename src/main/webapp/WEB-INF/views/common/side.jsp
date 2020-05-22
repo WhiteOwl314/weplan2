@@ -11,6 +11,8 @@
 
 <html>
 <head>
+ <link href="${contextPath }/resources/css/common/side.css" rel="stylesheet" type="text/css">
+
  <style>
    .no-underline{
       text-decoration:none;
@@ -20,19 +22,29 @@
   <title>사이드 메뉴</title>
 </head>
 <body>
-	<h1>사이드 메뉴</h1>
-	 <!-- 
+	<div>
+		<div id="side-menu-item_1">
+			<a href="${contextPath}/member/listMembers.do" 
+						class="no-underline">
+				<div class="side-menu-item">회원관리</div>
+			</a>
+		</div>
+		<div id="side-menu-item_2">
+			<a href="${contextPath}/board/listArticles.do"  class="no-underline">
+				<div class="side-menu-item">
+					게시판관리
+				</div>
+			</a>
+		</div>
+		<div id="side-menu-item_3">
+			<a href="#"  class="no-underline">
+				<div class="side-menu-item">
+					상품관리
+				</div>
+			</a>
+		</div>
+	</div>
 	<h1>
-		<a href="#"  class="no-underline">회원관리</a><br>
-	  <a href="#"  class="no-underline">게시판관리</a><br>
-	  <a href="#"  class="no-underline">상품관리</a><br>
-   </h1> 
-    -->
-	
-	<h1>
-		<a href="${contextPath}/member/listMembers.do"  class="no-underline">회원관리</a><br>
-		<a href="${contextPath}/board/listArticles.do"  class="no-underline">게시판관리</a><br>
-		<a href="#"  class="no-underline">상품관리</a><br>
 	</h1>
 	
 </body>
