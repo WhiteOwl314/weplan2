@@ -11,6 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="${contextPath }/resources/css/common/header.css" 
+ 			rel="stylesheet" type="text/css">
+
   <meta charset="UTF-8">
 <title>헤더</title>
 </head>
@@ -23,7 +26,7 @@
 		</a>
      </td>
      <td>
-       <h1><font size=30>스프링실습 홈페이지!!</font></h1>
+       <h1><font size=3>스프링실습 홈페이지!!</font></h1>
      </td>
      
      <td>

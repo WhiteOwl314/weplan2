@@ -26,23 +26,45 @@
 		<div id="side-menu-item_1">
 			<a href="${contextPath}/member/listMembers.do" 
 						class="no-underline">
-				<div class="side-menu-item">회원관리</div>
+				<div class="side-menu-item">Inbox</div>
 			</a>
 		</div>
 		<div id="side-menu-item_2">
 			<a href="${contextPath}/board/listArticles.do"  class="no-underline">
 				<div class="side-menu-item">
-					게시판관리
+					Projects	
 				</div>
 			</a>
 		</div>
 		<div id="side-menu-item_3">
 			<a href="#"  class="no-underline">
 				<div class="side-menu-item">
-					상품관리
+					Tags
 				</div>
 			</a>
 		</div>
+		<div id="side-menu-item_3">
+			<a href="#"  class="no-underline">
+				<div class="side-menu-item">
+					Forecast
+				</div>
+			</a>
+		</div>
+		<div id="side-menu-item_3">
+			<a href="#"  class="no-underline">
+				<div class="side-menu-item">
+					Flagged
+				</div>
+			</a>
+		</div>
+		<div id="side-menu-item_3">
+			<a href="#"  class="no-underline">
+				<div class="side-menu-item">
+					Review
+				</div>
+			</a>
+		</div>
+
 	</div>
 	<h1>
 	</h1>

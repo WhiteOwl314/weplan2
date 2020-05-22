@@ -18,9 +18,8 @@
         border: 0px solid #bcbcbc;
       }
       #header {
-        padding: 5px;
-        border: 0px solid #bcbcbc;
-         background-color: lightgreen;
+      	height: 50px;
+        border-bottom: 1px solid #DCDCDC;
       }
       #sidebar-left {
         width: 60px;
