@@ -26,8 +26,31 @@
 		</a>
      </td>
      <td>
+     	<a href="#">
+     		<div>
+     			작업
+     		</div>
+     	</a>
+     </td>
+     <td>
        <h1><font size=3>스프링실습 홈페이지!!</font></h1>
      </td>
+     <td>
+     	<div>
+     		<form>
+     			<span>검색아이콘</span>
+     			<input type="text" placeholder="검색"/>
+     		</form>
+     	</div>
+     </td>
+	 <td>
+     	<div>
+     		<a href="#">
+     			설정아이콘
+     		</a>
+     	</div>
+     </td>
+     
      
      <td>
        <!-- <a href="#"><h3>로그인</h3></a> -->
