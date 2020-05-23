@@ -19,10 +19,17 @@
 	<select id="selectAllInboxTaskList" resultMap="taskResult">
       <![CDATA[
 		SELECT 
-		*
+			TASK_NO,
+			TASK_LEVEL,
+			title,
+			content,
+			isCompleted,
+			importance,
+			TO_CHAR(LIMITDATE, 'YYYY-MM-DD HH24:MI:SS') AS LIMITDATE,
+			isTask
 		FROM W_TASK 
 		WHERE limitdate IS NOT NULL 
-		ORDER BY credate DESC      
+		ORDER BY credate DESC
       ]]>
 	</select>
     

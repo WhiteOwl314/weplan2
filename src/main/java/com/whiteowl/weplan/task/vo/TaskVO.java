@@ -1,7 +1,5 @@
 package com.whiteowl.weplan.task.vo;
 
-import java.sql.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component("taskVO")
@@ -13,7 +11,7 @@ public class TaskVO {
 	private String content;
 	private String isCompleted;
 	private int importance;
-	private Date limitDate;
+	private String limitDate;
 	private String isTask;
 	
 	public TaskVO() {
@@ -56,10 +54,10 @@ public class TaskVO {
 	public void setImportance(int importance) {
 		this.importance = importance;
 	}
-	public Date getLimitDate() {
+	public String getLimitDate() {
 		return limitDate;
 	}
-	public void setLimitDate(Date limitDate) {
+	public void setLimitDate(String limitDate) {
 		this.limitDate = limitDate;
 	}
 	public String getIsTask() {
