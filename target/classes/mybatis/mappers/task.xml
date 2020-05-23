@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="mapper.task">
+	<resultMap type="taskVO" id="taskResult">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="TASK_NO" />
+		<result property="level" column="TASK_LEVEL" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="isCompleted" column="isCompleted" />
+        <result property="importance" column="importance" />
+        <result property="limitDate" column="limitDate" />
+        <result property="isTask" column="isTask" />
+	</resultMap>
+
+	<select id="selectAllInboxTaskList" resultMap="taskResult">
+      <![CDATA[
+		SELECT 
+		*
+		FROM W_TASK 
+		WHERE limitdate IS NOT NULL 
+		ORDER BY credate DESC      
+      ]]>
+	</select>
+    
+</mapper>
