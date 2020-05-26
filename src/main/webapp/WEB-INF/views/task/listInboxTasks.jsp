@@ -19,7 +19,6 @@
 			<td><b>번호</b></td>
 			<td><b>제목</b></td>
 			<td><b>내용</b></td>
-			<td><b>기한</b></td>
 			<td><b>삭제</b></td>
 		</tr>
 		<c:forEach var="task" items="${inboxTasksList }">
@@ -27,7 +26,6 @@
 				<td>${task.id }</td>
 				<td>${task.title }</td>
 				<td>${task.content }</td>
-				<td>${task.limitDate }</td>
 				<td><a href="${contextPath }/task/removeTask.do?id=${task.id}">삭제하기</a></td>
 			</tr>
 		</c:forEach>

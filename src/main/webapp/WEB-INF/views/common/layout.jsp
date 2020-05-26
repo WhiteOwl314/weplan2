@@ -9,6 +9,31 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    
+    <!-- JQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script> 
+    <script>
+    	$(document).ready(function(){
+    		
+    		
+    		$('#inbox-button-container').click(function(){
+    			
+    			$("#inbox-container").toggle("fast");
+
+				if($("#inbox-button-container").css("background-color") == "yellow"){
+					$("#inbox-button-container").css("background-color", "red");
+					console.log("yello");
+				} else {
+					$("#inbox-button-container").css("background-color", "yellow");
+					console.log("red");
+				}
+    			
+    		});
+    	});
+    	
+    </script>
+    
+    <!-- Style -->
     <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
     <style>
       #container {
@@ -44,6 +69,24 @@
         border: 0px solid #bcbcbc;
          background-color: lightblue;
       }
+      #inbox-button-container{
+      	background-color: red;
+      	position: fixed;
+      	bottom: 25px;
+      	right: 30px;
+      	height: 60px;
+      	width: 60px;
+      	cursor: pointer;
+      }
+      #inbox-container{
+      	height: 100px;
+      	width: 700px;
+      	background-color: red;
+      	position: fixed;
+      	top: 220px;
+      	right: 150px;
+      	display: none;
+      }
       
     </style>
     <title><tiles:insertAttribute name="title" /></title>
@@ -61,6 +104,17 @@
       </div>
       <div id="footer">
           <tiles:insertAttribute name="footer"/>
+      </div>
+      <div id="inbox-button-container" >
+      	<div id="inbox-button">
+      	</div>
+      </div>
+      <div id="intox-containter-parent">
+		  <div id="inbox-container">
+			  <form>
+				  <input type="text" />
+			  </form>
+		  </div>
       </div>
     </div>
   </body>

@@ -24,7 +24,7 @@
 <body>
 	<div>
 		<div id="side-menu-item_1">
-			<a href="${contextPath}/member/listMembers.do" 
+			<a href="${contextPath}/task/listInboxTasks.do" 
 						class="no-underline">
 				<div class="side-menu-item">Inbox</div>
 			</a>

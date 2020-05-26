@@ -12,7 +12,6 @@
         <result property="content" column="content" />
         <result property="isCompleted" column="isCompleted" />
         <result property="importance" column="importance" />
-        <result property="limitDate" column="limitDate" />
         <result property="isTask" column="isTask" />
 	</resultMap>
 
@@ -25,10 +24,9 @@
 			content,
 			isCompleted,
 			importance,
-			TO_CHAR(LIMITDATE, 'YYYY-MM-DD HH24:MI:SS') AS LIMITDATE,
 			isTask
 		FROM W_TASK 
-		WHERE limitdate IS NOT NULL 
+		WHERE limitdate IS NULL 
 		ORDER BY credate DESC
       ]]>
 	</select>
