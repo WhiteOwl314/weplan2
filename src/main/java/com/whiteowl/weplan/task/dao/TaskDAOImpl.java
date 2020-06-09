@@ -23,4 +23,16 @@ public class TaskDAOImpl implements TaskDAO{
 		return inboxTasksList;
 	}
 
+	@Override
+	public int insertInboxTask(TaskVO task) throws DataAccessException {
+		int task_NO = selectNewTask_NO();
+		task.setId(task_NO);
+		sqlSession.insert("mapper.task.insertInboxTask" ,task);
+		return task_NO;
+	}
+
+	private int selectNewTask_NO() throws DataAccessException{
+		return sqlSession.selectOne("mapper.task.selectNewInboxTaskNO");
+	}
+
 }

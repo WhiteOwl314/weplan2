@@ -30,5 +30,29 @@
 		ORDER BY credate DESC
       ]]>
 	</select>
-    
+	
+	<insert id="insertInboxTask" parameterType="taskVO" >
+      <![CDATA[
+      	INSERT INTO W_TASK(
+      		TASK_NO,
+      		title,
+      		content,
+      		importance,
+      		limitDate
+      	)
+      	VALUES (
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi:ss')
+      	)
+      ]]>
+	</insert>
+
+     <select id="selectNewInboxTaskNO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(TASK_NO), 0) + 1 from W_TASK	
+		]]>
+	</select> 
 </mapper>

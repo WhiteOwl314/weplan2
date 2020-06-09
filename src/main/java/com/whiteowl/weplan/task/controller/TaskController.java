@@ -3,7 +3,10 @@ package com.whiteowl.weplan.task.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.whiteowl.weplan.task.vo.TaskVO;
 
 public interface TaskController {
 
@@ -11,4 +14,6 @@ public interface TaskController {
 			HttpServletRequest request, 
 			HttpServletResponse response
 	) throws Exception;
+
+	ResponseEntity addInboxTask(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

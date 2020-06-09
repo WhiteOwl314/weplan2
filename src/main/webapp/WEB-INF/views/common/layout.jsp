@@ -6,33 +6,12 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
  
 <!DOCTYPE html>
-<html>
+<html lang="ko-KR">
   <head>
     <meta charset="UTF-8">
     
     <!-- JQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script> 
-    <script>
-    	$(document).ready(function(){
-    		
-    		
-    		$('#inbox-button-container').click(function(){
-    			
-    			$("#inbox-container").toggle("fast");
-
-				if($("#inbox-button-container").css("background-color") == "yellow"){
-					$("#inbox-button-container").css("background-color", "red");
-					console.log("yello");
-				} else {
-					$("#inbox-button-container").css("background-color", "yellow");
-					console.log("red");
-				}
-    			
-    		});
-    	});
-    	
-    </script>
-    
     <!-- Style -->
     <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
     <style>
@@ -90,6 +69,9 @@
       
     </style>
     <title><tiles:insertAttribute name="title" /></title>
+    
+    <!-- TilePicker -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   </head>
     <body>
     <div id="container">
@@ -111,11 +93,61 @@
       </div>
       <div id="intox-containter-parent">
 		  <div id="inbox-container">
-			  <form>
-				  <input type="text" />
+			  <form action="${contextPath }/task/addInboxTask.do" method="post">
+				  <label><input type="radio" name="importance" value="1">상</label>
+      			  <label><input type="radio" name="importance" value="2">중</label>
+      			  <label><input type="radio" name="importance" value="3">하</label>
+				  <input type="text" name="title" placeholder="제목"/>
+				  <input type="text" name="content" placeholder="내용"/>
+				  <input id="date" type="date" name="date"/>
+				  <input id="time" name="time" class="timepicker" />
+				  <input type="submit" value="save"/>
 			  </form>
+			  
+			  <script>
+				document.getElementById('date').valueAsDate = new Date();
+			  </script>
+
+
 		  </div>
       </div>
     </div>
+
+    <script>
+    	$(document).ready(function(){
+    		
+    		
+    		$('#inbox-button-container').click(function(){
+    			
+    			$("#inbox-container").toggle("fast");
+
+				if($("#inbox-button-container").css("background-color") == "yellow"){
+					$("#inbox-button-container").css("background-color", "red");
+					console.log("yello");
+				} else {
+					$("#inbox-button-container").css("background-color", "yellow");
+					console.log("red");
+				}
+    			
+    		});
+    		
+    		 $('.timepicker').timepicker({
+    			 timeFormat: 'h:mm:ss p',
+    			    interval: 60,
+    			    minTime: '10',
+    			    maxTime: '6:00pm',
+    			    defaultTime: '12',
+    			    startTime: '10:00',
+    			    dynamic: false,
+    			    dropdown: false,
+    			    scrollbar: true
+    		 });
+    	});
+    	
+    </script>
+    
+    <!-- TimePicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    
   </body>
 </html>

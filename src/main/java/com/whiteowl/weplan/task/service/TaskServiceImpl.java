@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.whiteowl.weplan.task.dao.TaskDAO;
+import com.whiteowl.weplan.task.vo.TaskVO;
 
 @Service("taskService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -23,6 +24,11 @@ public class TaskServiceImpl implements TaskService{
 		List inboxTasksList = null;
 		inboxTasksList = taskDAO.selectAllInboxTaskList();
 		return inboxTasksList;
+	}
+
+	@Override
+	public int addInboxTask(TaskVO task) throws DataAccessException {
+		return taskDAO.insertInboxTask(task);
 	}
 
 }
