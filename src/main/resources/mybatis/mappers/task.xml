@@ -46,7 +46,7 @@
       		#{title},
       		#{content},
       		#{importance},
-      		TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi:ss')
+      		TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi')
       	)
       ]]>
 	</insert>
