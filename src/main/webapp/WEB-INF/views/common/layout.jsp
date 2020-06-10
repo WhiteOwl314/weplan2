@@ -59,7 +59,7 @@
       }
       #inbox-container{
       	height: 100px;
-      	width: 700px;
+      	width: 900px;
       	background-color: red;
       	position: fixed;
       	top: 220px;
@@ -97,10 +97,11 @@
 				  <label><input type="radio" name="importance" value="1">상</label>
       			  <label><input type="radio" name="importance" value="2">중</label>
       			  <label><input type="radio" name="importance" value="3">하</label>
-				  <input type="text" name="title" placeholder="제목"/>
-				  <input type="text" name="content" placeholder="내용"/>
+				  <input type="text" name="title" placeholder="title"/>
+				  <input type="text" name="content" placeholder="content"/>
 				  <input id="date" type="date" name="date"/>
 				  <input id="time" name="time" class="timepicker" />
+				  <input id="nullDate" type="button" name="nullDate" value="due">
 				  <input type="submit" value="save"/>
 			  </form>
 			  
@@ -120,15 +121,7 @@
     		$('#inbox-button-container').click(function(){
     			
     			$("#inbox-container").toggle("fast");
-
-				if($("#inbox-button-container").css("background-color") == "yellow"){
-					$("#inbox-button-container").css("background-color", "red");
-					console.log("yello");
-				} else {
-					$("#inbox-button-container").css("background-color", "yellow");
-					console.log("red");
-				}
-    			
+				$("#inbox-button-container").css("background-color", "yellow");
     		});
     		
     		 $('.timepicker').timepicker({
@@ -142,6 +135,12 @@
     			    dropdown: false,
     			    scrollbar: true
     		 });
+    		 
+    		$('#nullDate').click(function(){
+    			$("#date").toggle("fast");
+    			$("#time").toggle("fast");
+    		});
+
     	});
     	
     </script>
