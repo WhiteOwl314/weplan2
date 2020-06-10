@@ -43,5 +43,10 @@ public class TaskDAOImpl implements TaskDAO{
 		return sqlSession.selectOne("mapper.task.selectNewInboxTaskNO");
 	}
 
+	@Override
+	public TaskVO selectTask(int taskNO) throws DataAccessException {
+		return sqlSession.selectOne("mapper.task.selectTask", taskNO);
+	}
+
 
 }

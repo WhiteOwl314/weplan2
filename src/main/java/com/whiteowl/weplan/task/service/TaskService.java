@@ -15,4 +15,6 @@ public interface TaskService {
 
 	public int addInboxTaskNullDate(TaskVO taskVO) throws DataAccessException;
 
+	public TaskVO viewTask(int taskNO) throws Exception;
+
 }

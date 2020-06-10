@@ -22,7 +22,11 @@
 			<td><b>삭제</b></td>
 		</tr>
 		<c:forEach var="task" items="${inboxTasksList }">
-			<tr align="center">
+			<tr align="center" onClick="location.href='${contextPath }/task/viewTask.do?id=${task.id}'"
+				onMouseOver = " window.status = '${contextPath }/task/viewTask.do?id=${task.id}'" 
+				onMouseOut = " window.status = '' "
+				style="cursor:pointer;"
+			>
 				<td>${task.id }</td>
 				<td>${task.title }</td>
 				<td>${task.content }</td>

@@ -13,6 +13,7 @@
         <result property="isCompleted" column="isCompleted" />
         <result property="importance" column="importance" />
         <result property="isTask" column="isTask" />
+        <result property="limitDate" column="limitDate" />
 	</resultMap>
 
 	<select id="selectAllInboxTaskList" resultMap="taskResult">
@@ -66,6 +67,23 @@
       	)
       ]]>
 	</insert>
+	
+	  <select id="selectTask" resultMap="taskResult"   parameterType="int">
+      <![CDATA[
+		SELECT 
+			TASK_NO,
+			TASK_LEVEL,
+			title,
+			content,
+			isCompleted,
+			importance,
+			isTask,
+			TO_CHAR(limitdate, 'YYYY/MM/DD HH24:MI') AS limitdate
+		FROM W_TASK 
+		WHERE TASK_NO = #{taskNO} 
+		ORDER BY credate DESC
+      ]]>
+	  </select>
 
      <select id="selectNewInboxTaskNO" resultType="int"  >
 		<![CDATA[

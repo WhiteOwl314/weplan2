@@ -36,4 +36,10 @@ public class TaskServiceImpl implements TaskService{
 		return taskDAO.insertInboxTaskNullDate(taskVO);
 	}
 
+	@Override
+	public TaskVO viewTask(int taskNO) throws Exception {
+		TaskVO taskVO = taskDAO.selectTask(taskNO);
+		return taskVO;
+	}
+
 }

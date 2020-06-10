@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -97,6 +98,22 @@ public class TaskControllerImpl implements TaskController{
 		}
 		return resEnt ;
 	}
+	
+	@Override
+	@RequestMapping(value="/task/viewTask.do", method = RequestMethod.GET)
+	public ModelAndView viewTask(
+			@RequestParam("id") int taskNO,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		String viewName = (String)request.getAttribute("viewName");
+		taskVO = taskService.viewTask(taskNO);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		mav.addObject("task", taskVO);
+		return mav;
+	}
+	
 	
 
 }
