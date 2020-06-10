@@ -50,6 +50,23 @@
       ]]>
 	</insert>
 
+	<insert id="insertInboxTaskNullDate" parameterType="taskVO" >
+      <![CDATA[
+      	INSERT INTO W_TASK(
+      		TASK_NO,
+      		title,
+      		content,
+      		importance
+      	)
+      	VALUES (
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance}
+      	)
+      ]]>
+	</insert>
+
      <select id="selectNewInboxTaskNO" resultType="int"  >
 		<![CDATA[
 			SELECT  nvl(max(TASK_NO), 0) + 1 from W_TASK	

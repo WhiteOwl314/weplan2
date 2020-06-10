@@ -60,12 +60,14 @@ public class TaskControllerImpl implements TaskController{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int importance = Integer.parseInt(request.getParameter("importance"));
-		String limitDate = request.getParameter("date") + " " + /*request.getParameter("time")*/ "12:00" +":00";
+		String limitDate = request.getParameter("date") + " " + request.getParameter("time") ;
+		
 		
 		taskVO.setTitle(title);
 		taskVO.setContent(content);
 		taskVO.setImportance(importance);
 		taskVO.setLimitDate(limitDate);
+		
 		
 		
 		String referer = request.getHeader("Referer");
@@ -75,7 +77,11 @@ public class TaskControllerImpl implements TaskController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			int taskNO = taskService.addInboxTask(taskVO);
+			if(limitDate.equals(" ")) {
+				int taskNO = taskService.addInboxTaskNullDate(taskVO);
+			} else {
+				int taskNO = taskService.addInboxTask(taskVO);
+			}
 			message = "<script>";
 			message += " alert('할일이 추가되었습니다.');";
 			message += " location.href='"+ referer +"'; ";

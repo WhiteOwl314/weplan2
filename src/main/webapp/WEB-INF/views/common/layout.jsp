@@ -99,15 +99,13 @@
       			  <label><input type="radio" name="importance" value="3">하</label>
 				  <input type="text" name="title" placeholder="title"/>
 				  <input type="text" name="content" placeholder="content"/>
-				  <input id="date" type="date" name="date"/>
-				  <input id="time" name="time" class="timepicker" />
-				  <input id="nullDate" type="button" name="nullDate" value="due">
+				  <input id="date" type="hidden" name="date"/>
+				  <input id="time" type="hidden" name="time"/>
+				  <input id="due" type="button" name="due" value="due">
+				  <input id="nullDate" type="button" name="nullDate" value="nullDate">
 				  <input type="submit" value="save"/>
 			  </form>
 			  
-			  <script>
-				document.getElementById('date').valueAsDate = new Date();
-			  </script>
 
 
 		  </div>
@@ -117,36 +115,33 @@
     <script>
     	$(document).ready(function(){
     		
-    		
+    		/* inbox 버튼 toggle */
     		$('#inbox-button-container').click(function(){
-    			
     			$("#inbox-container").toggle("fast");
 				$("#inbox-button-container").css("background-color", "yellow");
     		});
     		
-    		 $('.timepicker').timepicker({
-    			 timeFormat: 'h:mm:ss p',
-    			    interval: 60,
-    			    minTime: '10',
-    			    maxTime: '6:00pm',
-    			    defaultTime: '12',
-    			    startTime: '10:00',
-    			    dynamic: false,
-    			    dropdown: false,
-    			    scrollbar: true
-    		 });
-    		 
+    		/* due 버튼 */
+    		$('#due').click(function(){
+    			$("#date").attr("type","date");
+    			$("#time").attr("type","time");
+    			/* 현재시간으로 */
+				document.getElementById('date').valueAsDate = new Date();
+    			$("#time").attr("value","18:00");
+    		});
+    		
+    		
+    		/* nullDate 버튼 */
     		$('#nullDate').click(function(){
-    			$("#date").toggle("fast");
-    			$("#time").toggle("fast");
+    			$("#date").attr("type","hidden");
+    			$("#time").attr("type","hidden");
+    			$("#date").attr("value","0000-00-00");
+    			$("#time").attr("value","00:00");
     		});
 
     	});
     	
     </script>
-    
-    <!-- TimePicker -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     
   </body>
 </html>

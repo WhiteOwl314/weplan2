@@ -31,4 +31,9 @@ public class TaskServiceImpl implements TaskService{
 		return taskDAO.insertInboxTask(task);
 	}
 
+	@Override
+	public int addInboxTaskNullDate(TaskVO taskVO) throws DataAccessException {
+		return taskDAO.insertInboxTaskNullDate(taskVO);
+	}
+
 }

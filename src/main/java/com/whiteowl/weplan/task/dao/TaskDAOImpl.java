@@ -31,8 +31,17 @@ public class TaskDAOImpl implements TaskDAO{
 		return task_NO;
 	}
 
+	@Override
+	public int insertInboxTaskNullDate(TaskVO taskVO) throws DataAccessException {
+		int task_NO = selectNewTask_NO();
+		taskVO.setId(task_NO);
+		sqlSession.insert("mapper.task.insertInboxTaskNullDate" ,taskVO);
+		return task_NO;
+	}
+
 	private int selectNewTask_NO() throws DataAccessException{
 		return sqlSession.selectOne("mapper.task.selectNewInboxTaskNO");
 	}
+
 
 }

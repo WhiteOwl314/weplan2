@@ -13,4 +13,6 @@ public interface TaskDAO {
 
 	public int insertInboxTask(TaskVO task) throws DataAccessException;
 
+	public int insertInboxTaskNullDate(TaskVO taskVO) throws DataAccessException;
+
 }
