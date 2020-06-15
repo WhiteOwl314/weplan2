@@ -18,7 +18,6 @@
       #container {
         width: 100%;
         margin: 0px auto;
-          text-align:center;
         border: 0px solid #bcbcbc;
       }
       #header {
@@ -91,7 +90,7 @@
       	<div id="inbox-button">
       	</div>
       </div>
-      <div id="intox-containter-parent">
+      <div id="inbox-containter-parent">
 		  <div id="inbox-container">
 			  <form action="${contextPath }/task/addInboxTask.do" method="post">
 				  <label><input type="radio" name="importance" value="1">상</label>
