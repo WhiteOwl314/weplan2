@@ -13,6 +13,7 @@ public class TaskVO {
 	private int importance;
 	private String limitDate;
 	private String isTask;
+	private String isDelete;
 	
 	public TaskVO() {
 		

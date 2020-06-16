@@ -53,6 +53,12 @@ public class TaskServiceImpl implements TaskService{
 		taskDAO.updateTaskNullDate(taskMap);
 		
 	}
+
+	@Override
+	public void removeTask(int taskNO) throws Exception {
+		taskDAO.removeTask(taskNO);
+		
+	}
 	
 	
 

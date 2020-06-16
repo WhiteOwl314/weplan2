@@ -144,7 +144,7 @@ public class TaskControllerImpl implements TaskController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		try {
 			
-			if(limitDate.equals("0000-00-00 00:00")) {
+			if(limitDate.equals("0000-00-00 00:00") || limitDate.equals(" ")) {
 				taskService.updateTaskNullDate(taskMap);
 			} else {
 				taskService.updateTask(taskMap);
@@ -161,6 +161,40 @@ public class TaskControllerImpl implements TaskController{
 			message += " location.href='"+ referer +"'; ";
 			message +=" </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
+	}
+	
+	@RequestMapping(value="/task/removeTask.do", method = RequestMethod.GET )
+	@ResponseBody
+	public ResponseEntity removeTask(
+			@RequestParam("id") int taskNO,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
+		
+		try {
+			taskService.removeTask(taskNO);
+			
+			message = "<script>";
+			message += " alert('할일이 삭제되었습니다.');";
+			message += " location.href='"+request.getContextPath()+"/task/listInboxTasks.do';";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+request.getContextPath()+"/task/listInboxTasks.do';";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
 			e.printStackTrace();
 		}
 		

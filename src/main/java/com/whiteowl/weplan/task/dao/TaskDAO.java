@@ -22,4 +22,6 @@ public interface TaskDAO {
 
 	public void updateTaskNullDate(Map<String, Object> taskMap) throws DataAccessException;
 
+	public void removeTask(int taskNO) throws DataAccessException;
+
 }

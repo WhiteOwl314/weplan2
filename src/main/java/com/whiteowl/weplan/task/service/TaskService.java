@@ -22,4 +22,6 @@ public interface TaskService {
 
 	public void updateTaskNullDate(Map<String, Object> taskMap) throws Exception;
 
+	public void removeTask(int taskNO) throws Exception;
+
 }

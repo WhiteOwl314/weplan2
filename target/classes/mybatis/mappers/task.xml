@@ -27,7 +27,7 @@
 			importance,
 			isTask
 		FROM W_TASK 
-		WHERE limitdate IS NULL 
+		WHERE limitdate IS NULL AND isdelete = '0'
 		ORDER BY credate DESC
       ]]>
 	</select>
@@ -80,7 +80,7 @@
 			isTask,
 			TO_CHAR(limitdate, 'YYYY/MM/DD HH24:MI') AS limitdate
 		FROM W_TASK 
-		WHERE TASK_NO = #{taskNO} 
+		WHERE TASK_NO = #{taskNO} AND isdelete = '0'
 		ORDER BY credate DESC
       ]]>
 	  </select>
@@ -101,6 +101,12 @@
 	  		title = #{title},
 	  		content = #{content},
 	  		limitdate = null
+	  	WHERE TASK_NO = #{taskNO}
+	  </update>
+	  
+	  <update id="removeTask" parameterType="int">
+	    UPDATE W_TASK
+	  	SET isDelete = '1'
 	  	WHERE TASK_NO = #{taskNO}
 	  </update>
 	  
