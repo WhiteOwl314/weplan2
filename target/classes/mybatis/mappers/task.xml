@@ -84,6 +84,26 @@
 		ORDER BY credate DESC
       ]]>
 	  </select>
+	  
+	  
+	  <update id="updateTask" parameterType="java.util.Map">
+	  	UPDATE W_TASK
+	  	SET importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		limitdate = TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi')
+	  	WHERE TASK_NO = #{taskNO}
+	  </update>
+	  
+	  <update id="updateTaskNullDate" parameterType="java.util.Map">
+	  	UPDATE W_TASK
+	  	SET importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		limitdate = null
+	  	WHERE TASK_NO = #{taskNO}
+	  </update>
+	  
 
      <select id="selectNewInboxTaskNO" resultType="int"  >
 		<![CDATA[

@@ -2,6 +2,7 @@ package com.whiteowl.weplan.task.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -41,5 +42,18 @@ public class TaskServiceImpl implements TaskService{
 		TaskVO taskVO = taskDAO.selectTask(taskNO);
 		return taskVO;
 	}
+
+	@Override
+	public void updateTask(Map<String, Object> taskMap) throws Exception {
+		taskDAO.updateTask(taskMap);
+	}
+
+	@Override
+	public void updateTaskNullDate(Map<String, Object> taskMap) throws Exception {
+		taskDAO.updateTaskNullDate(taskMap);
+		
+	}
+	
+	
 
 }

@@ -2,6 +2,7 @@ package com.whiteowl.weplan.task.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,18 @@ public class TaskDAOImpl implements TaskDAO{
 	@Override
 	public TaskVO selectTask(int taskNO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.task.selectTask", taskNO);
+	}
+
+	@Override
+	public void updateTask(Map<String, Object> taskMap) throws DataAccessException {
+		sqlSession.update("mapper.task.updateTask", taskMap);
+		
+	}
+
+	@Override
+	public void updateTaskNullDate(Map<String, Object> taskMap) throws DataAccessException {
+		sqlSession.update("mapper.task.updateTaskNullDate", taskMap);
+		
 	}
 
 

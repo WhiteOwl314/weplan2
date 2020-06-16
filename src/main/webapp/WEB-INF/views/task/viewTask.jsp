@@ -15,56 +15,9 @@
 <title>할일</title>
 </head>
 <body>
-	<form name="frmTask" method="post" action="${contextPath }" enctype="multipart/form-data">
-		<table align="center">
-			<tr>
-				<td width="150" align="center" bgcolor="#FF9933">
-					완료여부
-				   </td>
-				   <td>
-					<input type="text" value="${task.isCompleted }" name="isCompleted" />
-				   </td>  
-			  </tr>
 
-			<tr>
-				<td width="150" align="center" bgcolor="#FF9933">
-					중요도
-				   </td>
-				   <td>
-					<input type="text" value="${task.importance }" name="importance" />
-				   </td>  
-			  </tr>
-
-			<tr>
-				<td width=150 align="center" bgcolor=#FF9933>
-					제목
-				</td>
-				<td>
-					<input type="text" value="${task.title }" name="title" />
-				</td>
-			</tr>
-			<tr>
-				<td width="150" align="center" bgcolor="#FF9933">
-					내용
-				   </td>
-				   <td>
-					<textarea rows="20" cols="60"  name="content"  id="i_content" >${task.content }</textarea>
-				   </td>  
-			  </tr>
-			<tr>
-				<td width="150" align="center" bgcolor="#FF9933">
-					기한
-				   </td>
-				   <td>
-					<input type="text" value="${task.limitDate }" name="limitDate" />
-				   </td>  
-			  </tr>
-		</table>
-		
-		
-	</form>
-
-    <form action="${contextPath }/task/updateInboxTask.do" method="post">
+    <form action="${contextPath }/task/updateTask.do" method="post">
+    	<input type="hidden" name="taskNO" value="${task.id }">
     	<div>
     		<h1>중요도</h1>
 			<label><input type="radio" name="importance" value="1">상</label>

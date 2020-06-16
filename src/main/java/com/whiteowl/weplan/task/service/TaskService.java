@@ -2,6 +2,7 @@ package com.whiteowl.weplan.task.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -16,5 +17,9 @@ public interface TaskService {
 	public int addInboxTaskNullDate(TaskVO taskVO) throws DataAccessException;
 
 	public TaskVO viewTask(int taskNO) throws Exception;
+
+	public void updateTask(Map<String, Object> taskMap) throws Exception;
+
+	public void updateTaskNullDate(Map<String, Object> taskMap) throws Exception;
 
 }

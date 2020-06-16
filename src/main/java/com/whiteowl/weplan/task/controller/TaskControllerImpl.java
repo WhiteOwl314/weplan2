@@ -114,6 +114,58 @@ public class TaskControllerImpl implements TaskController{
 		return mav;
 	}
 	
+	@RequestMapping(value="/task/updateTask.do"
+			,method= RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity updateTask(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		Map<String, Object> taskMap = new HashMap<String, Object>();
+		Enumeration enu = request.getParameterNames();
+		
+		String limitDate = request.getParameter("date") + " " + request.getParameter("time") ;
+		taskMap.put("limitDate", limitDate);
+		
+		while(enu.hasMoreElements()) {
+			String name = (String) enu.nextElement();
+			String value = request.getParameter(name);
+			taskMap.put(name, value);
+		}
+		
+		String referer = request.getHeader("Referer");
+		
+		String taskNO = (String)taskMap.get("taskNO");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		try {
+			
+			if(limitDate.equals("0000-00-00 00:00")) {
+				taskService.updateTaskNullDate(taskMap);
+			} else {
+				taskService.updateTask(taskMap);
+			}
+
+			message = "<script>";
+			message += " alert('할일이 수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
+	}
 	
 
 }
