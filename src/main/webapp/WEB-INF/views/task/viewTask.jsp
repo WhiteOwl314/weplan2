@@ -79,12 +79,21 @@
     		<h1>내용</h1>
 			<input type="text" name="content" value="${task.content }"/>
     	</div>
+    	
     	<div>
     		<h1>기한</h1>
-			<input id="date-view" type="hidden" name="date"/>
-			<input id="time-view" type="hidden" name="time"/>
-			<input id="due-view" type="button" name="due" value="due">
-			<input id="nullDate-view" type="button" name="nullDate" value="nullDate">
+    		<c:if test="${task.limitDate == null }">
+				<input id="date-view" type="hidden" name="date"/>
+				<input id="time-view" type="hidden" name="time"/>
+				<input id="due-view" type="button" name="due" value="due">
+				<input id="nullDate-view" type="button" name="nullDate" value="nullDate">
+    		</c:if>
+    		<c:if test="${task.limitDate != null }">
+				<input id="date-view" type="date" name="date" value= "" />
+				<input id="time-view" type="time" name="time"/>
+				<input id="due-view" type="button" name="due" value="due">
+				<input id="nullDate-view" type="button" name="nullDate" value="nullDate">
+    		</c:if>
     	</div>
 	    <input type="submit" value="save"/>
     </form>
@@ -92,13 +101,8 @@
     <script>
     	$(document).ready(function(){
     		
-    		/* due 버튼 */
-    		$('#due-view').click(function(){
-    			$("#date-view").attr("type","date");
-    			$("#time-view").attr("type","time");
-    			
-    			if("${task.limitDate }" != null && "${task.limitDate }" != "" ){
-    				
+    		/* 기한 초기값 */
+    		if("${task.limitDate}" != null && "${task.limitDate}" != ""){
 					var limitdate = "${task.limitDate }";
 					var strArray= limitdate.split(' ');
 					var changedDateArray = strArray[0].split('/'); 
@@ -110,7 +114,18 @@
 						+ changedDateArray[2];
 
 					console.log(changedDate);
+					
+					$("#date-view").attr("value",changedDate);
+					$("#time-view").attr("value",strArray[1]);
 
+    		}
+    		
+    		/* due 버튼 */
+    		$('#due-view').click(function(){
+    			$("#date-view").attr("type","date");
+    			$("#time-view").attr("type","time");
+    			
+    			if("${task.limitDate }" != null && "${task.limitDate }" != "" ){
 					$("#date-view").attr("value",changedDate);
 					$("#time-view").attr("value",strArray[1]);
     			} else {
