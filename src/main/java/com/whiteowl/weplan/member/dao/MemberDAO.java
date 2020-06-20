@@ -16,4 +16,10 @@ public interface MemberDAO {
 
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException;
 
+	public int check_id(String id) throws Exception;
+
+	public int check_email(String email) throws Exception;
+
+	public int join_member(MemberVO member) throws Exception;
+
 }

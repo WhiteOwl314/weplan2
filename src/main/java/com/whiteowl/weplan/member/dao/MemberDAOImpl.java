@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.whiteowl.weplan.member.vo.MemberVO;
 
@@ -38,6 +39,25 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException {
 		MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
 		return vo;
+	}
+	
+	// 아이디 중복 검사
+	@Override
+	public int check_id(String id) throws Exception{
+		return sqlSession.selectOne("mapper.member.check_id", id);
+	}
+		
+	// 이메일 중복 검사
+	@Override
+	public int check_email(String email) throws Exception{
+		return sqlSession.selectOne("mapper.member.check_email", email);
+	}
+	
+	// 회원가입
+	@Transactional
+	@Override
+	public int join_member(MemberVO member) throws Exception{
+		return sqlSession.insert("mapper.member.join_member", member);
 	}
 
 }

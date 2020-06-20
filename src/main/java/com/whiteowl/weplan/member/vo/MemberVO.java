@@ -12,6 +12,10 @@ public class MemberVO {
 	private String name;
 	private String email;
 	private Date joinDate;
+	private Date reg_date;
+	private Date log_date;
+	private String approval_status;
+	private String approval_key;
 	
 	public MemberVO() {
 		
@@ -68,6 +72,40 @@ public class MemberVO {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
+
+	public Date getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
+	}
+
+	public Date getLog_date() {
+		return log_date;
+	}
+
+	public void setLog_date(Date log_date) {
+		this.log_date = log_date;
+	}
+
+	public String getApproval_status() {
+		return approval_status;
+	}
+
+	public void setApproval_status(String approval_status) {
+		this.approval_status = approval_status;
+	}
+
+	public String getApproval_key() {
+		return approval_key;
+	}
+
+	public void setApproval_key(String approval_key) {
+		this.approval_key = approval_key;
+	}
+	
+	
 	
 	
 }

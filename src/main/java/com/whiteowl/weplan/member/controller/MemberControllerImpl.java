@@ -141,5 +141,41 @@ public class MemberControllerImpl implements MemberController{
 		return mav;
 	}
 	
+	// 아이디 중복 검사(AJAX)
+	@RequestMapping(
+			value = "/member/check_id.do", 
+			method = RequestMethod.POST)
+	public void check_id(
+			@RequestParam("id") String id, 
+			HttpServletResponse response
+	) throws Exception{
+		memberService.check_id(id, response);
+	}
+	
+	// 이메일 중복 검사(AJAX)
+	@RequestMapping(
+			value = "/member/check_email.do", 
+			method = RequestMethod.POST)
+	public void check_email(
+			@RequestParam("email") String email, 
+			HttpServletResponse response
+	) throws Exception{
+		memberService.check_email(email, response);
+	}
+	
+	// 회원 가입
+	@RequestMapping(
+			value = "/member/join_member.do", 
+			method = RequestMethod.POST
+	)
+	public String join_member(
+			@ModelAttribute MemberVO member, 
+			RedirectAttributes rttr, 
+			HttpServletResponse response
+	) throws Exception{
+		rttr.addFlashAttribute("result", memberService.join_member(member, response));
+		return "redircet:./memberJoinForm.do";
+		//TODO 주소 수정
+	}
 
 }
