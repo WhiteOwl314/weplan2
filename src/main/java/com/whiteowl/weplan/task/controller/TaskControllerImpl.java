@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -193,6 +194,42 @@ public class TaskControllerImpl implements TaskController{
 			message = " <script>";
 			message += " alert('실패했습니다.');";
 			message += " location.href='"+request.getContextPath()+"/task/listInboxTasks.do';";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
+	}
+	
+	@RequestMapping(value="/task/completeTask.do", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity completeTask(
+			@RequestParam("id") int taskNO,
+			HttpServletRequest request,
+			HttpServletResponse response
+	)throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
+		
+		String referer = request.getHeader("Referer");
+		
+		try {
+			
+			taskService.completeTask(taskNO);
+
+			message = "<script>";
+			message += " alert('할일을 완료했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
 			message +=" </script>";
 			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
 			e.printStackTrace();

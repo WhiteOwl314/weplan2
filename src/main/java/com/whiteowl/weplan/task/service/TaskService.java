@@ -24,4 +24,6 @@ public interface TaskService {
 
 	public void removeTask(int taskNO) throws Exception;
 
+	public void completeTask(int taskNO) throws Exception;
+
 }

@@ -67,5 +67,10 @@ public class TaskDAOImpl implements TaskDAO{
 		
 	}
 
+	@Override
+	public void completeTask(int taskNO) throws DataAccessException {
+		sqlSession.update("mapper.task.completeTask", taskNO);
+	}
+
 
 }

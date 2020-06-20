@@ -27,7 +27,7 @@
 			importance,
 			isTask
 		FROM W_TASK 
-		WHERE limitdate IS NULL AND isdelete = '0'
+		WHERE limitdate IS NULL AND isdelete = '0' AND isCompleted = '0'
 		ORDER BY credate DESC
       ]]>
 	</select>
@@ -110,6 +110,12 @@
 	  	WHERE TASK_NO = #{taskNO}
 	  </update>
 	  
+	  <update id="completeTask" parameterType="int">
+	    UPDATE W_TASK
+	  	SET isCompleted = '1'
+	  	WHERE TASK_NO = #{taskNO}
+	  </update>
+
 
      <select id="selectNewInboxTaskNO" resultType="int"  >
 		<![CDATA[

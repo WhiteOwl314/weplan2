@@ -24,4 +24,6 @@ public interface TaskDAO {
 
 	public void removeTask(int taskNO) throws DataAccessException;
 
+	public void completeTask(int taskNO) throws DataAccessException;
+
 }

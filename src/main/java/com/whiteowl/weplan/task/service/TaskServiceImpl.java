@@ -59,6 +59,12 @@ public class TaskServiceImpl implements TaskService{
 		taskDAO.removeTask(taskNO);
 		
 	}
+
+	@Override
+	public void completeTask(int taskNO) throws Exception {
+		taskDAO.completeTask(taskNO);
+		
+	}
 	
 	
 

@@ -55,11 +55,11 @@
     	$(document).ready(function(){
     		
     		/* 중요도 초기값 */
-    		if(${task.importance}==1){
+    		if('${task.importance}'=='1'){
     			$('input:radio[name=importance]:input[value="1"]').attr("checked", true);
-    		} else if (${task.importance} == 2){
+    		} else if ('${task.importance}' == '2'){
     			$('input:radio[name=importance]:input[value="2"]').attr("checked", true);
-    		} else if (${task.importance} == 3){
+    		} else if ('${task.importance}' == '3'){
     			$('input:radio[name=importance]:input[value="3"]').attr("checked", true);
     		}
     		
