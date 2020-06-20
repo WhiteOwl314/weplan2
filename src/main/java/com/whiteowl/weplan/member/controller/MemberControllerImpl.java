@@ -121,7 +121,7 @@ public class MemberControllerImpl implements MemberController{
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/member/listMembers.do");
+		mav.setViewName("redirect:/main.do");
 		return mav;
 	}
 	
