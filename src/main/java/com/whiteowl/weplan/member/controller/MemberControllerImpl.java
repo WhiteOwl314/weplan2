@@ -101,7 +101,7 @@ public class MemberControllerImpl implements MemberController{
 			if(action != null) {
 				mav.setViewName("redirect:"+action);
 			} else {
-				mav.setViewName("redirect:/member/listMembers.do");
+				mav.setViewName("redirect:/task/listInboxTasks.do");
 			}
 			
 		} else {

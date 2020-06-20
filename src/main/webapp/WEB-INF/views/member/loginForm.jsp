@@ -45,6 +45,7 @@
          </td>
       </tr>
    </table>
+   	<a href="${contextPath }/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </form>
 </body>
 </html>
