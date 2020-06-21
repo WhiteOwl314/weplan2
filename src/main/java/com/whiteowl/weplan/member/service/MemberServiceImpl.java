@@ -83,7 +83,6 @@ public class MemberServiceImpl implements MemberService{
 			out.close();
 			return 0;
 		} else {
-			out.close();
 			// 인증키 set 
 			member.setApproval_key(create_key());
 			memberDAO.join_member(member);

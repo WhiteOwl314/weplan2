@@ -172,21 +172,18 @@ public class MemberControllerImpl implements MemberController{
 			value = "/member/join_member.do", 
 			method = RequestMethod.POST
 	)
-	public String join_member(
+	public ModelAndView join_member(
 			@ModelAttribute MemberVO member, 
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
 		
-		response.setContentType("text/html; charset=UTF-8");
-		String message;
-		ResponseEntity resEnt=null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
+		request.setCharacterEncoding("utf-8");
 		
 		memberService.join_member(member, response);
-		return "redircet:./member/memberForm.do";
-
+		
+		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		return mav;
 	}
 	
 	// 회원 인증
