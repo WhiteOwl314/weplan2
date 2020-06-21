@@ -173,14 +173,23 @@ public class MemberControllerImpl implements MemberController{
 			method = RequestMethod.POST
 	)
 	public ModelAndView join_member(
-			@ModelAttribute MemberVO member, 
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		
+
 		request.setCharacterEncoding("utf-8");
 		
-		memberService.join_member(member, response);
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		
+		memberVO.setId(id);
+		memberVO.setPwd(pwd);
+		memberVO.setEmail(email);
+		memberVO.setName(name);
+		
+		memberService.join_member(memberVO, response);
 		
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
