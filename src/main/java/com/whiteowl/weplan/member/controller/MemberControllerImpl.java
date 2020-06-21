@@ -7,11 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -170,12 +174,29 @@ public class MemberControllerImpl implements MemberController{
 	)
 	public String join_member(
 			@ModelAttribute MemberVO member, 
-			RedirectAttributes rttr, 
+			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		rttr.addFlashAttribute("result", memberService.join_member(member, response));
-		return "redircet:./memberJoinForm.do";
-		//TODO 주소 수정
-	}
+		
+		response.setContentType("text/html; charset=UTF-8");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
+		
+		memberService.join_member(member, response);
+		return "redircet:./member/memberForm.do";
 
+	}
+	
+	// 회원 인증
+	@RequestMapping(
+			value = "/member/approval_member.do", 
+			method = RequestMethod.POST)
+	public void approval_member(
+			@ModelAttribute MemberVO member, 
+			HttpServletResponse response
+	) throws Exception{
+		memberService.approval_member(member, response);
+	}
 }

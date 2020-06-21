@@ -24,4 +24,10 @@ public interface MemberService {
 
 	public int join_member(MemberVO member, HttpServletResponse response) throws Exception;
 
+	public String create_key() throws Exception;
+
+	public void send_mail(MemberVO member) throws Exception;
+
+	public void approval_member(MemberVO member, HttpServletResponse response) throws Exception;
+
 }

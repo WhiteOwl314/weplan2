@@ -22,4 +22,6 @@ public interface MemberDAO {
 
 	public int join_member(MemberVO member) throws Exception;
 
+	public int approval_member(MemberVO member) throws Exception;
+
 }

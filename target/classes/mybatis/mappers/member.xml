@@ -78,13 +78,19 @@
 		 	#{pwd}, 
 		 	#{name}, 
 		 	#{email},
-		 	now(),
-		 	now(),
+		 	sysdate,
+		 	sysdate,
 		 	'false',
 		 	#{approval_key}
 		 )
 		]]>      
 	</insert>
-  
+	
+	<!-- 이메일 인증 -->
+	<update id="approval_member" parameterType="memberVO">
+		update t_member 
+		set approval_status = 'true' 
+		where email = #{email} and approval_key = #{approval_key}
+	</update>
   
 </mapper>

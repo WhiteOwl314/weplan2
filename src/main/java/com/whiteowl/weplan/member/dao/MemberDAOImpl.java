@@ -59,5 +59,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public int join_member(MemberVO member) throws Exception{
 		return sqlSession.insert("mapper.member.join_member", member);
 	}
+	
+	// 이메일 인증
+	@Transactional
+	@Override
+	public int approval_member(MemberVO member) throws Exception{
+		return sqlSession.update("mapper.member.approval_member", member);
+	}
 
 }
