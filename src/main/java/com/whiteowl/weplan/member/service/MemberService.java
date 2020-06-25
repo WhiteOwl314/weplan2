@@ -30,4 +30,8 @@ public interface MemberService {
 
 	public void approval_member(MemberVO member, HttpServletResponse response) throws Exception;
 
+	public MemberVO login(MemberVO member, HttpServletResponse response) throws Exception;
+
+	public String find_id(HttpServletResponse response, String email) throws Exception;
+
 }

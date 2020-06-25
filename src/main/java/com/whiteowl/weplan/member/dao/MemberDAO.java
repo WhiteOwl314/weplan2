@@ -24,4 +24,10 @@ public interface MemberDAO {
 
 	public int approval_member(MemberVO member) throws Exception;
 
+	public MemberVO login(String id) throws Exception;
+
+	public int update_log(String id) throws Exception;
+
+	public String find_id(String email) throws Exception;
+
 }

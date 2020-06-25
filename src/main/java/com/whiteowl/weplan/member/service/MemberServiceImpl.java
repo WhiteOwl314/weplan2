@@ -177,6 +177,71 @@ public class MemberServiceImpl implements MemberService{
 			out.close();
 		}
 	}
-
+	
+	// 로그인
+	@Override
+	public MemberVO login(
+			MemberVO member, 
+			HttpServletResponse response
+	) throws Exception{
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		//등록된 아이디가 없을때
+		if(memberDAO.check_id(member.getId()) == 0) {
+			out.println("<script>");
+			out.println("alert('등록된 아이디가 없습니다.')");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			String pw = member.getPwd();
+			member = memberDAO.login(member.getId());
+			
+			//비밀번호가 다를 경우
+			if(!member.getPwd().equals(pw)) {
+				out.println("<script>");
+				out.println("alert('비밀번호가 다릅니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+				return null;
+			} else if (!member.getApproval_status().equals("true")) {
+				out.println("<script>");
+				out.println("alert('이메일 인증 후 로그인 하세요.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+				return null;
+			} else {
+				//로그인 일자 업데이트 및 회원정보 리턴
+				memberDAO.update_log(member.getId());
+				return member;
+			}
+		}
+	}
+	
+	// 아이디 찾기
+	@Override
+	public String find_id(
+			HttpServletResponse response, 
+			String email
+	) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		String id = memberDAO.find_id(email);
+		
+		if (id == null) {
+			out.println("<script>");
+			out.println("alert('가입된 아이디가 없습니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		} else {
+			return id;
+		}
+	}
 
 }

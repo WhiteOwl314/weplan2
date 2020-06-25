@@ -178,6 +178,7 @@ public class MemberControllerImpl implements MemberController{
 	) throws Exception{
 
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
@@ -191,7 +192,8 @@ public class MemberControllerImpl implements MemberController{
 		
 		memberService.join_member(memberVO, response);
 		
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/login_email");
 		return mav;
 	}
 	
@@ -204,5 +206,55 @@ public class MemberControllerImpl implements MemberController{
 			HttpServletResponse response
 	) throws Exception{
 		memberService.approval_member(member, response);
+	}
+	
+	// 로그인 폼 이동
+	@RequestMapping(
+			value="/member/login_form.do",
+			method = RequestMethod.GET
+	) public ModelAndView login_form() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/loginForm");
+		return mav;
+	}
+	
+	//로그인
+	@RequestMapping(
+			value = "/member/login2.do",
+			method = RequestMethod.POST
+	) public ModelAndView login(
+			@ModelAttribute MemberVO member,
+			HttpSession session,
+			HttpServletResponse response
+	) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("main");
+		member = memberService.login(member, response);
+		session.setAttribute("member", member);
+		return mav;
+	}
+	
+	// 아이디 찾기 폼
+	@RequestMapping(value="/member/find_id_form.do")
+	public ModelAndView find_id_form() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/find_id_form");
+		return mav;
+	}
+	
+	// 아이디 찾기
+	@RequestMapping(
+			value = "/member/find_id.do", 
+			method = RequestMethod.POST
+	)
+	public ModelAndView find_id(
+			HttpServletResponse response, 
+			@RequestParam("email") String email 
+	) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/find_id");
+		mav.addObject("id", memberService.find_id(response, email));
+		return mav;
 	}
 }

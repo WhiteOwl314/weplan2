@@ -15,8 +15,7 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
 	</definition>
 	
-	<definition name="/member/memberForm" extends="baseLayout">
-		<put-attribute name="title" value="회원등록창" />
+	<definition name="/member/memberForm" template="/WEB-INF/views/main.jsp">
 		<put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
 	</definition>
 	
@@ -29,4 +28,13 @@
 		<put-attribute name="title" value="로그인"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/login_email.jsp"/>
 	</definition>
+	
+	<definition name="/member/find_id_form" template="/WEB-INF/views/main.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/member/find_id_form.jsp" />
+	</definition>
+	
+	<definition name="/member/find_id" template="/WEB-INF/views/main.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/member/find_id.jsp" />
+	</definition>
+	
 </tiles-definitions>

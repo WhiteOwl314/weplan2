@@ -18,13 +18,17 @@
 	    window.onload=function(){
 	      alert("아이디나 비밀번호가 틀립니다.다시 로그인 하세요!");
 	    }
+	    
 	  </script>
 	</c:when>
 </c:choose>  
+
+
+
 </head>
 
 <body>
-<form name="frmLogin" method="post"  action="${contextPath}/member/login.do">
+<form name="frmLogin" method="post"  action="${contextPath}/member/login2.do">
    <table border="1"  width="80%" align="center" >
       <tr align="center">
          <td>아이디</td>
@@ -44,7 +48,14 @@
          </td>
       </tr>
    </table>
+   	<a
+   		href="${contextPath }/member/find_id_form.do"
+   	>
+   		<span title="아이디 찾기" id="find_id_btn">아이디 찾기</span>
+   	</a>
    	<a href="${contextPath }/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </form>
+
+
 </body>
 </html>

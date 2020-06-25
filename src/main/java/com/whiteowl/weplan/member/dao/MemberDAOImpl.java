@@ -66,5 +66,24 @@ public class MemberDAOImpl implements MemberDAO{
 	public int approval_member(MemberVO member) throws Exception{
 		return sqlSession.update("mapper.member.approval_member", member);
 	}
+	
+	// 로그인 검사
+	@Override
+	public MemberVO login(String id) throws Exception{
+		return sqlSession.selectOne("mapper.member.login", id);
+	}
+	
+	// 로그인 접속일자 변경
+	@Override
+	@Transactional
+	public int update_log(String id) throws Exception{
+		return sqlSession.update("mapper.member.update_log",id);
+	}
+	
+	// 아이디 찾기
+	@Override
+	public String find_id(String email) throws Exception{
+		return sqlSession.selectOne("mapper.member.find_id", email);
+	}
 
 }

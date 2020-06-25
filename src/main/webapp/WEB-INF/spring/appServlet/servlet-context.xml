@@ -9,14 +9,18 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- 이 컨텍스트는 DispatcherServlet의 컨텍스트이며 기반을 설정한다. -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- @Controller 인지하도록 -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- resource 잘 찾도록 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 변환된 뷰 (Controller -> .jsp) -->
 	<beans:bean id="tilesConfigurer" 
 				class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<beans:property name="definitions">

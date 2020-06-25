@@ -4,17 +4,27 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- 스프링 컨테이너 정의, 전체설정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/action-mybatis.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- ContextLoaderListener: 모든 xml 파일이 로드 되도록 함 -> webapplicationcontext 생성
+		-> 모든 컨텍스트의 부모
+	-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<!-- Processes application requests -->
+	<!-- 어플리케이션 요청 프로세스들 -->
+	<!--
+		DispatcherServlet ->각각 webapplicationcontext 생성. 서로 공유 불가  
+		DispatcherServlet 은 Spring Container 생성
+	-->
+	<!-- 별명 설정 -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -25,6 +35,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
+	<!-- url 할당 -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>

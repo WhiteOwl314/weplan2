@@ -92,5 +92,20 @@
 		set approval_status = 'true' 
 		where email = #{email} and approval_key = #{approval_key}
 	</update>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="String" resultType="memberVO">
+		select * from t_member where id = #{id}
+	</select>
+	
+	<!-- 로그인 접속일자 수정 -->
+	<update id="update_log" parameterType="String">
+		update t_member set log_date = sysdate where id = #{id}
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	<select id="find_id" parameterType="String" resultType="String">
+		select id from t_member where email = #{email}
+	</select>
   
 </mapper>
