@@ -225,14 +225,33 @@ public class MemberControllerImpl implements MemberController{
 	) public ModelAndView login(
 			@ModelAttribute MemberVO member,
 			HttpSession session,
+			HttpServletRequest request,
+			RedirectAttributes rAttr, 
 			HttpServletResponse response
 	) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main");
-		member = memberService.login(member, response);
-		session.setAttribute("member", member);
+		memberVO = memberService.login(member, response);
+		
+		if(memberVO != null) {
+			HttpSession session1 = request.getSession();
+			session1.setAttribute("member", memberVO);
+			session1.setAttribute("isLogOn", true);
+			String action = (String)session1.getAttribute("action");
+			session1.removeAttribute("action");
+			if(action != null) {
+				mav.setViewName("redirect:"+action);
+			} else {
+				mav.setViewName("redirect:/task/listInboxTasks.do");
+			}
+			
+		} else {
+			rAttr.addAttribute("result", "loginFailed");
+			mav.setViewName("redirect:/member/loginForm.do");
+		}
 		return mav;
+
 	}
 	
 	// 아이디 찾기 폼
@@ -256,5 +275,25 @@ public class MemberControllerImpl implements MemberController{
 		mav.setViewName("/member/find_id");
 		mav.addObject("id", memberService.find_id(response, email));
 		return mav;
+	}
+	
+	// 비밀번호 찾기 폼
+	@RequestMapping(value = "/member/find_pw_form.do")
+	public ModelAndView find_pw_form() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/find_pw_form");
+		return mav;
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping(
+			value = "/member/find_pw.do",
+			method = RequestMethod.POST
+	)
+	public void find_pw(
+			@ModelAttribute MemberVO member, 
+			HttpServletResponse response
+	) throws Exception{
+		memberService.find_pw(response, member);
 	}
 }

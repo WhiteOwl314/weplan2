@@ -30,4 +30,6 @@ public interface MemberDAO {
 
 	public String find_id(String email) throws Exception;
 
+	public int update_pw(MemberVO member) throws Exception;
+
 }

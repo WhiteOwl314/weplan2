@@ -53,6 +53,12 @@
    	>
    		<span title="아이디 찾기" id="find_id_btn">아이디 찾기</span>
    	</a>
+  	<a
+   		href="${contextPath }/member/find_pw_form.do"
+   	>
+   		<span title="비밀번호 찾기" id="find_pw_form">비밀번호 찾기</span>
+   	</a>
+   	
    	<a href="${contextPath }/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </form>
 

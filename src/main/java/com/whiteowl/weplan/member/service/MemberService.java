@@ -26,12 +26,14 @@ public interface MemberService {
 
 	public String create_key() throws Exception;
 
-	public void send_mail(MemberVO member) throws Exception;
-
 	public void approval_member(MemberVO member, HttpServletResponse response) throws Exception;
 
 	public MemberVO login(MemberVO member, HttpServletResponse response) throws Exception;
 
 	public String find_id(HttpServletResponse response, String email) throws Exception;
+
+	public void send_mail(MemberVO member, String div) throws Exception;
+
+	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
 
 }

@@ -85,5 +85,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public String find_id(String email) throws Exception{
 		return sqlSession.selectOne("mapper.member.find_id", email);
 	}
+	
+	// 비밀번호 변경
+	@Transactional
+	@Override
+	public int update_pw(MemberVO member) throws Exception{
+		return sqlSession.update("mapper.member.update_pw", member);
+	}
 
 }

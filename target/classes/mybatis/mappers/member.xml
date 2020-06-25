@@ -107,5 +107,10 @@
 	<select id="find_id" parameterType="String" resultType="String">
 		select id from t_member where email = #{email}
 	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="update_pw" parameterType="memberVO">
+		update t_member set pwd = #{pwd} where id = #{id}
+	</update>
   
 </mapper>

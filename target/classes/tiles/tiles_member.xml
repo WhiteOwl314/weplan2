@@ -37,4 +37,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/member/find_id.jsp" />
 	</definition>
 	
+	<definition name="/member/find_pw_form" template="/WEB-INF/views/main.jsp">
+		<put-attribute name="body" value="/WEB-INF/views/member/find_pw_form.jsp" />
+	</definition>
+	
 </tiles-definitions>
