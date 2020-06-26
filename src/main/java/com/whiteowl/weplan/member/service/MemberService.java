@@ -36,4 +36,8 @@ public interface MemberService {
 
 	public void find_pw(HttpServletResponse response, MemberVO member) throws Exception;
 
+	public MemberVO update_mypage(MemberVO member) throws Exception;
+
+	public MemberVO update_pw(MemberVO member, String old_pw, HttpServletResponse response) throws Exception;
+
 }

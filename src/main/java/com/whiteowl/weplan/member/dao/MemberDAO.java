@@ -32,4 +32,6 @@ public interface MemberDAO {
 
 	public int update_pw(MemberVO member) throws Exception;
 
+	public int update_mypage(MemberVO member) throws Exception;
+
 }

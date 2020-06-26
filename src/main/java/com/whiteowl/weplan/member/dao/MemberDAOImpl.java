@@ -92,5 +92,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public int update_pw(MemberVO member) throws Exception{
 		return sqlSession.update("mapper.member.update_pw", member);
 	}
+	
+	// 마이페이지
+	@Override
+	@Transactional
+	public int update_mypage(MemberVO member) throws Exception{
+		return sqlSession.update("mapper.member.update_mypage", member);
+	}
 
 }

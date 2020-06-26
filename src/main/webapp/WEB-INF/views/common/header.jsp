@@ -57,6 +57,7 @@
        <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
             <h3>환영합니다. ${member.name }님!</h3>
+            <a href="${contextPath }/member/mypage.do">마이페이지(${member.id})</a>
             <a href="${contextPath}/member/logout.do"><h3>로그아웃</h3></a>
           </c:when>
           <c:otherwise>

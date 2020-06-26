@@ -291,6 +291,37 @@ public class MemberServiceImpl implements MemberService{
 			out.close();
 		}
 	}
+	
+	// 회원정보 수정
+	@Override
+	public MemberVO update_mypage(
+			MemberVO member
+	) throws Exception {
+		memberDAO.update_mypage(member);
+		return memberDAO.login(member.getId());
+	}
+	
+	// 비밀번호 변경
+	@Override
+	public MemberVO update_pw(
+			MemberVO member, 
+			String old_pw, 
+			HttpServletResponse response
+	) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		if(!old_pw.equals(memberDAO.login(member.getId()).getPwd())) {
+			out.println("<script>");
+			out.println("alert('기존 비밀번호가 다릅니다.');");
+			out.println("history.go(-1);");
+			out.println("</script>");
+			out.close();
+			return null;
+		}else {
+			memberDAO.update_pw(member);
+			return memberDAO.login(member.getId());
+		}
+	}
 
 
 }

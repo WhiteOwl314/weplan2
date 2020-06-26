@@ -1,5 +1,6 @@
 package com.whiteowl.weplan.member.controller;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -295,5 +296,48 @@ public class MemberControllerImpl implements MemberController{
 			HttpServletResponse response
 	) throws Exception{
 		memberService.find_pw(response, member);
+	}
+	
+	// 마이페이지 이동
+	@RequestMapping(
+			value="/member/mypage.do",
+			method = RequestMethod.GET
+	)
+	public ModelAndView mypage() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/member/mypage");
+		return mav;
+	}
+	
+	// mypage 수정
+	@RequestMapping(
+			value = "/member/update_mypage.do", 
+			method = RequestMethod.POST
+	)
+	public String update_mypage(
+			@ModelAttribute MemberVO member, 
+			HttpSession session, 
+			RedirectAttributes rttr
+	) throws Exception{
+		session.setAttribute("member", memberService.update_mypage(member));
+		rttr.addFlashAttribute("msg", "회원정보 수정 완료");
+		return "redirect:/member/mypage.do";
+	}
+	
+	// 비밀번호 변경
+	@RequestMapping(
+			value = "/member/update_pw.do",
+			method = RequestMethod.POST
+	)
+	public String update_pw(
+			@ModelAttribute MemberVO member, 
+			@RequestParam("old_pw") String old_pw, 
+			HttpSession session, 
+			HttpServletResponse response, 
+			RedirectAttributes rttr
+	) throws Exception{
+		session.setAttribute("member", memberService.update_pw(member, old_pw, response));
+		rttr.addFlashAttribute("msg", "비밀번호 수정 완료");
+		return "redirect:/member/mypage.do";
 	}
 }
