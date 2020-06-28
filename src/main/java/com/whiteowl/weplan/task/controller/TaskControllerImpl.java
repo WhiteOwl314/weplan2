@@ -63,12 +63,14 @@ public class TaskControllerImpl implements TaskController{
 		String content = request.getParameter("content");
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String limitDate = request.getParameter("date") + " " + request.getParameter("time") ;
+		String member_id = request.getParameter("member_id");
 		
 		
 		taskVO.setTitle(title);
 		taskVO.setContent(content);
 		taskVO.setImportance(importance);
 		taskVO.setLimitDate(limitDate);
+		taskVO.setMember_id(member_id);
 		
 		
 		

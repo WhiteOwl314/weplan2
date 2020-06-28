@@ -14,6 +14,7 @@ public class TaskVO {
 	private String limitDate;
 	private String isTask;
 	private String isDelete;
+	private String member_id;
 	
 	public TaskVO() {
 		
@@ -66,6 +67,22 @@ public class TaskVO {
 	}
 	public void setIsTask(String isTask) {
 		this.isTask = isTask;
+	}
+
+	public String getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(String isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	
 	

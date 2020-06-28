@@ -35,6 +35,7 @@
 	<insert id="insertInboxTask" parameterType="taskVO" >
       <![CDATA[
       	INSERT INTO W_TASK(
+      		member_id,
       		TASK_NO,
       		title,
       		content,
@@ -42,6 +43,7 @@
       		limitDate
       	)
       	VALUES (
+      		#{member_id},
       		#{id},
       		#{title},
       		#{content},
@@ -54,12 +56,14 @@
 	<insert id="insertInboxTaskNullDate" parameterType="taskVO" >
       <![CDATA[
       	INSERT INTO W_TASK(
+      		member_id,
       		TASK_NO,
       		title,
       		content,
       		importance
       	)
       	VALUES (
+			#{member_id},
       		#{id},
       		#{title},
       		#{content},

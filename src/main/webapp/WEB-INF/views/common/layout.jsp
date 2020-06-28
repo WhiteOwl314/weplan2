@@ -73,6 +73,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   </head>
     <body>
+    ${member.id }
     
     <div id="container">
       <div id="header">
@@ -104,6 +105,7 @@
 				  <input id="due" type="button" name="due" value="due">
 				  <input id="nullDate" type="button" name="nullDate" value="nullDate">
 				  <input type="submit" value="save"/>
+				  <input type="hidden" name="member_id" value="${ member.id }">
 			  </form>
 			  
 
