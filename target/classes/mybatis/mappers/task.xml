@@ -16,7 +16,7 @@
         <result property="limitDate" column="limitDate" />
 	</resultMap>
 
-	<select id="selectAllInboxTaskList" resultMap="taskResult">
+	<select id="selectAllInboxTaskList" resultMap="taskResult" parameterType="String">
       <![CDATA[
 		SELECT 
 			TASK_NO,
@@ -27,7 +27,7 @@
 			importance,
 			isTask
 		FROM W_TASK 
-		WHERE limitdate IS NULL AND isdelete = '0' AND isCompleted = '0'
+		WHERE limitdate IS NULL AND isdelete = '0' AND isCompleted = '0' AND member_id = #{member_id}
 		ORDER BY credate DESC
       ]]>
 	</select>

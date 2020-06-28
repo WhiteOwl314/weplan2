@@ -21,9 +21,9 @@ public class TaskServiceImpl implements TaskService{
 	private TaskDAO taskDAO;
 
 	@Override
-	public List listInboxTasks() throws DataAccessException {
+	public List listInboxTasks(String member_id) throws DataAccessException {
 		List inboxTasksList = null;
-		inboxTasksList = taskDAO.selectAllInboxTaskList();
+		inboxTasksList = taskDAO.selectAllInboxTaskList(member_id);
 		return inboxTasksList;
 	}
 

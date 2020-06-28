@@ -10,7 +10,6 @@ import com.whiteowl.weplan.task.vo.TaskVO;
 
 public interface TaskDAO {
 
-	public List selectAllInboxTaskList() throws DataAccessException;
 
 	public int insertInboxTask(TaskVO task) throws DataAccessException;
 
@@ -25,5 +24,7 @@ public interface TaskDAO {
 	public void removeTask(int taskNO) throws DataAccessException;
 
 	public void completeTask(int taskNO) throws DataAccessException;
+
+	public List selectAllInboxTaskList(String member_id) throws DataAccessException;
 
 }

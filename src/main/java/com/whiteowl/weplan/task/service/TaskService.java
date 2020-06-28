@@ -10,8 +10,6 @@ import com.whiteowl.weplan.task.vo.TaskVO;
 
 public interface TaskService {
 
-	public List listInboxTasks() throws DataAccessException;
-
 	public int addInboxTask(TaskVO task) throws DataAccessException;
 
 	public int addInboxTaskNullDate(TaskVO taskVO) throws DataAccessException;
@@ -25,5 +23,7 @@ public interface TaskService {
 	public void removeTask(int taskNO) throws Exception;
 
 	public void completeTask(int taskNO) throws Exception;
+
+	public List listInboxTasks(String member_id) throws DataAccessException;
 
 }

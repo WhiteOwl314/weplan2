@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.whiteowl.weplan.member.service.MemberService;
+import com.whiteowl.weplan.member.vo.MemberVO;
 import com.whiteowl.weplan.task.service.TaskService;
 import com.whiteowl.weplan.task.vo.TaskVO;
 
@@ -43,7 +45,10 @@ public class TaskControllerImpl implements TaskController{
 			HttpServletResponse response
 	) throws Exception{
 		String viewName = (String)request.getAttribute("viewName");
-		List inboxTasksList = taskService.listInboxTasks();
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		List inboxTasksList = taskService.listInboxTasks(member_id);
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("inboxTasksList", inboxTasksList);
 		return mav;

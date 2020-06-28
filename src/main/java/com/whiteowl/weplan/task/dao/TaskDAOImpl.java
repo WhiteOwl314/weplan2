@@ -18,9 +18,9 @@ public class TaskDAOImpl implements TaskDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public List selectAllInboxTaskList() throws DataAccessException {
+	public List selectAllInboxTaskList(String member_id) throws DataAccessException {
 		List<TaskVO> inboxTasksList = null;
-		inboxTasksList = sqlSession.selectList("mapper.task.selectAllInboxTaskList");
+		inboxTasksList = sqlSession.selectList("mapper.task.selectAllInboxTaskList", member_id);
 		return inboxTasksList;
 	}
 
