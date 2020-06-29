@@ -88,6 +88,10 @@ public class TaskServiceImpl implements TaskService{
 		
 		 switch(dayNum){
 	        case 1:
+	        	cal.add(Calendar.DATE, -6);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +0);
+				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	        case 2:
 	        	day = dateFormat.format(cal.getTime());
@@ -101,16 +105,28 @@ public class TaskServiceImpl implements TaskService{
 				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	        case 4:
-	            day = "수";
+	        	cal.add(Calendar.DATE, -2);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +4);
+				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	        case 5:
-	            day = "목";
+	        	cal.add(Calendar.DATE, -3);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +3);
+				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	        case 6:
-	            day = "금";
+	        	cal.add(Calendar.DATE, -4);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +2);
+				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	        case 7:
-	            day = "토";
+	        	cal.add(Calendar.DATE, -5);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +1);
+				day2 = dateFormat.format(cal2.getTime());
 	            break ;
 	             
 	    }

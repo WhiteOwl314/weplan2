@@ -1,3 +1,6 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" 
     isELIgnored="false"  %>
@@ -41,9 +44,19 @@
 </head>
 <body>
 
-	<c:forEach var="task" items="${weeklyTaskList}">
-		${task.id}
-	</c:forEach>
+	<div class="bucket" ondragover="allowDrop();" ondrop="dropItem(event);">
+		<c:forEach var="task" items="${weeklyTaskList}">
+			${task.day_of_week }
+			${task.id}
+			<c:if test="${task.day_of_week eq '2'}">
+				<span class="item" id="${task.id} " ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+
+
 	
 	<div class="test wrap">
 		<div class="drag-items">

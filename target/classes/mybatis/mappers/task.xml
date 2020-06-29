@@ -15,6 +15,20 @@
         <result property="isTask" column="isTask" />
         <result property="limitDate" column="limitDate" />
 	</resultMap>
+	
+	<resultMap type="taskVO" id="taskResult2">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="TASK_NO" />
+		<result property="level" column="TASK_LEVEL" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="isCompleted" column="isCompleted" />
+        <result property="importance" column="importance" />
+        <result property="isTask" column="isTask" />
+        <result property="limitDate" column="limitDate" />
+        <result property="day_of_week" column="day_of_week"/>
+	</resultMap>
+	
 
 	<select id="selectAllInboxTaskList" resultMap="taskResult" parameterType="String">
       <![CDATA[
@@ -120,7 +134,7 @@
 	  	WHERE TASK_NO = #{taskNO}
 	  </update>
 	  
-	<select id="weeklyTaskList" resultMap="taskResult" parameterType="java.util.Map">
+	<select id="weeklyTaskList" resultMap="taskResult2" parameterType="java.util.Map">
       <![CDATA[
 		SELECT 
 			TASK_NO,
@@ -130,7 +144,8 @@
 			isCompleted,
 			importance,
 			isTask,
-			TO_CHAR(limitdate, 'YYYY/MM/DD HH24:MI') AS limitdate
+			TO_CHAR(limitdate, 'YYYY/MM/DD HH24:MI') AS limitdate,
+			TO_CHAR(LIMITDATE, 'D') AS day_of_week
 		FROM W_TASK 
 		WHERE 
 			isdelete = '0' 

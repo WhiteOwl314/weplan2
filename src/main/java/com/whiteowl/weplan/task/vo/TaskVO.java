@@ -15,6 +15,7 @@ public class TaskVO {
 	private String isTask;
 	private String isDelete;
 	private String member_id;
+	private String day_of_week;
 	
 	public TaskVO() {
 		
@@ -84,6 +85,15 @@ public class TaskVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+
+	public String getDay_of_week() {
+		return day_of_week;
+	}
+
+	public void setDay_of_week(String day_of_week) {
+		this.day_of_week = day_of_week;
+	}
+	
 	
 	
 }
