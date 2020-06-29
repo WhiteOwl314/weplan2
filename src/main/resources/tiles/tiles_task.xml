@@ -8,8 +8,12 @@
 		<put-attribute name="title" value="Inbox" />
 		<put-attribute name="body" value="/WEB-INF/views/task/listInboxTasks.jsp" />
 	</definition>
-		<definition name="/task/viewTask" extends="baseLayout">
+	<definition name="/task/viewTask" extends="baseLayout">
 		<put-attribute name="title" value="task" />
 		<put-attribute name="body" value="/WEB-INF/views/task/viewTask.jsp" />
+	</definition>
+	<definition name="/task/weeklyTaskList" extends="baseLayout">
+		<put-attribute name="title" value="WEEKLY TASK LIST" />
+		<put-attribute name="body" value="/WEB-INF/views/task/weeklyTaskList.jsp" />
 	</definition>
 </tiles-definitions>

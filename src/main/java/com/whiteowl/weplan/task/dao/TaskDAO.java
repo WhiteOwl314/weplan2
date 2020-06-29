@@ -27,4 +27,6 @@ public interface TaskDAO {
 
 	public List selectAllInboxTaskList(String member_id) throws DataAccessException;
 
+	public List weelkyTaskList(String member_id, String date, String day2) throws DataAccessException;
+
 }

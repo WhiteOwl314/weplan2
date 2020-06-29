@@ -1,6 +1,8 @@
 package com.whiteowl.weplan.task.controller;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -244,6 +246,33 @@ public class TaskControllerImpl implements TaskController{
 		
 		return resEnt;
 	}
+
+//	weekly 검색
+	@RequestMapping(value="/task/weeklyTaskList.do",
+						method = RequestMethod.GET)
+	public ModelAndView weeklyTaskList(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		String date = "";
+		
+		if(request.getParameter("date") == null) {
+			Date today = new Date();
+		    SimpleDateFormat Simpleformat = new SimpleDateFormat("yyyy-MM-dd");
+		    date = Simpleformat.format(today);
+		} else {
+			date = request.getParameter("date");
+		}
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		List weeklyTaskList = taskService.weeklyTaskList(member_id, date);
+		ModelAndView mav = new ModelAndView("/task/weeklyTaskList");
+		mav.addObject("weeklyTaskList", weeklyTaskList);
+		return mav;
+	}
 	
+
 
 }

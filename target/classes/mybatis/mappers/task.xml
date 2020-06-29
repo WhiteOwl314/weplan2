@@ -119,6 +119,28 @@
 	  	SET isCompleted = '1'
 	  	WHERE TASK_NO = #{taskNO}
 	  </update>
+	  
+	<select id="weeklyTaskList" resultMap="taskResult" parameterType="java.util.Map">
+      <![CDATA[
+		SELECT 
+			TASK_NO,
+			TASK_LEVEL,
+			title,
+			content,
+			isCompleted,
+			importance,
+			isTask,
+			TO_CHAR(limitdate, 'YYYY/MM/DD HH24:MI') AS limitdate
+		FROM W_TASK 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND LIMITDATE >= TO_DATE(#{day},'yyyy-mm-dd')
+			AND LIMITDATE <= TO_DATE(#{day2},'yyyy-mm-dd')
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	  
 
 
      <select id="selectNewInboxTaskNO" resultType="int"  >

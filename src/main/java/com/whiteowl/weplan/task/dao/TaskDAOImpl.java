@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.task.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,15 @@ public class TaskDAOImpl implements TaskDAO{
 	@Override
 	public void completeTask(int taskNO) throws DataAccessException {
 		sqlSession.update("mapper.task.completeTask", taskNO);
+	}
+
+	@Override
+	public List weelkyTaskList(String member_id, String day, String day2) throws DataAccessException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("day", day);
+		map.put("day2", day2);
+		return sqlSession.selectList("mapper.task.weeklyTaskList", map);
 	}
 
 

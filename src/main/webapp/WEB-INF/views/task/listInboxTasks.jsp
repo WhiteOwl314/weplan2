@@ -14,11 +14,6 @@
 	<title>Inbox</title>
 </head>
 <body>
-	<h1 class="test" id="1">
-		실험
-		<a href="#">
-		</a>
-	</h1>
 	<table border="1" align="center" width="80%">
 		<tr align="center" bgcolor="lightgreen">
 			<td><b>완료</b></td>

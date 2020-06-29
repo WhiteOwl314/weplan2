@@ -44,9 +44,9 @@
 			</a>
 		</div>
 		<div id="side-menu-item_3">
-			<a href="#"  class="no-underline">
+			<a href="${contextPath}/task/weeklyTaskList.do"  class="no-underline">
 				<div class="side-menu-item">
-					Forecast
+					Weekly Task
 				</div>
 			</a>
 		</div>

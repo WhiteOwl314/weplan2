@@ -1,6 +1,9 @@
 package com.whiteowl.weplan.task.service;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +67,55 @@ public class TaskServiceImpl implements TaskService{
 	public void completeTask(int taskNO) throws Exception {
 		taskDAO.completeTask(taskNO);
 		
+	}
+
+	@Override
+	public List weeklyTaskList(String member_id, String date) throws Exception {
+		
+		String day = "" ;
+		String day2 = "" ;
+	     
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date nDate = dateFormat.parse(date);
+		 
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(nDate);
+		
+		Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(nDate);
+		 
+		int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+		
+		 switch(dayNum){
+	        case 1:
+	            break ;
+	        case 2:
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +6);
+				day2 = dateFormat.format(cal2.getTime());
+	            break ;
+	        case 3:
+	        	cal.add(Calendar.DATE, -1);
+	        	day = dateFormat.format(cal.getTime());
+				cal2.add(Calendar.DATE, +5);
+				day2 = dateFormat.format(cal2.getTime());
+	            break ;
+	        case 4:
+	            day = "수";
+	            break ;
+	        case 5:
+	            day = "목";
+	            break ;
+	        case 6:
+	            day = "금";
+	            break ;
+	        case 7:
+	            day = "토";
+	            break ;
+	             
+	    }
+
+		return taskDAO.weelkyTaskList(member_id, day, day2);
 	}
 	
 	

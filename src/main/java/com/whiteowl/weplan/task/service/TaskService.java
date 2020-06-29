@@ -26,4 +26,6 @@ public interface TaskService {
 
 	public List listInboxTasks(String member_id) throws DataAccessException;
 
+	public List weeklyTaskList(String member_id, String date) throws Exception;
+
 }
