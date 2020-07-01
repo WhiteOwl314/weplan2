@@ -156,6 +156,11 @@
       ]]>
 	</select>
 	  
+	  <update id="moveDate" parameterType="java.util.Map">
+	  	UPDATE W_TASK
+	  	SET limitdate = TO_DATE(#{newLimitDate},'yyyy-mm-dd hh24:mi')
+	  	WHERE TASK_NO = #{task_id}
+	  </update>
 
 
      <select id="selectNewInboxTaskNO" resultType="int"  >

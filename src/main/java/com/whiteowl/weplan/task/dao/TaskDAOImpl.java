@@ -82,5 +82,14 @@ public class TaskDAOImpl implements TaskDAO{
 		return sqlSession.selectList("mapper.task.weeklyTaskList", map);
 	}
 
+	@Override
+	public void moveDate(int task_id, String newLimitDate) throws DataAccessException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("task_id", task_id);
+		map.put("newLimitDate", newLimitDate);
+		sqlSession.update("mapper.task.moveDate", map);
+		
+	}
+
 
 }

@@ -30,4 +30,6 @@ public interface TaskService {
 
 	public Map returnMondaySunday(String date) throws Exception;
 
+	public void moveDate(int task_id, String newLimitDate) throws Exception;
+
 }

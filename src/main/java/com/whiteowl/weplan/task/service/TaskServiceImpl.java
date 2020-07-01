@@ -302,6 +302,14 @@ public class TaskServiceImpl implements TaskService{
 		return dayList;
 
 	}
+
+	@Override
+	public void moveDate(
+			int task_id, 
+			String newLimitDate
+	) throws Exception {
+		taskDAO.moveDate(task_id, newLimitDate);
+	}
 	
 
 }

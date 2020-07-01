@@ -29,4 +29,6 @@ public interface TaskDAO {
 
 	public List weelkyTaskList(String member_id, String date, String day2) throws DataAccessException;
 
+	public void moveDate(int task_id, String newLimitDate) throws DataAccessException;
+
 }

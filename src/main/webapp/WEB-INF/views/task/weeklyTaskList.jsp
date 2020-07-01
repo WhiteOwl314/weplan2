@@ -53,14 +53,6 @@
 		ondragenter="dragEnter();"
 		ondragleave="dragLeave();"
 	>
-		<c:out value="${dayList['monday']}" />
-		<c:out value="${dayList['tuesday']}" />
-		<c:out value="${dayList['wednesday']}" />
-		<c:out value="${dayList['thursday']}" />
-		<c:out value="${dayList['friday']}" />
-		<c:out value="${dayList['saturday']}" />
-		<c:out value="${dayList['sunday']}" />
-
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '2'}">
 				<div 
@@ -82,6 +74,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '3'}">
@@ -104,6 +99,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '4'}">
@@ -126,6 +124,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '5'}">
@@ -148,6 +149,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '6'}">
@@ -170,6 +174,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '7'}">
@@ -191,6 +198,9 @@
 		class="bucket" 
 		ondragover="allowDrop();" 
 		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+		
 	>
 		<c:forEach var="task" items="${weeklyTaskList}">
 			<c:if test="${task.day_of_week eq '1'}">
@@ -247,10 +257,11 @@
 		  var _targetEle = event.target;
 		  var _id = event.dataTransfer.getData('text');
 		  var _moveEle = document.getElementById(_id );
+		  _targetEle.classList.remove('is-selecting');
 		  console.log(_moveEle);
 		  _targetEle.append(_moveEle);
 		  date = _targetEle.id;
-		  window.location.href="#";
+		  window.location.href="${contextPath}/task/moveDate.do?id="+task_id+"&date="+date;
 		  console.log(task_id);
 		  console.log(date);
 		};

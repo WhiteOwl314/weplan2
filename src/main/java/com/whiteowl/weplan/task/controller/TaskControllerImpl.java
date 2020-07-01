@@ -277,6 +277,51 @@ public class TaskControllerImpl implements TaskController{
 		return mav;
 	}
 	
+	@RequestMapping(
+			value="/task/moveDate.do",
+			method = RequestMethod.GET	
+	)
+	@ResponseBody
+	public ResponseEntity moveDate(
+			@RequestParam("id") int task_id,
+			@RequestParam("date") String date,
+			HttpServletRequest request,
+			HttpServletResponse response
+	)throws Exception {
+		request.setCharacterEncoding("utf-8");
+		taskVO = taskService.viewTask(task_id);
+		String oldLimitDate = taskVO.getLimitDate();
+		String oldTime = ""; 
+		String newLimitDate = "";
+		String defualtTime = "21:00";
+		
+		if(oldLimitDate.equals("0000-00-00 00:00") || oldLimitDate.equals(" ")) {
+			
+			newLimitDate = date + " " + defualtTime;
+			
+			taskService.moveDate(task_id, newLimitDate);
+		} else {
+			String[] dateArray = oldLimitDate.split(" ");
+			oldTime = dateArray[1];
+			newLimitDate = date + " " + oldTime;
+			taskService.moveDate(task_id, newLimitDate);
+		}
+		
+		
+		String referer = request.getHeader("Referer");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		message = "<script>";
+		message += " location.href='"+ referer +"'; ";
+		message +=" </script>";
+	    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+	    
+	    return resEnt;
+	}
+	
 
 
 }
