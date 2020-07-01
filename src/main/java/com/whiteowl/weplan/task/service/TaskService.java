@@ -28,4 +28,6 @@ public interface TaskService {
 
 	public List weeklyTaskList(String member_id, String date) throws Exception;
 
+	public Map returnMondaySunday(String date) throws Exception;
+
 }

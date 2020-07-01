@@ -19,8 +19,6 @@
 	<style type="text/css">
 		.item {
 		  background: #999;
-		  display: inline-block;
-		  width: 50px;
 		  height: 50px;
 		  color: #fff;
 		  padding: 12px 20px;
@@ -40,23 +38,174 @@
 		  text-align: center;
 		  padding: 15px;
 		}
+		.bucket.is-selecting{
+			background-color: blue;
+		}
 	</style>
 </head>
 <body>
 
-	<div class="bucket" ondragover="allowDrop();" ondrop="dropItem(event);">
+	<div 
+		id="${dayList['monday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+		ondragenter="dragEnter();"
+		ondragleave="dragLeave();"
+	>
+		<c:out value="${dayList['monday']}" />
+		<c:out value="${dayList['tuesday']}" />
+		<c:out value="${dayList['wednesday']}" />
+		<c:out value="${dayList['thursday']}" />
+		<c:out value="${dayList['friday']}" />
+		<c:out value="${dayList['saturday']}" />
+		<c:out value="${dayList['sunday']}" />
+
 		<c:forEach var="task" items="${weeklyTaskList}">
-			${task.day_of_week }
-			${task.id}
 			<c:if test="${task.day_of_week eq '2'}">
-				<span class="item" id="${task.id} " ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">
+				<div 
+					class="item" 
+					id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
 					${task.title }
-				</span>
+				</div>
 			</c:if>
 		</c:forEach>
 	</div>
 
 
+	<div 
+		id="${dayList['tuesday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '3'}">
+				<span 
+					class="item" 
+					id="${task.id} " 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	
+	<div 
+		id="${dayList['wednesday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '4'}">
+				<span 
+					class="item" 
+					id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	
+	<div 
+		id="${dayList['thursday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '5'}">
+				<span 
+					class="item" 
+					id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	
+	<div 
+		id="${dayList['friday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '6'}">
+				<span 
+					class="item" 
+					id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	
+	<div 
+		id="${dayList['saturday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '7'}">
+				<span 
+					class="item" id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
+	
+	
+	<div 
+		id="${dayList['sunday']}" 
+		class="bucket" 
+		ondragover="allowDrop();" 
+		ondrop="dropItem(event);"
+	>
+		<c:forEach var="task" items="${weeklyTaskList}">
+			<c:if test="${task.day_of_week eq '1'}">
+				<span 
+					class="item" 
+					id="${task.id}" 
+					ondragstart="dragStart(event);" 
+					draggable="true" 
+					ondragend="dragEnd(event)"
+				>
+					${task.title }
+				</span>
+			</c:if>
+		</c:forEach>
+	</div>
 	
 	<div class="test wrap">
 		<div class="drag-items">
@@ -64,10 +213,32 @@
 			<span class="item" id="2" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">2</span>
 			<span class="item" id="3" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">3</span>
 		</div>
-		<div class="bucket" ondragover="allowDrop();" ondrop="dropItem(event);"></div>
+		<div 
+			class="bucket" 
+			ondragover="allowDrop();" 
+			ondrop="dropItem(event);"
+			ondragenter="dragEnter();"
+			ondragleave="dragLeave();"
+		>
+		</div>
 	</div>
 	
 	<script type="text/javascript">
+	
+		var task_id = "";
+		var date = "";
+	
+		dragEnter = function() {
+		  var _targetEle = event.target;
+		  _targetEle.classList.add('is-selecting');
+			
+		}
+		
+		dragLeave = function() {
+		  var _targetEle = event.target;
+		  _targetEle.classList.remove('is-selecting');
+		}
+	
 		allowDrop = function() {
 		  event.preventDefault();
 		};
@@ -78,6 +249,10 @@
 		  var _moveEle = document.getElementById(_id );
 		  console.log(_moveEle);
 		  _targetEle.append(_moveEle);
+		  date = _targetEle.id;
+		  window.location.href="#";
+		  console.log(task_id);
+		  console.log(date);
 		};
 
 		dragStart = function() {
@@ -85,6 +260,7 @@
 		  var _thisId = _thisEle.id;
 		  _thisEle.classList.add('is-dragging');
 		  event.dataTransfer.setData('text/plain', _thisId);
+		  task_id = _thisId;
 		};
 
 		dragEnd = function() {

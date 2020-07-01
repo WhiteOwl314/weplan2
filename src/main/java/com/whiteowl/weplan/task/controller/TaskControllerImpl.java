@@ -270,6 +270,10 @@ public class TaskControllerImpl implements TaskController{
 		List weeklyTaskList = taskService.weeklyTaskList(member_id, date);
 		ModelAndView mav = new ModelAndView("/task/weeklyTaskList");
 		mav.addObject("weeklyTaskList", weeklyTaskList);
+		
+//		월요일 가져오기
+		Map dayList = taskService.returnMondaySunday(date);
+		mav.addObject("dayList", dayList);
 		return mav;
 	}
 	
