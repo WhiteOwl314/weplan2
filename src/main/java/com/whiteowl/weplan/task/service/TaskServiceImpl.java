@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.task.service;
 
 
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -309,6 +312,16 @@ public class TaskServiceImpl implements TaskService{
 			String newLimitDate
 	) throws Exception {
 		taskDAO.moveDate(task_id, newLimitDate);
+	}
+
+	@Override
+	public void popUpTaskView(
+			String task_id,
+			HttpServletResponse response
+	) throws Exception {
+		PrintWriter out = response.getWriter();
+		out.println(taskDAO.popUpTaskView(task_id));
+		out.close();
 	}
 	
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -89,6 +90,34 @@ public class TaskDAOImpl implements TaskDAO{
 		map.put("newLimitDate", newLimitDate);
 		sqlSession.update("mapper.task.moveDate", map);
 		
+	}
+
+	@Override
+	public JSONObject popUpTaskView(String task_id) throws DataAccessException {
+
+		JSONObject data = new JSONObject();
+		String taskNO = task_id;
+		
+		TaskVO task = sqlSession.selectOne("mapper.task.selectTask", taskNO);
+		int id = task.getId();
+		int level = task.getLevel();
+		String title = task.getTitle();
+		String content = task.getContent();
+		String isCompleted = task.getIsCompleted();
+		int importance = task.getImportance();
+		String isTask = task.getIsTask();
+		String limitDate = task.getLimitDate();
+
+		data.put("id", id);
+		data.put("level", level);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("isCompleted", isCompleted);
+		data.put("importance", importance);
+		data.put("isTask",isTask);
+		data.put("limitDate", limitDate);
+		
+		return data;
 	}
 
 

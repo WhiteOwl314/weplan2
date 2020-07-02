@@ -322,6 +322,17 @@ public class TaskControllerImpl implements TaskController{
 	    return resEnt;
 	}
 	
+	@RequestMapping(
+			value="/task/popUpTaskView.do",
+			method = RequestMethod.POST
+	)
+	public void popUpTaskView(
+			@RequestParam("id") String task_id,
+			HttpServletResponse response
+	) throws Exception {
+		taskService.popUpTaskView(task_id, response);
+	}
+	
 
 
 }

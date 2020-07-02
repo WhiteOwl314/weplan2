@@ -41,7 +41,57 @@
 		.bucket.is-selecting{
 			background-color: blue;
 		}
+		
+		/*-- POPUP common style S ======================================================================================================================== --*/
+		#mask {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 999;
+			background-color: #000000;
+			display: none; }
+
+		.layerpop {
+			display: none;
+			z-index: 1000;
+			border: 2px solid #ccc;
+			background: #fff;
+			cursor: move; }
+
+		.layerpop_area .title {
+			padding: 10px 10px 10px 10px;
+			border: 0px solid #aaaaaa;
+			background: #f1f1f1;
+			color: #3eb0ce;
+			font-size: 1.3em;
+			font-weight: bold;
+			line-height: 24px; }
+
+		.layerpop_area .layerpop_close {
+			width: 25px;
+			height: 25px;
+			display: block;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: transparent url('btn_exit_off.png') no-repeat; }
+
+		.layerpop_area .layerpop_close:hover {
+			background: transparent url('btn_exit_on.png') no-repeat;
+			cursor: pointer; }
+
+		.layerpop_area .content {
+			width: 96%;    
+			margin: 2%;
+			color: #828282; }
+		/*-- POPUP common style E --*/
+		
 	</style>
+
+	<!-- draggable -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+	
 </head>
 <body>
 
@@ -86,6 +136,7 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
 				>
 					${task.title }
 				</span>
@@ -217,24 +268,46 @@
 		</c:forEach>
 	</div>
 	
-	<div class="test wrap">
-		<div class="drag-items">
-			<span class="item" id="1" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">1</span>
-			<span class="item" id="2" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">2</span>
-			<span class="item" id="3" ondragstart="dragStart(event);" draggable="true" ondragend="dragEnd(event)">3</span>
-		</div>
-		<div 
-			class="bucket" 
-			ondragover="allowDrop();" 
-			ondrop="dropItem(event);"
-			ondragenter="dragEnter();"
-			ondragleave="dragLeave();"
-		>
-		</div>
+	<div>
+		<button onClick="javascript:goDetail('테스트');">팝업</button>
+		<div style="height:1000px;"> </div>
+
+		<!-- 팝업뜰때 배경 -->
+		<div id="mask"></div>
+
+		<!--Popup Start -->
+		<div id="layerbox" class="layerpop"
+			style="width: 700px; height: 350px;">
+			<article class="layerpop_area">
+			<div class="title">레이어팝업 타이틀</div>
+			<a href="javascript:popupClose();" class="layerpop_close"
+				id="layerbox_close"></a> <br>
+			<div class="content">
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				레이어 팝업 내용<br/>
+				
+				<div>
+					id : <span id="popUp_taskId"></span>
+				</div>
+				
+		
+			</div>
+			</article>
+    </div>
+    <!--Popup End -->
+
+		
 	</div>
 	
 	<script type="text/javascript">
 	
+		/* 드래그 앤 드 */
 		var task_id = "";
 		var date = "";
 	
@@ -278,6 +351,67 @@
 		  var _thisEle = event.target;
 		  _thisEle.classList.remove('is-dragging');
 		};
+		
+		/* 레이어팝업 */
+		
+		function wrapWindowByMask() {
+	        //화면의 높이와 너비를 구한다.
+	        var maskHeight = $(document).height(); 
+	        var maskWidth = $(window).width();
+
+	        //문서영역의 크기 
+	        console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
+	        //브라우저에서 문서가 보여지는 영역의 크기
+	        console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
+
+	        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+	        $('#mask').css({
+	            'width' : maskWidth,
+	            'height' : maskHeight
+	        });
+
+	        //애니메이션 효과
+	        //$('#mask').fadeIn(1000);      
+	        $('#mask').fadeTo("slow", 0.5);
+	    }
+
+	    function popupOpen() {
+	        $('.layerpop').css("position", "absolute");
+	        //영역 가운에데 레이어를 뛰우기 위해 위치 계산 
+	        $('.layerpop').css("top",(($(window).height() - $('.layerpop').outerHeight()) / 2) + $(window).scrollTop());
+	        $('.layerpop').css("left",(($(window).width() - $('.layerpop').outerWidth()) / 2) + $(window).scrollLeft());
+	        $('.layerpop').draggable();
+	        $('#layerbox').show();
+	    }
+
+	    function popupClose() {
+	        $('#layerbox').hide();
+	        $('#mask').hide();
+	    }
+
+	    function goDetail(task_id) {
+
+			$.ajax({
+				url : "${contextPath}/task/popUpTaskView.do",
+				dataType :"json",
+				type : "POST",
+				data : {
+					id : task_id
+				},
+				success : function(result) {
+					console.log(result.id);
+					$('#popUp_taskId').text(result.id);
+				},
+
+			})
+
+	        /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+
+	        popupOpen(); //레이어 팝업창 오픈 
+	        wrapWindowByMask(); //화면 마스크 효과 
+	        
+	    };
+	    
 	</script>
 </body>
 </html>

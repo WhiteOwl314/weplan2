@@ -4,6 +4,8 @@ package com.whiteowl.weplan.task.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.dao.DataAccessException;
 
 import com.whiteowl.weplan.task.vo.TaskVO;
@@ -31,5 +33,7 @@ public interface TaskService {
 	public Map returnMondaySunday(String date) throws Exception;
 
 	public void moveDate(int task_id, String newLimitDate) throws Exception;
+
+	public void popUpTaskView(String task_id, HttpServletResponse response) throws Exception;
 
 }
