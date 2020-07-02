@@ -111,6 +111,8 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
+					
 				>
 					${task.title }
 				</div>
@@ -162,6 +164,8 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
+					
 				>
 					${task.title }
 				</span>
@@ -186,7 +190,9 @@
 					id="${task.id}" 
 					ondragstart="dragStart(event);" 
 					draggable="true" 
-					ondragend="dragEnd(event)"
+					ondragend="dragEnd(event)"					
+					onclick="javascript:goDetail(${task.id})"
+					
 				>
 					${task.title }
 				</span>
@@ -212,6 +218,8 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
+					
 				>
 					${task.title }
 				</span>
@@ -236,6 +244,7 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
 				>
 					${task.title }
 				</span>
@@ -261,6 +270,7 @@
 					ondragstart="dragStart(event);" 
 					draggable="true" 
 					ondragend="dragEnd(event)"
+					onclick="javascript:goDetail(${task.id})"
 				>
 					${task.title }
 				</span>
@@ -391,6 +401,11 @@
 
 	    function goDetail(task_id) {
 
+	        /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
+
+	        popupOpen(); //레이어 팝업창 오픈 
+	        wrapWindowByMask(); //화면 마스크 효과 
+	        
 			$.ajax({
 				url : "${contextPath}/task/popUpTaskView.do",
 				dataType :"json",
@@ -399,17 +414,10 @@
 					id : task_id
 				},
 				success : function(result) {
-					console.log(result.id);
 					$('#popUp_taskId').text(result.id);
 				},
 
-			})
-
-	        /*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
-
-	        popupOpen(); //레이어 팝업창 오픈 
-	        wrapWindowByMask(); //화면 마스크 효과 
-	        
+	    	})
 	    };
 	    
 	</script>
