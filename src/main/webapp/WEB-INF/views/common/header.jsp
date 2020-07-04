@@ -15,14 +15,22 @@
  			rel="stylesheet" type="text/css">
 
   <meta charset="UTF-8">
-<title>헤더</title>
+	<title>헤더</title>
+	<style type="text/css">
+		.logo{
+			width: 35px;
+		}
+	</style>
 </head>
 <body>
 <table border=0  width="100%">
   <tr>
      <td>
 		<a href="${contextPath}/main.do">
-			<img src="${contextPath}/resources/image/poodle.jpg"  />
+			<img 
+				src="${contextPath}/resources/images/logo-1.png"
+				class="logo"  
+			/>
 		</a>
      </td>
      <td>

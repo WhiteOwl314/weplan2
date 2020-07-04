@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.absoluteValue">
+
+	<resultMap type="absoluteValueVO" id="absoluteValueListResult">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="importance" column="importance" />
+	</resultMap>
+	
+
+	<select
+		id="absoluteValueList" 
+		resultMap="absoluteValueListResult"
+		parameterType="String"
+	>
+	  <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance
+		FROM W_ABSOLUTE_VALUE 
+		WHERE isdelete = '0'  AND member_id = #{member_id}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	 <select id="selectNewAbsoluteValueListNO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(ID), 0) + 1 from W_ABSOLUTE_VALUE	
+		]]>
+	</select> 
+	
+</mapper>

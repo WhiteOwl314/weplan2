@@ -32,11 +32,12 @@
 		.bucket {
 		  display: block;
 		  width: 200px;
-		  height: 90px;
+		  height: 240px;
 		  margin: 0 0 18px;
 		  border: 1px solid;
 		  text-align: center;
 		  padding: 15px;
+		  float: left;
 		}
 		.bucket.is-selecting{
 			background-color: blue;
@@ -279,9 +280,6 @@
 	</div>
 	
 	<div>
-		<button onClick="javascript:goDetail('테스트');">팝업</button>
-		<div style="height:1000px;"> </div>
-
 		<!-- 팝업뜰때 배경 -->
 		<div id="mask"></div>
 

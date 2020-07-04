@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="/absoluteValue/absoluteValueList" extends="baseLayout">
+		<put-attribute name="title" value="Absolute Value List" />
+		<put-attribute name="body" value="/WEB-INF/views/absolutevalue/absoluteValueList.jsp" />
+	</definition>
+</tiles-definitions>

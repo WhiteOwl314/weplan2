@@ -30,12 +30,12 @@
         margin-right: 5px;
         margin-bottom: 5px;
         float: left;
-         background-color: yellow;
+        background-color: #FFCC57;
         border: 0px solid #bcbcbc;
         font-size:10px;
       }
       #content {
-        width: 75%;
+        width: 90%;
         padding: 5px;
         margin-right: 5px;
         float: left;
@@ -73,8 +73,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   </head>
     <body>
-    ${member.id }
-    
     <div id="container">
       <div id="header">
          <tiles:insertAttribute name="header"/>
