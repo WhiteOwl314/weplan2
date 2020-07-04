@@ -37,4 +37,25 @@
 		]]>
 	</select> 
 	
+	<insert 
+		id="addAbsoluteValue" 
+		parameterType="absoluteValueVO"
+	>
+		INSERT INTO W_ABSOLUTE_VALUE(
+      		member_id,
+      		ID,
+      		title,
+      		content,
+      		importance
+      	)
+      	VALUES (
+      		#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance}
+      	)
+		
+	</insert>
+	
 </mapper>

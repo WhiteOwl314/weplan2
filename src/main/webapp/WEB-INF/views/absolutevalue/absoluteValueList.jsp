@@ -14,10 +14,26 @@
 	<title>Insert title here</title>
 </head>
 <body>
+	
+	<div>
+		<form 
+			action="${contextPath}/absoluteValue/addAbsoluteValue.do"
+			method="post"
+		>
+			<label><input type="radio" name="importance" value="1">상</label>
+			<label><input type="radio" name="importance" value="2">중</label>
+			<label><input type="radio" name="importance" value="3">하</label>
+			<input type="text" name="title" placeholder="title">
+			<input type="text" name="content" placeholder="content"/>
+			<input type="hidden" name="member_id" value="${ member.id }">
+			<input type="submit" value="save"/>
+		</form>
+	</div>
+	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div align="center">
-			<div>${absoluteValue.title }</div>
-			<div>${absoluteValue.content }</div>
+			<span>${absoluteValue.title }</span>
+			<span>${absoluteValue.content }</span>
 		</div>
 	</c:forEach>
 </body>

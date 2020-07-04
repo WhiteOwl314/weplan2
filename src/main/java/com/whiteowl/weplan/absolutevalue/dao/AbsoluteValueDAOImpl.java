@@ -27,4 +27,23 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 		return absoluteValueList;
 	}
 
+	@Override
+	public void addAbsoluteValue(
+			AbsoluteValueVO absoluteValueVO
+	) throws DataAccessException {
+		int absoluteValue_NO = selectNewAbsoluteValue_NO();
+		absoluteValueVO.setId(absoluteValue_NO);
+		sqlSession.insert(
+				"mapper.absoluteValue.addAbsoluteValue",
+				absoluteValueVO
+		);
+	}
+
+	private int selectNewAbsoluteValue_NO() {
+		return sqlSession.selectOne(
+				"mapper.absoluteValue.selectNewAbsoluteValueListNO"
+				);
+	}
+	
+
 }

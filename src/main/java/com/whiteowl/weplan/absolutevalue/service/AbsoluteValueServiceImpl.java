@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.whiteowl.weplan.absolutevalue.dao.AbsoluteValueDAO;
+import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
 
 @Service("absoluteValueService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -22,6 +23,13 @@ implements AbsoluteValueService{
 	) throws Exception {
 		List absoluteValueList = absoluteValueDAO.absoluteValueList(member_id);
 		return absoluteValueList;
+	}
+
+	@Override
+	public void addAbsoluteValue(
+			AbsoluteValueVO absoluteValueVO
+	) throws Exception {
+		absoluteValueDAO.addAbsoluteValue(absoluteValueVO);
 	}
 
 }

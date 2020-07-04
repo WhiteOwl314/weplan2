@@ -33,8 +33,8 @@ public class AbsoluteValueVO {
 	public int getImportance() {
 		return importance;
 	}
-	public void setImportance(int importace) {
-		this.importance = importace;
+	public void setImportance(int importance) {
+		this.importance = importance;
 	}
 	public String getIsDelete() {
 		return isDelete;
