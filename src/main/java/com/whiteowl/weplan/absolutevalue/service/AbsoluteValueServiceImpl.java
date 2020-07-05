@@ -1,8 +1,11 @@
 package com.whiteowl.weplan.absolutevalue.service;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +49,20 @@ implements AbsoluteValueService{
 		return absoluteValueDAO.absoluteValueView(
 				map
 		);
+	}
+
+	@Override
+	public void popUpAbsoluteValueView(
+			int absoluteValueID, 
+			HttpServletResponse response
+	) throws Exception {
+		PrintWriter out = response.getWriter();
+		out.println(
+				absoluteValueDAO.popUpAbsoluteValueView(
+						absoluteValueID
+				)
+		);
+		out.close();
 	}
 
 }

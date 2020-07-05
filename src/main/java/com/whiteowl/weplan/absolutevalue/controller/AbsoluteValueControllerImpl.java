@@ -132,6 +132,22 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 		
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/absoluteValue/popUpAbsoluteValueView.do",
+			method = RequestMethod.POST
+	)
+	public void popUpAbsoluteValueView(
+			@RequestParam("id") int absoluteValueID,
+			HttpServletResponse response
+	) throws Exception {
+		absoluteValueService.popUpAbsoluteValueView(
+				absoluteValueID,
+				response
+		);
+	}
+	
+
 	
 
 }

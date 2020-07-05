@@ -287,27 +287,27 @@
 		<div id="layerbox" class="layerpop"
 			style="width: 700px; height: 350px;">
 			<article class="layerpop_area">
-			<div class="title">레이어팝업 타이틀</div>
-			<a href="javascript:popupClose();" class="layerpop_close"
-				id="layerbox_close"></a> <br>
-			<div class="content">
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				레이어 팝업 내용<br/>
-				
-				<div>
-					id : <span id="popUp_taskId"></span>
+				<div class="title">레이어팝업 타이틀</div>
+				<a href="javascript:popupClose();" class="layerpop_close"
+					id="layerbox_close"></a> <br>
+				<div class="content">
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					레이어 팝업 내용<br/>
+					
+					<div>
+						id : <span id="popUp_taskId"></span>
+					</div>
+					
+			
 				</div>
-				
-		
-			</div>
 			</article>
-    </div>
+		</div>
     <!--Popup End -->
 
 		

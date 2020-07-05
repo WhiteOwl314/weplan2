@@ -79,5 +79,26 @@
       ]]>
 	</select>
 	
+	<select 
+  		id="popUpAbsoluteValueView" 
+  		resultMap="absoluteValueListResult"   
+  		parameterType="int"
+  	>
+      <![CDATA[
+		SELECT 
+      		member_id,
+      		ID,
+      		title,
+      		content,
+      		importance
+		FROM W_ABSOLUTE_VALUE 
+		WHERE 
+			isdelete = '0'  
+			AND ID = #{absoluteValueID}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
 	
 </mapper>

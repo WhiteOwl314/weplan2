@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
+import com.whiteowl.weplan.task.vo.TaskVO;
 
 @Repository("absoluteValueDAO")
 public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
@@ -54,6 +56,29 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 				"mapper.absoluteValue.absoluteValueView",
 				map
 				);
+	}
+
+	@Override
+	public JSONObject popUpAbsoluteValueView(
+			int absoluteValueID
+	) throws DataAccessException {
+		JSONObject data = new JSONObject();
+		
+		AbsoluteValueVO absoluteValueVO = sqlSession.selectOne(
+				"mapper.absoluteValue.popUpAbsoluteValueView", 
+				absoluteValueID
+		);
+		int id = absoluteValueVO.getId();
+		String title = absoluteValueVO.getTitle();
+		String content = absoluteValueVO.getContent();
+		int importance = absoluteValueVO.getImportance();
+
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		
+		return data;
 	}
 	
 
