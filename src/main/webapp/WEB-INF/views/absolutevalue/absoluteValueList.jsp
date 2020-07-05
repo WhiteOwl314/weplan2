@@ -123,6 +123,7 @@
 							<textarea id="popUp-content" name="content" cols="50" rows="10"></textarea> 
 						</p>
 						<input type="hidden" name="member_id" value="${ member.id }">
+						<input type="hidden" name="id" id="popUp-id">
 
 						<button type="submit">수정</button>
 					</form>
@@ -191,6 +192,7 @@
 					var title = decodeURIComponent( result.title );
 					var content = decodeURIComponent( result.content );
 					var importance = decodeURIComponent( result.importance );
+					$('#popUp-id').val(result.id);
 					$('#popUp-title').val(title);
 					$('#popUp-content').val(content);
 					

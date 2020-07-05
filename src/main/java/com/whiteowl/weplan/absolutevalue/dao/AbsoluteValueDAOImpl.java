@@ -80,6 +80,17 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 		
 		return data;
 	}
+
+	@Override
+	public void updateAbsoluteValue(
+			AbsoluteValueVO absoluteValueVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.absoluteValue.updateAbsoluteValue",
+				absoluteValueVO
+		);
+		
+	}
 	
 
 }

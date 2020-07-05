@@ -18,4 +18,6 @@ public interface AbsoluteValueService {
 
 	public JSONObject popUpAbsoluteValueView(int absoluteValueID) throws Exception;
 
+	public void updateAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws Exception;
+
 }

@@ -152,6 +152,59 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 		return jsonObj.toString();
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/absoluteValue/updateAbsoluteValue.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateAbsoluteValue(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String member_id = request.getParameter("member_id");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+		
+		absoluteValueVO.setImportance(importance);
+		absoluteValueVO.setTitle(title);
+		absoluteValueVO.setContent(content);
+		absoluteValueVO.setId(id);
+		absoluteValueVO.setMember_id(member_id);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			
+			absoluteValueService.updateAbsoluteValue(absoluteValueVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
+	
 
 	
 

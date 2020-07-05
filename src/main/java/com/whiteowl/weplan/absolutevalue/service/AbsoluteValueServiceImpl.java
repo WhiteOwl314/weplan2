@@ -61,4 +61,11 @@ implements AbsoluteValueService{
 				);
 	}
 
+	@Override
+	public void updateAbsoluteValue(
+			AbsoluteValueVO absoluteValueVO
+	) throws Exception {
+		absoluteValueDAO.updateAbsoluteValue(absoluteValueVO);
+	}
+
 }

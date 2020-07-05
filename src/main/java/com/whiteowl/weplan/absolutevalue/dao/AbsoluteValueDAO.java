@@ -17,4 +17,6 @@ public interface AbsoluteValueDAO {
 	public AbsoluteValueVO absoluteValueView(Map<String, Object> map) throws DataAccessException;
 
 	public JSONObject popUpAbsoluteValueView(int absoluteValueID) throws DataAccessException;
+
+	public void updateAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws DataAccessException;
 }

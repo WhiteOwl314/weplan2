@@ -20,4 +20,6 @@ public interface AbsoluteValueController {
 
 	public String popUpAbsoluteValueView(int absoluteValueID) throws Exception;
 
+	public ResponseEntity updateAbsoluteValue(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

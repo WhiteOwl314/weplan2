@@ -99,6 +99,19 @@
       ]]>
 	</select>
 	
+	<update 
+		id="updateAbsoluteValue"
+		parameterType="absoluteValueVO"
+	>
+	  	UPDATE W_ABSOLUTE_VALUE
+	  	SET importance = #{importance},
+	  		title = #{title},
+	  		content = #{content}
+	  	WHERE 
+	  		isdelete = '0'  
+			AND ID = #{id}
+	</update>
+	
 	
 	
 </mapper>
