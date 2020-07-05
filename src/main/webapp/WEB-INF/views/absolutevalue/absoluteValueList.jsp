@@ -109,17 +109,23 @@
 						method="post"	
 					>
 						<p>
+							<label>IMPORTANCE</label> 
+							<label><input type="radio" name="importance" value="1">상</label>
+							<label><input type="radio" name="importance" value="2">중</label>
+							<label><input type="radio" name="importance" value="3">하</label>
+						</p>
+						<p>
 							<label>TITLE</label> 
 							<input type="text" id="popUp-title" name="title"> 
 						</p>
+						<p>
+							<label>CONTENT</label> 
+							<textarea id="popUp-content" name="content" cols="50" rows="10"></textarea> 
+						</p>
+						<input type="hidden" name="member_id" value="${ member.id }">
+
 						<button type="submit">수정</button>
 					</form>
-					
-					<div>
-						id : <span id="popUp_absoluteValueID"></span>
-					</div>
-					
-			
 				</div>
 			</article>
 		</div>
@@ -183,8 +189,20 @@
 				},
 				success : function(result) {
 					var title = decodeURIComponent( result.title );
-					$('#popUp_absoluteValueID').text(result.id);
+					var content = decodeURIComponent( result.content );
+					var importance = decodeURIComponent( result.importance );
 					$('#popUp-title').val(title);
+					$('#popUp-content').val(content);
+					
+		    		/* 중요도 초기값 */
+		    		if(importance=='1'){
+		    			$('input:radio[name=importance]:input[value="1"]').attr("checked", true);
+		    		} else if (importance == '2'){
+		    			$('input:radio[name=importance]:input[value="2"]').attr("checked", true);
+		    		} else if (importance == '3'){
+		    			$('input:radio[name=importance]:input[value="3"]').attr("checked", true);
+		    		}
+
 				},
 
 			})
