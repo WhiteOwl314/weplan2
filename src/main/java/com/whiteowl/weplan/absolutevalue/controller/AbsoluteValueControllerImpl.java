@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -135,16 +136,20 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 	@Override
 	@RequestMapping(
 			value="/absoluteValue/popUpAbsoluteValueView.do",
-			method = RequestMethod.POST
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+
 	)
-	public void popUpAbsoluteValueView(
-			@RequestParam("id") int absoluteValueID,
-			HttpServletResponse response
+	@ResponseBody
+	public String popUpAbsoluteValueView(
+			@RequestParam("id") int absoluteValueID
 	) throws Exception {
-		absoluteValueService.popUpAbsoluteValueView(
-				absoluteValueID,
-				response
+		
+		JSONObject jsonObj = absoluteValueService.popUpAbsoluteValueView(
+				absoluteValueID
 		);
+		
+		return jsonObj.toString();
 	}
 	
 

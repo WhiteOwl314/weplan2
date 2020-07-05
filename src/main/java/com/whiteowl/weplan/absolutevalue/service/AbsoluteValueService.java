@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
 
 public interface AbsoluteValueService {
@@ -14,6 +16,6 @@ public interface AbsoluteValueService {
 
 	public AbsoluteValueVO absoluteValueView(String member_id, int absoluteValueID) throws Exception;
 
-	public void popUpAbsoluteValueView(int absoluteValueID, HttpServletResponse response) throws Exception;
+	public JSONObject popUpAbsoluteValueView(int absoluteValueID) throws Exception;
 
 }

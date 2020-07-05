@@ -104,14 +104,16 @@
 				<a href="javascript:popupClose();" class="layerpop_close"
 					id="layerbox_close"></a> <br>
 				<div class="content">
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
-					레이어 팝업 내용<br/>
+					<form 
+						action="${contextPath }/absoluteValue/updateAbsoluteValue.do"
+						method="post"	
+					>
+						<p>
+							<label>TITLE</label> 
+							<input type="text" id="popUp-title" name="title"> 
+						</p>
+						<button type="submit">수정</button>
+					</form>
 					
 					<div>
 						id : <span id="popUp_absoluteValueID"></span>
@@ -180,7 +182,9 @@
 					id : absoluteValueID
 				},
 				success : function(result) {
+					var title = decodeURIComponent( result.title );
 					$('#popUp_absoluteValueID').text(result.id);
+					$('#popUp-title').val(title);
 				},
 
 			})

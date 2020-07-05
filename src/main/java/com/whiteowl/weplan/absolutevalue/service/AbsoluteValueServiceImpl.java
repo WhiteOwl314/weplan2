@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -52,17 +53,12 @@ implements AbsoluteValueService{
 	}
 
 	@Override
-	public void popUpAbsoluteValueView(
-			int absoluteValueID, 
-			HttpServletResponse response
+	public JSONObject popUpAbsoluteValueView(
+			int absoluteValueID
 	) throws Exception {
-		PrintWriter out = response.getWriter();
-		out.println(
-				absoluteValueDAO.popUpAbsoluteValueView(
-						absoluteValueID
-				)
-		);
-		out.close();
+		return absoluteValueDAO.popUpAbsoluteValueView(
+				absoluteValueID
+				);
 	}
 
 }

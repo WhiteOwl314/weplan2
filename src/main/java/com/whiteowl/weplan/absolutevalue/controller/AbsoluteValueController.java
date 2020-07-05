@@ -18,6 +18,6 @@ public interface AbsoluteValueController {
 	public ModelAndView absoluteValueView(int absoluteValueID, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
-	public void popUpAbsoluteValueView(int absoluteValueID, HttpServletResponse response) throws Exception;
+	public String popUpAbsoluteValueView(int absoluteValueID) throws Exception;
 
 }
