@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.absolutevalue.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -12,4 +13,5 @@ public interface AbsoluteValueDAO {
 
 	public void addAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws DataAccessException;
 
+	public AbsoluteValueVO absoluteValueView(Map<String, Object> map) throws DataAccessException;
 }

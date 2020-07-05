@@ -122,12 +122,16 @@
  				$('#side_menu-inbox').addClass('on');
 /*   				$('#side_menu-inbox').css('filter','brightness(70%)');
  */   		
- 				
  			} else if($(location).attr('pathname') == "${contextPath}/task/weeklyTaskList.do") {
  				$('#side_menu-weeklyTaskList').css('background-color','#EF802F');
  				$('#side_menu-weeklyTaskList .side-menu-item-text').css('color','white');
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-weeklyTaskList').addClass('on');
+ 			} else if($(location).attr('pathname') == "${contextPath}/absoluteValue/absoluteValueList.do") {
+ 				$('#side_menu-absoluteValueList').css('background-color','#EF802F');
+ 				$('#side_menu-absoluteValueList .side-menu-item-text').css('color','white');
+ 				$('.side-menu-item').removeClass('on');
+ 				$('#side_menu-absoluteValueList').addClass('on');
  			}
 	    }
 		

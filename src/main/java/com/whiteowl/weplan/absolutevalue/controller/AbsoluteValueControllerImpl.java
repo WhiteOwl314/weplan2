@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -101,6 +102,33 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 		
 		return resEnt;
 	
+		
+	}
+	
+	@Override
+	@RequestMapping(
+			value="/absoluteValue/absoluteValueView.do",
+			method = RequestMethod.GET
+	)
+	public ModelAndView absoluteValueView(
+			@RequestParam("id") int absoluteValueID,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		absoluteValueVO = 
+				absoluteValueService.absoluteValueView(
+						member_id,
+						absoluteValueID
+				);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/absoluteValue/absoluteValueView");
+		mav.addObject("absoluteValue", absoluteValueVO);
+		return mav;
+		
+
 		
 	}
 	

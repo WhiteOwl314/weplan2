@@ -10,4 +10,6 @@ public interface AbsoluteValueService {
 
 	public void addAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws Exception;
 
+	public AbsoluteValueVO absoluteValueView(String member_id, int absoluteValueID) throws Exception;
+
 }

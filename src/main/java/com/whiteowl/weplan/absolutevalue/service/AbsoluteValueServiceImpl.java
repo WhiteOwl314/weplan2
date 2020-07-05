@@ -1,6 +1,8 @@
 package com.whiteowl.weplan.absolutevalue.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,20 @@ implements AbsoluteValueService{
 			AbsoluteValueVO absoluteValueVO
 	) throws Exception {
 		absoluteValueDAO.addAbsoluteValue(absoluteValueVO);
+	}
+
+	@Override
+	public AbsoluteValueVO absoluteValueView(
+			String member_id, 
+			int absoluteValueID
+	) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("absoluteValueID", absoluteValueID);
+		
+		return absoluteValueDAO.absoluteValueView(
+				map
+		);
 	}
 
 }

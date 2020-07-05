@@ -32,8 +32,9 @@
 	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div align="center">
-			<span>${absoluteValue.title }</span>
-			<span>${absoluteValue.content }</span>
+			<a href="${contextPath}/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}">
+				<span>${absoluteValue.title }</span>
+			</a>
 		</div>
 	</c:forEach>
 </body>

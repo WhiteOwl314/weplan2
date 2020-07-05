@@ -15,4 +15,7 @@ public interface AbsoluteValueController {
 	public ResponseEntity addAbsoluteValue(HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
+	public ModelAndView absoluteValueView(int absoluteValueID, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 }

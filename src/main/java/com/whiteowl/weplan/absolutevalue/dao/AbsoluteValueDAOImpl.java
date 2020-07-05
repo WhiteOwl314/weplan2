@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.absolutevalue.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,16 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 	private int selectNewAbsoluteValue_NO() {
 		return sqlSession.selectOne(
 				"mapper.absoluteValue.selectNewAbsoluteValueListNO"
+				);
+	}
+
+	@Override
+	public AbsoluteValueVO absoluteValueView(
+			Map<String, Object> map
+	) throws DataAccessException {
+		return sqlSession.selectOne(
+				"mapper.absoluteValue.absoluteValueView",
+				map
 				);
 	}
 	

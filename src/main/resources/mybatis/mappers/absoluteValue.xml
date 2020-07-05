@@ -58,4 +58,26 @@
 		
 	</insert>
 	
+  	<select 
+  		id="absoluteValueView" 
+  		resultMap="absoluteValueListResult"   
+  		parameterType="java.util.Map"
+  	>
+      <![CDATA[
+		SELECT 
+      		member_id,
+      		ID,
+      		title,
+      		content,
+      		importance
+		FROM W_ABSOLUTE_VALUE 
+		WHERE 
+			isdelete = '0'  
+			AND member_id = #{member_id} 
+			AND ID = #{absoluteValueID}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
 </mapper>
