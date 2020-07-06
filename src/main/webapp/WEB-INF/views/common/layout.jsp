@@ -101,13 +101,10 @@
 				  <input id="date" type="hidden" name="date"/>
 				  <input id="time" type="hidden" name="time"/>
 				  <input id="due" type="button" name="due" value="due">
-				  <input id="nullDate" type="button" name="nullDate" value="nullDate">
+				  <input id="nullDate" type="hidden" name="nullDate" value="x">
 				  <input type="submit" value="save"/>
 				  <input type="hidden" name="member_id" value="${ member.id }">
 			  </form>
-			  
-
-
 		  </div>
       </div>
     </div>
@@ -128,6 +125,8 @@
     			/* 현재시간으로 */
 				document.getElementById('date').valueAsDate = new Date();
     			$("#time").attr("value","18:00");
+    			$("#due").attr("type","hidden");
+    			$("#nullDate").attr("type","button");
     		});
     		
     		
@@ -137,6 +136,9 @@
     			$("#time").attr("type","hidden");
     			$("#date").attr("value","0000-00-00");
     			$("#time").attr("value","00:00");
+    			$("#due").attr("type","button");
+    			$("#nullDate").attr("type","hidden");
+
     		});
 
     	});

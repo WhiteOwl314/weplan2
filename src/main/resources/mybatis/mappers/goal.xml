@@ -36,5 +36,56 @@
       ]]>
 	</select>
 	
+	 <select id="selectNewGoal_NO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(ID), 0) + 1 from W_GOAL	
+		]]>
+	</select> 
 	
+	<insert 
+		id="addGoalNullDate" 
+		parameterType="goalVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_GOAL(
+      		member_id,
+      		id,
+      		title,
+      		content,
+      		importance
+      	)
+      	VALUES (
+			#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance}
+      	)
+      ]]>
+	</insert>
+	
+	<insert 
+		id="addGoal" 
+		parameterType="goalVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_GOAL(
+      		member_id,
+      		id,
+      		title,
+      		content,
+      		importance,
+      		limitDate
+      	)
+      	VALUES (
+      		#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{limitDate},'yyyy-mm-dd')
+      	)
+      ]]>
+	</insert>
+
 </mapper>

@@ -147,18 +147,20 @@
  				$('#side_menu-weeklyTaskList .side-menu-item-text').css('color','white');
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-weeklyTaskList').addClass('on');
- 			} else if($(location).attr('pathname') == "${contextPath}/absoluteValue/absoluteValueList.do") {
+ 			} else if(
+ 					$(location).attr('pathname') == "${contextPath}/absoluteValue/absoluteValueList.do"
+ 					|| $(location).attr('pathname') == "${contextPath}/absoluteValue/absoluteValueView.do"
+ 				) {
  				$('#side_menu-absoluteValueList').css('background-color','#EF802F');
  				$('#side_menu-absoluteValueList .side-menu-item-text').css('color','white');
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-absoluteValueList').addClass('on');
- 			} else if($(location).attr('pathname') == "${contextPath}/absoluteValue/goalList.do") {
+ 			} else if($(location).attr('pathname') == "${contextPath}/goal/goalList.do") {
  				$('#side_menu-goalList').css('background-color','#EF802F');
  				$('#side_menu-goalList .side-menu-item-text').css('color','white');
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-goalList').addClass('on');
  			} 
-
 	    }
 		
 		/* 사이드메뉴에 마우스 올렸을때 */

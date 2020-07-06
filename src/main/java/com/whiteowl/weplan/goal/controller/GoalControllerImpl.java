@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.whiteowl.weplan.goal.service.GoalService;
@@ -41,6 +45,62 @@ public class GoalControllerImpl implements GoalController{
 		mav.setViewName("/goal/goalList");
 		mav.addObject("goalList", goalList);
 		return mav;
+	}
+	
+	@Override
+	@RequestMapping(
+			value="/goal/addGoal.do",
+			method = RequestMethod.POST	
+	)
+	@ResponseBody
+	public ResponseEntity addGoal(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String limitDate = request.getParameter("date");
+		String member_id = request.getParameter("member_id");
+		
+		
+		goalVO.setTitle(title);
+		goalVO.setContent(content);
+		goalVO.setImportance(importance);
+		goalVO.setLimitDate(limitDate);
+		goalVO.setMember_id(member_id);
+		
+		
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		try {
+			if(limitDate.equals("0000-00-00")) {
+				goalService.addGoalNullDate(goalVO);
+			} else {
+				goalService.addGoal(goalVO);
+			}
+			message = "<script>";
+			message += " alert('추가되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt ;
+	
 	}
 
 }

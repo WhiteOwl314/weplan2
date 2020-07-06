@@ -27,4 +27,37 @@ public class GoalDAOImpl implements GoalDAO{
 		return goalList;
 	}
 
+	@Override
+	public void addGoalNullDate(
+			GoalVO goalVO
+	) throws DataAccessException {
+		int goal_NO = selectNewGoal_NO();
+		goalVO.setId(goal_NO);
+		sqlSession.insert(
+				"mapper.goal.addGoalNullDate" ,
+				goalVO
+		);
+	}
+
+
+	@Override
+	public void addGoal(
+			GoalVO goalVO
+	) throws DataAccessException {
+		int goal_NO = selectNewGoal_NO();
+		goalVO.setId(goal_NO);
+		sqlSession.insert(
+				"mapper.goal.addGoal" ,
+				goalVO
+		);
+	
+	}
+
+	private int selectNewGoal_NO() 
+	throws DataAccessException{
+		return sqlSession.selectOne(
+				"mapper.goal.selectNewGoal_NO"
+		);
+	}
+
 }

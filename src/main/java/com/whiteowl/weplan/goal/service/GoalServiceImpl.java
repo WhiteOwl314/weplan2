@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.whiteowl.weplan.goal.dao.GoalDAO;
+import com.whiteowl.weplan.goal.vo.GoalVO;
+import com.whiteowl.weplan.task.dao.TaskDAO;
 
 @Service("goalService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -22,6 +24,20 @@ public class GoalServiceImpl implements GoalService{
 	) throws Exception {
 		List goalList = goalDAO.goalList(member_id);
 		return goalList;
+	}
+
+	@Override
+	public void addGoalNullDate(
+			GoalVO goalVO
+	) throws Exception {
+		goalDAO.addGoalNullDate(goalVO);
+	}
+
+	@Override
+	public void addGoal(
+			GoalVO goalVO
+	) throws Exception {
+		goalDAO.addGoal(goalVO);
 	}
 
 }
