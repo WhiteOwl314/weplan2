@@ -3,10 +3,12 @@ package com.whiteowl.weplan.goal.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
 import com.whiteowl.weplan.goal.vo.GoalVO;
 
 @Repository("goalDAO")
@@ -58,6 +60,31 @@ public class GoalDAOImpl implements GoalDAO{
 		return sqlSession.selectOne(
 				"mapper.goal.selectNewGoal_NO"
 		);
+	}
+
+	@Override
+	public JSONObject popUpGoalView(
+			int goal_id
+	) throws DataAccessException {
+		JSONObject data = new JSONObject();
+		
+		GoalVO goalVO = sqlSession.selectOne(
+				"mapper.goal.popUpGoalView", 
+				goal_id
+		);
+		int id = goalVO.getId();
+		String title = goalVO.getTitle();
+		String content = goalVO.getContent();
+		int importance = goalVO.getImportance();
+		String limitDate = goalVO.getLimitDate();
+
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		data.put("limitDate", limitDate);
+		
+		return data;
 	}
 
 }

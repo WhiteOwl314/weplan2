@@ -2,6 +2,7 @@ package com.whiteowl.weplan.goal.dao;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
 import com.whiteowl.weplan.goal.vo.GoalVO;
@@ -13,5 +14,7 @@ public interface GoalDAO {
 	public void addGoalNullDate(GoalVO goalVO) throws DataAccessException;
 
 	public void addGoal(GoalVO goalVO) throws DataAccessException;
+
+	public JSONObject popUpGoalView(int goal_id) throws DataAccessException;
 
 }

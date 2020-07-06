@@ -87,5 +87,29 @@
       	)
       ]]>
 	</insert>
+	
+	<select 
+  		id="popUpGoalView" 
+  		resultMap="goalVOResult"   
+  		parameterType="int"
+  	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			isCompleted,
+			importance,
+			TO_CHAR(limitdate, 'YYYY-MM-DD') AS limitdate
+		FROM W_GOAL 
+		WHERE 
+			isdelete = '0' 
+			AND isCompleted = '0' 
+			AND ID = #{goal_id}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
 
 </mapper>

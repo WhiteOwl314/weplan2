@@ -2,6 +2,7 @@ package com.whiteowl.weplan.goal.service;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,6 +39,15 @@ public class GoalServiceImpl implements GoalService{
 			GoalVO goalVO
 	) throws Exception {
 		goalDAO.addGoal(goalVO);
+	}
+
+	@Override
+	public JSONObject popUpGoalView(
+			int goal_id
+	) throws Exception {
+		return goalDAO.popUpGoalView(
+				goal_id
+				);
 	}
 
 }

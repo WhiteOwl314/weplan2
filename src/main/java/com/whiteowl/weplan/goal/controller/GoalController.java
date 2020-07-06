@@ -12,4 +12,6 @@ public interface GoalController {
 
 	public ResponseEntity addGoal(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public String popUpGoalView(int goal_id) throws Exception;
+
 }
