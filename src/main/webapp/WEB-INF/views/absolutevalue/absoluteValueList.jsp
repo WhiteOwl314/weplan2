@@ -82,12 +82,22 @@
 	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div align="center">
+			<a
+				href="${contextPath }/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}"
+			>
+				<span
+					class="item"
+					id="${absoluteValue.id }"
+				>
+					${absoluteValue.title }	
+				</span>
+			</a>
 			<span
 				class="item"
 				id="${absoluteValue.id }"
 				onclick="javascript:goDetail(${absoluteValue.id })"
 			>
-				${absoluteValue.title }	
+				수정하기
 			</span>
 			<a href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}">
 				<span>

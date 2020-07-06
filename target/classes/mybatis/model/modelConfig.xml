@@ -7,5 +7,6 @@
 		<typeAlias type="com.whiteowl.weplan.member.vo.MemberVO" alias="memberVO"/>
 		<typeAlias type="com.whiteowl.weplan.task.vo.TaskVO" alias="taskVO"/>
 		<typeAlias type="com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO" alias="absoluteValueVO"/>
+		<typeAlias type="com.whiteowl.weplan.goal.vo.GoalVO" alias="goalVO"/>
 	</typeAliases>
 </configuration>

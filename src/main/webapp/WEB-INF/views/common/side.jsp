@@ -83,6 +83,26 @@
 		</div>
 		
 		<div id="side-menu-item_3">
+			<a href="${contextPath}/goal/goalList.do"  class="no-underline">
+				<div 
+					class="side-menu-item"
+					id="side_menu-goalList"
+				>
+					<img 
+						alt="absoluteValue" 
+						src="${contextPath }/resources/images/flag-black-18dp.svg"
+						class="side_icon"
+					>
+					<div class="side-menu-item-text">
+						Goal
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		
+		
+		<div id="side-menu-item_4">
 			<a href="${contextPath}/task/weeklyTaskList.do"  class="no-underline">
 				<div 
 					class="side-menu-item"
@@ -132,13 +152,18 @@
  				$('#side_menu-absoluteValueList .side-menu-item-text').css('color','white');
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-absoluteValueList').addClass('on');
- 			}
+ 			} else if($(location).attr('pathname') == "${contextPath}/absoluteValue/goalList.do") {
+ 				$('#side_menu-goalList').css('background-color','#EF802F');
+ 				$('#side_menu-goalList .side-menu-item-text').css('color','white');
+ 				$('.side-menu-item').removeClass('on');
+ 				$('#side_menu-goalList').addClass('on');
+ 			} 
+
 	    }
 		
 		/* 사이드메뉴에 마우스 올렸을때 */
 		$('.side-menu-item').hover(function() {
 				$(this).css('background-color','#EF802F');
-				console.log(this);
 				$(this).children('.side-menu-item-text').css('color','white');
 			}, function() {
 				if($(this).hasClass("on") == false ){
