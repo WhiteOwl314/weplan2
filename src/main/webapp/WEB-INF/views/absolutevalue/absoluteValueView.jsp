@@ -15,6 +15,13 @@
 </head>
 <body>
 	${absoluteValue.title }
+	
+	<c:forEach
+		var="goal"
+		items="${goalList}"
+	>
+		${goal.title}
+	</c:forEach>
 
 </body>
 </html>

@@ -124,4 +124,45 @@
 			AND ID = #{absoluteValue_id}
 	</update>
 	
+	<resultMap type="goalVO" id="goalVOResult">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="ID" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="isCompleted" column="isCompleted" />
+        <result property="importance" column="importance" />
+        <result property="limitDate" column="limitdate" />
+	</resultMap>
+	
+	
+	<select
+		id="linkingGoalList" 
+		resultMap="goalVOResult"
+	  	parameterType="java.util.Map"
+	>
+	  <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			isCompleted,
+			importance,
+			TO_CHAR(limitdate, 'YYYY-MM-DD') AS limitdate
+		FROM W_GOAL 
+		WHERE 
+			isdelete = '0' 
+			AND isCompleted = '0' 
+			AND member_id = #{member_id}
+			AND ID=(
+						SELECT goal_id
+						FROM W_value_goal
+						WHERE 
+							absolute_value_id = #{absoluteValue_id}
+						
+					)
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
 </mapper>

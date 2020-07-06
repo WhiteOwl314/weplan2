@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
+import com.whiteowl.weplan.goal.vo.GoalVO;
 
 public interface AbsoluteValueService {
 
@@ -22,5 +23,7 @@ public interface AbsoluteValueService {
 	public void updateAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws Exception;
 
 	public void deleteAbsoluteValue(Map<String, Object> map) throws Exception;
+
+	public List<GoalVO> linkingGoalList(Map<String, Object> map) throws Exception;
 
 }

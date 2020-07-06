@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.whiteowl.weplan.absolutevalue.dao.AbsoluteValueDAO;
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
+import com.whiteowl.weplan.goal.vo.GoalVO;
 
 @Service("absoluteValueService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -74,6 +75,15 @@ implements AbsoluteValueService{
 	) throws Exception {
 		absoluteValueDAO.deleteAbsoluteValue(map);
 		
+	}
+
+	@Override
+	public List<GoalVO> linkingGoalList(
+			Map<String, Object> map
+	) throws Exception {
+		return absoluteValueDAO.linkingGoalList(
+				map
+				);
 	}
 
 }

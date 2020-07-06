@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
+import com.whiteowl.weplan.goal.vo.GoalVO;
 import com.whiteowl.weplan.task.vo.TaskVO;
 
 @Repository("absoluteValueDAO")
@@ -100,6 +101,16 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 				"mapper.absoluteValue.deleteAbsoluteValue",
 				map
 		);
+	}
+
+	@Override
+	public List<GoalVO> linkingGoalList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		return sqlSession.selectList(
+				"mapper.absoluteValue.linkingGoalList",
+				map
+				);
 	}
 	
 

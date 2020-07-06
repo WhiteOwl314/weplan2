@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.whiteowl.weplan.absolutevalue.service.AbsoluteValueService;
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
+import com.whiteowl.weplan.goal.vo.GoalVO;
 import com.whiteowl.weplan.member.vo.MemberVO;
 
 @Controller("absoluteValueController")
@@ -121,14 +122,27 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
+		
 		absoluteValueVO = 
 				absoluteValueService.absoluteValueView(
 						member_id,
 						absoluteValueID
 				);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("absoluteValue_id", absoluteValueID);
+		
+		List<GoalVO> goalList = 
+				absoluteValueService.linkingGoalList(
+						map
+				);
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/absoluteValue/absoluteValueView");
 		mav.addObject("absoluteValue", absoluteValueVO);
+		mav.addObject("goalList", goalList);
 		return mav;
 		
 
