@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.absolutevalue.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,5 +20,7 @@ public interface AbsoluteValueService {
 	public JSONObject popUpAbsoluteValueView(int absoluteValueID) throws Exception;
 
 	public void updateAbsoluteValue(AbsoluteValueVO absoluteValueVO) throws Exception;
+
+	public void deleteAbsoluteValue(Map<String, Object> map) throws Exception;
 
 }

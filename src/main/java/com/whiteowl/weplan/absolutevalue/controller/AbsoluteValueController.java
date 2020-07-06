@@ -22,4 +22,7 @@ public interface AbsoluteValueController {
 
 	public ResponseEntity updateAbsoluteValue(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ResponseEntity deleteAbsoluteValue(int absoluteValue_id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 }

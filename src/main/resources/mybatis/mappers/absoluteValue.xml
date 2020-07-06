@@ -113,5 +113,15 @@
 	</update>
 	
 	
+	<update 
+		id="deleteAbsoluteValue"
+	  	parameterType="java.util.Map"
+	>
+		UPDATE W_ABSOLUTE_VALUE
+	  	SET isDelete = '1'
+	  	WHERE 
+			member_id = #{member_id} 
+			AND ID = #{absoluteValue_id}
+	</update>
 	
 </mapper>

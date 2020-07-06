@@ -68,4 +68,12 @@ implements AbsoluteValueService{
 		absoluteValueDAO.updateAbsoluteValue(absoluteValueVO);
 	}
 
+	@Override
+	public void deleteAbsoluteValue(
+			Map<String, Object> map
+	) throws Exception {
+		absoluteValueDAO.deleteAbsoluteValue(map);
+		
+	}
+
 }

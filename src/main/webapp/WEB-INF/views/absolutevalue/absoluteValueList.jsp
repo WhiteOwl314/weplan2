@@ -89,6 +89,11 @@
 			>
 				${absoluteValue.title }	
 			</span>
+			<a href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}">
+				<span>
+					삭제하기
+				</span>
+			</a>
 		</div>
 	</c:forEach>
 	

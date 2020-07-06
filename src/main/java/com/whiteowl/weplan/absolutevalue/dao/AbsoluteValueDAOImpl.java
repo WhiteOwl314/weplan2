@@ -91,6 +91,16 @@ public class AbsoluteValueDAOImpl implements AbsoluteValueDAO{
 		);
 		
 	}
+
+	@Override
+	public void deleteAbsoluteValue(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.absoluteValue.deleteAbsoluteValue",
+				map
+		);
+	}
 	
 
 }
