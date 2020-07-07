@@ -256,6 +256,7 @@
 					
 					if(limitDate === 'null'){
 						$('#popUp-limitDate').attr("type","hidden");
+						$('#popUp-limitDate').val("0000-00-00");
 						$("#popUp-due").attr("type","button");
 						$("#popUp-nullDate").attr("type","hidden");
 					} else {

@@ -18,4 +18,6 @@ public interface GoalService {
 
 	public void updateGoal(GoalVO goalVO) throws Exception;
 
+	public void updateGoalNullDate(GoalVO goalVO) throws Exception;
+
 }

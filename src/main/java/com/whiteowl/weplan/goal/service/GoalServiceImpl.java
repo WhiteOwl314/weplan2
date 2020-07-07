@@ -57,4 +57,12 @@ public class GoalServiceImpl implements GoalService{
 		goalDAO.updateGoal(goalVO);
 	}
 
+	@Override
+	public void updateGoalNullDate(
+			GoalVO goalVO
+	) throws Exception {
+		goalDAO.updateGoalNullDate(goalVO);
+		
+	}
+
 }

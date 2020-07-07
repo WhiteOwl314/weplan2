@@ -19,4 +19,6 @@ public interface GoalDAO {
 
 	public void updateGoal(GoalVO goalVO) throws DataAccessException;
 
+	public void updateGoalNullDate(GoalVO goalVO) throws DataAccessException;
+
 }

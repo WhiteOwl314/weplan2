@@ -126,6 +126,22 @@
 			AND ID = #{id}
 	</update>
 	
+	<update 
+		id="updateGoalNullDate"
+		parameterType="goalVO"
+	>
+	  	UPDATE W_GOAL
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		limitdate = null
+	  	WHERE 
+	  		isdelete = '0'  
+			AND ID = #{id}
+	</update>
+	
+	
 	
 
 </mapper>

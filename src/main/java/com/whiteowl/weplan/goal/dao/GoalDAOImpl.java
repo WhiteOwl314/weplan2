@@ -97,4 +97,15 @@ public class GoalDAOImpl implements GoalDAO{
 		);
 	}
 
+	@Override
+	public void updateGoalNullDate(
+			GoalVO goalVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.goal.updateGoalNullDate",
+				goalVO
+		);
+		
+	}
+
 }
