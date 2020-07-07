@@ -14,6 +14,28 @@
 	<title>Inbox</title>
 </head>
 <body>
+
+	<div>
+		<form 
+			action="${contextPath}/task/addInboxTask.do"
+			method="post"
+		>
+			<label><input type="radio" name="importance" value="1">상</label>
+			<label><input type="radio" name="importance" value="2">중</label>
+			<label><input type="radio" name="importance" value="3">하</label>
+			<input type="text" name="title" placeholder="title">
+			<input type="text" name="content" placeholder="content"/>
+			<input id="date" type="hidden" name="date" value="0000-00-00"/>
+			<input id="time" type="hidden" name="time" value="00:00"/>
+			<input id="due" type="button" name="due" value="due">
+			<input id="nullDate" type="hidden" name="nullDate" value="x">
+			<input type="hidden" name="member_id" value="${ member.id }">
+			<input type="submit" value="save"/>
+		</form>
+	</div>
+	
+	
+	
 	<table border="1" align="center" width="80%">
 		<tr align="center" bgcolor="lightgreen">
 			<td><b>완료</b></td>
@@ -54,6 +76,29 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			/* due 버튼 */
+			$('#due').click(function(){
+				$("#date").attr("type","date");
+    			$("#time").attr("type","time");
+				/* 현재시간으로 */
+				document.getElementById('date').valueAsDate = new Date();
+    			$("#time").attr("value","18:00");
+				$("#due").attr("type","hidden");
+				$("#nullDate").attr("type","button");
+			});
+			
+			/* nullDate 버튼 */
+			$('#nullDate').click(function(){
+				$("#date").attr("type","hidden");
+    			$("#time").attr("type","hidden");
+				$("#date").attr("value","0000-00-00");
+    			$("#time").attr("value","00:00");
+				$("#due").attr("type","button");
+				$("#nullDate").attr("type","hidden");
+			});
+
+			
 			
 			/* 체크표시 */
 			$('.checkbox').click(function(event){

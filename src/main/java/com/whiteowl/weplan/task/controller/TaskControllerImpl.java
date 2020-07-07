@@ -88,7 +88,7 @@ public class TaskControllerImpl implements TaskController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			if(limitDate.equals(" ")) {
+			if(limitDate.equals(" ") || limitDate.equals("0000-00-00 00:00")) {
 				int taskNO = taskService.addInboxTaskNullDate(taskVO);
 			} else {
 				int taskNO = taskService.addInboxTask(taskVO);
