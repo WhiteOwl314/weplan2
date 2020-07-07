@@ -138,6 +138,8 @@
 						<p>
 							<label>LIMITDATE</label> 
 							<input type="date" id="popUp-limitDate" name="limitDate"> 
+							<input type="hidden" id="popUp-due" value="due">
+							<input type="button" id="popUp-nullDate" value="x">
 						</p>
 						
 						<input type="hidden" name="member_id" value="${ member.id }">
@@ -171,6 +173,24 @@
 			$("#due").attr("type","button");
 			$("#nullDate").attr("type","hidden");
 		});
+		
+		/* due 버튼 */
+		$('#popUp-due').click(function(){
+			$("#popUp-limitDate").attr("type","date");
+			/* 현재시간으로 */
+			document.getElementById('popUp-limitDate').valueAsDate = new Date();
+			$("#popUp-due").attr("type","hidden");
+			$("#popUp-nullDate").attr("type","button");
+		});
+		
+		/* nullDate 버튼 */
+		$('#popUp-nullDate').click(function(){
+			$("#popUp-limitDate").attr("type","hidden");
+			$("#popUp-limitDate").attr("value","0000-00-00");
+			$("#popUp-due").attr("type","button");
+			$("#popUp-nullDate").attr("type","hidden");
+		});
+
 		
 		
 		/* 레이어팝업 */
@@ -229,10 +249,21 @@
 					var content = decodeURIComponent( result.content );
 					var importance = decodeURIComponent( result.importance );
 					var limitDate = decodeURIComponent(result.limitDate);
+					console.log(limitDate);
 					$('#popUp-id').val(result.id);
 					$('#popUp-title').val(title);
 					$('#popUp-content').val(content);
-					$('#popUp-limitDate').val(limitDate);
+					
+					if(limitDate === 'null'){
+						$('#popUp-limitDate').attr("type","hidden");
+						$("#popUp-due").attr("type","button");
+						$("#popUp-nullDate").attr("type","hidden");
+					} else {
+						$('#popUp-limitDate').attr("type","date")
+						$('#popUp-limitDate').val(limitDate);
+						$("#popUp-due").attr("type","hidden");
+						$("#popUp-nullDate").attr("type","button");
+					}
 					
 		    		/* 중요도 초기값 */
 		    		if(importance=='1'){

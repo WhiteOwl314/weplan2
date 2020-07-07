@@ -159,7 +159,11 @@ public class GoalControllerImpl implements GoalController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
 		try {
-			
+//			if( limitDate.equals("0000-00-00")) {
+//				int taskNO = taskService.addInboxTaskNullDate(taskVO);
+//			} else {
+//				int taskNO = taskService.addInboxTask(taskVO);
+//			}
 			goalService.updateGoal(goalVO);
 			
 			message = "<script>";
