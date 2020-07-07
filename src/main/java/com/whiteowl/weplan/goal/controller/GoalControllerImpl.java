@@ -123,6 +123,63 @@ public class GoalControllerImpl implements GoalController{
 		return jsonObj.toString();
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/goal/updateGoal.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateGoal(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String limitDate = request.getParameter("limitDate");
+		String member_id = request.getParameter("member_id");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+		
+		goalVO.setImportance(importance);
+		goalVO.setTitle(title);
+		goalVO.setContent(content);
+		goalVO.setId(id);
+		goalVO.setMember_id(member_id);
+		goalVO.setLimitDate(limitDate);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			
+			goalService.updateGoal(goalVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
+	
+
+	
 
 
 }

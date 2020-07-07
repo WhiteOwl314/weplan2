@@ -17,4 +17,6 @@ public interface GoalDAO {
 
 	public JSONObject popUpGoalView(int goal_id) throws DataAccessException;
 
+	public void updateGoal(GoalVO goalVO) throws DataAccessException;
+
 }

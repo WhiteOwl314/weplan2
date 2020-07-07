@@ -118,7 +118,7 @@
 					id="layerbox_close"></a> <br>
 				<div class="content">
 					<form 
-						action="${contextPath }/absoluteValue/updateAbsoluteValue.do"
+						action="${contextPath }/goal/updateGoal.do"
 						method="post"	
 					>
 						<p>

@@ -111,5 +111,21 @@
 	</select>
 	
 	
+	<update 
+		id="updateGoal"
+		parameterType="goalVO"
+	>
+	  	UPDATE W_GOAL
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd')
+	  	WHERE 
+	  		isdelete = '0'  
+			AND ID = #{id}
+	</update>
+	
+	
 
 </mapper>

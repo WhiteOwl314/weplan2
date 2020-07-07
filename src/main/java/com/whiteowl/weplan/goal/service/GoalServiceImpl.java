@@ -50,4 +50,11 @@ public class GoalServiceImpl implements GoalService{
 				);
 	}
 
+	@Override
+	public void updateGoal(
+			GoalVO goalVO
+	) throws Exception {
+		goalDAO.updateGoal(goalVO);
+	}
+
 }

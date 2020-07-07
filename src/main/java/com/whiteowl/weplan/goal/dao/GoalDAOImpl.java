@@ -87,4 +87,14 @@ public class GoalDAOImpl implements GoalDAO{
 		return data;
 	}
 
+	@Override
+	public void updateGoal(
+			GoalVO goalVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.goal.updateGoal",
+				goalVO
+		);
+	}
+
 }

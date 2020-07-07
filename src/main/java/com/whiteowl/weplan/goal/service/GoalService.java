@@ -16,4 +16,6 @@ public interface GoalService {
 
 	public JSONObject popUpGoalView(int goal_id) throws Exception;
 
+	public void updateGoal(GoalVO goalVO) throws Exception;
+
 }
