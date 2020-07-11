@@ -100,7 +100,11 @@
 				수정하기
 			</span>
 			<span>
-				삭제하기
+				<a
+					href="${contextPath }/goal/deleteGoal.do?id=${goal.id}"
+				>
+					삭제하기
+				</a>
 			</span>
 		</div>
 	</c:forEach>

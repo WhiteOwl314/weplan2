@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.goal.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,14 @@ public class GoalServiceImpl implements GoalService{
 	) throws Exception {
 		goalDAO.updateGoalNullDate(goalVO);
 		
+	}
+
+	@Override
+	public void deleteGoal(
+			Map<String, Object> map
+	) throws Exception {
+		
+		goalDAO.deleteGoal(map);
 	}
 
 }

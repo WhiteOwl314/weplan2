@@ -1,6 +1,8 @@
 package com.whiteowl.weplan.goal.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.whiteowl.weplan.goal.dao.GoalDAO;
 import com.whiteowl.weplan.goal.service.GoalService;
 import com.whiteowl.weplan.goal.vo.GoalVO;
 import com.whiteowl.weplan.member.vo.MemberVO;
@@ -181,6 +184,55 @@ public class GoalControllerImpl implements GoalController{
 		return resEnt;
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/goal/deleteGoal.do",
+			method = RequestMethod.GET
+	)
+	@ResponseBody
+	public ResponseEntity deleteGoal(
+			@RequestParam("id") int goal_id,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("goal_id", goal_id);
+		
+		try {
+			
+			goalService.deleteGoal(map);
+			
+			message = "<script>";
+			message += " alert('삭제되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
 
 	
 

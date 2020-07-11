@@ -141,6 +141,18 @@
 			AND ID = #{id}
 	</update>
 	
+	  <update 
+	  	id="deleteGoal" 
+	  	parameterType="java.util.Map"
+	  >
+	    UPDATE W_GOAL
+	  	SET 
+	  		isDelete = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{goal_id}
+	  </update>
+	
 	
 	
 

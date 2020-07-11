@@ -16,4 +16,6 @@ public interface GoalController {
 
 	public ResponseEntity updateGoal(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ResponseEntity deleteGoal(int goal_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.yearlyPlan">
+	<resultMap type="yearlyPlanVO" id="yearlyPlanVOResult">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="ID" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="importance" column="importance" />
+        <result property="startDate" column="startDate" />
+        <result property="limitDate" column="limitDate" />
+	</resultMap>
+	
+	<select 
+		id="yearlyPlanList" 
+		resultMap="yearlyPlanVOResult" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(STARTDATE, 'YYYY-MM-DD') AS startDate,
+			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate
+		FROM W_YEARLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND isCompleted = '0' 
+			AND member_id = #{member_id}
+			AND TO_CHAR(STARTDATE,'YYYY') <= #{request_year}
+			AND TO_CHAR(LIMITDATE,'YYYY') >= #{request_year}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
+	   
+</mapper>

@@ -23,6 +23,16 @@
    	margin: 0px auto; 
    	padding-top: 3px;
    }
+   .side_icon2{
+   	width:33px;
+   	display: block; 
+   	margin: 0px auto; 
+   	padding-top: 3px;
+   }
+   #side_menu-yealyPlan .side-menu-item-text{
+   	padding-top: 5px;
+   }
+   
    .side-menu-item{
    	box-sizing: border-box;
    }
@@ -100,9 +110,28 @@
 			</a>
 		</div>
 		
-		
-		
 		<div id="side-menu-item_4">
+			<a href="${contextPath}/yearlyPlan/yearlyPlanList.do?year=0000"  class="no-underline">
+				<div 
+					class="side-menu-item"
+					id="side_menu-yealyPlan"
+				>
+					<img 
+						alt="yealyPlan" 
+						src="${contextPath }/resources/images/iconfinder_calendar_1608599.svg"
+						class="side_icon2"
+					>
+					<div class="side-menu-item-text">
+						Yealy Plan
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		
+		
+		
+		<div id="side-menu-item_5">
 			<a href="${contextPath}/task/weeklyTaskList.do"  class="no-underline">
 				<div 
 					class="side-menu-item"

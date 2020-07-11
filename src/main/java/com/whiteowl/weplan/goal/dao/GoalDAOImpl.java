@@ -1,6 +1,7 @@
 package com.whiteowl.weplan.goal.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
@@ -104,6 +105,17 @@ public class GoalDAOImpl implements GoalDAO{
 		sqlSession.update(
 				"mapper.goal.updateGoalNullDate",
 				goalVO
+		);
+		
+	}
+
+	@Override
+	public void deleteGoal(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.goal.deleteGoal",
+				map
 		);
 		
 	}
