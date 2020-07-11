@@ -38,6 +38,36 @@
       ]]>
 	</select>
 	
+	<insert id="addYearlyPlan" parameterType="yearlyPlanVO" >
+      <![CDATA[
+      	INSERT INTO W_YEARLY_PLAN(
+      		member_id,
+      		ID,
+      		title,
+      		content,
+      		importance,
+      		startDate,
+      		limitDate
+      	)
+      	VALUES (
+      		#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{startDate},'yyyy-mm-dd'),
+      		TO_DATE(#{limitDate},'yyyy-mm-dd')
+      	)
+      ]]>
+	</insert>
+
+	
+	
+     <select id="selectNewYearlyPlan_NO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(ID), 0) + 1 from W_YEARLY_PLAN	
+		]]>
+	</select> 
 	
 	   
 </mapper>

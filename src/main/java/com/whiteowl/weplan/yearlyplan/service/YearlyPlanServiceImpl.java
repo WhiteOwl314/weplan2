@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.yearlyplan.dao.YearlyPlanDAO;
+import com.whiteowl.weplan.yearlyplan.vo.YearlyPlanVO;
 
 @Repository("yearlyPlanService")
 public class YearlyPlanServiceImpl implements YearlyPlanService{
@@ -23,6 +24,13 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 				map
 			);
 		
+	}
+
+	@Override
+	public void addYearlyPlan(
+			YearlyPlanVO yearlyPlanVO
+	) throws Exception {
+		yearlyPlanDAO.addYearlyPlan(yearlyPlanVO);
 	}
 
 }

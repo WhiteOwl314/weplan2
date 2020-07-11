@@ -43,6 +43,25 @@
 				id="search_submit"
 			>
 		</div>
+		
+		<div>
+			<form 
+				action="${contextPath}/yearlyPlan/addYearlyPlan.do"
+				method="post"
+			>
+				<label><input type="radio" name="importance" value="1">상</label>
+				<label><input type="radio" name="importance" value="2">중</label>
+				<label><input type="radio" name="importance" value="3">하</label>
+				<input type="text" name="title" placeholder="title">
+				<input type="text" name="content" placeholder="content"/>
+				<input id="startDate" type="date" name="startDate" />
+				<input id="limitDate" type="date" name="limitDate" />
+				<input type="hidden" name="member_id" value="${ member.id }">
+				<input type="submit" value="save"/>
+			</form>
+		</div>
+			
+		
 		<div
 			class="auto"
 		>
