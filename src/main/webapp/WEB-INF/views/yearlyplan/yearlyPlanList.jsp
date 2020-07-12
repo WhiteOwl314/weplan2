@@ -263,7 +263,7 @@
 						id="layerbox_close"></a> <br>
 					<div class="content">
 						<form 
-							action="${contextPath }/goal/updateGoal.do"
+							action="${contextPath }/yearlyPlan/updateYearlyPlan.do"
 							method="post"	
 						>
 							<p>

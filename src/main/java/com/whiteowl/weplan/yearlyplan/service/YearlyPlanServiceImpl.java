@@ -42,4 +42,11 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 				.popUpYearlyPlanView(yearlyPlan_id);
 	}
 
+	@Override
+	public void updateYearlyPlan(
+			YearlyPlanVO yearlyPlanVO
+	) throws Exception {
+		yearlyPlanDAO.updateYearlyPlan(yearlyPlanVO);
+	}
+
 }

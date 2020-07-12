@@ -14,4 +14,6 @@ public interface YearlyPlanController {
 
 	public String popUpYearlyPlanView(int yearlyPlan_id) throws Exception;
 
+	public ResponseEntity updateYearlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

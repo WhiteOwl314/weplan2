@@ -141,6 +141,64 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		
 		return jsonObj.toString();
 	}
+	
+	@Override
+	@RequestMapping(
+			value="/yearlyPlan/updateYearlyPlan.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateYearlyPlan(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String startDate = request.getParameter("startDate");
+		String limitDate = request.getParameter("limitDate");
+		String member_id = request.getParameter("member_id");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+		
+		yearlyPlanVO.setImportance(importance);
+		yearlyPlanVO.setTitle(title);
+		yearlyPlanVO.setContent(content);
+		yearlyPlanVO.setId(id);
+		yearlyPlanVO.setMember_id(member_id);
+		yearlyPlanVO.setStartDate(startDate);
+		yearlyPlanVO.setLimitDate(limitDate);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			yearlyPlanService.updateYearlyPlan(yearlyPlanVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
+	
+
 
 	
 

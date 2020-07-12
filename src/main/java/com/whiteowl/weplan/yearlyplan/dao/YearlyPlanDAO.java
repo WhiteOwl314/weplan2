@@ -16,4 +16,6 @@ public interface YearlyPlanDAO {
 
 	public JSONObject popUpYearlyPlanView(int yearlyPlan_id) throws DataAccessException;
 
+	public void updateYearlyPlan(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
+
 }

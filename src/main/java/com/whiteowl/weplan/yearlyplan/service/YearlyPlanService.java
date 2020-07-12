@@ -15,4 +15,6 @@ public interface YearlyPlanService {
 
 	public JSONObject popUpYearlyPlanView(int yearlyPlan_id) throws Exception;
 
+	public void updateYearlyPlan(YearlyPlanVO yearlyPlanVO) throws Exception;
+
 }
