@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.whiteowl.weplan.goal.vo.GoalVO;
 import com.whiteowl.weplan.yearlyplan.vo.YearlyPlanVO;
 
 @Repository("yearlyPlanDAO")
@@ -45,6 +47,33 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		return sqlSession.selectOne(
 					"mapper.yearlyPlan.selectNewYearlyPlan_NO"
 				);
+	}
+
+	@Override
+	public JSONObject popUpYearlyPlanView(
+			int yearlyPlan_id
+	) throws DataAccessException {
+		JSONObject data = new JSONObject();
+		
+		YearlyPlanVO yearlyPlanVO = sqlSession.selectOne(
+				"mapper.yearlyPlan.popUpYearlyPlanView", 
+				yearlyPlan_id
+		);
+		int id = yearlyPlanVO.getId();
+		String title = yearlyPlanVO.getTitle();
+		String content = yearlyPlanVO.getContent();
+		int importance = yearlyPlanVO.getImportance();
+		String startDate = yearlyPlanVO.getStartDate();
+		String limitDate = yearlyPlanVO.getLimitDate();
+
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		data.put("startDate", startDate);
+		data.put("limitDate", limitDate);
+		
+		return data;
 	}
 	
 

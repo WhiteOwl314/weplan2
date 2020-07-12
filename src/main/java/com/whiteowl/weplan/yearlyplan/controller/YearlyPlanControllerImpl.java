@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -122,6 +123,25 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		}
 		return resEnt ;
 	}
+	
+	@Override
+	@RequestMapping(
+			value="/yearlyPlan/popUpYearlyPlanView.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String popUpYearlyPlanView(
+			@RequestParam("id") int yearlyPlan_id
+	) throws Exception {
+		
+		JSONObject jsonObj = yearlyPlanService.popUpYearlyPlanView(
+				yearlyPlan_id
+		);
+		
+		return jsonObj.toString();
+	}
+
 	
 
 }

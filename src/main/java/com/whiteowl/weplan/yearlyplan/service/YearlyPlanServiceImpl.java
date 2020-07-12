@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,6 +32,14 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 			YearlyPlanVO yearlyPlanVO
 	) throws Exception {
 		yearlyPlanDAO.addYearlyPlan(yearlyPlanVO);
+	}
+
+	@Override
+	public JSONObject popUpYearlyPlanView(
+			int yearlyPlan_id
+	) throws Exception {
+		return yearlyPlanDAO
+				.popUpYearlyPlanView(yearlyPlan_id);
 	}
 
 }

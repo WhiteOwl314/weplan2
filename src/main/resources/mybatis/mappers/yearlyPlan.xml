@@ -69,5 +69,31 @@
 		]]>
 	</select> 
 	
+	
+	<select 
+  		id="popUpYearlyPlanView" 
+  		resultMap="yearlyPlanVOResult"   
+  		parameterType="int"
+  	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(STARTDATE, 'YYYY-MM-DD') AS startDate,
+			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate
+		FROM W_YEARLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND isCompleted = '0' 
+			AND ID = #{yearlyPlan_id}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	
+	
+	
 	   
 </mapper>
