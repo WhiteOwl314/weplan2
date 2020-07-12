@@ -111,7 +111,11 @@
 		</div>
 		
 		<div id="side-menu-item_4">
-			<a href="${contextPath}/yearlyPlan/yearlyPlanList.do?year=0000"  class="no-underline">
+			<a 
+				id="sideMenu_yearlyPlan_a"
+				href="${contextPath}/yearlyPlan/yearlyPlanList.do?year=0000"  
+				class="no-underline"
+			>
 				<div 
 					class="side-menu-item"
 					id="side_menu-yealyPlan"
@@ -190,6 +194,14 @@
  				$('.side-menu-item').removeClass('on');
  				$('#side_menu-goalList').addClass('on');
  			} 
+ 
+ 			/* 현재날짜로 세팅 */
+ 			var today = new Date();   
+ 			var year = today.getFullYear();
+ 			var href = '${contextPath}/yearlyPlan/yearlyPlanList.do?year=' + year;
+ 			$('#sideMenu_yearlyPlan_a').attr('href',href);
+ 			/* 현재날짜로 세팅 */
+
 	    }
 		
 		/* 사이드메뉴에 마우스 올렸을때 */
