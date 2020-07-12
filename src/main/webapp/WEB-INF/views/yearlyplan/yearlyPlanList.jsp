@@ -19,7 +19,7 @@
 		.month-container {
 		}
 		table tr td{
-			width:300px;
+			width:10px;
 		}
 	</style>
 </head>
@@ -73,60 +73,116 @@
 				<tr
 					class= "month-container"
 				>
-					<td class="month">
-						1
-					</td>
-					<td class="month">
-						2
-					</td>
-					<td class="month">
-						3
-					</td>	
-					<td class="month">
-						4
-					</td>
-					<td class="month">
-						5
-					</td>
-					<td class="month">
-						6
-					</td>
-					<td class="month">
-						7
-					</td>
-					<td class="month">
-						8
-					</td>
-					<td class="month">
-						9
-					</td>
-					<td class="month">
-						10
-					</td>
-					<td class="month">
-						11
-					</td>
-					<td class="month">
-						12
-					</td>
 				</tr>
 				<c:forEach
 					var="yearlyPlan"
 					items="${yearlyPlanList }"
 				>
-					<tr>
-						<td>
-							dk
-						</td>
-						<td >
-						</td>
-						<td 
-							colspan="3"
-							align="center"
-							style="background-color:yellow;"
-						>
-							${yearlyPlan.title }
-						</td>
+					<tr
+						id="yearlyPlan_${yearlyPlan.id }" 
+					>
+						<input type="hidden" value="${yearlyPlan.startDate }" id="${yearlyPlan.id }_startDate"/>
+						<input type="hidden" value="${yearlyPlan.limitDate }" id="${yearlyPlan.id }_limitDate"/>
+						<script>
+							/* 년도 구하기 */
+							var url_search = $(location).attr('search');
+							var year_array =  url_search.split('=');
+							var year = parseInt(year_array[1]);
+							var year_february_day = new Date(year,2,0).getDate()
+							/* 년도 구하기 */
+
+							/* 날짜 차이 구하기 */
+						  	var sdd = '${yearlyPlan.startDate}'
+							var edd = '${yearlyPlan.limitDate}'
+							var ar1 = sdd.split('-');
+							var ar2 = edd.split('-');
+							var da1 = new Date(ar1[0], ar1[1], ar1[2]);
+							var da2 = new Date(ar2[0], ar2[1], ar2[2]);
+							var dif = da2 - da1;
+							var cDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+							var cMonth = cDay * 30;// 월 만듬
+							var cYear = cMonth * 12; // 년 만듬
+							var calCDay =  parseInt(dif/cDay);
+						  /*document.getElementById('years').value = parseInt(dif/cYear)
+							document.getElementById('months').value = parseInt(dif/cMonth)
+							document.getElementById('days').value = parseInt(dif/cDay) */
+							/* 날짜 차이 구하기 */
+							
+							/* 1월 1일과의 차이 */
+							var firstDay = new Date(year,1,1);
+						  	var firstDif = da2 - firstDay;
+						  	var firstCalCDay = parseInt(firstDif/cDay);
+							/* 1월 1일과의 차이 */
+							
+
+							/* 12월 31일과의 차이 */
+							var lastDay = new Date(year,12,31);
+						  	var lastDif = lastDay - da1;
+						  	var lastCalCDay = parseInt(lastDif/cDay);
+							/* 12월 31일과의 차이 */
+							
+							/* 1월 1일과 start의 차이 */
+							var firstDay = new Date(year,1,1);
+						  	var dif3 = da1 - firstDay;
+						  	var CalCDay3 = parseInt(dif3/cDay);
+							/* 1월 1일과 start의 차이 */
+							
+							/* 12월 31일과 limit의 차이 */
+							var lastDay = new Date(year,12,31);
+						  	var dif4 = lastDay - da2;
+						  	var CalCDay4 = parseInt(dif4/cDay);
+							/* 12월 31일과의 last차이 */
+
+
+
+							
+							/* 넘어온 년도 구하기 */
+							var startYear = parseInt(ar1[0]);
+							var limitYear = parseInt(ar2[0]);
+							/* 넘어온 년도 구하기 */
+
+							/* yearlyPlan 만들기 */
+							if(startYear < year && year < limitYear ){
+								if(year_february_day == 29){
+									var statement = "<td class='day' colspan='366' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"+ "${yearlyPlan.title}" +"</td>"
+									$('#yearlyPlan_${yearlyPlan.id }').append(
+											statement
+									)
+								} else if (year_february_day == 28){
+									var statement = "<td class='day' colspan='365' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"+ "${yearlyPlan.title}" +"</td>"
+									$('#yearlyPlan_${yearlyPlan.id }').append(
+											statement
+									)
+								}
+							} else if (startYear < year && year == limitYear){
+								
+								var statement = "<td class='day' colspan='"+ firstCalCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"+ "${yearlyPlan.title}" +"</td>"
+								$('#yearlyPlan_${yearlyPlan.id }').append(
+										statement
+								)
+							} else if (startYear == year && year < limitYear){
+								var statement1 = "<td class='day' colspan='"+ CalCDay3 +"'></td>"
+								$('#yearlyPlan_${yearlyPlan.id }').append(
+										statement1
+								)
+								var statement2 = "<td class='day' colspan='"+ calCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"+ "${yearlyPlan.title}" +"</td>"
+								$('#yearlyPlan_${yearlyPlan.id }').append(
+										statement2
+								)
+							} else if (startYear == year && year == limitYear){
+								var statement1 = "<td class='day' colspan='"+ CalCDay3 +"'></td>"
+								$('#yearlyPlan_${yearlyPlan.id }').append(
+										statement1
+								)
+								var statement2 = "<td class='day' colspan='"+ calCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"+ "${yearlyPlan.title}" +"</td>"
+								$('#yearlyPlan_${yearlyPlan.id }').append(
+										statement2
+								)
+							}
+
+							/* yearlyPlan 만들기 */
+							
+						</script>
 					</tr>
 				</c:forEach>
 			</table>
@@ -136,9 +192,68 @@
 	<script type="text/javascript">
 		$('#search_submit').click(function() {
 			var year = $('#search_year').val();
-			console.log(year);
 			location.href='${contextPath}/yearlyPlan/yearlyPlanList.do?year=' + year;
 		})
+		
+		window.onload = function() {
+			var url_search = $(location).attr('search');
+			var year_array =  url_search.split('=');
+			var year = year_array[1];
+			var year_february_day = new Date(year,2,0).getDate()
+			var week = new Array("일","월","화","수","목","금","토");
+			
+			/* 달 생성 */
+			if(year_february_day == 29){
+			  var month_day = new Array(31,29,31,30,31,30,31,31,30,31,30,31);
+			  	/* 12달 */
+				for(i=0; i<month_day.length; i++){
+					var month = i + 1;
+					var dateMonth = year + "-" + month;
+					var date = dateMonth + "-" + "01";
+					$('.month-container').append(
+							"<td class='month' id='"+ date +"'>"+ month +"</td>"
+					)
+					/* 날짜 */
+					for(j=0; j<(month_day[i]-1); j++){
+						var day = j+2;
+						if(day < 10){
+							day = "0" + day;
+						}
+						var dateDay = dateMonth + "-" + day;
+						var statement = "<td class='month' id='"+dateDay+"'>"
+										+"</td>";
+						$('.month-container').append(
+								statement
+						)
+					}
+				}
+				
+			} else if (year_february_day == 28){
+			  var month_day = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+				for(i=0; i<month_day.length; i++){
+					var month = i + 1;
+					var dateMonth = year + "-" + month;
+					var date = dateMonth + "-" + "01";
+					$('.month-container').append(
+							"<td class='month' id='"+ date +"'>"+ month +"</td>"
+					)
+					/* 날짜 */
+					for(j=0; j<(month_day[i]-1); j++){
+						var day = j+2;
+						if(day < 10){
+							day = "0" + day;
+						}
+						var dateDay = dateMonth + "-" + day;
+						var statement = "<td class='month' id='"+dateDay+"'>"
+										+"</td>";
+						$('.month-container').append(
+								statement
+						)
+					}
+					
+				}
+			}
+		}
 	</script>
 </body>
 </html>
