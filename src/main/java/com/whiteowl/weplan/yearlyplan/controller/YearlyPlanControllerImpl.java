@@ -198,6 +198,56 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		return resEnt;
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/yearlyPlan/deleteYearlyPlan.do",
+			method = RequestMethod.GET
+	)
+	@ResponseBody
+	public ResponseEntity deleteYearlyPlan(
+			@RequestParam("id") int yearlyPlan_id,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("yearlyPlan_id", yearlyPlan_id);
+		
+		try {
+			
+			yearlyPlanService.deleteYearlyPlan(map);
+			
+			message = "<script>";
+			message += " alert('삭제되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
+
 
 
 	

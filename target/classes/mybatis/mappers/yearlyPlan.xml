@@ -109,5 +109,19 @@
 			AND member_id = #{member_id}
 			
 	</update>
+	
+	  <update 
+	  	id="deleteYearlyPlan" 
+	  	parameterType="java.util.Map"
+	  >
+	    UPDATE W_YEARLY_PLAN
+	  	SET 
+	  		isDelete = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{yearlyPlan_id}
+	  </update>
+	
+	
 
 </mapper>

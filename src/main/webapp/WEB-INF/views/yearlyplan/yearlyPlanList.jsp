@@ -189,7 +189,7 @@
 									var statement = "<td class='day' colspan='366' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"
 													+ "${yearlyPlan.title}" 
 													+ "<span id='update_"+${yearlyPlan.id}+"' onclick='javascript:goDetail("+${yearlyPlan.id}+")'>수정</span>"
-													+ "<span><a href=''>삭제</a></span>"
+													+ "<span><a href='${contextPath }/yearlyPlan/deleteYearlyPlan.do?id="+ ${yearlyPlan.id} +"'>삭제</a></span>"
 													+"</td>"
 									$('#yearlyPlan_${yearlyPlan.id }').append(
 											statement
@@ -198,7 +198,7 @@
 									var statement = "<td class='day' colspan='365' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"
 													+ "${yearlyPlan.title}" 
 													+ "<span id='update_"+${yearlyPlan.id}+"' onclick='javascript:goDetail("+${yearlyPlan.id}+")'>수정</span>"
-													+ "<span><a href=''>삭제</a></span>"
+													+ "<span><a href='${contextPath }/yearlyPlan/deleteYearlyPlan.do?id="+ ${yearlyPlan.id} +"'>삭제</a></span>"
 													+"</td>"
 									$('#yearlyPlan_${yearlyPlan.id }').append(
 											statement
@@ -209,7 +209,7 @@
 								var statement = "<td class='day' colspan='"+ firstCalCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"
 												+ "${yearlyPlan.title}" 
 												+ "<span id='update_"+${yearlyPlan.id}+"' onclick='javascript:goDetail("+${yearlyPlan.id}+")'>수정</span>"
-												+ "<span><a href=''>삭제</a></span>"
+												+ "<span><a href='${contextPath }/yearlyPlan/deleteYearlyPlan.do?id="+ ${yearlyPlan.id} +"'>삭제</a></span>"
 												+"</td>"
 								$('#yearlyPlan_${yearlyPlan.id }').append(
 										statement
@@ -222,7 +222,7 @@
 								var statement2 = "<td class='day' colspan='"+ calCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"
 												+ "${yearlyPlan.title}" 
 												+ "<span id='update_"+${yearlyPlan.id}+"' onclick='javascript:goDetail("+${yearlyPlan.id}+")'>수정</span>"
-												+ "<span><a href=''>삭제</a></span>"
+												+ "<span><a href='${contextPath }/yearlyPlan/deleteYearlyPlan.do?id="+ ${yearlyPlan.id} +"'>삭제</a></span>"
 												+"</td>"
 								$('#yearlyPlan_${yearlyPlan.id }').append(
 										statement2
@@ -235,7 +235,7 @@
 								var statement2 = "<td class='day' colspan='"+ calCDay +"' id='"+ "yearlyPlan_" + ${yearlyPlan.id} +"' align='center' style='background-color:yellow;'>"
 												+ "${yearlyPlan.title}" 
 												+ "<span id='update_"+${yearlyPlan.id}+"' onclick='javascript:goDetail("+${yearlyPlan.id}+")'>수정</span>"
-												+ "<span><a href=''>삭제</a></span>"
+												+ "<span><a href='${contextPath }/yearlyPlan/deleteYearlyPlan.do?id="+ ${yearlyPlan.id} +"'>삭제</a></span>"
 												+"</td>"
 								$('#yearlyPlan_${yearlyPlan.id }').append(
 										statement2

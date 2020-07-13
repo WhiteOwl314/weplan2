@@ -85,6 +85,18 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 				yearlyPlanVO
 		);
 	}
+
+	@Override
+	public void deleteYearlyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.yearlyPlan.deleteYearlyPlan",
+				map
+		);
+		
+	}
 	
+
 
 }
