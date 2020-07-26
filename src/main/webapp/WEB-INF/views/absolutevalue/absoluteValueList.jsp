@@ -59,22 +59,41 @@
 		
 		.absoluteValue-item-container{
 			width: 700px;
-			height: 100px;
-			border: 1px solid;
+			height: 80px;
+			border: 1px solid #FFCC57;
 			margin: auto;
 			margin-top: 30px;
-			border-radius: 30px;
+			border-radius: 10px;
+			background-color: #FFCC57;
 		}
 		
 		.absoluteValue-item-container .item{
 			color: black;
-			padding-top: 30px;
+			margin-top: 15px;
 			font-size: 30px;
+			margin-left: 30px;
+			margin-right: 30px;
+			border-radius: 10px;
+			background-color: white;
+			padding: 10px;
 		}
 		
 		.absoluteValue-item-container a{
 			text-decoration: none;
+			position: relative;
 		}
+		
+		.item-delete{
+			display: none;
+		}
+		.absoluteValue-flex{
+			display: flex;
+		}
+		
+		#absoluteValue_item-main{
+			display: none;
+		}
+		
 		
 		
 		
@@ -100,20 +119,35 @@
 		</form>
 	</div>
 	
+	<div
+		id="absoluteValue_item-edit"
+	>
+		수정
+	</div>
+	<div
+		id="absoluteValue_item-main"
+	>
+		x
+	</div>
+	
+	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div 
 			align="center"
-			class="absoluteValue-item-container"
+			class="absoluteValue-flex"
 		>
-			<a
-				href="${contextPath }/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}"
+			<div
+				onMouseOver = " window.status = '${contextPath }/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}'" 
+				onMouseOut = " window.status = '' "
+				style="cursor:pointer;"
+				class="absoluteValue-item-container"
+				id="${absoluteValue.id }"
 			>
 				<div
 					class="item"
 					id="${absoluteValue.id }"
 				>
 					<script>
-
 						//을를 구분
 						function reulReturner(label) {
 
@@ -143,18 +177,15 @@
 						document.write('나는 '+reulReturner('${absoluteValue.title }')+' 위해 살겠다');
 					</script> 
 				</div>
-			</a>
-			<span
-				id="${absoluteValue.id }"
-				onclick="javascript:goDetail(${absoluteValue.id })"
-			>
-				수정
-			</span>
-			<a href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}">
-				<span>
-					삭제
-				</span>
-			</a>
+			</div>
+				<a 
+					href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}"
+					class="item-delete"
+				>
+					<span>
+						삭제
+					</span>
+				</a>
 		</div>
 	</c:forEach>
 	
@@ -275,6 +306,46 @@
 
 			})
 		};
+		
+		// 처음 클릭
+		$('.absoluteValue-item-container').click(function() {
+			var id = $(this).attr("id");
+			console.log(id);
+			location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
+		});
+
+		
+		//수정클릭
+		$("#absoluteValue_item-edit").click(function() {
+			$('.item-delete').css('display','block');
+			$('#absoluteValue_item-edit').css('display','none');
+			$('#absoluteValue_item-main').css('display','block');
+			$('.absoluteValue-item-container').off('click');
+			$('.absoluteValue-item-container').click(function() {
+				var id = $(this).attr("id");
+				console.log(id);
+				goDetail(id);
+			});
+		});
+		
+		// x 클릭
+		$("#absoluteValue_item-main").click(function() {
+			$('.item-delete').css('display','none');
+			$('#absoluteValue_item-edit').css('display','block');
+			$('#absoluteValue_item-main').css('display','none');
+			$('.absoluteValue-item-container').off('click');
+			$('.absoluteValue-item-container').click(function() {
+				var id = $(this).attr("id");
+				console.log(id);
+				location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
+			});
+
+		});
+		
+
+		
+
+		
 		
 	</script>
 </body>
