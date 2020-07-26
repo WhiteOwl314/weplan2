@@ -112,7 +112,36 @@
 					class="item"
 					id="${absoluteValue.id }"
 				>
-					나는 ${absoluteValue.title } 를 위해 살겠다.	
+					<script>
+
+						//을를 구분
+						function reulReturner(label) {
+
+							 var strGA = 44032; //가
+							 var strHI = 55203; //힣
+
+							 var lastStrCode = label.charCodeAt(label.length-1);
+							 var prop=true;
+							 var msg;
+
+							 if(lastStrCode < strGA || lastStrCode > strHI) {
+							  return false; //한글이 아님
+							 }
+
+							 if (( lastStrCode - strGA ) % 28 == 0) prop = false;
+
+							 if(prop) {
+							  msg = label+'을';
+							 }
+							 else {
+							  msg = label+'를';
+							 }
+
+							 return msg;
+						}	
+
+						document.write('나는 '+reulReturner('${absoluteValue.title }')+' 위해 살겠다');
+					</script> 
 				</div>
 			</a>
 			<span
@@ -246,7 +275,7 @@
 
 			})
 		};
-
+		
 	</script>
 </body>
 </html>
