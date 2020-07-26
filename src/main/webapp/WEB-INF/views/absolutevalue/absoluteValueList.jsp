@@ -57,6 +57,26 @@
 			color: #828282; }
 		/*-- POPUP common style E --*/
 		
+		.absoluteValue-item-container{
+			width: 700px;
+			height: 100px;
+			border: 1px solid;
+			margin: auto;
+			margin-top: 30px;
+			border-radius: 30px;
+		}
+		
+		.absoluteValue-item-container .item{
+			color: black;
+			padding-top: 30px;
+			font-size: 30px;
+		}
+		
+		.absoluteValue-item-container a{
+			text-decoration: none;
+		}
+		
+		
 		
 	</style>
 	<!-- draggable -->
@@ -81,27 +101,29 @@
 	</div>
 	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
-		<div align="center">
+		<div 
+			align="center"
+			class="absoluteValue-item-container"
+		>
 			<a
 				href="${contextPath }/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}"
 			>
-				<span
+				<div
 					class="item"
 					id="${absoluteValue.id }"
 				>
-					${absoluteValue.title }	
-				</span>
+					나는 ${absoluteValue.title } 를 위해 살겠다.	
+				</div>
 			</a>
 			<span
-				class="item"
 				id="${absoluteValue.id }"
 				onclick="javascript:goDetail(${absoluteValue.id })"
 			>
-				수정하기
+				수정
 			</span>
 			<a href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}">
 				<span>
-					삭제하기
+					삭제
 				</span>
 			</a>
 		</div>

@@ -122,8 +122,8 @@
 				>
 					<img 
 						alt="yealyPlan" 
-						src="${contextPath }/resources/images/iconfinder_calendar_1608599.svg"
-						class="side_icon2"
+						src="${contextPath }/resources/images/event_note-black-18dp.svg"
+						class="side_icon"
 					>
 					<div class="side-menu-item-text">
 						Yealy Plan
@@ -133,9 +133,33 @@
 		</div>
 		
 		
-		
-		
 		<div id="side-menu-item_5">
+			<a 
+				id="sideMenu_monthlyPlan_a"
+				href="${contextPath}/monthlyPlan/monthlyPlanList.do"  
+				class="no-underline"
+			>
+				<div 
+					class="side-menu-item"
+					id="side_menu-monthlyPlan"
+				>
+					<img 
+						alt="monthlyPlan" 
+						src="${contextPath }/resources/images/view_day-black-18dp.svg"
+						class="side_icon"
+					>
+					<div class="side-menu-item-text">
+						Monthly Plan
+					</div>
+				</div>
+			</a>
+		</div>
+		
+		
+		
+		
+		
+		<div id="side-menu-item_6">
 			<a href="${contextPath}/task/weeklyTaskList.do"  class="no-underline">
 				<div 
 					class="side-menu-item"
@@ -147,7 +171,7 @@
 						class="side_icon"
 					>
 					<div class="side-menu-item-text">
-						Weekly Task
+						Weekly Plan
 					</div>
 				</div>
 			</a>
