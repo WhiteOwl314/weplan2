@@ -86,9 +86,6 @@
 		.item-delete{
 			display: none;
 		}
-		#absoluteValue_item-main{
-			display: none;
-		}
 		.absoluteValue.absoluteValue_header{
 			display: flex;
 			justify-content: space-between;
@@ -103,15 +100,15 @@
 			margin-top: 15px;
 		}
 		.absoluteValue_text{
-			padding-top: 8px;
-			padding-left: 23px;
+			padding-top: 7px;
+			padding-left: 25px;
 			color: white;
-			font-size: 15px;
+			font-size: 13px;
 			box-sizing: border-box;
 		}
 		.absoluteValue_menu.absoluteValue_add{
 			width: 70px;
-			height: 30px;
+			height: 25px;
 			border-radius: 3px;
 			background-color: #3B3B3B;
 			cursor: pointer;
@@ -119,11 +116,23 @@
 		}
 		.absoluteValue_menu.absoluteValue_update{
 			width: 70px;
-			height: 30px;
+			height: 25px;
 			border-radius: 3px;
 			background-color: #3B3B3B;
 			cursor: pointer;
 			margin-left: 10px;
+		}
+		.absoluteValue_menu.absoluteValue_update_on{
+			width: 70px;
+			height: 25px;
+			border-radius: 3px;
+			background-color: red;
+			cursor: pointer;
+			margin-left: 10px;
+			display: none;
+		}
+		.absoluteValue_form.absoluteValue_add{
+			display: none;
 		}
 		
 		
@@ -166,6 +175,16 @@
 					수정
 				</div>
 			</div>
+			<div 
+				class="absoluteValue_menu absoluteValue_update_on"
+			>
+				<div
+					  class="absoluteValue_update absoluteValue_text"
+				>
+					수정
+				</div>
+			</div>
+			
 		</div>
 
 	</div>
@@ -184,18 +203,6 @@
 			<input type="submit" value="save"/>
 		</form>
 	</div>
-	
-	<div
-		id="absoluteValue_item-edit"
-	>
-		수정
-	</div>
-	<div
-		id="absoluteValue_item-main"
-	>
-		x
-	</div>
-	
 	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div 
@@ -270,6 +277,7 @@
 					<form 
 						action="${contextPath }/absoluteValue/updateAbsoluteValue.do"
 						method="post"	
+						class="absoluteValue_form absoluteValue_update"
 					>
 						<p>
 							<label>IMPORTANCE</label> 
@@ -290,6 +298,21 @@
 
 						<button type="submit">수정</button>
 					</form>
+					
+					<form 
+						action="${contextPath}/absoluteValue/addAbsoluteValue.do"
+						method="post"
+						class="absoluteValue_form absoluteValue_add"
+					>
+						<label><input type="radio" name="importance" value="1">상</label>
+						<label><input type="radio" name="importance" value="2">중</label>
+						<label><input type="radio" name="importance" value="3">하</label>
+						<input type="text" name="title" placeholder="title">
+						<input type="text" name="content" placeholder="content"/>
+						<input type="hidden" name="member_id" value="${ member.id }">
+						<input type="submit" value="save"/>
+					</form>
+					
 				</div>
 			</article>
 		</div>
@@ -367,7 +390,6 @@
 		    		} else if (importance == '3'){
 		    			$('input:radio[name=importance]:input[value="3"]').attr("checked", true);
 		    		}
-
 				},
 
 			})
@@ -382,12 +404,14 @@
 
 		
 		//수정클릭
-		$("#absoluteValue_item-edit").click(function() {
+		$(".absoluteValue_menu.absoluteValue_update").click(function() {
+			$(this).css('display','none');
+			$('.absoluteValue_menu.absoluteValue_update_on').css('display','block');
 			$('.item-delete').css('display','block');
-			$('#absoluteValue_item-edit').css('display','none');
-			$('#absoluteValue_item-main').css('display','block');
 			$('.absoluteValue-item-container').off('click');
 			$('.absoluteValue-item-container').click(function() {
+				$('.absoluteValue_form.absoluteValue_update').css('display','block');
+				$('.absoluteValue_form.absoluteValue_add').css('display','none');
 				var id = $(this).attr("id");
 				console.log(id);
 				goDetail(id);
@@ -395,10 +419,10 @@
 		});
 		
 		// x 클릭
-		$("#absoluteValue_item-main").click(function() {
+		$(".absoluteValue_menu.absoluteValue_update_on").click(function() {
+			$(this).css('display','none');
+			$('.absoluteValue_menu.absoluteValue_update').css('display','block');
 			$('.item-delete').css('display','none');
-			$('#absoluteValue_item-edit').css('display','block');
-			$('#absoluteValue_item-main').css('display','none');
 			$('.absoluteValue-item-container').off('click');
 			$('.absoluteValue-item-container').click(function() {
 				var id = $(this).attr("id");
@@ -406,6 +430,15 @@
 				location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
 			});
 
+		});
+		
+		// 추가버튼
+		$('.absoluteValue_menu.absoluteValue_add').click(function() {
+			$('.absoluteValue_form.absoluteValue_update').css('display','none');
+			$('.absoluteValue_form.absoluteValue_add').css('display','block');
+			var id = $(this).attr("id");
+			console.log(id);
+			goDetail(id);
 		});
 		
 
