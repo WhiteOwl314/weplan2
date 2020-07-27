@@ -559,8 +559,8 @@
 			$('.absoluteValue-item-container').click(function() {
 				$('.absoluteValue_form.absoluteValue_update').css('display','block');
 				$('.absoluteValue_form.absoluteValue_add').css('display','none');
+				$('.layerpop_area .title').text('수정');
 				var id = $(this).attr("id");
-				console.log(id);
 				goDetail(id);
 			});
 		});
@@ -573,7 +573,6 @@
 			$('.absoluteValue-item-container').off('click');
 			$('.absoluteValue-item-container').click(function() {
 				var id = $(this).attr("id");
-				console.log(id);
 				location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
 			});
 
@@ -584,7 +583,7 @@
 			$('.absoluteValue_form.absoluteValue_update').css('display','none');
 			$('.absoluteValue_form.absoluteValue_add').css('display','block');
 			var id = $(this).attr("id");
-			console.log(id);
+			$('.layerpop_area .title').text('추가');
 			goDetail(id);
 		});
 		
