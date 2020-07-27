@@ -59,7 +59,7 @@
 		
 		.absoluteValue-item-container{
 			width: 700px;
-			height: 80px;
+			height: 50px;
 			border: 1px solid #FFCC57;
 			margin: auto;
 			margin-top: 30px;
@@ -69,10 +69,10 @@
 		
 		.absoluteValue-item-container .item{
 			color: black;
-			margin-top: 15px;
-			font-size: 30px;
-			margin-left: 30px;
-			margin-right: 30px;
+			margin-top: 5px;
+			font-size: 20px;
+			margin-left: 5px;
+			margin-right: 5px;
 			border-radius: 10px;
 			background-color: white;
 			padding: 10px;
@@ -86,12 +86,44 @@
 		.item-delete{
 			display: none;
 		}
-		.absoluteValue-flex{
-			display: flex;
-		}
-		
 		#absoluteValue_item-main{
 			display: none;
+		}
+		.absoluteValue.absoluteValue_header{
+			display: flex;
+			justify-content: space-between;
+		}
+		.absoluteValue_header.absoluteValue_title{
+			margin-top: 30px;
+			margin-left: 40px;
+			font-size: 30px;
+		}
+		.absoluteValue_header .absoluteValue_menu{
+			display: flex;
+			margin-top: 15px;
+		}
+		.absoluteValue_text{
+			padding-top: 8px;
+			padding-left: 23px;
+			color: white;
+			font-size: 15px;
+			box-sizing: border-box;
+		}
+		.absoluteValue_menu.absoluteValue_add{
+			width: 70px;
+			height: 30px;
+			border-radius: 3px;
+			background-color: #3B3B3B;
+			cursor: pointer;
+			
+		}
+		.absoluteValue_menu.absoluteValue_update{
+			width: 70px;
+			height: 30px;
+			border-radius: 3px;
+			background-color: #3B3B3B;
+			cursor: pointer;
+			margin-left: 10px;
 		}
 		
 		
@@ -104,6 +136,40 @@
 </head>
 <body>
 	
+	<div
+		class="absoluteValue absoluteValue_header"
+	>
+		
+		<div
+			class="absoluteValue_header absoluteValue_title"
+		>
+			Absolute Value
+		</div>
+		<div
+			class="absoluteValue_header absoluteValue_menu"
+		>
+			<div 
+				class="absoluteValue_menu absoluteValue_add"
+			>
+				<div
+					  class="absoluteValue_add absoluteValue_text"
+				>
+					추가
+				</div>
+			</div>
+			<div 
+				class="absoluteValue_menu absoluteValue_update"
+			>
+				<div
+					  class="absoluteValue_update absoluteValue_text"
+				>
+					수정
+				</div>
+			</div>
+		</div>
+
+	</div>
+
 	<div>
 		<form 
 			action="${contextPath}/absoluteValue/addAbsoluteValue.do"
@@ -228,9 +294,9 @@
 			</article>
 		</div>
     <!--Popup End -->
-
-		
-	</div>
+    
+    </div>
+    
 	
 	<script type="text/javascript">
 	
