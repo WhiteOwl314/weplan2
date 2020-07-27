@@ -28,41 +28,28 @@
 			border: 2px solid #ccc;
 			background: #fff;
 			cursor: move; }
+		.layerpop .layerpop_area{
+			padding: 20px 35px;
+		}
 
 		.layerpop_area .title {
-			padding: 10px 10px 10px 10px;
 			border: 0px solid #aaaaaa;
-			background: #f1f1f1;
-			color: #3eb0ce;
+			color: #3B3B3B;
 			font-size: 1.3em;
 			font-weight: bold;
-			line-height: 24px; }
-
-		.layerpop_area .layerpop_close {
-			width: 25px;
-			height: 25px;
-			display: block;
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			background: transparent url('btn_exit_off.png') no-repeat; }
-
-		.layerpop_area .layerpop_close:hover {
-			background: transparent url('btn_exit_on.png') no-repeat;
-			cursor: pointer; }
+			line-height: 24px; 
+		}
 
 		.layerpop_area .content {
 			width: 96%;    
-			margin: 2%;
-			color: #828282; }
+			color: #828282;
+			margin-top: 35px; 
+		}
 		/*-- POPUP common style E --*/
 		
 		.absoluteValue-item-container{
 			width: 700px;
 			height: 50px;
-			border: 1px solid #FFCC57;
-			margin: auto;
-			margin-top: 30px;
 			border-radius: 10px;
 			background-color: #FFCC57;
 		}
@@ -126,7 +113,7 @@
 			width: 70px;
 			height: 25px;
 			border-radius: 3px;
-			background-color: red;
+			background-color: #EF802F;
 			cursor: pointer;
 			margin-left: 10px;
 			display: none;
@@ -134,7 +121,93 @@
 		.absoluteValue_form.absoluteValue_add{
 			display: none;
 		}
+		.absoluteValue_content.absoluteValue_container{
+			display: flex;
+			margin-top: 30px;
+			justify-content: center;
+		}
+		.item-delete{
+			padding-top: 7px;
+			margin-left: 10px;
+		}
+		.item-delete .icon{
+			width: 35px;
+		}
 		
+		.importance.importance1{
+			background-color: red;
+		}
+		.absoluteValue_add .form_title{
+			color: #66738A;
+			font-size: 15px;
+		}
+		.container{
+			margin-bottom: 30px;
+		}
+		.item_container{
+			background-color: #f7f7f7;
+			border: 1px solid #e2e2e2;
+			border-radius: 3px;
+		}
+		.absoluteValue_form textarea{
+			width: 100%;
+			height: 100px;
+			resize: none;
+			background-color: #f7f7f7;
+			border: 1px solid #e2e2e2;
+			border-radius: 3px;
+		}  
+		.absoluteValue_add_title{
+			width: 100%;
+			resize: none;
+			background-color: #f7f7f7;
+			border: 1px solid #e2e2e2;
+			border-radius: 3px;
+		}
+		.absoluteValue_form input[type='submit']{
+			width: 70px;
+			height: 25px;
+			border-radius: 3px;
+			background-color: #3B3B3B;
+			cursor: pointer;
+			color: white;
+			appearance: none;
+			box-sizing: border-box;
+			padding-top: 3px;
+			border: none;
+			text-decoration: none;
+		}
+		.absoluteValue_form input[type='submit']:hover {
+			background-color: #4f4f4f;
+		}
+		.absoluteValue_form input[type='submit']:active {
+			background-color: #7c7c7c;
+		}
+		.absoluteValue_add_submit{
+			float: left;
+		}
+		.absoluteValue_form .cancle{
+			width: 70px;
+			height: 25px;
+			border-radius: 3px;
+			background-color: #3B3B3B;
+			cursor: pointer;
+			color: white;
+			appearance: none;
+			box-sizing: border-box;
+			border: none;
+			text-decoration: none;
+			margin-left: 80px;
+			
+		}	
+		.absoluteValue_form .cancle:hover {
+			background-color: #4f4f4f;
+		}
+		.absoluteValue_form .cancle:active {
+			background-color: #7c7c7c;
+		}
+		.absoluteValue_cancle .absoluteValue_text{
+		}
 		
 		
 		
@@ -189,25 +262,10 @@
 
 	</div>
 
-	<div>
-		<form 
-			action="${contextPath}/absoluteValue/addAbsoluteValue.do"
-			method="post"
-		>
-			<label><input type="radio" name="importance" value="1">상</label>
-			<label><input type="radio" name="importance" value="2">중</label>
-			<label><input type="radio" name="importance" value="3">하</label>
-			<input type="text" name="title" placeholder="title">
-			<input type="text" name="content" placeholder="content"/>
-			<input type="hidden" name="member_id" value="${ member.id }">
-			<input type="submit" value="save"/>
-		</form>
-	</div>
-	
 	<c:forEach var="absoluteValue" items="${absoluteValueList }">
 		<div 
 			align="center"
-			class="absoluteValue-flex"
+			class="absoluteValue_content absoluteValue_container"
 		>
 			<div
 				onMouseOver = " window.status = '${contextPath }/absoluteValue/absoluteValueView.do?id=${absoluteValue.id}'" 
@@ -251,14 +309,19 @@
 					</script> 
 				</div>
 			</div>
+			<div
+				class="item-delete"
+			>
 				<a 
 					href="${contextPath }/absoluteValue/deleteAbsoluteValue.do?id=${absoluteValue.id}"
-					class="item-delete"
 				>
-					<span>
-						삭제
-					</span>
+					<img 
+						alt="delete" 
+						src="${contextPath }/resources/images/highlight_off-black-18dp.svg"
+						class="icon"
+					>
 				</a>
+			</div>
 		</div>
 	</c:forEach>
 	
@@ -268,35 +331,70 @@
 
 		<!--Popup Start -->
 		<div id="layerbox" class="layerpop"
-			style="width: 700px; height: 350px;">
+			style="width: 700px; height: 450px;">
 			<article class="layerpop_area">
-				<div class="title">레이어팝업 타이틀</div>
-				<a href="javascript:popupClose();" class="layerpop_close"
-					id="layerbox_close"></a> <br>
+				<div class="title">수정</div>
 				<div class="content">
 					<form 
 						action="${contextPath }/absoluteValue/updateAbsoluteValue.do"
 						method="post"	
 						class="absoluteValue_form absoluteValue_update"
 					>
-						<p>
-							<label>IMPORTANCE</label> 
-							<label><input type="radio" name="importance" value="1">상</label>
-							<label><input type="radio" name="importance" value="2">중</label>
-							<label><input type="radio" name="importance" value="3">하</label>
-						</p>
-						<p>
-							<label>TITLE</label> 
-							<input type="text" id="popUp-title" name="title"> 
-						</p>
-						<p>
-							<label>CONTENT</label> 
-							<textarea id="popUp-content" name="content" cols="50" rows="10"></textarea> 
-						</p>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								중요도
+							</div>
+							<div
+								class="item_container"
+							>
+								<label><input type="radio" name="importance" value="1" class="importance importance1">상</label>
+								<label><input type="radio" name="importance" value="2" class="importance importance2">중</label>
+								<label><input type="radio" name="importance" value="3" class="importance importance3">하</label>
+							</div>
+						</div>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								제목
+							</div>
+							<input id="popUp-title" class="absoluteValue_add_title" type="text" name="title" >
+						</div>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								내용
+							</div>
+							<div>
+								<textarea id="popUp-content" name="content"></textarea>
+							</div>
+						</div>
+						<div
+							class="container absoluteValue_add_submit"
+						>
+							<input type="submit" value="저장"/>
+						</div>
+						<div
+							class="absoluteValue_form cancle layerpop_close"
+							onclick="javascript:popupClose();"
+						>
+							<div
+								class="absoluteValue_cancle absoluteValue_text"
+							>
+								취소
+							</div>
+						</div>
 						<input type="hidden" name="member_id" value="${ member.id }">
 						<input type="hidden" name="id" id="popUp-id">
-
-						<button type="submit">수정</button>
 					</form>
 					
 					<form 
@@ -304,15 +402,61 @@
 						method="post"
 						class="absoluteValue_form absoluteValue_add"
 					>
-						<label><input type="radio" name="importance" value="1">상</label>
-						<label><input type="radio" name="importance" value="2">중</label>
-						<label><input type="radio" name="importance" value="3">하</label>
-						<input type="text" name="title" placeholder="title">
-						<input type="text" name="content" placeholder="content"/>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								중요도
+							</div>
+							<div
+								class="item_container"
+							>
+								<label><input type="radio" id="importance1" name="importance" value="1" class="importance importance1" checked="checked">상</label>
+								<label><input type="radio" id="importance2" name="importance" value="2" class="importance importance2">중</label>
+								<label><input type="radio" id="importance3" name="importance" value="3" class="importance importance3">하</label>
+							</div>
+						</div>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								제목
+							</div>
+							<input class="absoluteValue_add_title" type="text" name="title" >
+						</div>
+						<div
+							class="container"
+						>
+							<div
+								class="form_title"
+							>
+								내용
+							</div>
+							<div>
+								<textarea name="content"></textarea>
+							</div>
+						</div>
+						<div
+							class="container absoluteValue_add_submit"
+						>
+							<input type="submit" value="저장"/>
+						</div>
+						<div
+							class="absoluteValue_form cancle layerpop_close"
+							onclick="javascript:popupClose();"
+						>
+							<div
+								class="absoluteValue_cancle absoluteValue_text"
+							>
+								취소
+							</div>
+						</div>
 						<input type="hidden" name="member_id" value="${ member.id }">
-						<input type="submit" value="save"/>
 					</form>
-					
 				</div>
 			</article>
 		</div>
@@ -363,10 +507,6 @@
 		function goDetail(absoluteValueID) {
 
 			/*팝업 오픈전 별도의 작업이 있을경우 구현*/ 
-
-			popupOpen(); //레이어 팝업창 오픈 
-			wrapWindowByMask(); //화면 마스크 효과 
-			
 			$.ajax({
 				url : "${contextPath}/absoluteValue/popUpAbsoluteValueView.do",
 				dataType :"json",
@@ -384,15 +524,22 @@
 					
 		    		/* 중요도 초기값 */
 		    		if(importance=='1'){
-		    			$('input:radio[name=importance]:input[value="1"]').attr("checked", true);
+		    			$('.absoluteValue_update .importance1').prop("checked", true);
 		    		} else if (importance == '2'){
-		    			$('input:radio[name=importance]:input[value="2"]').attr("checked", true);
+		    			$('.absoluteValue_update .importance2').prop("checked", true);
 		    		} else if (importance == '3'){
-		    			$('input:radio[name=importance]:input[value="3"]').attr("checked", true);
+		    			$('.absoluteValue_update .importance3').prop("checked", true);
 		    		}
 				},
 
 			})
+			
+			//중요도를 바꾸는데 시간이 걸려서 0.1초 늦게 띄움
+			setTimeout(function() {
+				popupOpen(); //레이어 팝업창 오픈 
+			}, 100);
+			
+			wrapWindowByMask(); //화면 마스크 효과 
 		};
 		
 		// 처음 클릭
