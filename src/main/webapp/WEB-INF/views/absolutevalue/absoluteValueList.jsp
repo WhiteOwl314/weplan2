@@ -101,6 +101,13 @@
 			cursor: pointer;
 			
 		}
+		.absoluteValue_menu.absoluteValue_add:hover{
+			background-color: #4f4f4f;
+		}
+		.absoluteValue_menu.absoluteValue_add:active{
+			background-color: #7c7c7c;
+		}
+		
 		.absoluteValue_menu.absoluteValue_update{
 			width: 70px;
 			height: 25px;
@@ -109,6 +116,13 @@
 			cursor: pointer;
 			margin-left: 10px;
 		}
+		.absoluteValue_menu.absoluteValue_update:hover{
+			background-color: #4f4f4f;
+		}
+		.absoluteValue_menu.absoluteValue_update:active{
+			background-color: #7c7c7c;
+		}
+		
 		.absoluteValue_menu.absoluteValue_update_on{
 			width: 70px;
 			height: 25px;
@@ -118,6 +132,13 @@
 			margin-left: 10px;
 			display: none;
 		}
+		.absoluteValue_menu.absoluteValue_update_on:hover{
+			background-color: #f29757;
+		}
+		.absoluteValue_menu.absoluteValue_update_on:active{
+			background-color: #f2a168;
+		}
+		
 		.absoluteValue_form.absoluteValue_add{
 			display: none;
 		}

@@ -18,10 +18,11 @@
       text-decoration:none;
    }
    .side_icon{
-   	width:40px;
+   	width:35px;
    	display: block; 
    	margin: 0px auto; 
    	padding-top: 3px;
+   	filter: opacity(.57) drop-shadow(0 0 0 #000000);
    }
    .side_icon2{
    	width:33px;
