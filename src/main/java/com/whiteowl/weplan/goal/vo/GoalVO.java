@@ -11,6 +11,7 @@ public class GoalVO {
 	private String isCompleted;
 	private int importance;
 	private String limitDate;
+	private String startDate;
 	private String member_id;
 	public int getId() {
 		return id;
@@ -54,6 +55,14 @@ public class GoalVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	
+	
 	
 	
 

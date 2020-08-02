@@ -80,12 +80,14 @@ public class GoalDAOImpl implements GoalDAO{
 		String content = goalVO.getContent();
 		int importance = goalVO.getImportance();
 		String limitDate = goalVO.getLimitDate();
+		String startDate = goalVO.getStartDate();
 
 		data.put("id", id);
 		data.put("title", title);
 		data.put("content", content);
 		data.put("importance", importance);
 		data.put("limitDate", limitDate);
+		data.put("startDate", startDate);
 		
 		return data;
 	}

@@ -24,6 +24,11 @@
     <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
 	<link href="${contextPath }/resources/css/baselayout/style.css" rel="stylesheet" type="text/css">
     <!-- Style -->
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+	<!-- Font -->
     
   </head>
     <body>
