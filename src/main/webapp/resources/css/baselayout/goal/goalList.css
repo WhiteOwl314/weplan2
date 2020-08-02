@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+.project .project_header{
+	border-bottom: 1px solid #DCDCDC;
+}
+.project_header .project_title{
+	height: 90px;
+	padding-top: 35px;
+	padding-left: 40px;
+	font-size: 30px;
+	box-sizing: border-box;
+}
+.project .project_body{
+	display: flex;
+}
+.project_body .project_left{
+	width: 20%;
+	height: 600px;
+	border-right: 1px solid #DCDCDC;
+	background-color: #f7f7f7;
+}
+.project_body .project_right{
+	width: 80%;
+}
+.project_body .project_List{
+	height: 600px;
+	padding: 10px 5px 10px 10px;
+}
+.project_List .project_List-text{
+	font-size: 15px;
+	width: 100%;
+	overflow: hidden;
+	cursor: pointer;
+	padding: 3px 0px;
+	/* ... */
+	text-overflow: ellipsis;
+	/* ... */
+	/* 한줄로 */
+	white-space: nowrap;
+	/* 한줄로 */
+}
+.project_List-text img{
+	width: 10px;
+}
+.project_List .project_button{
+	cursor: pointer;
+}
+.project_List .project_add img:hover{
+	background-color: #e2e2e2;
+	border-radius: 5px;
+}
+.project_right .project_detail{
+	height: 100%;
+	box-sizing: border-box;
+}
+.project_detail .project_detail_header{
+	margin-left: 20px;
+	border-bottom: 1px solid #DCDCDC;
+	height: 40px;
+	display: flex;
+}
+.project_detail_header .project_detail_title{
+	padding-top: 10px;
+	font-size: 17px;
+	font-weight: 500;
+	box-sizing: border-box;
+	margin-left: 10px;
+}
+.project_detail_title .project_detail_text{
+}
+.project_detail_title .project_detail_class{
+	font-size: 10px;
+	color: gray;
+}
+.project_detail_header .project_dtail_completed{
+	padding-top: 10px;
+	display: none;
+	cursor: pointer;
+}
+.project_dtail_completed img{
+	width: 15px;
+}

@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+.content .header{
+	display: flex;
+	justify-content: space-between;
+}
+.content .header .title{
+	margin-top: 30px;
+	margin-left: 40px;
+	font-size: 30px;
+}
+.content .header .menu{
+	display: flex;
+	margin-top: 50px;
+	margin-right: 40px;
+}
+.content .header .menu .add{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+}
+.content .header .menu .add:hover{
+	background-color: #4f4f4f;
+}
+.content .header .menu .add:active{
+	background-color: #7c7c7c;
+}
+.content .header .menu .text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+.content .header .menu .update{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.content .header .menu .update:hover{
+	background-color: #4f4f4f;
+}
+.content .header .menu .update:active{
+	background-color: #7c7c7c;
+}
+.content .header .menu .update_on{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #EF802F;
+	cursor: pointer;
+	margin-left: 10px;
+	display: none;
+}
+.content .header .menu .update_on:hover{
+	background-color: #f29757;
+}	
+.content .header .menu .update_on:active{
+	background-color: #f2a168;
+}
+.content .absoluteValues{}
+.content .absoluteValues .absoluteValue{
+	display: flex;
+	margin-top: 30px;
+	justify-content: center;
+}
+.content .absoluteValues .absoluteValue .event{
+	width: 700px;
+	height: 50px;
+	border-radius: 10px;
+	background-color: #FFCC57;
+	box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
+}
+.content .absoluteValues .absoluteValue .event .item{
+	color: black;
+	margin-top: 5px;
+	font-size: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 10px;
+	background-color: white;
+	padding: 10px;
+}
+.content .absoluteValues .absoluteValue .event .item{
+	display: flex;
+	justify-content: center;
+}
+.content .absoluteValues .absoluteValue .delete{
+	display: none;
+	padding-top: 7px;
+	margin-left: 10px;
+}
+.content .absoluteValues .absoluteValue .delete .icon{
+	width: 35px;
+}
+
+
+.layerpop .layerpop_area .content .add{
+	display: none;
+}
+.layerpop .layerpop_area .content .add .form{}
+.layerpop .layerpop_area .content .add .form .container{
+	margin-bottom: 30px;
+}
+
+.layerpop .layerpop_area .content .add .form .container .form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+.layerpop .layerpop_area .content .add .form .container .form_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.layerpop .layerpop_area .content .add .form .container .form_content{
+	width: 100%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}  
+.layerpop .layerpop_area .content .add .form .container .form_content_title{
+	width: 100%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.absoluteValue_update .container{
+	margin-bottom: 30px;
+}
+
+.absoluteValue_update .form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+
+.absoluteValue_update .form_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.absoluteValue_update .form_content_title {
+	width: 100%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.absoluteValue_update .absoluteValue_form-content{
+	width: 100%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	
+}
+
+
+.absoluteValue_form input[type='submit']{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	padding-top: 3px;
+	border: none;
+	text-decoration: none;
+}
+.absoluteValue_form input[type='submit']:hover {
+	background-color: #4f4f4f;
+}
+.absoluteValue_form input[type='submit']:active {
+	background-color: #7c7c7c;
+}
+.absoluteValue_add_submit{
+	float: left;
+}
+.absoluteValue_form .cancle{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	border: none;
+	text-decoration: none;
+	margin-left: 80px;
+	
+}	
+.absoluteValue_form .cancle:hover {
+	background-color: #4f4f4f;
+}
+.absoluteValue_form .cancle:active {
+	background-color: #7c7c7c;
+}
+.absoluteValue_form .cancle .cancle_text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}

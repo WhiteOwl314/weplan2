@@ -3,6 +3,7 @@ package com.whiteowl.weplan.goal.service;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.whiteowl.weplan.goal.vo.GoalVO;
@@ -22,5 +23,9 @@ public interface GoalService {
 	public void updateGoalNullDate(GoalVO goalVO) throws Exception;
 
 	public void deleteGoal(Map<String, Object> map) throws Exception;
+
+	public JSONArray yearlyPlanList(Map<String, Object> map) throws Exception;
+
+	public void completeGoal(Map<String, Object> map) throws Exception;
 
 }

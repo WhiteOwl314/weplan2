@@ -11,8 +11,6 @@
 
 <html>
 <head>
- <link href="${contextPath }/resources/css/common/side.css" rel="stylesheet" type="text/css">
-
  <style>
    .no-underline{
       text-decoration:none;
@@ -105,7 +103,7 @@
 						class="side_icon"
 					>
 					<div class="side-menu-item-text">
-						Goal
+						Project
 					</div>
 				</div>
 			</a>

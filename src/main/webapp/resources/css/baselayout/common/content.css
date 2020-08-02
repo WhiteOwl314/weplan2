@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.content{}
+
+
+/*-- POPUP common style S ======================================================================================================================== --*/
+
+.mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	background-color: #000000;
+	display: none; }
+
+.layerpop {
+	display: none;
+	z-index: 1000;
+	border: 2px solid #ccc;
+	background: #fff;
+	cursor: move;
+}
+.layerpop .layerpop_area{
+	padding: 20px 35px;
+}
+
+.layerpop_area .title {
+	border: 0px solid #aaaaaa;
+	color: #3B3B3B;
+	font-size: 1.3em;
+	font-weight: bold;
+	line-height: 24px; 
+}
+
+.layerpop_area .content {
+	width: 96%;    
+	color: #828282;
+	margin-top: 35px; 
+}
+.layerpop .form_main{
+	height: 310px;
+	overflow: auto; 
+}
+.layerpop .form_button{
+	margin-top: 15px;
+}
+/*-- POPUP common style E --*/

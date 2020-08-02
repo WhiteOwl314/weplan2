@@ -3,6 +3,7 @@ package com.whiteowl.weplan.goal.service;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,22 @@ public class GoalServiceImpl implements GoalService{
 	) throws Exception {
 		
 		goalDAO.deleteGoal(map);
+	}
+
+	@Override
+	public JSONArray yearlyPlanList(
+			Map<String, Object> map
+	) throws Exception {
+		
+		
+		return goalDAO.yearlyPlanList(map);
+	}
+
+	@Override
+	public void completeGoal(
+			Map<String, Object> map
+	) throws Exception {
+		goalDAO.completeGoal(map);
 	}
 
 }

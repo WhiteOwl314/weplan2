@@ -7,63 +7,93 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-		<style type="text/css">
-		/*-- POPUP common style S ======================================================================================================================== --*/
-		#mask {
-			position: absolute;
-			left: 0;
-			top: 0;
-			z-index: 999;
-			background-color: #000000;
-			display: none; }
+<div
+	class="project"
+>
+	<div
+		class="project_header"
+	>
+		<div
+			class="project_title"
+		>
+			Project
+		</div>
+	</div>
+	<div
+		class="project_body"
+	>
+		<div
+			class="project_left"
+		>
+			<div
+				class="project_List"
+			>
+				<c:forEach items="${goalList }" var="project">
+					<div
+						id="${project.id }"
+						class="project_List-text"
+					>
+						<img 
+							alt="project_title" 
+							src="${contextPath }/resources/images/fiber_manual_record-black-18dp.svg"
+						>
+						${project.title }
+					</div>
+				</c:forEach>
+				<div
+					class="project_add"
+				>
+					<div
+						class="project_button"
+					>
+						<img
+							alt="add_button" 
+							src="${contextPath }/resources/images/add-black-18dp.svg"
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="project_right"
+		>
+			<div
+				class="project_detail"
+			>
+				<div
+					class="project_detail_header"
+				>
+					<div
+						class="project_dtail_completed"
+					>
+						<img  alt="checkbox" 
+							class="checkbox"
+							id="checkbox${task.id }"
+							src="${contextPath }/resources/images/iconmonstr-checkbox-11.svg"
+						>
+					</div>
+					<div
+						class="project_detail_title"
+					>
+						<div
+							class="project_detail_text"
+						>
+						</div>
+						<div
+							class="project_detail_class"
+						>
+						</div>
+					</div>
+				</div>
+				<div
+					class="project_detail_body"
+				>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		.layerpop {
-			display: none;
-			z-index: 1000;
-			border: 2px solid #ccc;
-			background: #fff;
-			cursor: move; }
-
-		.layerpop_area .title {
-			padding: 10px 10px 10px 10px;
-			border: 0px solid #aaaaaa;
-			background: #f1f1f1;
-			color: #3eb0ce;
-			font-size: 1.3em;
-			font-weight: bold;
-			line-height: 24px; }
-
-		.layerpop_area .layerpop_close {
-			width: 25px;
-			height: 25px;
-			display: block;
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			background: transparent url('btn_exit_off.png') no-repeat; }
-
-		.layerpop_area .layerpop_close:hover {
-			background: transparent url('btn_exit_on.png') no-repeat;
-			cursor: pointer; }
-
-		.layerpop_area .content {
-			width: 96%;    
-			margin: 2%;
-			color: #828282; }
-		/*-- POPUP common style E --*/
-	</style>
-	<!-- draggable -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
-	
-</head>
-<body>
-
+</div>
 	<div>
 		<form 
 			action="${contextPath}/goal/addGoal.do"
@@ -158,6 +188,7 @@
 
 		
 	</div>
+
 	
 	
 	<script type="text/javascript">
@@ -287,5 +318,3 @@
 
 		
 	</script>
-</body>
-</html>

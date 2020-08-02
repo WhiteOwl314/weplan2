@@ -3,6 +3,7 @@ package com.whiteowl.weplan.goal.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
@@ -23,5 +24,9 @@ public interface GoalDAO {
 	public void updateGoalNullDate(GoalVO goalVO) throws DataAccessException;
 
 	public void deleteGoal(Map<String, Object> map) throws DataAccessException;
+
+	public JSONArray yearlyPlanList(Map<String, Object> map) throws DataAccessException;
+
+	public void completeGoal(Map<String, Object> map) throws DataAccessException;
 
 }

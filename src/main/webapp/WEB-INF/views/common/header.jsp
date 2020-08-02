@@ -11,9 +11,6 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link href="${contextPath }/resources/css/common/header.css" 
- 			rel="stylesheet" type="text/css">
-
   <meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
 	<title>헤더</title>

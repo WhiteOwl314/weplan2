@@ -13,6 +13,16 @@
         <result property="importance" column="importance" />
         <result property="limitDate" column="limitdate" />
 	</resultMap>
+	<resultMap type="yearlyPlanVO" id="yearlyPlanVOResult">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="ID" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="importance" column="importance" />
+        <result property="startDate" column="startdate" />
+        <result property="limitDate" column="limitdate" />
+        <result property="isCompleted" column="isCompleted" />
+	</resultMap>
 	
 	<select 
 		id="goalList" 
@@ -153,7 +163,43 @@
 			AND ID = #{goal_id}
 	  </update>
 	
-	
-	
+	<select 
+		id="yearlyPlanList" 
+		resultMap="yearlyPlanVOResult" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			isCompleted,
+			TO_CHAR(limitdate, 'YYYY-MM-DD') AS limitdate,
+			TO_CHAR(startdate, 'YYYY-MM-DD') AS startdate
+		FROM W_yearly_plan 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND ID in (
+						SELECT yearly_plan_id
+						FROM W_goal_yearlyplan
+						WHERE 
+							goal_id = #{goal_id}
+					)
+		ORDER BY credate DESC
+      ]]>
+	</select>
 
+	  <update 
+	  	id="completeGoal" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_GOAL
+	  	SET isCompleted = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{goal_id}
+	  </update>
+	
 </mapper>

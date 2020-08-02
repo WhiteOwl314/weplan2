@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -49,6 +50,7 @@ public class GoalControllerImpl implements GoalController{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/goal/goalList");
 		mav.addObject("goalList", goalList);
+		
 		return mav;
 	}
 	
@@ -233,8 +235,81 @@ public class GoalControllerImpl implements GoalController{
 		return resEnt;
 
 	}
+	@Override
+	@RequestMapping(
+			value="/goal/yearlyPlanList.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String yearlyPlanList(
+			@RequestParam("id") int goal_id,
+			HttpServletRequest request
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("goal_id", goal_id);
+		JSONArray jsonObj = goalService.yearlyPlanList(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
 
 	
+	@Override
+	@RequestMapping(
+			value="/goal/completeGoal.do",
+			method = RequestMethod.GET
+	)
+	@ResponseBody
+	public ResponseEntity completeGoal(
+			@RequestParam("id") int goal_id,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("goal_id", goal_id);
+		
+		try {
+			
+			goalService.completeGoal(map);
+			
+			message = "<script>";
+			message += " alert('완료되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
 
 
 }

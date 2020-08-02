@@ -9,68 +9,22 @@
 <html lang="ko-KR">
   <head>
     <meta charset="UTF-8">
+    <!-- Title -->
+    <title><tiles:insertAttribute name="title" /></title>
+    <!-- Title -->
     
     <!-- JQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script> 
+    <!-- JQuery -->
+	<!-- draggable -->
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script> 
+	<!-- draggable -->
     <!-- Style -->
     <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
-    <style>
-      #container {
-        width: 100%;
-        margin: 0px auto;
-        border: 0px solid #bcbcbc;
-      }
-      #header {
-      	height: 50px;
-        border-bottom: 1px solid #DCDCDC;
-      }
-      #sidebar-left {
-        width: 60px;
-        height:700px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        float: left;
-        background-color: #FFCC57;
-        border: 0px solid #bcbcbc;
-        font-size:10px;
-      }
-      #content {
-        width: 90%;
-        padding: 5px;
-        margin-right: 5px;
-        float: left;
-        border: 0px solid #bcbcbc;
-      }
-      #footer {
-        clear: both;
-        padding: 5px;
-        border: 0px solid #bcbcbc;
-         background-color: lightblue;
-      }
-      #inbox-button-container{
-      	background-color: red;
-      	position: fixed;
-      	bottom: 25px;
-      	right: 30px;
-      	height: 60px;
-      	width: 60px;
-      	cursor: pointer;
-      }
-      #inbox-container{
-      	height: 100px;
-      	width: 900px;
-      	background-color: red;
-      	position: fixed;
-      	top: 220px;
-      	right: 150px;
-      	display: none;
-      }
-      
-    </style>
-    <title><tiles:insertAttribute name="title" /></title>
+	<link href="${contextPath }/resources/css/baselayout/style.css" rel="stylesheet" type="text/css">
+    <!-- Style -->
     
-    <!-- TilePicker -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
   </head>
     <body>
     <div id="container">
@@ -86,64 +40,56 @@
       <div id="footer">
           <tiles:insertAttribute name="footer"/>
       </div>
-      <div id="inbox-button-container" >
-      	<div id="inbox-button">
-      	</div>
+    
+	<!-- 팝업뜰때 배경 -->
+	<div id="mask" class="mask"></div>
+	<!-- 팝업뜰때 배경 -->
+
+      <div 
+      	class="inbox_button" 
+      >
+      	<img 
+      		alt="Inbox_button_img" 
+      		src="${contextPath }/resources/images/add-white-18dp.svg"
+      		class="Inbox_button_img"
+      	>
       </div>
-      <div id="inbox-containter-parent">
-		  <div id="inbox-container">
-			  <form action="${contextPath }/task/addInboxTask.do" method="post">
-				  <label><input type="radio" name="importance" value="1">상</label>
-      			  <label><input type="radio" name="importance" value="2">중</label>
-      			  <label><input type="radio" name="importance" value="3">하</label>
-				  <input type="text" name="title" placeholder="title"/>
-				  <input type="text" name="content" placeholder="content"/>
-				  <input id="date" type="hidden" name="date"/>
-				  <input id="time" type="hidden" name="time"/>
-				  <input id="due" type="button" name="due" value="due">
-				  <input id="nullDate" type="hidden" name="nullDate" value="x">
-				  <input type="submit" value="save"/>
-				  <input type="hidden" name="member_id" value="${ member.id }">
-			  </form>
-		  </div>
+      <div 
+      	class="inbox_button_on" 
+      >
+      	<img 
+      		alt="Inbox_button_img" 
+      		src="${contextPath }/resources/images/clear-white-18dp.svg"
+      		class="Inbox_button_img"
+      	>
       </div>
+	<div>
+		<!--Popup Start -->
+		<div 
+			id="layerbox" 
+			class="layerpop"
+			style="width: 700px; height: 450px;"
+		>
+			<article class="layerpop_area">
+				<div class="title">수정</div>
+				<div class="content">
+					<jsp:include page="/WEB-INF/views/absolutevalue/absoluteValue_form_add.jsp"/>
+					<jsp:include page="/WEB-INF/views/absolutevalue/absoluteValue_form_update.jsp"/>
+					<jsp:include page="/WEB-INF/views/inbox/inbox_form_add.jsp"/>
+				</div>
+			</article>
+		</div>
+	<!--Popup End -->
+	
+		</div>
+      
     </div>
 
-    <script>
-    	$(document).ready(function(){
-    		
-    		/* inbox 버튼 toggle */
-    		$('#inbox-button-container').click(function(){
-    			$("#inbox-container").toggle("fast");
-				$("#inbox-button-container").css("background-color", "yellow");
-    		});
-    		
-    		/* due 버튼 */
-    		$('#due').click(function(){
-    			$("#date").attr("type","date");
-    			$("#time").attr("type","time");
-    			/* 현재시간으로 */
-				document.getElementById('date').valueAsDate = new Date();
-    			$("#time").attr("value","18:00");
-    			$("#due").attr("type","hidden");
-    			$("#nullDate").attr("type","button");
-    		});
-    		
-    		
-    		/* nullDate 버튼 */
-    		$('#nullDate').click(function(){
-    			$("#date").attr("type","hidden");
-    			$("#time").attr("type","hidden");
-    			$("#date").attr("value","0000-00-00");
-    			$("#time").attr("value","00:00");
-    			$("#due").attr("type","button");
-    			$("#nullDate").attr("type","hidden");
-
-    		});
-
-    	});
-    	
-    </script>
+	<script src="${contextPath }/resources/javascript/popUp.js"></script>
+	<script src="${contextPath }/resources/javascript/baselayout/absolutevalue/absoluteValueList.js"></script>
+	<script src="${contextPath }/resources/javascript/inbox_button.js"></script>
+	<script src="${contextPath }/resources/javascript/resizer.js"></script>
+	<script src="${contextPath }/resources/javascript/baselayout/goal/goalList.js"></script>
     
   </body>
 </html>

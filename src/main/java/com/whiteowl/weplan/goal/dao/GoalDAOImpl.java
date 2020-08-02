@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
 import com.whiteowl.weplan.goal.vo.GoalVO;
+import com.whiteowl.weplan.yearlyplan.vo.YearlyPlanVO;
 
 @Repository("goalDAO")
 public class GoalDAOImpl implements GoalDAO{
@@ -118,6 +120,53 @@ public class GoalDAOImpl implements GoalDAO{
 				map
 		);
 		
+	}
+
+	@Override
+	public JSONArray yearlyPlanList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		
+		JSONArray ja = new JSONArray();
+		
+		
+		List<YearlyPlanVO> yearlyPlanList = sqlSession.selectList(
+			"mapper.goal.yearlyPlanList", 
+			map
+		);
+		
+		for (YearlyPlanVO yearlyPlanVO : yearlyPlanList) {
+			JSONObject data = new JSONObject();
+			
+			int id = yearlyPlanVO.getId();
+			String title = yearlyPlanVO.getTitle();
+			String content = yearlyPlanVO.getContent();
+			String isCompleted = yearlyPlanVO.getIsCompleted();
+			int importance = yearlyPlanVO.getImportance();
+			String startDate = yearlyPlanVO.getStartDate();
+			String limitDate = yearlyPlanVO.getLimitDate();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("startDate", startDate);
+			data.put("limitDate", limitDate);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
+
+	@Override
+	public void completeGoal(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.goal.completeGoal",
+				map
+		);
 	}
 
 }
