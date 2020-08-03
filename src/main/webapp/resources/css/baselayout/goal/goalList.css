@@ -66,6 +66,8 @@
 	font-weight: 500;
 	box-sizing: border-box;
 	margin-left: 10px;
+	width: 100%;
+	cursor: pointer;
 }
 .project_detail_title .project_detail_text{
 }
@@ -162,3 +164,165 @@
 	right: 2px;
 	top: 5px;
 }
+
+/*update project form.*/
+.project_update .project_form{}
+.project_update .project_container{
+	margin-bottom: 30px;
+}
+.project_update .project_form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+.project_update .project_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	width: 596px;
+}
+.project_update .project_content{
+	width: 98%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}  
+.project_update .project_title{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.project_update input[type='submit']{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	padding-top: 3px;
+	border: none;
+	text-decoration: none;
+}
+.project_update input[type='submit']:hover {
+	background-color: #4f4f4f;
+}
+.project_update input[type='submit']:active {
+	background-color: #7c7c7c;
+}
+.project_update .project_submit{
+	float: left;
+}
+.project_update .cancle{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	border: none;
+	text-decoration: none;
+	margin-left: 80px;
+	
+}	
+.project_update .cancle:hover {
+	background-color: #4f4f4f;
+}
+.project_update .cancle:active {
+	background-color: #7c7c7c;
+}
+.project_update .cancle .cancle_text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+/*update project form.*/
+
+/*add project form.*/
+.project_add_form .project_form{}
+.project_add_form .project_container{
+	margin-bottom: 30px;
+}
+.project_add_form .project_form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+.project_add_form .project_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	width: 596px;
+}
+.project_add_form .project_content{
+	width: 98%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}  
+.project_add_form .project_title{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.project_add_form input[type='submit']{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	padding-top: 3px;
+	border: none;
+	text-decoration: none;
+}
+.project_add_form input[type='submit']:hover {
+	background-color: #4f4f4f;
+}
+.project_add_form input[type='submit']:active {
+	background-color: #7c7c7c;
+}
+.project_add_form .project_submit{
+	float: left;
+}
+.project_add_form .cancle{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	border: none;
+	text-decoration: none;
+	margin-left: 80px;
+	
+}	
+.project_add_form .cancle:hover {
+	background-color: #4f4f4f;
+}
+.project_add_form .cancle:active {
+	background-color: #7c7c7c;
+}
+.project_add_form .cancle .cancle_text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+/*add project form.*/

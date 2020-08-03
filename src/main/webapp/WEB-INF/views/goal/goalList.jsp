@@ -65,6 +65,7 @@
 				>
 					<div
 						class="project_detail_completed"
+						
 					>
 						<img  alt="checkbox" 
 							src="${contextPath }/resources/images/iconmonstr-checkbox-11.svg"
