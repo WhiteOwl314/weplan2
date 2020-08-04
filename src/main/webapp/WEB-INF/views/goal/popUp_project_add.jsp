@@ -26,7 +26,7 @@
 				<div
 					class="project_importance"
 				>
-					<label><input type="radio" name="importance" value="1" class="importance importance1">상</label>
+					<label><input type="radio" name="importance" value="1" class="importance importance1" checked="checked">상</label>
 					<label><input type="radio" name="importance" value="2" class="importance importance2">중</label>
 					<label><input type="radio" name="importance" value="3" class="importance importance3">하</label>
 				</div>
@@ -45,18 +45,36 @@
 				class="project_container"
 			>
 				<div
-					class="form_title"
+					class="project_startDate_container"
 				>
-					시작시간
+					<div
+						class="form_title"
+					>
+						시작시간
+					</div>
+					<input 
+						type="text" 
+						name="startDate" 
+						class="project_startDate_form"
+					/>
 				</div>
 			</div>
 			<div
 				class="project_container"
 			>
 				<div
-					class="form_title"
+					class="project_limitDate_container"
 				>
-					마감시간
+					<div
+						class="form_title"
+					>
+						마감시간
+					</div>
+					<input 
+						type="text" 
+						name="limitDate" 
+						class="project_limitDate_form"
+					/>
 				</div>
 			</div>
 			<div
@@ -73,12 +91,6 @@
 						class="project_content"
 					></textarea>
 				</div>
-			</div>
-			<div>
-					  <input id="date" type="hidden" name="date"/>
-					  <input id="time" type="hidden" name="time"/>
-					  <input id="due" type="button" name="due" value="due">
-					  <input id="nullDate" type="hidden" name="nullDate" value="x">
 			</div>
 		</div>
 		<div

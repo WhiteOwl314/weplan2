@@ -12,8 +12,6 @@ public interface GoalService {
 
 	public List goalList(String member_id) throws Exception;
 
-	public void addGoalNullDate(GoalVO goalVO) throws Exception;
-
 	public void addGoal(GoalVO goalVO) throws Exception;
 
 	public JSONObject popUpGoalView(int goal_id) throws Exception;

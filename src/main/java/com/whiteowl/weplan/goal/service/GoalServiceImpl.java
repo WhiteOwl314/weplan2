@@ -30,13 +30,6 @@ public class GoalServiceImpl implements GoalService{
 	}
 
 	@Override
-	public void addGoalNullDate(
-			GoalVO goalVO
-	) throws Exception {
-		goalDAO.addGoalNullDate(goalVO);
-	}
-
-	@Override
 	public void addGoal(
 			GoalVO goalVO
 	) throws Exception {

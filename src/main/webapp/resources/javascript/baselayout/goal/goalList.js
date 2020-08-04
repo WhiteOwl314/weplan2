@@ -3,43 +3,28 @@
  */
 
 $(document).ready(function() {
-	
-	
-	/* due 버튼 */
-	$('#due').click(function(){
-		$("#date").attr("type","date");
-		/* 현재시간으로 */
-		document.getElementById('date').valueAsDate = new Date();
-		$("#due").attr("type","hidden");
-		$("#nullDate").attr("type","button");
-	});
-	
-	/* nullDate 버튼 */
-	$('#nullDate').click(function(){
-		$("#date").attr("type","hidden");
-		$("#date").attr("value","0000-00-00");
-		$("#due").attr("type","button");
-		$("#nullDate").attr("type","hidden");
-	});
-	
-	/* due 버튼 */
-	$('#popUp-due').click(function(){
-		$("#popUp-limitDate").attr("type","date");
-		/* 현재시간으로 */
-		document.getElementById('popUp-limitDate').valueAsDate = new Date();
-		$("#popUp-due").attr("type","hidden");
-		$("#popUp-nullDate").attr("type","button");
-	});
-	
-	/* nullDate 버튼 */
-	$('#popUp-nullDate').click(function(){
-		$("#popUp-limitDate").attr("type","hidden");
-		$("#popUp-limitDate").attr("value","0000-00-00");
-		$("#popUp-due").attr("type","button");
-		$("#popUp-nullDate").attr("type","hidden");
-	});
-
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
+	
+	//오늘날짜 반환
+	function today() {
+		let today = new Date();
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+		let date = today.getDate();  // 날짜
+		
+		if(month < 10){
+			month = String(0) + String(month);
+		}
+		if(date < 10){
+			date = String(0) + String(date);
+		}
+		
+		let proccesedToday = year + '-' + month + '-' + date;
+		
+		return proccesedToday;
+	}
+	//오늘날짜 반환
+	
 	
 	//프로젝트 정보 가져오기
 	function getProject(goal_id) {
@@ -446,10 +431,13 @@ $(document).ready(function() {
 	$('.project_add .project_button').click(function(event) {
 		//popUp reset
 		popupReset();
+		
 
 		//popUp_폼 on
 		$('.layerpop_area .title').text('Project 추가');
 		$('.layerpop .layerpop_area .content .project_add_form').css('display','block')
+		$('.project_startDate_container .project_startDate_form').attr('placeholder',today());
+		$('.project_limitDate_container .project_limitDate_form').attr('placeholder',today());
 		
 		//팝업 띄우기
 		goDetail();
@@ -477,7 +465,4 @@ $(document).ready(function() {
 		goDetail();
 	});
 	//yearlyPlan-detail_view
-	
-		
-	
 });

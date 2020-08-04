@@ -69,7 +69,8 @@ public class GoalControllerImpl implements GoalController{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int importance = Integer.parseInt(request.getParameter("importance"));
-		String limitDate = request.getParameter("date");
+		String startDate = request.getParameter("startDate");
+		String limitDate = request.getParameter("limitDate");
 		String member_id = request.getParameter("member_id");
 		
 		
@@ -77,6 +78,7 @@ public class GoalControllerImpl implements GoalController{
 		goalVO.setContent(content);
 		goalVO.setImportance(importance);
 		goalVO.setLimitDate(limitDate);
+		goalVO.setStartDate(startDate);
 		goalVO.setMember_id(member_id);
 		
 		
@@ -88,11 +90,7 @@ public class GoalControllerImpl implements GoalController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			if(limitDate.equals("0000-00-00")) {
-				goalService.addGoalNullDate(goalVO);
-			} else {
-				goalService.addGoal(goalVO);
-			}
+			goalService.addGoal(goalVO);
 			message = "<script>";
 			message += " alert('추가되었습니다.');";
 			message += " location.href='"+ referer +"'; ";

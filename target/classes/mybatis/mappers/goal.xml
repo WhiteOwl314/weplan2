@@ -54,28 +54,6 @@
 	</select> 
 	
 	<insert 
-		id="addGoalNullDate" 
-		parameterType="goalVO" 
-	>
-      <![CDATA[
-      	INSERT INTO W_GOAL(
-      		member_id,
-      		id,
-      		title,
-      		content,
-      		importance
-      	)
-      	VALUES (
-			#{member_id},
-      		#{id},
-      		#{title},
-      		#{content},
-      		#{importance}
-      	)
-      ]]>
-	</insert>
-	
-	<insert 
 		id="addGoal" 
 		parameterType="goalVO" 
 	>
@@ -86,6 +64,7 @@
       		title,
       		content,
       		importance,
+      		startDate,
       		limitDate
       	)
       	VALUES (
@@ -94,6 +73,7 @@
       		#{title},
       		#{content},
       		#{importance},
+      		TO_DATE(#{startDate},'yyyy-mm-dd'),
       		TO_DATE(#{limitDate},'yyyy-mm-dd')
       	)
       ]]>

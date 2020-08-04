@@ -278,6 +278,32 @@
 	border: 1px solid #e2e2e2;
 	border-radius: 3px;
 }
+.project_add_form .project_startDate_container{
+}
+
+.project_startDate_container .project_startDate_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.project_startDate_container .project_startDate_form::placeholder{
+	color: #c6c6c6;
+}
+.project_add_form .project_limitDate_container{
+}
+
+.project_limitDate_container .project_limitDate_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.project_limitDate_container .project_limitDate_form::placeholder{
+	color: #c6c6c6;
+}
 .project_add_form input[type='submit']{
 	width: 70px;
 	height: 25px;

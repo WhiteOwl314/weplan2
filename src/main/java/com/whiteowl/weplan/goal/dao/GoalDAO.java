@@ -13,8 +13,6 @@ public interface GoalDAO {
 
 	public List goalList(String member_id) throws DataAccessException;
 
-	public void addGoalNullDate(GoalVO goalVO) throws DataAccessException;
-
 	public void addGoal(GoalVO goalVO) throws DataAccessException;
 
 	public JSONObject popUpGoalView(int goal_id) throws DataAccessException;

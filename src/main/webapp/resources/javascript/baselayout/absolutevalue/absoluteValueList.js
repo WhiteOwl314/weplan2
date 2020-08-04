@@ -57,7 +57,7 @@ function absoluteValue_update_popUP_Open(absoluteValueID) {
 // 처음 클릭
 $('.absoluteValue-item-container').click(function() {
 	var id = $(this).attr("id");
-	location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
+	location.href=`${contextPath }weplan/absoluteValue/absoluteValueView.do?id=` + id;
 });
 
 
@@ -90,7 +90,7 @@ $(".content .header .menu .update_on").click(function() {
 	$('.absoluteValue-item-container').off('click');
 	$('.absoluteValue-item-container').click(function() {
 		var id = $(this).attr("id");
-		location.href="${contextPath }/absoluteValue/absoluteValueView.do?id=" + id;
+		location.href=`${contextPath }weplan/absoluteValue/absoluteValueView.do?id=` + id;
 	});
 
 });

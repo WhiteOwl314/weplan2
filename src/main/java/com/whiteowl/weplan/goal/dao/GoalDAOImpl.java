@@ -33,19 +33,6 @@ public class GoalDAOImpl implements GoalDAO{
 	}
 
 	@Override
-	public void addGoalNullDate(
-			GoalVO goalVO
-	) throws DataAccessException {
-		int goal_NO = selectNewGoal_NO();
-		goalVO.setId(goal_NO);
-		sqlSession.insert(
-				"mapper.goal.addGoalNullDate" ,
-				goalVO
-		);
-	}
-
-
-	@Override
 	public void addGoal(
 			GoalVO goalVO
 	) throws DataAccessException {
