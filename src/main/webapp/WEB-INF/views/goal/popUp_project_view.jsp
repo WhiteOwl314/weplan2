@@ -45,18 +45,36 @@
 				class="project_container"
 			>
 				<div
-					class="form_title"
+					class="project_startDate_container"
 				>
-					시작시간
+					<div
+						class="form_title"
+					>
+						시작시간
+					</div>
+					<input 
+						type="text" 
+						name="startDate" 
+						class="project_startDate_form"
+					/>
 				</div>
 			</div>
 			<div
 				class="project_container"
 			>
 				<div
-					class="form_title"
+					class="project_limitDate_container"
 				>
-					마감시간
+					<div
+						class="form_title"
+					>
+						마감시간
+					</div>
+					<input 
+						type="text" 
+						name="limitDate" 
+						class="project_limitDate_form"
+					/>
 				</div>
 			</div>
 			<div

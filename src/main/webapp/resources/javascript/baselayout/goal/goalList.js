@@ -293,13 +293,17 @@ $(document).ready(function() {
 
 				//startDate
 				if(startDate === 'null'){
+					$('.project_update .project_startDate_form').attr('value','')
 				} else{
+					$('.project_update .project_startDate_form').attr('value',startDate)
 				}
 				//startDate
 
 				//limitDate
 				if(limitDate === 'null'){
+					$('.project_update .project_limitDate_form').attr('value','')
 				} else{
+					$('.project_update .project_limitDate_form').attr('value',limitDate)
 				}
 				//limitDate
 
