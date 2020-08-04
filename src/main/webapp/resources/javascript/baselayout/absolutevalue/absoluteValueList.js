@@ -15,20 +15,20 @@ function absoluteValue_update_setPopUP(absoluteValueID){
 			id : absoluteValueID
 		},
 		success : function(result) {
-			var title = decodeURIComponent( result.title );
-			var content = decodeURIComponent( result.content );
-			var importance = decodeURIComponent( result.importance );
-			$('#popUp-id').val(result.id);
-			$('#popUp-title').val(title);
-			$('#popUp-content').val(content);
+			let title = decodeURIComponent( result.title );
+			let content = decodeURIComponent( result.content );
+			let importance = decodeURIComponent( result.importance );
+			$('.layerpop .layerpop_id').val(result.id);
+			$('.layerpop .layerpop_title').val(title);
+			$('.layerpop .layerpop_content').val(content);
 			
 			/* 중요도 초기값 */
 			if(importance=='1'){
-				$('.absoluteValue_update .importance1').prop("checked", true);
+				$('.layerpop .importance1').prop("checked", true);
 			} else if (importance == '2'){
-				$('.absoluteValue_update .importance2').prop("checked", true);
+				$('.layerpop .importance2').prop("checked", true);
 			} else if (importance == '3'){
-				$('.absoluteValue_update .importance3').prop("checked", true);
+				$('.layerpop .importance3').prop("checked", true);
 			}
 		},
 
@@ -42,13 +42,6 @@ function absoluteValue_update_popUP_Open(absoluteValueID) {
 	//ajax호출하고 값 넣기
 	absoluteValue_update_setPopUP(absoluteValueID)
 	//ajax호출하고 값 넣기
-	
-	//중요도를 바꾸는데 시간이 걸려서 0.1초 늦게 띄움
-	setTimeout(function() {
-		popupOpen(); //레이어 팝업창 오픈 
-	}, 100);
-	
-	wrapWindowByMask(); //화면 마스크 효과 
 }
 //update popUp 띄우기
 
@@ -64,22 +57,28 @@ $('.absoluteValue-item-container').click(function() {
 //수정클릭
 $(".content .header .menu .update").click(function() {
 	popupReset();
+
+	//수정 버튼
 	$(this).css('display','none');
 	$('.content .header .menu .update_on').css('display','block');
 	$('.item-delete').css('display','block');
 	$('.absoluteValue-item-container').off('click');
+	//수정 버튼
 	
 	//item 클릭
 	$('.absoluteValue-item-container').click(function() {
-		popupReset();
-		$('.layerpop .layerpop_area .content .absoluteValue_update').css('display','block');
-		$('.layerpop .layerpop_area .content .add').css('display','none');
-		$('.layerpop_area .title').text('수정');
-		var absoluteValueID = $(this).attr("id");
+		let absoluteValueID = $(this).attr("id");
 		absoluteValue_update_popUP_Open(absoluteValueID);
-	});
+		let title = "Absolute Value 수정";
+		let url = contextPath + "weplan/absoluteValue/updateAbsoluteValue.do";
+		popupReset();	
+		$('.layerpop .startDate_container').css('display','none');
+		$('.layerpop .limitDate_container').css('display','none');
+		popUpSetting(title, url);
+		});
 	//item 클릭
 });
+//수정클릭
 
 // x 클릭
 $(".content .header .menu .update_on").click(function() {
@@ -97,10 +96,11 @@ $(".content .header .menu .update_on").click(function() {
 
 // 추가버튼
 $('.content .header .menu .add').click(function() {
-	popupReset();
-	$('.absoluteValue_form.absoluteValue_update').css('display','none');
-	$('.layerpop .layerpop_area .content .add').css('display','block');
-	$('.layerpop_area .title').text('추가');
-	goDetail();
+	let title = "Absolute Value 추가";
+	let url = contextPath + "weplan/absoluteValue/addAbsoluteValue.do";
+	popupReset();	
+	$('.layerpop .startDate_container').css('display','none');
+	$('.layerpop .limitDate_container').css('display','none');
+	popUpSetting(title, url);
 });
 		

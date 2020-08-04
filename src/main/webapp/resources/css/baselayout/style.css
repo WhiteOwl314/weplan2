@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import "common/layout.css";
+@import "common/popUpForm.css";
 @import "absolutevalue/absoluteValueList.css";
 @import "goal/goalList.css";
 @import "yearlyplan/popUp_yearlyPlan_view.css";

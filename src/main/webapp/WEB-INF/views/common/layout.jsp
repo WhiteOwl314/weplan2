@@ -68,28 +68,7 @@
       		class="Inbox_button_img"
       	>
       </div>
-	<div>
-		<!--Popup Start -->
-		<div 
-			id="layerbox" 
-			class="layerpop"
-			style="width: 700px; height: 450px;"
-		>
-			<article class="layerpop_area">
-				<div class="title">수정</div>
-				<div class="content">
-					<jsp:include page="/WEB-INF/views/absolutevalue/absoluteValue_form_add.jsp"/>
-					<jsp:include page="/WEB-INF/views/absolutevalue/absoluteValue_form_update.jsp"/>
-					<jsp:include page="/WEB-INF/views/inbox/inbox_form_add.jsp"/>
-					<jsp:include page="/WEB-INF/views/goal/popUp_project_view.jsp"/>
-					<jsp:include page="/WEB-INF/views/goal/popUp_project_add.jsp"/>
-					<jsp:include page="/WEB-INF/views/yearlyplan/popUp_yearlyPlan_view.jsp"/>
-				</div>
-			</article>
-		</div>
-	<!--Popup End -->
-	
-		</div>
+		<jsp:include page="/WEB-INF/views/common/popUpForm.jsp"/>
       
     </div>
 

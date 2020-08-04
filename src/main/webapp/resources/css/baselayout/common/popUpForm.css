@@ -1,0 +1,150 @@
+@charset "UTF-8";
+.content{}
+
+
+/*-- POPUP common style S ======================================================================================================================== --*/
+
+.mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+	background-color: #000000;
+	display: none; }
+
+.layerpop {
+	display: none;
+	z-index: 1000;
+	border: 2px solid #ccc;
+	background: #fff;
+	cursor: move;
+}
+.layerpop .layerpop_area{
+	padding: 20px 35px;
+}
+
+.layerpop_area .title {
+	border: 0px solid #aaaaaa;
+	color: #3B3B3B;
+	font-size: 1.3em;
+	font-weight: bold;
+	line-height: 24px; 
+}
+
+.layerpop_area .content {
+	width: 96%;    
+	color: #828282;
+	margin-top: 35px; 
+}
+.layerpop .form_main{
+	height: 310px;
+	overflow: auto; 
+}
+.layerpop .form_button{
+	margin-top: 15px;
+}
+.layerpop_content .layerpop_form{}
+.layerpop_content .layerpop_form_container{
+	margin-bottom: 30px;
+}
+.layerpop_content .layerpop_form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+.layerpop_content .layerpop_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	width: 596px;
+}
+.layerpop_content .layerpop_title{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.layerpop_content .layerpop_startDate_container{
+}
+
+.layerpop_startDate_container .layerpop_startDate_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.layerpop_startDate_container .layerpop_startDate_form::placeholder{
+	color: #c6c6c6;
+}
+.layerpop_content .layerpop_limitDate_container{
+}
+
+.layerpop_limitDate_container .layerpop_limitDate_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.layerpop_limitDate_container .layerpop_limitDate_form::placeholder{
+	color: #c6c6c6;
+}
+.layerpop_content .layerpop_content{
+	width: 98%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}  
+.layerpop_content input[type='submit']{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	padding-top: 3px;
+	border: none;
+	text-decoration: none;
+}
+.layerpop_content input[type='submit']:hover {
+	background-color: #4f4f4f;
+}
+.layerpop_content input[type='submit']:active {
+	background-color: #7c7c7c;
+}
+.layerpop_content .layerpop_submit{
+	float: left;
+}
+.layerpop_content .cancle{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	border: none;
+	text-decoration: none;
+	margin-left: 80px;
+	
+}	
+.layerpop_content .cancle:hover {
+	background-color: #4f4f4f;
+}
+.layerpop_content .cancle:active {
+	background-color: #7c7c7c;
+}
+.layerpop_content .cancle .cancle_text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+/*-- POPUP common style E --*/
