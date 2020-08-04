@@ -134,6 +134,8 @@
 	font-weight: 400;
 	box-sizing: border-box;
 	margin-left: 10px;
+	width: 100%;
+	cursor: pointer;
 }
 .project_yearly_title .project_yearly_text{}
 .project_yearly_title .project_yearly_class{

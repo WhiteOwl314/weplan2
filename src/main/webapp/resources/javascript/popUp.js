@@ -46,6 +46,7 @@ function popupReset(){
 	$('.layerpop .layerpop_area .content .add').css('display','none');
 	$('.layerpop .layerpop_area .content .project_update').css('display','none');
 	$('.layerpop .layerpop_area .content .project_add_form').css('display','none');
+	$('.layerpop .layerpop_area .content .popUp_yearlyPlan_view').css('display','none');
 	
 }
 

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+/*add project form.*/
+.popUp_yearlyPlan_view .yearlyPlan_form{}
+.popUp_yearlyPlan_view .yearlyPlan_container{
+	margin-bottom: 30px;
+}
+.popUp_yearlyPlan_view .yearlyPlan_form_title{
+	color: #66738A;
+	font-size: 15px;
+}
+.popUp_yearlyPlan_view .yearlyPlan_importance{
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	width: 596px;
+}
+.popUp_yearlyPlan_view .yearlyPlan_content{
+	width: 98%;
+	height: 100px;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}  
+.popUp_yearlyPlan_view .yearlyPlan_title{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
+.popUp_yearlyPlan_view input[type='submit']{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	padding-top: 3px;
+	border: none;
+	text-decoration: none;
+}
+.popUp_yearlyPlan_view input[type='submit']:hover {
+	background-color: #4f4f4f;
+}
+.popUp_yearlyPlan_view input[type='submit']:active {
+	background-color: #7c7c7c;
+}
+.popUp_yearlyPlan_view .yearlyPlan_submit{
+	float: left;
+}
+.popUp_yearlyPlan_view .cancle{
+	width: 70px;
+	height: 25px;
+	border-radius: 3px;
+	background-color: #3B3B3B;
+	cursor: pointer;
+	color: white;
+	appearance: none;
+	box-sizing: border-box;
+	border: none;
+	text-decoration: none;
+	margin-left: 80px;
+	
+}	
+.popUp_yearlyPlan_view .cancle:hover {
+	background-color: #4f4f4f;
+}
+.popUp_yearlyPlan_view .cancle:active {
+	background-color: #7c7c7c;
+}
+.popUp_yearlyPlan_view .cancle .cancle_text{
+	padding-top: 7px;
+	padding-left: 25px;
+	color: white;
+	font-size: 13px;
+	box-sizing: border-box;
+}
+/*add project form.*/

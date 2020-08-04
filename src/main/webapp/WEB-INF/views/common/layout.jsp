@@ -83,6 +83,7 @@
 					<jsp:include page="/WEB-INF/views/inbox/inbox_form_add.jsp"/>
 					<jsp:include page="/WEB-INF/views/goal/popUp_project_view.jsp"/>
 					<jsp:include page="/WEB-INF/views/goal/popUp_project_add.jsp"/>
+					<jsp:include page="/WEB-INF/views/yearlyplan/popUp_yearlyPlan_view.jsp"/>
 				</div>
 			</article>
 		</div>

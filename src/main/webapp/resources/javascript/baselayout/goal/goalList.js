@@ -3,6 +3,8 @@
  */
 
 $(document).ready(function() {
+	
+	
 	/* due 버튼 */
 	$('#due').click(function(){
 		$("#date").attr("type","date");
@@ -124,6 +126,7 @@ $(document).ready(function() {
 	}
 	//프로젝트 정보 가져오기
 	
+	//yearlyPlan 가져오기
 	function getYearlyPlanList(project_id) {
 		var url = contextPath + "weplan/goal/yearlyPlanList.do";
 		$.ajax({
@@ -141,7 +144,7 @@ $(document).ready(function() {
 				//초기화
 				
 				for(var i in result){
-					var id = decodeURIComponent( result[i].id ); 
+					let id = decodeURIComponent( result[i].id ); 
 					var title = decodeURIComponent( result[i].title );
 					var content = decodeURIComponent( result[i].content );
 					var importance = decodeURIComponent( result[i].importance );
@@ -161,7 +164,6 @@ $(document).ready(function() {
 					} 
 					//limitDate
 
-					
 
 					$('.project_detail .project_detail_body').append(
 							
@@ -223,9 +225,30 @@ $(document).ready(function() {
 					} else if (importance == '3'){
 						$(`#project_yearly_${id} .project_yearly_importance`).css("background-color", 'white');
 					}
+					console.log(id);
 					/* IMPORTANCE */
+
+					//yearlyPlan-detail_view
+					$(`#project_yearly_${id} .project_yearly_title`).click(function(event) {
+						console.log(event);
+						//popUp reset
+						popupReset();
+
+						//popUp_폼 on
+						$('.layerpop_area .title').text('Yearly Plan');
+						$('.layerpop .layerpop_area .content .popUp_yearlyPlan_view').css('display','block')
+						
+						//프로젝트 정보 가져오기
+						//팝업 요소에 프로젝트 정보 삽입
+						popUp_getYearlyPlan(id);
+						
+						//팝업 띄우기
+						goDetail();
+					});
+					//yearlyPlan-detail_view
 					
 				}
+
 				
 				
 				$('#popUp-id').val(result.id);
@@ -249,6 +272,8 @@ $(document).ready(function() {
 		})
 		
 	}
+	//yearlyPlan 가져오기
+
 	//팝업 프로젝트 정보 가져오기
 	function popUp_getProject(goal_id) {
 		var url = contextPath + "weplan/goal/popUpGoalView.do";
@@ -312,11 +337,77 @@ $(document).ready(function() {
 	}
 	//팝업 프로젝트 정보 가져오기
 	
+	//popUp yearlyPlan 가져오기
+	function popUp_getYearlyPlan(id) {
+		var url = contextPath + "weplan/yearlyPlan/popUpYearlyPlanView.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : id
+			},
+			success : function(result) {
+				let id = decodeURIComponent( result.id );
+				let title = decodeURIComponent( result.title );
+				let content = decodeURIComponent( result.content );
+				let importance = decodeURIComponent( result.importance );
+				let limitDate = decodeURIComponent(result.limitDate);
+				let startDate = decodeURIComponent(result.startDate);
+				
+				/* IMPORTANCE */
+				if(importance=='1'){
+					$('.popUp_yearlyPlan_view .importance1').attr("checked", true);
+				} else if (importance == '2'){
+					$('.popUp_yearlyPlan_view .importance2').attr("checked", true);
+				} else if (importance == '3'){
+					$('.popUp_yearlyPlan_view .importance3').attr("checked", true);
+				}
+				/* IMPORTANCE */
+
+				//title
+					$('.popUp_yearlyPlan_view .yearlyPlan_title').attr('value',title);
+				//title
+
+				//startDate
+				if(startDate === 'null'){
+				} else{
+				}
+				//startDate
+
+				//limitDate
+				if(limitDate === 'null'){
+				} else{
+				}
+				//limitDate
+
+				console.log(content);
+				//content
+				if(content === 'null'){
+					$('.popUp_yearlyPlan_view .yearlyPlan_content').text('');
+				} else{
+					$('.popUp_yearlyPlan_view .yearlyPlan_content').text(content);
+				}
+				//content
+
+				//id
+				$('.popUp_yearlyPlan_view .yearlyPlan_id').attr('value',id);
+				//id
+			},
+
+		})
+		
+	}
+	//popUp yearlyPlan 가져오기
+	
+	
+	//detail-view
 	$('.project_List-text').click(function(event) {
 		var project_id = event.target.id;
 		getProject(project_id)
 		getYearlyPlanList(project_id)
 	})
+	//detail-view
 
 
 
@@ -365,4 +456,28 @@ $(document).ready(function() {
 	});
 	//popUp-add
 	
-})
+	//yearlyPlan-detail_view
+	$('.project_yearly .project_yearly_title').click(function(event) {
+		var id = event.target.id;
+		var id_arr = id.split('_');
+		var processed_id = id_arr[1];
+		console.log(id)
+		//popUp reset
+		popupReset();
+
+		//popUp_폼 on
+		$('.layerpop_area .title').text('Yearly Plan');
+		$('.layerpop .layerpop_area .content .popUp_yearlyPlan_view').css('display','block')
+		
+		//프로젝트 정보 가져오기
+		//팝업 요소에 프로젝트 정보 삽입
+		popUp_getYearlyPlan(processed_id);
+		
+		//팝업 띄우기
+		goDetail();
+	});
+	//yearlyPlan-detail_view
+	
+		
+	
+});
