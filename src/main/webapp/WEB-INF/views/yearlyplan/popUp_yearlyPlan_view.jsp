@@ -8,7 +8,7 @@
 	class="popUp_yearlyPlan_view"
 >
 	<form 
-		action="${contextPath }/goal/updateGoal.do"
+		action="${contextPath }/yearlyPlan/updateYearlyPlan.do"
 		method="post"
 		class="yearlyPlan_form"
 	>
