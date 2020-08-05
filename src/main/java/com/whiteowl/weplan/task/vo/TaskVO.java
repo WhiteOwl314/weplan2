@@ -11,6 +11,7 @@ public class TaskVO {
 	private String content;
 	private String isCompleted;
 	private int importance;
+	private String startDate;
 	private String limitDate;
 	private String isTask;
 	private String isDelete;
@@ -92,6 +93,14 @@ public class TaskVO {
 
 	public void setDay_of_week(String day_of_week) {
 		this.day_of_week = day_of_week;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 	
 	

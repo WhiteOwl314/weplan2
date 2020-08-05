@@ -67,6 +67,11 @@
 									name="startDate" 
 									class="layerpop_startDate_form"
 								/>
+								<input 
+									type="text" 
+									name="startTime" 
+									class="layerpop_Time_form"
+								/>
 							</div>
 						</div>
 						<div
@@ -84,6 +89,11 @@
 									type="text" 
 									name="limitDate" 
 									class="layerpop_limitDate_form"
+								/>
+								<input 
+									type="text" 
+									name="limitTime" 
+									class="layerpop_Time_form"
 								/>
 							</div>
 						</div>

@@ -99,6 +99,7 @@ $('.content .header .menu .add').click(function() {
 	let title = "Absolute Value 추가";
 	let url = contextPath + "weplan/absoluteValue/addAbsoluteValue.do";
 	popupReset();	
+	checkInitialImportance();
 	$('.layerpop .startDate_container').css('display','none');
 	$('.layerpop .limitDate_container').css('display','none');
 	popUpSetting(title, url);

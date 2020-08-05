@@ -66,7 +66,15 @@
 }
 .layerpop_content .layerpop_startDate_container{
 }
-
+.layerpop .layerpop_Time_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+	display: none;
+	margin-top: 10px;
+}
 .layerpop_startDate_container .layerpop_startDate_form{
 	width: 98%;
 	resize: none;
@@ -74,6 +82,7 @@
 	border: 1px solid #e2e2e2;
 	border-radius: 3px;
 }
+.layerpop_startDate_container 
 .layerpop_startDate_container .layerpop_startDate_form::placeholder{
 	color: #c6c6c6;
 }

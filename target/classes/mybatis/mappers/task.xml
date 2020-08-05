@@ -54,6 +54,7 @@
       		title,
       		content,
       		importance,
+      		startDate,
       		limitDate
       	)
       	VALUES (
@@ -62,6 +63,7 @@
       		#{title},
       		#{content},
       		#{importance},
+      		TO_DATE(#{startDate},'yyyy-mm-dd hh24:mi'),
       		TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi')
       	)
       ]]>

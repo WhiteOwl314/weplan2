@@ -25,6 +25,23 @@
 		return proccesedToday;
 	}
 	//오늘날짜 반환
+	
+	function todayTime() {
+		let today = new Date();
+		let hours = today.getHours(); // 시
+		let minutes = today.getMinutes();  // 분
+		
+		if(hours < 10){
+			hours = String(0) + String(month);
+		}
+		if(minutes < 10){
+			minutes = String(0) + String(date);
+		}
+		
+		let proccesedTime = hours + ':' + minutes;
+		
+		return proccesedTime;
+	}
 
 	function wrapWindowByMask() {
 		//화면의 높이와 너비를 구한다.
@@ -82,6 +99,16 @@
 	function putPlaceholderAtDates() {
 		$('.layerpop .layerpop_startDate_form').attr('placeholder',today());
 		$('.layerpop .layerpop_limitDate_form').attr('placeholder',today());
+	}
+	function putPlaceholderAtTimes() {
+		console.log(todayTime());
+		$('.layerpop .layerpop_Time_form').attr('placeholder',todayTime());
+	}
+	function onTimeForm() {
+		$('.layerpop .layerpop_Time_form').css('display','block');
+	}
+	function offTimeForm() {
+		$('.layerpop .layerpop_Time_form').css('display','none');
 	}
 
 	function popUpSetting(title, url) {
