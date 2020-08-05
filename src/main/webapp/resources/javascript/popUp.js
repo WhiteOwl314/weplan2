@@ -32,10 +32,10 @@
 		let minutes = today.getMinutes();  // 분
 		
 		if(hours < 10){
-			hours = String(0) + String(month);
+			hours = String(0) + String(hours);
 		}
 		if(minutes < 10){
-			minutes = String(0) + String(date);
+			minutes = String(0) + String(minutes);
 		}
 		
 		let proccesedTime = hours + ':' + minutes;
