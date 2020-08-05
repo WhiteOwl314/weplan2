@@ -99,6 +99,7 @@
 								<textarea 
 									name="content"
 									class="layerpop_content"
+									id="layerpop_form_content"
 								></textarea>
 							</div>
 						</div>

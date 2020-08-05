@@ -2,7 +2,6 @@
  * 
  */
 
-$(document).ready(function() {
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
 	
 	//오늘날짜 반환
@@ -210,48 +209,30 @@ $(document).ready(function() {
 					} else if (importance == '3'){
 						$(`#project_yearly_${id} .project_yearly_importance`).css("background-color", 'white');
 					}
-					console.log(id);
 					/* IMPORTANCE */
 
 					//yearlyPlan-detail_view
 					$(`#project_yearly_${id} .project_yearly_title`).click(function(event) {
 						console.log(event);
-						//popUp reset
-						popupReset();
+
 
 						//popUp_폼 on
-						$('.layerpop_area .title').text('Yearly Plan');
-						$('.layerpop .layerpop_area .content .popUp_yearlyPlan_view').css('display','block')
+						let title = "Yearly Plan";
+						let url = contextPath + "weplan/yearlyPlan/updateYearlyPlan.do";
 						
 						//프로젝트 정보 가져오기
 						//팝업 요소에 프로젝트 정보 삽입
 						popUp_getYearlyPlan(id);
+
+						//popUp reset
+						popupReset();
 						
 						//팝업 띄우기
-						goDetail();
+						popUpSetting(title, url);
 					});
 					//yearlyPlan-detail_view
 					
 				}
-
-				
-				
-				$('#popUp-id').val(result.id);
-				$('#popUp-title').val(title);
-				$('#popUp-content').val(content);
-				
-				if(limitDate === 'null'){
-					$('#popUp-limitDate').attr("type","hidden");
-					$('#popUp-limitDate').val("0000-00-00");
-					$("#popUp-due").attr("type","button");
-					$("#popUp-nullDate").attr("type","hidden");
-				} else {
-					$('#popUp-limitDate').attr("type","date")
-					$('#popUp-limitDate').val(limitDate);
-					$("#popUp-due").attr("type","hidden");
-					$("#popUp-nullDate").attr("type","button");
-				}
-				
 			},
 
 		})
@@ -346,41 +327,44 @@ $(document).ready(function() {
 				
 				/* IMPORTANCE */
 				if(importance=='1'){
-					$('.popUp_yearlyPlan_view .importance1').attr("checked", true);
+					$('.layerpop .importance1').prop("checked", true);
 				} else if (importance == '2'){
-					$('.popUp_yearlyPlan_view .importance2').attr("checked", true);
+					$('.layerpop .importance2').prop("checked", true);
 				} else if (importance == '3'){
-					$('.popUp_yearlyPlan_view .importance3').attr("checked", true);
+					$('.layerpop .importance3').prop("checked", true);
 				}
 				/* IMPORTANCE */
 
 				//title
-					$('.popUp_yearlyPlan_view .yearlyPlan_title').attr('value',title);
+					$('.layerpop .layerpop_title').attr('value',title);
 				//title
 
 				//startDate
 				if(startDate === 'null'){
+					$('.layerpop .layerpop_startDate_form').attr('value', '');
 				} else{
+					$('.layerpop .layerpop_startDate_form').attr('value', startDate);
 				}
 				//startDate
 
 				//limitDate
 				if(limitDate === 'null'){
+					$('.layerpop .layerpop_limitDate_form').attr('value', '');
 				} else{
+					$('.layerpop .layerpop_limitDate_form').attr('value', limitDate);
 				}
 				//limitDate
 
-				console.log(content);
 				//content
 				if(content === 'null'){
-					$('.popUp_yearlyPlan_view .yearlyPlan_content').text('');
+					$('.layerpop #layerpop_form_content').text('');
 				} else{
-					$('.popUp_yearlyPlan_view .yearlyPlan_content').text(content);
+					$('.layerpop #layerpop_form_content').text(content);
 				}
 				//content
 
 				//id
-				$('.popUp_yearlyPlan_view .yearlyPlan_id').attr('value',id);
+				$('.layerpop .layerpop_id').attr('value',id);
 				//id
 			},
 
@@ -448,25 +432,3 @@ $(document).ready(function() {
 	});
 	//popUp-add
 	
-	//yearlyPlan-detail_view
-	$('.project_yearly .project_yearly_title').click(function(event) {
-		var id = event.target.id;
-		var id_arr = id.split('_');
-		var processed_id = id_arr[1];
-		console.log(id)
-		//popUp reset
-		popupReset();
-
-		//popUp_폼 on
-		$('.layerpop_area .title').text('Yearly Plan');
-		$('.layerpop .layerpop_area .content .popUp_yearlyPlan_view').css('display','block')
-		
-		//프로젝트 정보 가져오기
-		//팝업 요소에 프로젝트 정보 삽입
-		popUp_getYearlyPlan(processed_id);
-		
-		//팝업 띄우기
-		goDetail();
-	});
-	//yearlyPlan-detail_view
-});
