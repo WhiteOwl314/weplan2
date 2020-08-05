@@ -4,25 +4,6 @@
 
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
 	
-	//오늘날짜 반환
-	function today() {
-		let today = new Date();
-		let year = today.getFullYear(); // 년도
-		let month = today.getMonth() + 1;  // 월
-		let date = today.getDate();  // 날짜
-		
-		if(month < 10){
-			month = String(0) + String(month);
-		}
-		if(date < 10){
-			date = String(0) + String(date);
-		}
-		
-		let proccesedToday = year + '-' + month + '-' + date;
-		
-		return proccesedToday;
-	}
-	//오늘날짜 반환
 	
 	
 	//프로젝트 정보 가져오기
@@ -417,18 +398,13 @@
 		//hover 효과
 	
 	$('.project_add .project_button').click(function(event) {
-		//popUp reset
-		popupReset();
-		
 
-		//popUp_폼 on
-		$('.layerpop_area .title').text('Project 추가');
-		$('.layerpop .layerpop_area .content .project_add_form').css('display','block')
-		$('.project_startDate_container .project_startDate_form').attr('placeholder',today());
-		$('.project_limitDate_container .project_limitDate_form').attr('placeholder',today());
-		
-		//팝업 띄우기
-		goDetail();
+		popupReset();	
+		let title = "Project 추가";
+		let url = contextPath + "weplan/goal/addGoal.do";
+		checkInitialImportance();
+		putPlaceholderAtDates();
+		popUpSetting(title, url);
 	});
 	//popUp-add
 	

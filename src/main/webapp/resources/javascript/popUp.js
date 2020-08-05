@@ -6,6 +6,26 @@
 	/* 레이어팝업 */
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
 
+	//오늘날짜 반환
+	function today() {
+		let today = new Date();
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+		let date = today.getDate();  // 날짜
+		
+		if(month < 10){
+			month = String(0) + String(month);
+		}
+		if(date < 10){
+			date = String(0) + String(date);
+		}
+		
+		let proccesedToday = year + '-' + month + '-' + date;
+		
+		return proccesedToday;
+	}
+	//오늘날짜 반환
+
 	function wrapWindowByMask() {
 		//화면의 높이와 너비를 구한다.
 		var maskHeight = $(document).height(); 
@@ -55,6 +75,13 @@
 	function changeFormUrl(url) {
 		$('.layerpop .layerpop_form').attr('action',url)
 		
+	}
+	function checkInitialImportance() {
+		$('.layerpop .importance1').prop("checked", true);
+	}
+	function putPlaceholderAtDates() {
+		$('.layerpop .layerpop_startDate_form').attr('placeholder',today());
+		$('.layerpop .layerpop_limitDate_form').attr('placeholder',today());
 	}
 
 	function popUpSetting(title, url) {
