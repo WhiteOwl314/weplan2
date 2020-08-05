@@ -141,6 +141,7 @@ public class GoalControllerImpl implements GoalController{
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String startDate = request.getParameter("startDate");
 		String limitDate = request.getParameter("limitDate");
 		String member_id = request.getParameter("member_id");
 		int id = Integer.parseInt(
@@ -152,7 +153,9 @@ public class GoalControllerImpl implements GoalController{
 		goalVO.setContent(content);
 		goalVO.setId(id);
 		goalVO.setMember_id(member_id);
-		
+		goalVO.setLimitDate(limitDate);
+		goalVO.setStartDate(startDate);
+
 		String referer = request.getHeader("Referer");
 		
 		String message;
@@ -161,12 +164,7 @@ public class GoalControllerImpl implements GoalController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
 		try {
-			if( limitDate.equals("0000-00-00")) {
-				goalService.updateGoalNullDate(goalVO);
-			} else {
-				goalVO.setLimitDate(limitDate);
 				goalService.updateGoal(goalVO);
-			}
 			
 			message = "<script>";
 			message += " alert('수정되었습니다.');";

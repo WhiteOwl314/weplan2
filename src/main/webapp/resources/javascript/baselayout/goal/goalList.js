@@ -241,45 +241,45 @@
 				
 				/* IMPORTANCE */
 				if(importance=='1'){
-					$('.project_update .importance1').attr("checked", true);
+					$('.layerpop .importance1').prop("checked", true);
 				} else if (importance == '2'){
-					$('.project_update .importance2').attr("checked", true);
+					$('.layerpop .importance2').prop("checked", true);
 				} else if (importance == '3'){
-					$('.project_update .importance3').attr("checked", true);
+					$('.layerpop .importance3').prop("checked", true);
 				}
 				/* IMPORTANCE */
 
 				//title
-					$('.project_update .project_title').attr('value',title);
+					$('.layerpop .layerpop_title').attr('value',title);
 				//title
 
 				//startDate
 				if(startDate === 'null'){
-					$('.project_update .project_startDate_form').attr('value','')
+					$('.layerpop .layerpop_startDate_form').attr('value','');
 				} else{
-					$('.project_update .project_startDate_form').attr('value',startDate)
+					$('.layerpop .layerpop_startDate_form').attr('value',startDate);
 				}
 				//startDate
 
 				//limitDate
 				if(limitDate === 'null'){
-					$('.project_update .project_limitDate_form').attr('value','')
+					$('.layerpop .layerpop_limitDate_form').attr('value','');
 				} else{
-					$('.project_update .project_limitDate_form').attr('value',limitDate)
+					$('.layerpop .layerpop_limitDate_form').attr('value',limitDate);
 				}
 				//limitDate
 
 				console.log(content);
 				//content
 				if(content === 'null'){
-					$('.project_update .project_content').text('');
+					$('.layerpop #layerpop_form_content').text('');
 				} else{
-					$('.project_update .project_content').text(content);
+					$('.layerpop #layerpop_form_content').text(content);
 				}
 				//content
 
 				//id
-				$('.project_update .project_id').attr('value',id);
+				$('.layerpop .layerpop_id').attr('value',id);
 				//id
 			},
 
@@ -367,22 +367,20 @@
 
 	//popUp-update
 	$('.project_detail_header .project_detail_title').click(function(event) {
-		var id = event.target.id;
-		var id_arr = id.split('_');
-		var processed_id = id_arr[1];
-		//popUp reset
-		popupReset();
+		let id = event.target.id;
+		let id_arr = id.split('_');
+		let processed_id = id_arr[1];
 
-		//popUp_폼 on
-		$('.layerpop_area .title').text('Project');
-		$('.layerpop .layerpop_area .content .project_update').css('display','block')
-		
+		popupReset();	
+
+		let title = "Project";
+		let url = contextPath + "weplan/goal/updateGoal.do";
+
 		//프로젝트 정보 가져오기
 		//팝업 요소에 프로젝트 정보 삽입
 		popUp_getProject(processed_id);
-		
-		//팝업 띄우기
-		goDetail();
+
+		popUpSetting(title, url);
 	});
 	//popUp-update
 	

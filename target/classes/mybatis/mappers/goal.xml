@@ -112,6 +112,7 @@
 	  		importance = #{importance},
 	  		title = #{title},
 	  		content = #{content},
+	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd'),
 	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd')
 	  	WHERE 
 	  		isdelete = '0'  
