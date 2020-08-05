@@ -19,4 +19,6 @@ public interface YearlyPlanService {
 
 	public void deleteYearlyPlan(Map<String, Object> map) throws Exception;
 
+	public void completeYearlyPlan(Map<String, Object> map) throws Exception;
+
 }

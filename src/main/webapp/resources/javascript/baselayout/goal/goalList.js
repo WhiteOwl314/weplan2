@@ -213,6 +213,16 @@
 					});
 					//yearlyPlan-detail_view
 					
+					//yearlyPlan-complete
+					$(`#project_yearly_${id} .project_yearly_completed`).click(function() {
+						var url = contextPath + "weplan/yearlyPlan/completeYearlyPlan.do?id=" + id;
+						var target = event.target;
+						var check_url = contextPath + "weplan/resources/images/iconmonstr-checkbox-9.svg" 
+						console.log(target);
+						$(target).attr("src",check_url);
+						location.href = url;
+					});
+					//yearlyPlan-complete
 				}
 			},
 

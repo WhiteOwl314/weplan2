@@ -123,5 +123,15 @@
 	  </update>
 	
 	
+	  <update 
+	  	id="completeYearlyPlan" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_YEARLY_PLAN
+	  	SET isCompleted = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{yearlyPlanId}
+	  </update>
 
 </mapper>

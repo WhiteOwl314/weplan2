@@ -19,4 +19,7 @@ public interface YearlyPlanController {
 	public ResponseEntity deleteYearlyPlan(int yearlyPlan_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	public ResponseEntity completeYearlyPlan(int yearlyPlanId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 }

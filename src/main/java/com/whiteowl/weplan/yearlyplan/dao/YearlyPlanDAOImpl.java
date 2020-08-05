@@ -96,6 +96,16 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		);
 		
 	}
+
+	@Override
+	public void completeYearlyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.yearlyPlan.completeYearlyPlan",
+				map
+		);
+	}
 	
 
 

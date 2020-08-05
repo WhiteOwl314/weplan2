@@ -20,4 +20,6 @@ public interface YearlyPlanDAO {
 
 	public void deleteYearlyPlan(Map<String, Object> map) throws DataAccessException;
 
+	public void completeYearlyPlan(Map<String, Object> map) throws DataAccessException;
+
 }

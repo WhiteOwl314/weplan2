@@ -56,4 +56,11 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 		yearlyPlanDAO.deleteYearlyPlan(map);
 	}
 
+	@Override
+	public void completeYearlyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		yearlyPlanDAO.completeYearlyPlan(map);
+	}
+
 }

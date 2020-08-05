@@ -163,6 +163,7 @@
 		FROM W_yearly_plan 
 		WHERE 
 			isdelete = '0' 
+			AND isCompleted = '0' 
 			AND member_id = #{member_id}
 			AND ID in (
 						SELECT yearly_plan_id
