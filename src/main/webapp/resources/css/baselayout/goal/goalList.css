@@ -106,12 +106,18 @@
 .project_detail_completed img{
 	width: 15px;
 }
-.project_detail_body .project_yearly{
+.project_detail_body .project_yearly_container{
 	margin-left: 20px;
+}
+.project_detail_body .project_yearly{
 	border-bottom: 1px solid #DCDCDC;
 	height: 30px;
 	display: flex;
 	position: relative;
+}
+.project_detail_body .monthly_ent_add{
+	display: none;
+	margin-left: 20px;
 }
 .project_yearly .project_yearly_viewer{
 	padding-top: 7px;
@@ -360,5 +366,54 @@
 	color: white;
 	font-size: 13px;
 	box-sizing: border-box;
+}
+.project_yearly_container .project_monthly{
+	margin-left: 20px;
+}
+.project_monthly_viewer{
+}
+.project_monthly_viewer_on{
+	display: none;
+}
+.project_monthly_viewer img{
+	width: 15px;
+	cursor: pointer;
+}
+.project_monthly_viewer_on img{
+	width: 15px;
+	cursor: pointer;
+}
+.project_yearlyPlan_month{
+	border-bottom: 1px solid #DCDCDC;
+}
+.project_yearlyPlan_month_content{
+	display: flex;
+	margin-top: 4px;
+	border-bottom: 1px solid #DCDCDC;
+	font-size: 12px;
+}
+.project_yearlyPlan_month_content .monthly_month{
+	margin-top: 3.3px;
+}
+.project_monthly .project_monthly_completed{
+	padding-top: 7px;
+}
+.project_monthly_completed img{
+	width: 15px;
+}
+.project_yearlyPlan_month_monthlyPlan{
+	display: flex;
+	margin-left: 16px;
+	font-size: 14px;
+	border-bottom: 1px solid #DCDCDC;
+	height: 30px;
+}
+.project_yearlyPlan_month_monthlyPlan .monthly_class{
+	font-size: 10px;
+    color: gray;
+}
+.project_monthly .monthly_title_container{
+	padding-top: 4px;
+	margin-left: 10px;
 }
 /*add project form.*/

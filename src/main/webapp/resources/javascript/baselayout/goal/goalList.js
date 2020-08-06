@@ -156,6 +156,7 @@
 					$('.project_detail .project_detail_body').append(
 						'<div'+
 							' class="project_yearly_container"' +
+								` id=project_yearly_container_${id}` +
 						' >' +
 							'<div'
 								+ ' class="project_yearly"'
@@ -216,6 +217,15 @@
 								` id=project_monthly_${id}` +
 							' >' +
 							' </div>' +
+							`<div
+								class="monthly_ent_add"
+							>
+								
+								<img
+									alt="add_button" 
+									src="${contextPath }/weplan/resources/images/add-black-18dp.svg"
+								>
+							</div>` +
 						' </div>'
 	
 					);
@@ -271,6 +281,8 @@
 						
 						$(this).css('display','none');
 						$(`#project_yearly_${id} .project_yearly_viewer_on`).css('display','block');
+						$(`#project_yearly_container_${id} .monthly_ent_add`).css('display','block');
+						$(`#project_yearly_container_${id}`).css('border-bottom','1px solid #DCDCDC');
 						
 						
 						for(let i in monthlyPlanList){
@@ -286,32 +298,109 @@
 								$(`#project_monthly_${id}`).append(
 										'<div' +
 											` id="project_monthly_${id}_${month}"` +
+											` class="project_yearlyPlan_month"` +
 										' >' +
-											month +
+											
+											' <div' +
+												' class="project_yearlyPlan_month_content"' +
+											'>' +
+												' <div' +
+													' class="project_monthly_viewer"' +
+												'>' +
+													' <img alt="viewer"'+ 
+														` src="${contextPath }weplan/resources/images/chevron_right-black-18dp.svg"` +
+													'>' + 
+												' </div>' +
+												' <div' +
+													' class="project_monthly_viewer_on"' +
+												'>' +
+													' <img alt="viewer"' + 
+														` src="${contextPath }weplan/resources/images/expand_more-black-18dp.svg"`+
+													'>' + 
+												' </div>' +
+												' <div' +
+													' class="monthly_month"' +
+												' >' +
+													month +
+												' </div>' +
+											' </div>' +
+											' <div' +
+												' class="monthly_month_content"' +
+											' >' +
+											' </div>' +
+											`<div
+												class="monthly_part_add"
+											>
+												<img
+													alt="add_button" 
+													src="${contextPath }/weplan/resources/images/add-black-18dp.svg"
+												>
+											</div>`+
 										' </div>'
+											
 										
 								);
 							} 							
 							//container
 							
 							//content
-							$(`#project_monthly_${id}_${month}`).append(
+							$(`#project_monthly_${id}_${month} .monthly_month_content`).append(
 										'<div' +
 											` id="project_${id}_${month}_${monthlyPlanId}"` +
+											` class="project_yearlyPlan_month_monthlyPlan"` +
 										' >' +
-											title +
+											' <div' +
+												' class="project_monthly_completed"' +
+											'>' +
+												' <img alt="checkbox"' + 
+													` src="${contextPath }weplan/resources/images/iconmonstr-checkbox-11.svg"`+
+												'>' +
+											' </div>' +
+
+											' <div' +
+												' class="monthly_title_container"' +
+											' >' +
+												' <div' +
+													' class="monthly_title"' +
+												' >' +
+													title +
+												' </div>' +
+												' <div' +
+													' class="monthly_class"' +
+												' >' +
+													"monthly plan" +
+												' </div>' +
+											' </div>' +
 										' </div>'
 							);
 							//content
+							
+							//weeklyPlan view
+							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
+								$(this).css('display','none');
+								$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).css('display','block')
+							});
+							$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).click(function() {
+								$(this).css('display','none');
+								$(`#project_monthly_${id}_${month} .project_monthly_viewer`).css('display','block')
+							});
+							//weeklyPlan view
+							
 						}
 					});
 					$(`#project_yearly_${id} .project_yearly_viewer_on`).click(function() {
 						$(this).css('display','none');
 						$(`#project_yearly_${id} .project_yearly_viewer`).css('display','block');
 						$(`#project_monthly_${id}`).html('');
+						$(`#project_yearly_container_${id} .monthly_ent_add`).css('display','none');
+						$(`#project_yearly_container_${id}`).css('border-bottom','0px solid #DCDCDC');
 					});
 					//monthlyPlanList
+					
+					
 				}
+				
+
 			},
 
 		})
