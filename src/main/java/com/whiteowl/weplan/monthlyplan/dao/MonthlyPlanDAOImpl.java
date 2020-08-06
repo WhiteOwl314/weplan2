@@ -14,14 +14,5 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 	@Autowired
 	private SqlSession sqlSession;
 
-	@Override
-	public List monthlyPlanList(
-			Map<String, Object> map
-	) throws DataAccessException {
-		return sqlSession.selectList(
-				"mapper.monthlyPlan.monthlyPlanList",
-				map
-		);
-	}
 
 }

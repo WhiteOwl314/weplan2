@@ -15,13 +15,4 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 	@Autowired
 	private MonthlyPlanDAO monthlyPlanDAO;
 
-	@Override
-	public List monthlyPlanList(
-			Map<String, Object> map
-	) throws Exception {
-		return monthlyPlanDAO.monthlyPlanList(
-				map
-			);
-	}
-
 }

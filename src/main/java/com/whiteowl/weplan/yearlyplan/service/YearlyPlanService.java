@@ -3,6 +3,7 @@ package com.whiteowl.weplan.yearlyplan.service;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.whiteowl.weplan.yearlyplan.vo.YearlyPlanVO;
@@ -20,5 +21,7 @@ public interface YearlyPlanService {
 	public void deleteYearlyPlan(Map<String, Object> map) throws Exception;
 
 	public void completeYearlyPlan(Map<String, Object> map) throws Exception;
+
+	public JSONArray monthlyPlanList(Map<String, Object> map) throws Exception;
 
 }

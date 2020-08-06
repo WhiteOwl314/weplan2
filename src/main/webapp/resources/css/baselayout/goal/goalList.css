@@ -117,7 +117,15 @@
 	padding-top: 7px;
 	cursor: pointer;
 }
+.project_yearly .project_yearly_viewer_on{
+	display: none;
+	padding-top: 7px;
+	cursor: pointer;
+}
 .project_yearly .project_yearly_viewer img{
+	width: 15px;
+}
+.project_yearly .project_yearly_viewer_on img{
 	width: 15px;
 }
 .project_yearly .project_yearly_completed{

@@ -10,10 +10,11 @@ public class MonthlyPlanVO {
 	private String content;
 	private String isCompleted;
 	private int importance;
-	private String startDate;
-	private String limitDate;
+	private String month;
 	private String isDelete;
 	private String member_id;
+	private String yearlyPlan;
+
 	public int getId() {
 		return id;
 	}
@@ -44,18 +45,6 @@ public class MonthlyPlanVO {
 	public void setImportance(int importance) {
 		this.importance = importance;
 	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getLimitDate() {
-		return limitDate;
-	}
-	public void setLimitDate(String limitDate) {
-		this.limitDate = limitDate;
-	}
 	public String getIsDelete() {
 		return isDelete;
 	}
@@ -68,6 +57,19 @@ public class MonthlyPlanVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getYearlyPlan() {
+		return yearlyPlan;
+	}
+	public void setYearlyPlan(String yearlyPlan) {
+		this.yearlyPlan = yearlyPlan;
+	}
+	
 	
 	
 

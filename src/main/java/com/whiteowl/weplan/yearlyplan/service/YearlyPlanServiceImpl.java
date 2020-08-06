@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -61,6 +62,15 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 			Map<String, Object> map
 	) throws Exception {
 		yearlyPlanDAO.completeYearlyPlan(map);
+	}
+
+	@Override
+	public JSONArray monthlyPlanList(
+			Map<String, Object> map
+	) throws Exception {
+
+		return yearlyPlanDAO
+				.monthlyPlanList(map);
 	}
 
 }

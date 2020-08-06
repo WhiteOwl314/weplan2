@@ -28,40 +28,5 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 	@Autowired
 	MonthlyPlanVO monthlyPlanVO;
 	
-	@Override
-	@RequestMapping(
-			value="/monthlyPlan/monthlyPlanList.do",
-			method = RequestMethod.GET	
-	)
-	public ModelAndView monthlyPlanList(
-			@RequestParam("month") int month,
-			HttpServletRequest request,
-			HttpServletResponse response
-	) throws Exception{
-		int request_month = 0;
-		
-		if(month == 0) {
-			Calendar cal = Calendar.getInstance();
-			request_month = cal.get(cal.MONTH);
-		} else {
-			request_month = month;
-		}
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("member_id", member_id);
-		map.put("request_month", request_month);
-		
-		List monthlyPlanList = monthlyPlanService.monthlyPlanList(map);
-		ModelAndView mav = new ModelAndView("/monthlyPlan/monthlyPlanList");
-		mav.addObject("monthlyPlanList", monthlyPlanList);
-		return mav;
-	}
-	
-
 
 }

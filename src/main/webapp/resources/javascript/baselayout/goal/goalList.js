@@ -4,6 +4,27 @@
 
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
 	
+	function getMonthlyPlanList(yearlyPlan_id) {
+
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/yearlyPlan/monthlyPlanList.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : yearlyPlan_id
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+	}
+	
 	
 	
 	//프로젝트 정보 가져오기
@@ -103,6 +124,8 @@
 			},
 			success : function(result) {
 				
+				console.log(result);
+				
 				
 				//초기화
 				$('.project_detail .project_detail_body').html('');
@@ -131,7 +154,9 @@
 
 
 					$('.project_detail .project_detail_body').append(
-							
+						'<div'+
+							' class="project_yearly_container"' +
+						' >' +
 							'<div'
 								+ ' class="project_yearly"'
 								+ ` id=project_yearly_${id}`
@@ -141,7 +166,14 @@
 								+ '>'
 									+ ' <img alt="viewer"' 
 										+ ` src="${contextPath }weplan/resources/images/chevron_right-black-18dp.svg"`
-									+ '>'
+									+ '>' 
+								+ ' </div>'
+								+ ' <div'
+									+ ' class="project_yearly_viewer_on"'
+								+ '>'
+									+ ' <img alt="viewer"' 
+										+ ` src="${contextPath }weplan/resources/images/expand_more-black-18dp.svg"`
+									+ '>' 
 								+ ' </div>'
 								+ ' <div'
 									+ ' class="project_yearly_completed"'
@@ -178,7 +210,13 @@
 									+ ' class="project_yearly_importance"'
 								+ ' >'
 								+ ' </div>'
-							+ ' </div>'
+							+ ' </div>' +
+							' <div' +
+								' class="project_monthly"' +
+								` id=project_monthly_${id}` +
+							' >' +
+							' </div>' +
+						' </div>'
 	
 					);
 					
@@ -214,15 +252,65 @@
 					//yearlyPlan-detail_view
 					
 					//yearlyPlan-complete
-					$(`#project_yearly_${id} .project_yearly_completed`).click(function() {
+					$(`#project_yearly_${id} .project_yearly_completed`).click(function(event) {
 						var url = contextPath + "weplan/yearlyPlan/completeYearlyPlan.do?id=" + id;
 						var target = event.target;
 						var check_url = contextPath + "weplan/resources/images/iconmonstr-checkbox-9.svg" 
-						console.log(target);
 						$(target).attr("src",check_url);
 						location.href = url;
 					});
 					//yearlyPlan-complete
+
+					//monthlyPlanList
+					$(`#project_yearly_${id} .project_yearly_viewer`).click(function(event) {
+						
+						let url = contextPath + "weplan/yearlyPlan/monthlyPlanList.do?id=" + id;
+						//ajax 호출하고 map List 으로 리턴 
+						let monthlyPlanList = getMonthlyPlanList(id);
+						//ajax 호출하고 map List 으로 리턴 
+						
+						$(this).css('display','none');
+						$(`#project_yearly_${id} .project_yearly_viewer_on`).css('display','block');
+						
+						
+						for(let i in monthlyPlanList){
+							
+							let monthlyPlanId = decodeURIComponent( monthlyPlanList[i].id ); 
+							var title = decodeURIComponent( monthlyPlanList[i].title );
+							var content = decodeURIComponent( monthlyPlanList[i].content );
+							var importance = decodeURIComponent( monthlyPlanList[i].importance );
+							let month = decodeURIComponent(monthlyPlanList[i].month);
+							
+							//container
+							if(!$(`#project_monthly_${id}_${month}`).length){
+								$(`#project_monthly_${id}`).append(
+										'<div' +
+											` id="project_monthly_${id}_${month}"` +
+										' >' +
+											month +
+										' </div>'
+										
+								);
+							} 							
+							//container
+							
+							//content
+							$(`#project_monthly_${id}_${month}`).append(
+										'<div' +
+											` id="project_${id}_${month}_${monthlyPlanId}"` +
+										' >' +
+											title +
+										' </div>'
+							);
+							//content
+						}
+					});
+					$(`#project_yearly_${id} .project_yearly_viewer_on`).click(function() {
+						$(this).css('display','none');
+						$(`#project_yearly_${id} .project_yearly_viewer`).css('display','block');
+						$(`#project_monthly_${id}`).html('');
+					});
+					//monthlyPlanList
 				}
 			},
 

@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.goal.vo.GoalVO;
+import com.whiteowl.weplan.monthlyplan.vo.MonthlyPlanVO;
 import com.whiteowl.weplan.yearlyplan.vo.YearlyPlanVO;
 
 @Repository("yearlyPlanDAO")
@@ -106,7 +108,39 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 				map
 		);
 	}
-	
 
+	@Override
+	public JSONArray monthlyPlanList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		List<MonthlyPlanVO> monthlyPlanList = sqlSession.selectList(
+				"mapper.yearlyPlan.monthlyPlanList",
+				map
+		);
+		
+		for (MonthlyPlanVO monthlyPlanVO : monthlyPlanList) {
+			JSONObject data = new JSONObject();
+			
+			int id = monthlyPlanVO.getId();
+			String title = monthlyPlanVO.getTitle();
+			String content = monthlyPlanVO.getContent();
+			String isCompleted = monthlyPlanVO.getIsCompleted();
+			int importance = monthlyPlanVO.getImportance();
+			String month = monthlyPlanVO.getMonth();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("month", month);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
+	
 
 }

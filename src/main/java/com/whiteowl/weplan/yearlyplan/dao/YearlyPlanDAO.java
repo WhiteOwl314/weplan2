@@ -3,6 +3,7 @@ package com.whiteowl.weplan.yearlyplan.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
@@ -21,5 +22,7 @@ public interface YearlyPlanDAO {
 	public void deleteYearlyPlan(Map<String, Object> map) throws DataAccessException;
 
 	public void completeYearlyPlan(Map<String, Object> map) throws DataAccessException;
+
+	public JSONArray monthlyPlanList(Map<String, Object> map) throws DataAccessException;
 
 }

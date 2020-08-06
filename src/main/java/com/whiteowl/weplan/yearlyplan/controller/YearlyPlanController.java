@@ -22,4 +22,6 @@ public interface YearlyPlanController {
 	public ResponseEntity completeYearlyPlan(int yearlyPlanId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	public String monthlyPlanList(int yearlyPlan_id, HttpServletRequest request) throws Exception;
+
 }
