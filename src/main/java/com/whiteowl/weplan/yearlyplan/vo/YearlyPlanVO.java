@@ -14,6 +14,8 @@ public class YearlyPlanVO {
 	private String limitDate;
 	private String isDelete;
 	private String member_id;
+	private int goal_id;
+
 	public int getId() {
 		return id;
 	}
@@ -68,8 +70,10 @@ public class YearlyPlanVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	
-	
-	
-
+	public int getGoal_id() {
+		return goal_id;
+	}
+	public void setGoal_id(int goal_id) {
+		this.goal_id = goal_id;
+	}
 }

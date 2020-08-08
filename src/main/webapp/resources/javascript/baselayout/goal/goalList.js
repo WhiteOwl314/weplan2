@@ -105,6 +105,26 @@
 				}
 				
 
+				//add yearlyPlan
+				$('.project_detail .project_detail_add').hover(
+						function() {
+							$('.project_detail_add img').css('background-color','#e2e2e2');
+						},
+						function() {
+							$('.project_detail_add img').css('background-color','white');
+						}
+				);
+				$('.project_detail .project_detail_add').click(function(event) {
+					console.log(id);
+					popupReset();	
+					let title = "YearlyPlan 추가";
+					let url = contextPath + "weplan/yearlyPlan/addYearlyPlan.do";
+					$('#layerpop_goal_id').attr('value',id);
+					checkInitialImportance();
+					putPlaceholderAtDates();
+					popUpSetting(title, url);
+				});
+				//add yearlyPlan
 			},
 
 		})
@@ -545,6 +565,7 @@
 	//detail-view
 	$('.project_List-text').click(function(event) {
 		var project_id = event.target.id;
+		$('.project_body .project_right').css('display','block');
 		getProject(project_id)
 		getYearlyPlanList(project_id)
 	})
@@ -592,4 +613,5 @@
 		popUpSetting(title, url);
 	});
 	//popUp-add
+	
 	

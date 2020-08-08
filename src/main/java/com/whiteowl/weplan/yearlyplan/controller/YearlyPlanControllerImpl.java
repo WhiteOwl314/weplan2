@@ -88,6 +88,7 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		String startDate = request.getParameter("startDate");
 		String limitDate = request.getParameter("limitDate");
 		String member_id = request.getParameter("member_id");
+		int goal_id = Integer.parseInt(request.getParameter("goal_id"));
 		
 		
 		yearlyPlanVO.setTitle(title);
@@ -96,6 +97,7 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		yearlyPlanVO.setStartDate(startDate);
 		yearlyPlanVO.setLimitDate(limitDate);
 		yearlyPlanVO.setMember_id(member_id);
+		yearlyPlanVO.setGoal_id(goal_id);
 		
 		
 		

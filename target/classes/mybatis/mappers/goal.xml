@@ -165,13 +165,8 @@
 			isdelete = '0' 
 			AND isCompleted = '0' 
 			AND member_id = #{member_id}
-			AND ID in (
-						SELECT yearly_plan_id
-						FROM W_goal_yearlyplan
-						WHERE 
-							goal_id = #{goal_id}
-					)
-		ORDER BY credate DESC
+			AND goal_id = #{goal_id}
+		ORDER BY credate ASC
       ]]>
 	</select>
 

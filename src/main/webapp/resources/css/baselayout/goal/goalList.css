@@ -21,6 +21,7 @@
 }
 .project_body .project_right{
 	width: 80%;
+	display: none;
 }
 .project_body .project_List{
 	height: 600px;
@@ -416,4 +417,29 @@
 	padding-top: 4px;
 	margin-left: 10px;
 }
+.project_monthly .monthly_part_add{
+	margin-left: 16px;
+}
+.monthly_part_add img{
+	width: 15px;
+}
+.project_yearly_container .monthly_ent_add {
+	padding-top: 4px;
+    box-sizing: border-box;
+}
+.project_yearly_container .monthly_ent_add img{
+	width: 15px;
+}
+.project_detail .project_detail_add{
+	margin-left: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+.project_detail .project_detail_add img{
+	width: 15px;
+    margin-top: 2px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+    
 /*add project form.*/

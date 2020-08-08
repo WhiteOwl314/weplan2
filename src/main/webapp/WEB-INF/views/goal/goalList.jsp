@@ -100,6 +100,13 @@
 					class="project_detail_body"
 				>
 				</div>
+				<div
+					class="project_detail_add"
+				>
+					<img  alt="add_button" 
+						src="${contextPath }/resources/images/add-black-18dp.svg"
+					>
+				</div>
 			</div>
 		</div>
 	</div>

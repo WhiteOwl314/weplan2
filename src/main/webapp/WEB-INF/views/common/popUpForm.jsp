@@ -135,6 +135,7 @@
 					</div>
 					<input type="hidden" name="member_id" value="${ member.id }">
 					<input type="hidden" name="id" class="layerpop_id">
+					<input id="layerpop_goal_id" type="hidden" name="goal_id">
 				</form>
 			</div>
 		</div>
