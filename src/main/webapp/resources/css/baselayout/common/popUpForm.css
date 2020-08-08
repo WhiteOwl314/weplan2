@@ -99,6 +99,13 @@
 .layerpop_limitDate_container .layerpop_limitDate_form::placeholder{
 	color: #c6c6c6;
 }
+.layerpop_month_container .layerpop_month_form{
+	width: 98%;
+	resize: none;
+	background-color: #f7f7f7;
+	border: 1px solid #e2e2e2;
+	border-radius: 3px;
+}
 .layerpop_content .layerpop_content{
 	width: 98%;
 	height: 100px;

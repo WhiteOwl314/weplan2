@@ -249,6 +249,31 @@
 						' </div>'
 	
 					);
+					//popUp-add
+					
+						//hover 효과
+						$('.project_yearly_container .monthly_ent_add').hover(function() {
+							$('.project_yearly_container .monthly_ent_add img').css('background-color', '#e2e2e2');
+							$('.project_yearly_container .monthly_ent_add img').css('border-radius', '5px');
+						},function(){
+							$('.project_yearly_container .monthly_ent_add img').css('background-color', '#F7F7F7');
+						});
+						//hover 효과
+					
+					$('.project_yearly_container .monthly_ent_add').click(function(event) {
+
+						popupReset();	
+						let title = "YearlyPlan 추가";
+						let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+						$('.layerpop .startDate_container').css('display','none');
+						$('.layerpop .limitDate_container').css('display','none');
+						$('.layerpop .month_container').css('display','block');
+						$('#layerpop_yearlyPlan_id').attr('value',id);
+						checkInitialImportance();
+						putPlaceholderAtMonth();
+						popUpSetting(title, url);
+					});
+					//popUp-add
 					
 					/* IMPORTANCE */
 					if(importance == '1'){
@@ -405,6 +430,31 @@
 								$(`#project_monthly_${id}_${month} .project_monthly_viewer`).css('display','block')
 							});
 							//weeklyPlan view
+
+							//hover 효과
+							$(`#project_monthly_${id}_${month} .monthly_part_add`).hover(
+									function() {
+											$(`#project_monthly_${id}_${month} .monthly_part_add img`).css('background-color', '#e2e2e2');
+									},function(){
+											$(`#project_monthly_${id}_${month} .monthly_part_add img`).css('background-color', '#F7F7F7');
+									}
+							);
+							//hover 효과
+							
+							$(`#project_monthly_${id}_${month} .monthly_part_add`).click(function() {
+								
+								popupReset();	
+								let title = "YearlyPlan 추가";
+								let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+								$('.layerpop .startDate_container').css('display','none');
+								$('.layerpop .limitDate_container').css('display','none');
+								$('.layerpop .month_container').css('display','block');
+								$('.month_container .layerpop_month_form').attr('value',month);
+								$('#layerpop_yearlyPlan_id').attr('value',id);
+								checkInitialImportance();
+								putPlaceholderAtMonth();
+								popUpSetting(title, url);
+							});
 							
 						}
 					});

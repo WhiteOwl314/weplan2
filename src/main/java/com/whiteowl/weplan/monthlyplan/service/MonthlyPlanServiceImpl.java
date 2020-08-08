@@ -8,11 +8,19 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.monthlyplan.dao.MonthlyPlanDAO;
+import com.whiteowl.weplan.monthlyplan.vo.MonthlyPlanVO;
 
 @Repository("monthlyPlanService")
 public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 	
 	@Autowired
 	private MonthlyPlanDAO monthlyPlanDAO;
+
+	@Override
+	public void addMonthlyPlan(
+			MonthlyPlanVO monthlyPlanVO
+	) throws Exception {
+		monthlyPlanDAO.addMonthlyPlan(monthlyPlanVO);
+	}
 
 }

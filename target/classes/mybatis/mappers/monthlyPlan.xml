@@ -11,8 +11,6 @@
         <result property="title" column="title" />
         <result property="content" column="content" />
         <result property="importance" column="importance" />
-        <result property="startDate" column="startDate" />
-        <result property="limitDate" column="limitDate" />
 	</resultMap>
 	
 	<select 
@@ -26,17 +24,45 @@
 			title,
 			content,
 			importance,
-			TO_CHAR(STARTDATE, 'YYYY-MM-DD') AS startDate,
-			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate
+			month
 		FROM W_MONTHLY_PLAN 
 		WHERE 
 			isdelete = '0' 
 			AND isCompleted = '0' 
 			AND member_id = #{member_id}
-			AND TO_CHAR(STARTDATE,'YYYY') <= #{request_year}
-			AND TO_CHAR(LIMITDATE,'YYYY') >= #{request_year}
 		ORDER BY credate DESC
       ]]>
 	</select>
+	<insert 
+		id="addMonthlyPlan" 
+		parameterType="monthlyPlanVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_MONTHLY_PLAN(
+      		id,
+      		member_id,
+      		title,
+      		content,
+      		importance,
+      		month,
+      		yearly_Plan_id
+      	)
+      	VALUES (
+      		#{id},
+      		#{member_id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{month},'yyyy-mm'),
+      		#{yearlyPlan_id}
+      	)
+      ]]>
+	</insert>
+	
+     <select id="selectNewMonthlyPlan_NO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(ID), 0) + 1 from W_MONTHLY_PLAN	
+		]]>
+	</select> 
 
 </mapper>

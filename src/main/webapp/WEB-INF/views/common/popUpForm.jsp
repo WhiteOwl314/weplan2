@@ -98,6 +98,24 @@
 							</div>
 						</div>
 						<div
+							class="layerpop_form_container month_container"
+						>
+							<div
+								class="layerpop_month_container"
+							>
+								<div
+									class="layerpop_form_title"
+								>
+									마감 달
+								</div>
+								<input 
+									type="text" 
+									name="month" 
+									class="layerpop_month_form"
+								/>
+							</div>
+						</div>
+						<div
 							class="layerpop_form_container content_container"
 						>
 							<div
@@ -136,6 +154,7 @@
 					<input type="hidden" name="member_id" value="${ member.id }">
 					<input type="hidden" name="id" class="layerpop_id">
 					<input id="layerpop_goal_id" type="hidden" name="goal_id">
+					<input id="layerpop_yearlyPlan_id" type="hidden" name="yearlyPlan_id">
 				</form>
 			</div>
 		</div>

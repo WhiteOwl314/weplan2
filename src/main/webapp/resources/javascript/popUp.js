@@ -42,6 +42,20 @@
 		
 		return proccesedTime;
 	}
+	
+	function todayMonth() {
+		let today = new Date();
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+		
+		if(month < 10){
+			month = String(0) + String(month);
+		}
+
+		let proccesedToday = year + '-' + month;
+		
+		return proccesedToday;
+	}
 
 	function wrapWindowByMask() {
 		//화면의 높이와 너비를 구한다.
@@ -84,6 +98,9 @@
 		$('.layerpop .startDate_container').css('display','block');
 		$('.layerpop .limitDate_container').css('display','block');
 		$('.layerpop .content_container').css('display','block');
+		$('.layerpop .month_container').css('display','none');
+		$('#layerpop_yearlyPlan_id').attr('value','');
+		$('.month_container .layerpop_month_form').attr('value','');
 	}
 	function changeTitle(title) {
 		$('.layerpop .title').text(title);
@@ -101,7 +118,6 @@
 		$('.layerpop .layerpop_limitDate_form').attr('placeholder',today());
 	}
 	function putPlaceholderAtTimes() {
-		console.log(todayTime());
 		$('.layerpop .layerpop_Time_form').attr('placeholder',todayTime());
 	}
 	function onTimeForm() {
@@ -109,6 +125,9 @@
 	}
 	function offTimeForm() {
 		$('.layerpop .layerpop_Time_form').css('display','none');
+	}
+	function putPlaceholderAtMonth() {
+		$('.layerpop .layerpop_month_form').attr('placeholder',todayMonth());
 	}
 
 	function popUpSetting(title, url) {

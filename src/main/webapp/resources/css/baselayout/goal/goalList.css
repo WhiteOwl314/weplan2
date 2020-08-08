@@ -441,5 +441,16 @@
     box-sizing: border-box;
     border-radius: 5px;
 }
+.project_yearly_container .monthly_ent_add{
+	cursor: pointer;
+	
+}
+.monthly_part_add{
+	cursor: pointer;
+}
+.monthly_part_add img{
+	background-color: rgb(247, 247, 247);
+    border-radius: 5px;	
+}
     
 /*add project form.*/

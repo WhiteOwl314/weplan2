@@ -13,7 +13,7 @@ public class MonthlyPlanVO {
 	private String month;
 	private String isDelete;
 	private String member_id;
-	private String yearlyPlan;
+	private int yearlyPlan_id;
 
 	public int getId() {
 		return id;
@@ -63,13 +63,12 @@ public class MonthlyPlanVO {
 	public void setMonth(String month) {
 		this.month = month;
 	}
-	public String getYearlyPlan() {
-		return yearlyPlan;
+	public int getYearlyPlan_id() {
+		return yearlyPlan_id;
 	}
-	public void setYearlyPlan(String yearlyPlan) {
-		this.yearlyPlan = yearlyPlan;
+	public void setYearlyPlan_id(int yearlyPlan_id) {
+		this.yearlyPlan_id = yearlyPlan_id;
 	}
-	
 	
 	
 
