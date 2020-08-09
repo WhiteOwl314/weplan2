@@ -95,12 +95,16 @@
 	function popupReset(){
 		$('.layerpop .importance_container').css('display','block');
 		$('.layerpop .title_container').css('display','block');
+		$('.layerpop .layerpop_title').attr('value','');
 		$('.layerpop .startDate_container').css('display','block');
+		$('.layerpop .layerpop_startDate_form').attr('value','');
 		$('.layerpop .limitDate_container').css('display','block');
+		$('.layerpop .layerpop_limitDate_form').attr('value','');
 		$('.layerpop .content_container').css('display','block');
+		$('.layerpop #layerpop_form_content').text('');
 		$('.layerpop .month_container').css('display','none');
+		$('.layerpop .layerpop_month_form').attr('value','');
 		$('#layerpop_yearlyPlan_id').attr('value','');
-		$('.month_container .layerpop_month_form').attr('value','');
 	}
 	function changeTitle(title) {
 		$('.layerpop .title').text(title);
