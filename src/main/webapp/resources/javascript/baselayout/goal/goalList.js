@@ -430,6 +430,10 @@
 													"monthly plan" +
 												' </div>' +
 											' </div>' +
+											' <div' +
+												' class="project_monthly_importance"' +
+											' >' +
+											' </div>'+
 										' </div>'
 							);
 							//content
@@ -441,6 +445,16 @@
 								$(`#project_${id}_${month}_${monthlyPlanId} .monthly_title`).css("text-decoration","line-through");
 							}
 							
+							/* IMPORTANCE */
+							if(importance=='1'){
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_importance`).css("background-color", 'red');
+							} else if (importance == '2'){
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_importance`).css("background-color", 'yellow');
+							} else if (importance == '3'){
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_importance`).css("background-color", 'white');
+							}
+							/* IMPORTANCE */
+
 							//weeklyPlan view
 							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
 								$(this).css('display','none');
