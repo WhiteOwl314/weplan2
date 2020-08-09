@@ -337,6 +337,7 @@
 							var content = decodeURIComponent( monthlyPlanList[i].content );
 							var importance = decodeURIComponent( monthlyPlanList[i].importance );
 							let month = decodeURIComponent(monthlyPlanList[i].month);
+							let isCompleted = decodeURIComponent(monthlyPlanList[i].isCompleted);
 							
 							//container
 							if(!$(`#project_monthly_${id}_${month}`).length){
@@ -401,6 +402,13 @@
 													` src="${contextPath }weplan/resources/images/iconmonstr-checkbox-11.svg"`+
 												'>' +
 											' </div>' +
+											' <div' +
+												' class="project_monthly_completed_on"' +
+											'>' +
+												' <img alt="checkbox"' + 
+													` src="${contextPath }weplan/resources/images/iconmonstr-checkbox-9.svg"`+
+												'>' +
+											' </div>' +
 
 											' <div' +
 												' class="monthly_title_container"' +
@@ -419,6 +427,13 @@
 										' </div>'
 							);
 							//content
+							
+							console.log(isCompleted);
+							if(isCompleted == 1){
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).css("display",'none');
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed_on`).css("display",'block');
+								$(`#project_${id}_${month}_${monthlyPlanId} .monthly_title`).css("text-decoration","line-through");
+							}
 							
 							//weeklyPlan view
 							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
@@ -456,7 +471,29 @@
 								popUpSetting(title, url);
 							});
 							
+							//monthlyPlan-complete
+							$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).click(function(event) {
+								var url = contextPath + "weplan/monthlyPlan/completeMonthlyPlan.do?id=" + monthlyPlanId;
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).css("display",'none');
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed_on`).css("display",'block');
+								$(`#project_${id}_${month}_${monthlyPlanId} .monthly_title`).css("text-decoration","line-through");
+								location.href = url;
+							});
+							//monthlyPlan-complete
+							
+							//monthlyPlan-complete_on
+							$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed_on`).click(function(event) {
+								var url = contextPath + "weplan/monthlyPlan/notCompleteMonthlyPlan.do?id=" + monthlyPlanId;
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).css("display",'block');
+								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed_on`).css("display",'none');
+								$(`#project_${id}_${month}_${monthlyPlanId} .monthly_title`).css("text-decoration","none");
+								location.href = url;
+							});
+							//monthlyPlan-complete_on
+							
+
 						}
+
 					});
 					$(`#project_yearly_${id} .project_yearly_viewer_on`).click(function() {
 						$(this).css('display','none');
@@ -467,7 +504,7 @@
 					});
 					//monthlyPlanList
 					
-					
+
 				}
 				
 

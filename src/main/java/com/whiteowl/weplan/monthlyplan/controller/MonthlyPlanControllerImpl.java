@@ -85,4 +85,103 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return resEnt ;
 	}
 
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/completeMonthlyPlan.do",
+			method = RequestMethod.GET
+	)
+	@ResponseBody
+	public ResponseEntity completeMonthlyPlan(
+			@RequestParam("id") int monthlyPlanId,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("monthlyPlanId", monthlyPlanId);
+		
+		try {
+			
+			monthlyPlanService.completeMonthlyPlan(map);
+			
+			message = "<script>";
+			message += " alert('완료되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/notCompleteMonthlyPlan.do",
+			method = RequestMethod.GET
+	)
+	@ResponseBody
+	public ResponseEntity notCompleteMonthlyPlan(
+			@RequestParam("id") int monthlyPlanId,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("monthlyPlanId", monthlyPlanId);
+		
+		try {
+			
+			monthlyPlanService.notCompleteMonthlyPlan(map);
+			
+			message = "<script>";
+			message += " alert('완료되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+
+	}
+
 }

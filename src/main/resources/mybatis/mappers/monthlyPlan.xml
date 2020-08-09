@@ -65,4 +65,24 @@
 		]]>
 	</select> 
 
+	  <update 
+	  	id="completeMonthlyPlan" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_MONTHLY_PLAN
+	  	SET isCompleted = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{monthlyPlanId}
+	  </update>
+	  <update 
+	  	id="notCompleteMonthlyPlan" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_MONTHLY_PLAN
+	  	SET isCompleted = '0'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{monthlyPlanId}
+	  </update>
 </mapper>

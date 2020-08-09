@@ -11,5 +11,9 @@ public interface MonthlyPlanDAO {
 
 	public void addMonthlyPlan(MonthlyPlanVO monthlyPlanVO) throws DataAccessException;
 
+	public void completeMonthlyPlan(Map<String, Object> map) throws DataAccessException;
+
+	public void notCompleteMonthlyPlan(Map<String, Object> map) throws DataAccessException;
+
 
 }

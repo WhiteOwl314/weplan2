@@ -10,5 +10,11 @@ public interface MonthlyPlanController {
 
 	public ResponseEntity addMonthlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ResponseEntity completeMonthlyPlan(int monthlyPlanId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	public ResponseEntity notCompleteMonthlyPlan(int monthlyPlanId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 
 }

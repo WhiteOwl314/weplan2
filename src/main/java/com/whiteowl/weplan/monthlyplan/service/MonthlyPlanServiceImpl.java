@@ -23,4 +23,19 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 		monthlyPlanDAO.addMonthlyPlan(monthlyPlanVO);
 	}
 
+	@Override
+	public void completeMonthlyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		monthlyPlanDAO.completeMonthlyPlan(map);
+	}
+
+	@Override
+	public void notCompleteMonthlyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		monthlyPlanDAO.notCompleteMonthlyPlan(map);
+		
+	}
+
 }

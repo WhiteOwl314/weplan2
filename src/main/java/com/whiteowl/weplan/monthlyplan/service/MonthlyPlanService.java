@@ -11,5 +11,9 @@ public interface MonthlyPlanService {
 
 	void addMonthlyPlan(MonthlyPlanVO monthlyPlanVO) throws Exception;
 
+	public void completeMonthlyPlan(Map<String, Object> map) throws Exception;
+
+	public void notCompleteMonthlyPlan(Map<String, Object> map) throws Exception;
+
 
 }

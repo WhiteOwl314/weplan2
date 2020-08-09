@@ -28,5 +28,26 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		sqlSession.insert("mapper.monthlyPlan.addMonthlyPlan", monthlyPlanVO);
 	}
 
+	@Override
+	public void completeMonthlyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		
+		sqlSession.update(
+				"mapper.monthlyPlan.completeMonthlyPlan", 
+				map
+		);
+	}
+
+	@Override
+	public void notCompleteMonthlyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.monthlyPlan.notCompleteMonthlyPlan", 
+				map
+		);
+	}
+
 
 }

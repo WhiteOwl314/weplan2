@@ -402,6 +402,14 @@
 .project_monthly_completed img{
 	width: 15px;
 }
+.project_monthly .project_monthly_completed_on{
+	cursor: pointer;
+	padding-top: 7px;
+	display: none;
+}
+.project_monthly_completed_on img{
+	width: 15px;
+}
 .project_yearlyPlan_month_monthlyPlan{
 	display: flex;
 	margin-left: 16px;
@@ -451,6 +459,9 @@
 .monthly_part_add img{
 	background-color: rgb(247, 247, 247);
     border-radius: 5px;	
+}
+.project_monthly_completed {
+	cursor: pointer;
 }
     
 /*add project form.*/
