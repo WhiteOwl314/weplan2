@@ -3,6 +3,7 @@ package com.whiteowl.weplan.monthlyplan.service;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -36,6 +37,21 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 	) throws Exception {
 		monthlyPlanDAO.notCompleteMonthlyPlan(map);
 		
+	}
+
+	@Override
+	public JSONObject getMonthlyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		
+		return monthlyPlanDAO.getMonthlyPlan(map);
+	}
+
+	@Override
+	public void updateMonthlyPlan(
+			MonthlyPlanVO monthlyPlanVO
+	) throws Exception {
+		monthlyPlanDAO.updateMonthlyPlan(monthlyPlanVO);
 	}
 
 }

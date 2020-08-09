@@ -16,5 +16,9 @@ public interface MonthlyPlanController {
 	public ResponseEntity notCompleteMonthlyPlan(int monthlyPlanId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	public String getMonthlyPlan(int monthlyPlanId, HttpServletRequest request) throws Exception;
+
+	public ResponseEntity updateMonthlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 }

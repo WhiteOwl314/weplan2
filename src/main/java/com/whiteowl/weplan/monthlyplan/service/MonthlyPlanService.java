@@ -3,6 +3,7 @@ package com.whiteowl.weplan.monthlyplan.service;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
 import com.whiteowl.weplan.monthlyplan.vo.MonthlyPlanVO;
@@ -14,6 +15,10 @@ public interface MonthlyPlanService {
 	public void completeMonthlyPlan(Map<String, Object> map) throws Exception;
 
 	public void notCompleteMonthlyPlan(Map<String, Object> map) throws Exception;
+
+	public JSONObject getMonthlyPlan(Map<String, Object> map) throws Exception;
+
+	public void updateMonthlyPlan(MonthlyPlanVO monthlyPlanVO) throws Exception;
 
 
 }

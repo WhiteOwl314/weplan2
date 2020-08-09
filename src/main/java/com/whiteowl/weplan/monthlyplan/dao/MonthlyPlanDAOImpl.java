@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -46,6 +47,44 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		sqlSession.update(
 				"mapper.monthlyPlan.notCompleteMonthlyPlan", 
 				map
+		);
+	}
+
+	@Override
+	public JSONObject getMonthlyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		
+		JSONObject data = new JSONObject();
+		MonthlyPlanVO monthlyPlanVO = sqlSession.selectOne(
+				"mapper.monthlyPlan.getMonthlyPlan", 
+				map
+		);
+		
+		int id = monthlyPlanVO.getId();
+		String title = monthlyPlanVO.getTitle();
+		String content = monthlyPlanVO.getContent();
+		int importance = monthlyPlanVO.getImportance();
+		String month = monthlyPlanVO.getMonth();
+		String isCompleted = monthlyPlanVO.getIsCompleted(); 
+		
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		data.put("month", month);
+		data.put("isCompleted", isCompleted);
+		
+		return data;
+	}
+
+	@Override
+	public void updateMonthlyPlan(
+			MonthlyPlanVO monthlyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.monthlyPlan.updateMonthlyPlan", 
+				monthlyPlanVO
 		);
 	}
 

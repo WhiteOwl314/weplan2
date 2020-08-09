@@ -24,6 +24,25 @@
 		//ajax 호출
 		return data;
 	}
+	function getMonthlyPlan(monthlyPlanId) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/monthlyPlan/getMonthlyPlan.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : monthlyPlanId
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+	}
 	
 	
 	
@@ -91,19 +110,6 @@
 					location.href = url;
 				})
 				//할일 완료
-
-				if(limitDate === 'null'){
-					$('#popUp-limitDate').attr("type","hidden");
-					$('#popUp-limitDate').val("0000-00-00");
-					$("#popUp-due").attr("type","button");
-					$("#popUp-nullDate").attr("type","hidden");
-				} else {
-					$('#popUp-limitDate').attr("type","date")
-					$('#popUp-limitDate').val(limitDate);
-					$("#popUp-due").attr("type","hidden");
-					$("#popUp-nullDate").attr("type","button");
-				}
-				
 
 				//add yearlyPlan
 				$('.project_detail .project_detail_add').hover(
@@ -491,6 +497,60 @@
 							});
 							//monthlyPlan-complete_on
 							
+							$(`#project_${id}_${month}_${monthlyPlanId} .monthly_title_container`).click(function() {
+								popupReset();	
+								let form_title = "Monthly Plan";
+								let url = contextPath + "weplan/monthlyplan/updateMonthlyPlan.do";
+								let monthlyPlan = getMonthlyPlan(monthlyPlanId);
+								$('.layerpop .startDate_container').css('display','none');
+								$('.layerpop .limitDate_container').css('display','none');
+								$('.layerpop .month_container').css('display','block');
+								
+								
+								let id = decodeURIComponent( monthlyPlan.id );
+								let title = decodeURIComponent( monthlyPlan.title );
+								let content = decodeURIComponent( monthlyPlan.content );
+								let importance = decodeURIComponent( monthlyPlan.importance );
+								let month = decodeURIComponent(monthlyPlan.month);
+								let isCompleted = decodeURIComponent(monthlyPlan.isCompleted);
+
+								/* IMPORTANCE */
+								if(importance=='1'){
+									$('.layerpop .importance1').prop("checked", true);
+								} else if (importance == '2'){
+									$('.layerpop .importance2').prop("checked", true);
+								} else if (importance == '3'){
+									$('.layerpop .importance3').prop("checked", true);
+								}
+								/* IMPORTANCE */
+
+								//title
+									$('.layerpop .layerpop_title').attr('value',title);
+								//title
+
+								//month
+								if(month === 'null'){
+									$('.layerpop .layerpop_month_form').attr('value','');
+								} else{
+									$('.layerpop .layerpop_month_form').attr('value',month);
+								}
+								//month
+
+								//content
+								if(content === 'null'){
+									$('.layerpop #layerpop_form_content').text('');
+								} else{
+									$('.layerpop #layerpop_form_content').text(content);
+								}
+								//content
+
+								//id
+								$('.layerpop .layerpop_id').attr('value',id);
+								//id
+												
+								putPlaceholderAtMonth();
+								popUpSetting(form_title, url);
+							});
 
 						}
 

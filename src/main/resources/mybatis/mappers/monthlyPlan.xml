@@ -85,4 +85,39 @@
 	  		member_id = #{member_id}
 			AND ID = #{monthlyPlanId}
 	  </update>
+	<select 
+  		id="getMonthlyPlan" 
+  		resultType="monthlyPlanVO"   
+  		parameterType="java.util.Map"
+  	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			isCompleted
+		FROM W_MONTHLY_PLAN 
+		WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{monthlyPlanId}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	  <update 
+	  	id="updateMonthlyPlan" 
+		parameterType="monthlyPlanVO"
+	  >
+	    UPDATE W_MONTHLY_PLAN
+	  	SET 
+	  		title = #{title},
+	  		content = #{content},
+	  		importance = #{importance},
+	  		month = TO_DATE(#{month},'yyyy-mm')
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
+	
 </mapper>

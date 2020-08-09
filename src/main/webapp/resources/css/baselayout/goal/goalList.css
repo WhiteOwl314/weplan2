@@ -463,5 +463,9 @@
 .project_monthly_completed {
 	cursor: pointer;
 }
+.project_yearlyPlan_month_monthlyPlan .monthly_title_container{
+	cursor: pointer;
+	width: 100%;
+}
     
 /*add project form.*/

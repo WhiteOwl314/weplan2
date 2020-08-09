@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -183,5 +184,88 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return resEnt;
 
 	}
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/getMonthlyPlan.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getMonthlyPlan(
+			@RequestParam("id") int monthlyPlanId,
+			HttpServletRequest request
+	) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("monthlyPlanId", monthlyPlanId);
+		
+		JSONObject jsonObj = monthlyPlanService.getMonthlyPlan(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
+	@Override
+	@RequestMapping(
+			value="/monthlyplan/updateMonthlyPlan.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateMonthlyPlan(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String month = request.getParameter("month");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		monthlyPlanVO.setImportance(importance);
+		monthlyPlanVO.setTitle(title);
+		monthlyPlanVO.setContent(content);
+		monthlyPlanVO.setId(id);
+		monthlyPlanVO.setMember_id(member_id);
+		monthlyPlanVO.setMonth(month);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
+	
 
 }
