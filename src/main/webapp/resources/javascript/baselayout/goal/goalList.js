@@ -43,6 +43,29 @@
 		//ajax 호출
 		return data;
 	}
+
+	function getWeeklyPlanList(yearlyPlanId, month) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/weeklyplan/getweeklyPlanListByMonth.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : yearlyPlanId,
+				month : month
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		console.log(data);
+		//TODO: 여기까지
+		return data;
+	}
 	
 	
 	
@@ -438,6 +461,9 @@
 							);
 							//content
 							
+							
+							
+							
 							console.log(isCompleted);
 							if(isCompleted == 1){
 								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).css("display",'none');
@@ -459,6 +485,7 @@
 							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
 								$(this).css('display','none');
 								$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).css('display','block')
+								let weeklyPlanList = getWeeklyPlanList(id, month);
 							});
 							$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).click(function() {
 								$(this).css('display','none');

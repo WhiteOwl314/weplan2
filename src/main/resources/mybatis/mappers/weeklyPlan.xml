@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.weeklyPlan">
+
+	<select 
+		id="getweeklyPlanListByMonth" 
+		resultType="weeklyPlanVO" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			isCompleted,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			week,
+			yearly_plan_id
+		FROM W_weekly_plan 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND yearly_plan_id = #{yearlyPlanId}
+			AND month = TO_DATE(#{month}, 'YYYY-MM')
+		ORDER BY MONTH ASC, WEEK ASC
+      ]]>
+	</select>
+
+</mapper>
