@@ -38,7 +38,7 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 			int importance = weeklyPlanVO.getImportance();
 			String month = weeklyPlanVO.getMonth();
 			int week = weeklyPlanVO.getWeek();
-			int yearlyPlan_id = weeklyPlanVO.getYearlyPlan_id();
+			int yearly_plan_id = weeklyPlanVO.getYearly_plan_id();
 			
 			data.put("id", id);
 			data.put("title", title);
@@ -47,7 +47,7 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 			data.put("importance", importance);
 			data.put("month", month);
 			data.put("week", week);
-			data.put("yearlyPlan_id", yearlyPlan_id);
+			data.put("yearly_plan_id", yearly_plan_id);
 			
 			ja.add(data);
 		}

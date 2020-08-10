@@ -16,7 +16,7 @@ public class WeeklyPlanVO {
 	private String limitDate;
 	private String isDelete;
 	private String member_id;
-	private int yearlyPlan_id;
+	private int yearly_plan_id;
 
 	public int getId() {
 		return id;
@@ -84,11 +84,11 @@ public class WeeklyPlanVO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public int getYearlyPlan_id() {
-		return yearlyPlan_id;
+	public int getYearly_plan_id() {
+		return yearly_plan_id;
 	}
-	public void setYearlyPlan_id(int yearlyPlan_id) {
-		this.yearlyPlan_id = yearlyPlan_id;
+	public void setYearly_plan_id(int yearly_plan_id) {
+		this.yearly_plan_id = yearly_plan_id;
 	}
 	
 

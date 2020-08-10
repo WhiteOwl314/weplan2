@@ -62,8 +62,6 @@
 			},
 		});
 		//ajax 호출
-		console.log(data);
-		//TODO: 여기까지
 		return data;
 	}
 	
@@ -486,6 +484,7 @@
 								$(this).css('display','none');
 								$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).css('display','block')
 								let weeklyPlanList = getWeeklyPlanList(id, month);
+								console.log(weeklyPlanList);
 							});
 							$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).click(function() {
 								$(this).css('display','none');
