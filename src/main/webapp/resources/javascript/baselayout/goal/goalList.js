@@ -3,6 +3,73 @@
  */
 
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
+
+	//popUp yearlyPlan 가져오기
+	function popUp_getWeeklyPlan(id) {
+		var url = contextPath + "weplan/weeklyPlan/popUpWeeklyPlanView.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : id
+			},
+			success : function(result) {
+				let id = decodeURIComponent( result.id );
+				let title = decodeURIComponent( result.title );
+				let content = decodeURIComponent( result.content );
+				let importance = decodeURIComponent( result.importance );
+				let month = decodeURIComponent(result.month);
+				let yearly_plan_id = decodeURIComponent(result.yearly_plan_id);
+				let week = decodeURIComponent(result.week);
+				
+				/* IMPORTANCE */
+				if(importance=='1'){
+					$('.layerpop .importance1').prop("checked", true);
+				} else if (importance == '2'){
+					$('.layerpop .importance2').prop("checked", true);
+				} else if (importance == '3'){
+					$('.layerpop .importance3').prop("checked", true);
+				}
+				/* IMPORTANCE */
+
+				//title
+					$('.layerpop .layerpop_title').attr('value',title);
+				//title
+
+				//month
+				if(month === 'null'){
+					$('.layerpop .layerpop_month_form').attr('value', '');
+				} else{
+					$('.layerpop .layerpop_month_form').attr('value', month);
+				}
+				//month
+
+				//content
+				if(content === 'null'){
+					$('.layerpop #layerpop_form_content').text('');
+				} else{
+					$('.layerpop #layerpop_form_content').text(content);
+				}
+				//content
+
+				//id
+				$('.layerpop .layerpop_id').attr('value',id);
+				//id
+
+				//yearlyPlan_id
+				$('.layerpop #layerpop_yearlyPlan_id').attr('value',yearly_plan_id);
+				//yearlyPlan_id
+
+				//week
+				$('.layerpop #layerpop_week').attr('value',week);
+				//week
+			},
+
+		})
+		
+	}
+	//popUp yearlyPlan 가져오기
 	
 	function addZero(number) {
 		
@@ -663,6 +730,29 @@
 												</div>
 											</div>`
 									);
+									
+									//weeklyPlan View
+									$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .weekly_title`).click(function(event) {
+
+										//popUp reset
+										popupReset();
+										
+										$('.layerpop .limitDate_container').css('display','none');
+										$('.layerpop .startDate_container').css('display','none');
+
+										//popUp_폼 on
+										let title = "Weekly Plan";
+										let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
+										
+										//프로젝트 정보 가져오기
+										//팝업 요소에 프로젝트 정보 삽입
+										popUp_getWeeklyPlan(weeklyPlanId);
+										
+										//팝업 띄우기
+										popUpSetting(title, url);
+									});
+									//weeklyPlan View
+
 								}
 								//weeklyPlan
 								

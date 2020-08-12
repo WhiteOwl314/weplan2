@@ -63,4 +63,41 @@
 			SELECT  nvl(max(ID), 0) + 1 from W_weekly_plan	
 		]]>
 	</select> 
+	
+	<select 
+  		id="popUpWeeklyPlanView" 
+  		resultType="weeklyPlanVO"   
+		parameterType="java.util.Map"
+  	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			yearly_plan_id,
+			week
+		FROM W_weekly_plan 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND ID = #{weekly_plan_id}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	  <update 
+	  	id="updateWeeklyPlan" 
+		parameterType="weeklyPlanVO"
+	  >
+	    UPDATE W_weekly_plan
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content}
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
+	
 </mapper>

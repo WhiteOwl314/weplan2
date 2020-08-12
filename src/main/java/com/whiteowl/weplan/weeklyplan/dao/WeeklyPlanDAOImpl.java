@@ -69,4 +69,45 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 		);
 	}
 
+	@Override
+	public JSONObject popUpWeeklyPlanView(
+			Map<String, Object> map
+	) throws DataAccessException {
+		
+		JSONObject data = new JSONObject();
+		
+		WeeklyPlanVO weeklyPlanVO = sqlSession.selectOne(
+				"mapper.weeklyPlan.popUpWeeklyPlanView", 
+				map
+		);
+
+		int id = weeklyPlanVO.getId();
+		String title = weeklyPlanVO.getTitle();
+		String content = weeklyPlanVO.getContent();
+		int importance = weeklyPlanVO.getImportance();
+		String month = weeklyPlanVO.getMonth();
+		int yearly_plan_id = weeklyPlanVO.getYearly_plan_id();
+		int week = weeklyPlanVO.getWeek();
+
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		data.put("month", month);
+		data.put("yearly_plan_id", yearly_plan_id);
+		data.put("week", week);
+		
+		return data;
+	}
+
+	@Override
+	public void updateWeeklyPlan(
+			WeeklyPlanVO weeklyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.weeklyPlan.updateWeeklyPlan",
+				weeklyPlanVO
+		);
+	}
+
 }

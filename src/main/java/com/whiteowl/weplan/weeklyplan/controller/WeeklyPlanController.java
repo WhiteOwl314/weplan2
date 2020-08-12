@@ -11,5 +11,9 @@ public interface WeeklyPlanController {
 
 	public ResponseEntity addWeeklyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public String popUpWeeklyPlanView(int weekly_plan_id, HttpServletRequest request) throws Exception;
+
+	public ResponseEntity updateWeeklyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 }

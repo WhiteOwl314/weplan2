@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -112,4 +113,84 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		}
 		return resEnt ;
 	}
+	@Override
+	@RequestMapping(
+			value="/weeklyPlan/popUpWeeklyPlanView.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String popUpWeeklyPlanView(
+			@RequestParam("id") int weekly_plan_id,
+			HttpServletRequest request
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("weekly_plan_id", weekly_plan_id);
+
+		JSONObject jsonObj = weeklyPlanService.popUpWeeklyPlanView(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
+	@Override
+	@RequestMapping(
+			value="/weeklyPlan/updateWeeklyPlan.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateWeeklyPlan(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		weeklyPlanVO.setImportance(importance);
+		weeklyPlanVO.setTitle(title);
+		weeklyPlanVO.setContent(content);
+		weeklyPlanVO.setId(id);
+		weeklyPlanVO.setMember_id(member_id);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			weeklyPlanService.updateWeeklyPlan(weeklyPlanVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
+	
 }
