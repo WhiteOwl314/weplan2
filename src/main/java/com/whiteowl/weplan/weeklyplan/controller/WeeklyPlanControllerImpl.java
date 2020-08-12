@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,5 +56,60 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		);
 		
 		return jsonObj.toString();
+	}
+
+	@Override
+	@RequestMapping(
+			value="/weeklyplan/addWeeklyPlan.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity addWeeklyPlan(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String month = request.getParameter("month");
+		String member_id = request.getParameter("member_id");
+		int yearly_plan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
+		int week = Integer.parseInt(request.getParameter("week"));
+		
+		
+		weeklyPlanVO.setTitle(title);
+		weeklyPlanVO.setContent(content);
+		weeklyPlanVO.setImportance(importance);
+		weeklyPlanVO.setMonth(month);
+		weeklyPlanVO.setYearly_plan_id(yearly_plan_id);
+		weeklyPlanVO.setMember_id(member_id);
+		weeklyPlanVO.setWeek(week);
+
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+
+		try {
+			weeklyPlanService.addWeeklyPlan(weeklyPlanVO);
+
+			message = "<script>";
+			message += " alert('추가되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			e.printStackTrace();
+		}
+		return resEnt ;
 	}
 }

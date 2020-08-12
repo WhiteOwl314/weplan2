@@ -479,5 +479,64 @@
 .project_yearlyPlan_month_monthlyPlan{
 	position: relative;
 }
+.project_monthly .monthly_part_week{
+	margin-left: 35px;
+}
+.week_container .header{
+	display: flex;
+	border-bottom: 1px solid #DCDCDC;
+	font-size: 12px;
+	height: 20px;
+	position: relative;
+	cursor: pointer;
+}
+.week_container .header img{
+	width: 12px;
+}
+.week_container .weeklyPlan_container{
+	display: flex;
+	height: 30px;
+	border-bottom: 1px solid #DCDCDC;
+}
+.weeklyPlan_container .completed img{
+	width: 15px;
+    padding-top: 7px;
+    box-sizing: border-box;
+}
+.week_container .weeklyPlan_week{
+	    padding-top: 6px;
+}
+.week_container .weeklyPlan_date{
+	padding-top: 7px;
+    margin-left: 5px;
+    font-size: 9px;
+}
+.week_container .weeklyPlan_img{
+	position: absolute;
+    right: 6px;
+    top: 3.5px;
+}
+.week_container .content{
+	margin-left: 10px;
+}
+.week_container .weekly_title{
+	padding-top: 4px;
+    margin-left: 10px;
+	cursor: pointer;
+    width: 100%;
+}
+.week_container .weekly_text{
+	font-size: 14px;
+}
+.week_container .weekly_class{
+	font-size: 10px;
+    color: gray;
+}
+.week_container .weekly_part_add{
+	margin-left: 10px;
+}
+.week_container .weekly_part_add img{
+	width: 15px;
+}
     
 /*add project form.*/

@@ -155,6 +155,7 @@
 					<input type="hidden" name="id" class="layerpop_id">
 					<input id="layerpop_goal_id" type="hidden" name="goal_id">
 					<input id="layerpop_yearlyPlan_id" type="hidden" name="yearlyPlan_id">
+					<input id="layerpop_week" type="hidden" name="week">
 				</form>
 			</div>
 		</div>

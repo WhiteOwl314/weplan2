@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.whiteowl.weplan.weeklyplan.dao.WeeklyPlanDAO;
+import com.whiteowl.weplan.weeklyplan.vo.WeeklyPlanVO;
 
 @Repository("weeklyPlanService")
 public class WeeklyPlanServiceImpl implements WeeklyPlanService{
@@ -20,6 +21,13 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 			Map<String, Object> map
 	) throws Exception {
 		return weeklyPlanDAO.getweeklyPlanListByMonth(map);
+	}
+
+	@Override
+	public void addWeeklyPlan(
+			WeeklyPlanVO weeklyPlanVO
+	) throws Exception {
+		weeklyPlanDAO.addWeeklyPlan(weeklyPlanVO);
 	}
 
 }

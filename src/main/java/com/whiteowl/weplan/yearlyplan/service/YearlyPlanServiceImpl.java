@@ -73,4 +73,12 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 				.monthlyPlanList(map);
 	}
 
+	@Override
+	public JSONArray getMonthList(
+			Map<String, Object> map
+	) throws Exception {
+		return yearlyPlanDAO
+				.getMonthList(map);
+	}
+
 }

@@ -105,6 +105,7 @@
 		$('.layerpop .month_container').css('display','none');
 		$('.layerpop .layerpop_month_form').attr('value','');
 		$('#layerpop_yearlyPlan_id').attr('value','');
+		$('#layerpop_week').attr('value','');
 	}
 	function changeTitle(title) {
 		$('.layerpop .title').text(title);

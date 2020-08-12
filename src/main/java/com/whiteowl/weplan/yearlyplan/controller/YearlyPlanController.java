@@ -24,4 +24,6 @@ public interface YearlyPlanController {
 
 	public String monthlyPlanList(int yearlyPlan_id, HttpServletRequest request) throws Exception;
 
+	public String getMonthList(int yearlyPlan_id, HttpServletRequest request) throws Exception;
+
 }

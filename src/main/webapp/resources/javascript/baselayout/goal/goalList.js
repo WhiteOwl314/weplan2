@@ -4,11 +4,126 @@
 
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
 	
+	function addZero(number) {
+		
+		if(number < 10){
+			number = String(0) + String(number);
+		}
+		
+		return number;
+	}
+	
+	function getWeekByMonth(month) {
+		let monthArray = month.split('-');
+		let cYear = monthArray[0];
+		let cMonth = monthArray[1];
+		let date = new Date(cYear, cMonth-1);
+		
+	   // 월요일을 중심으로한 주차 구하기( JS기준 : 일요일 0 월요일 1 ~ 토요일 6 )
+
+        let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+        let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+
+        //첫번째 월요일
+        let firstMonday = new Date(
+        		firstDay.getFullYear(), 
+        		firstDay.getMonth(), 
+        		firstDay.getDate()
+		);
+        let firstMondayGetDay = firstMonday.getDay();
+        
+        if(firstMondayGetDay == 0){
+        	firstMonday.setDate(firstMonday.getDate() + 1);
+        } else if (firstMondayGetDay == 1){
+        } else {
+        	while(!(firstMondayGetDay == 8)){
+        		firstMonday.setDate(firstMonday.getDate() + 1);
+				firstMondayGetDay++
+        	}
+        }
+        
+        //주가 몇개인지 구하기
+        let weekNumber = 0;
+        
+        let lastMonday = new Date(
+        		firstMonday.getFullYear(), 
+        		firstMonday.getMonth(), 
+        		firstMonday.getDate()
+		);
+        
+        while(lastMonday <= lastDay){
+        	lastMonday.setDate(lastMonday.getDate() + 7);
+        	weekNumber++;
+        }
+        lastMonday.setDate(lastMonday.getDate() - 7);
+
+        
+        //반환 객체 만들기
+        
+        let weekList = new Array();
+        
+        for(let i=0 ; i < weekNumber; i++){
+			let map = new Map();
+        	let weekFirstDay = new Date(
+            		firstMonday.getFullYear(), 
+            		firstMonday.getMonth(), 
+            		firstMonday.getDate()
+    		);
+        	weekFirstDay.setDate(weekFirstDay.getDate() + 7*i);
+        	let weekLastDay = new Date(
+        			weekFirstDay.getFullYear(), 
+        			weekFirstDay.getMonth(), 
+        			weekFirstDay.getDate()
+    		);
+        	weekLastDay.setDate(weekLastDay.getDate() + 6);
+        	
+        	
+        	
+        	let weekFirstDayString = 
+        		weekFirstDay.getFullYear() + "-" 
+        		+ addZero(weekFirstDay.getMonth()) + "-"
+        		+ addZero(weekFirstDay.getDate());
+        	let weekLastDayString = 
+        		weekLastDay.getFullYear() + "-" 
+        		+ addZero(weekLastDay.getMonth()) + "-"
+        		+ addZero(weekLastDay.getDate());
+        	
+        	map.set("week",i+1);
+        	map.set("weekFirstDay",weekFirstDayString);
+        	map.set("weekLastDay",weekLastDayString);
+        	
+        	weekList.push(map);
+        	
+        }
+        
+		return weekList;
+	}
+	
 	function getMonthlyPlanList(yearlyPlan_id) {
 
 		let data;
 		//ajax 호출
 		var url = contextPath + "weplan/yearlyPlan/monthlyPlanList.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : yearlyPlan_id
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+	}
+	function getMonthList(yearlyPlan_id) {
+
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/yearlyPlan/getMonthList.do";
 		$.ajax({
 			url : url,
 			dataType :"json",
@@ -78,7 +193,6 @@
 				id : goal_id
 			},
 			success : function(result) {
-				console.log(result);
 				var id = decodeURIComponent( result.id );
 				var title = decodeURIComponent( result.title );
 				var content = decodeURIComponent( result.content );
@@ -126,7 +240,6 @@
 					var url = contextPath + "weplan/goal/completeGoal.do?id=" + id;
 					var target = event.target;
 					var check_url = contextPath + "weplan/resources/images/iconmonstr-checkbox-9.svg" 
-					console.log(target);
 					$(target).attr("src",check_url);
 					location.href = url;
 				})
@@ -142,7 +255,6 @@
 						}
 				);
 				$('.project_detail .project_detail_add').click(function(event) {
-					console.log(id);
 					popupReset();	
 					let title = "YearlyPlan 추가";
 					let url = contextPath + "weplan/yearlyPlan/addYearlyPlan.do";
@@ -171,7 +283,6 @@
 			},
 			success : function(result) {
 				
-				console.log(result);
 				
 				
 				//초기화
@@ -314,7 +425,6 @@
 
 					//yearlyPlan-detail_view
 					$(`#project_yearly_${id} .project_yearly_title`).click(function(event) {
-						console.log(event);
 
 
 						//popUp_폼 on
@@ -356,18 +466,12 @@
 						$(`#project_yearly_container_${id} .monthly_ent_add`).css('display','block');
 						$(`#project_yearly_container_${id}`).css('border-bottom','1px solid #DCDCDC');
 						
+						//month리스트 생성
+						let monthList = getMonthList(id);
 						
-						for(let i in monthlyPlanList){
+						for(let i in monthList){
+							let month = decodeURIComponent(monthList[i]);
 							
-							let monthlyPlanId = decodeURIComponent( monthlyPlanList[i].id ); 
-							var title = decodeURIComponent( monthlyPlanList[i].title );
-							var content = decodeURIComponent( monthlyPlanList[i].content );
-							var importance = decodeURIComponent( monthlyPlanList[i].importance );
-							let month = decodeURIComponent(monthlyPlanList[i].month);
-							let isCompleted = decodeURIComponent(monthlyPlanList[i].isCompleted);
-							
-							//container
-							if(!$(`#project_monthly_${id}_${month}`).length){
 								$(`#project_monthly_${id}`).append(
 										'<div' +
 											` id="project_monthly_${id}_${month}"` +
@@ -413,8 +517,174 @@
 											
 										
 								);
-							} 							
-							//container
+								
+								
+							//weeklyPlan view
+							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
+								$(this).css('display','none');
+								$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).css('display','block')
+								let weeklyPlanList = getWeeklyPlanList(id, month);
+								
+								$(`#project_monthly_${id}_${month} .monthly_part_add`).css('border-bottom','1px solid #DCDCDC')
+								
+								//이 달에는 몇개의 주가 있을까?
+								let weekList = getWeekByMonth(month);
+								//이 달에는 몇개의 주가 있을까?
+								
+								//week-container
+								for(var i in weekList){
+									let thisWeekMap = weekList[i];
+									let week = thisWeekMap.get("week");
+									let weekFirstDay = thisWeekMap.get("weekFirstDay");
+									let weekFirstDayGetDate = weekFirstDay.split("-")[2];
+									let weekLastDay = thisWeekMap.get("weekLastDay");
+									let weekLastDayGetDate = weekLastDay.split("-")[2];
+									
+									
+									if(!($(`#project_monthly_${id}_${month} .monthly_part_week`).length)){
+										$(`#project_monthly_${id}_${month}`).append(
+												`<div
+													class="monthly_part_week"
+												>
+												</div>`
+										);
+									}
+									if(!$(`#project_monthly_${id}_${month} #project_monthly_${id}_${month}_${week}`).lengh){
+										$(`#project_monthly_${id}_${month} .monthly_part_week`).append(
+												`<div
+													id= "project_monthly_${id}_${month}_${week}"
+													class="week_container"
+												>
+													<div
+														class="header"
+													>
+														<div
+															class="weeklyPlan_week"
+														>
+															${week} 주차
+														</div>
+														<div
+															class="weeklyPlan_date"
+														>
+															${weekFirstDayGetDate} - ${weekLastDayGetDate}
+														</div>
+														<div
+															class="weeklyPlan_img"
+														>
+															<img
+																src="${contextPath }weplan/resources/images/input-black-18dp.svg"
+															>
+														</div>
+													</div>
+													<div
+														class="content"
+													>
+													</div>
+													<div
+														class="weekly_part_add"
+													>
+													
+														<img
+															alt="add_button" 
+															src="${contextPath }/weplan/resources/images/add-black-18dp.svg"
+														>
+													</div>
+												</div>`
+										);
+									}
+									
+									//WeeklyPlan-add
+									$(`#project_monthly_${id}_${month}_${week} .weekly_part_add`).hover(
+											function() {
+												$(`#project_monthly_${id}_${month}_${week} .weekly_part_add img`).css('background-color', '#e2e2e2');
+												$(`#project_monthly_${id}_${month}_${week} .weekly_part_add img`).css('border-radius', '5px');
+											},
+											function() {
+												$(`#project_monthly_${id}_${month}_${week} .weekly_part_add img`).css('background-color', '#F7F7F7');
+											}
+									)
+									$(`#project_monthly_${id}_${month}_${week} .weekly_part_add`).click(function() {
+										popupReset();	
+										let title = "WeeklyPlan 추가";
+										let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
+										$('.layerpop .startDate_container').css('display','none');
+										$('.layerpop .limitDate_container').css('display','none');
+										$('.month_container .layerpop_month_form').attr('value',month);
+										$('#layerpop_week').attr('value',week);
+										$('#layerpop_yearlyPlan_id').attr('value',id);
+										checkInitialImportance();
+										popUpSetting(title, url);
+									})
+									//WeeklyPlan-add
+									
+								}
+								//week-container
+								
+								//weeklyPlan
+								for(let i in weeklyPlanList){
+									let weeklyPlanId = decodeURIComponent( weeklyPlanList[i].id ); 
+									let title = decodeURIComponent( weeklyPlanList[i].title );
+									let content = decodeURIComponent( weeklyPlanList[i].content );
+									let importance = decodeURIComponent( weeklyPlanList[i].importance );
+									let month = decodeURIComponent(weeklyPlanList[i].month);
+									let isCompleted = decodeURIComponent(weeklyPlanList[i].isCompleted);
+									let week = decodeURIComponent(weeklyPlanList[i].week);
+									
+									$(`#project_monthly_${id}_${month}_${week} .content`).append(
+											`<div
+												id="project_monthly_${id}_${month}_${week}_${weeklyPlanId}"
+												class="weeklyPlan_container"
+											>
+												<div
+													class="completed"
+												>
+													<img
+														alt="checkbox"
+														src="${contextPath }weplan/resources/images/iconmonstr-checkbox-11.svg"
+													>
+												</div>
+												<div
+													class="weekly_title"
+												>
+													<div
+														class="weekly_text"
+													>
+														${title}
+													</div>
+													<div
+														class="weekly_class"
+													>
+														weekly plan
+													</div>
+												</div>
+												<div
+													class="weekly_importance
+												>
+												</div>
+											</div>`
+									);
+								}
+								//weeklyPlan
+								
+							});
+							$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).click(function() {
+								$(this).css('display','none');
+								$(`#project_monthly_${id}_${month} .project_monthly_viewer`).css('display','block')
+								$(`#project_monthly_${id}_${month} .monthly_part_week`).text('');
+								$(`#project_monthly_${id}_${month} .monthly_part_add`).css('border-bottom','none')
+							});
+							//weeklyPlan view
+						}
+						//month리스트 생성
+						
+						for(let i in monthlyPlanList){
+							
+							let monthlyPlanId = decodeURIComponent( monthlyPlanList[i].id ); 
+							var title = decodeURIComponent( monthlyPlanList[i].title );
+							var content = decodeURIComponent( monthlyPlanList[i].content );
+							var importance = decodeURIComponent( monthlyPlanList[i].importance );
+							let month = decodeURIComponent(monthlyPlanList[i].month);
+							let isCompleted = decodeURIComponent(monthlyPlanList[i].isCompleted);
 							
 							//content
 							$(`#project_monthly_${id}_${month} .monthly_month_content`).append(
@@ -462,7 +732,6 @@
 							
 							
 							
-							console.log(isCompleted);
 							if(isCompleted == 1){
 								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed`).css("display",'none');
 								$(`#project_${id}_${month}_${monthlyPlanId} .project_monthly_completed_on`).css("display",'block');
@@ -479,18 +748,6 @@
 							}
 							/* IMPORTANCE */
 
-							//weeklyPlan view
-							$(`#project_monthly_${id}_${month} .project_monthly_viewer`).click(function() {
-								$(this).css('display','none');
-								$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).css('display','block')
-								let weeklyPlanList = getWeeklyPlanList(id, month);
-								console.log(weeklyPlanList);
-							});
-							$(`#project_monthly_${id}_${month} .project_monthly_viewer_on`).click(function() {
-								$(this).css('display','none');
-								$(`#project_monthly_${id}_${month} .project_monthly_viewer`).css('display','block')
-							});
-							//weeklyPlan view
 
 							//hover 효과
 							$(`#project_monthly_${id}_${month} .monthly_part_add`).hover(
@@ -663,7 +920,6 @@
 				}
 				//limitDate
 
-				console.log(content);
 				//content
 				if(content === 'null'){
 					$('.layerpop #layerpop_form_content').text('');

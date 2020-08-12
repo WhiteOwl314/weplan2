@@ -25,4 +25,6 @@ public interface YearlyPlanDAO {
 
 	public JSONArray monthlyPlanList(Map<String, Object> map) throws DataAccessException;
 
+	public JSONArray getMonthList(Map<String, Object> map) throws DataAccessException;
+
 }

@@ -157,5 +157,22 @@
       ]]>
 	</select>
 
+	<select 
+		id="getMonthList" 
+		resultType="String" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT distinct
+			TO_CHAR(month, 'YYYY-MM') AS month
+		FROM W_monthly_plan 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND yearly_plan_id = #{yearlyPlan_id}
+		ORDER BY MONTH ASC
+      ]]>
+	</select>
+
 
 </mapper>

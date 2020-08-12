@@ -30,4 +30,37 @@
       ]]>
 	</select>
 
+	<insert 
+		id="addWeeklyPlan" 
+		parameterType="weeklyPlanVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_weekly_plan(
+      		id,
+      		member_id,
+      		title,
+      		content,
+      		importance,
+      		month,
+      		yearly_Plan_id,
+      		week
+      	)
+      	VALUES (
+      		#{id},
+      		#{member_id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{month},'yyyy-mm'),
+      		#{yearly_plan_id},
+      		#{week}
+      	)
+      ]]>
+	</insert>
+	
+     <select id="selectNewWeeklyPlan_NO" resultType="int"  >
+		<![CDATA[
+			SELECT  nvl(max(ID), 0) + 1 from W_weekly_plan	
+		]]>
+	</select> 
 </mapper>

@@ -141,6 +141,24 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		}
 		return ja;
 	}
+
+	@Override
+	public JSONArray getMonthList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		List<String> monthList = sqlSession.selectList(
+				"mapper.yearlyPlan.getMonthList",
+				map
+		);
+		
+		for (String month : monthList) {
+			ja.add(month);
+		}
+
+		return ja;
+	}
 	
 
 }
