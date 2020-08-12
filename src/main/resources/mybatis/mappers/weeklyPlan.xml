@@ -100,4 +100,28 @@
 			AND ID = #{id}
 	  </update>
 	
+	  <update 
+	  	id="completeWeeklyPlan" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_weekly_plan
+	  	SET 
+	  		isCompleted = '1'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{weeklyPlanId}
+	  </update>
+
+	  <update 
+	  	id="notCompleteWeeklyPlan" 
+		parameterType="java.util.Map"
+	  >
+	    UPDATE W_weekly_plan
+	  	SET 
+	  		isCompleted = '0'
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{weeklyPlanId}
+	  </update>
+
 </mapper>

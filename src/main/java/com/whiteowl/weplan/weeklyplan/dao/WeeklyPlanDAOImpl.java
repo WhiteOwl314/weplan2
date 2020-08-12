@@ -110,4 +110,25 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 		);
 	}
 
+	@Override
+	public void completeWeeklyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.weeklyPlan.completeWeeklyPlan",
+				map
+		);
+	}
+
+	@Override
+	public void notCompleteWeeklyPlan(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.weeklyPlan.notCompleteWeeklyPlan",
+				map
+		);
+		
+	}
+
 }

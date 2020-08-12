@@ -711,6 +711,14 @@
 													>
 												</div>
 												<div
+													class="completed_on"
+												>
+													<img
+														alt="checkbox_on"
+														src="${contextPath }weplan/resources/images/iconmonstr-checkbox-9.svg"
+													>
+												</div>
+												<div
 													class="weekly_title"
 												>
 													<div
@@ -730,7 +738,32 @@
 												</div>
 											</div>`
 									);
+
+									if(isCompleted == 1){
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed`).css("display",'none');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'block');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","line-through");
+									}
+									//weeklyPlan-complete
+									$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed`).click(function(event) {
+										var url = contextPath + "weplan/weeklyPlan/completeWeeklyPlan.do?id=" + weeklyPlanId;
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed`).css("display",'none');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'block');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","line-through");
+										location.href = url;
+									});
+									//weeklyPlan-complete
 									
+									//weeklyPlan-complete_on
+									$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed_on`).click(function(event) {
+										var url = contextPath + "weplan/weeklyPlan/notCompleteWeeklyPlan.do?id=" + weeklyPlanId;
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed`).css("display",'block');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'none');
+										$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","none");
+										location.href = url;
+									});
+									//weeklyPlan-complete_on
+											
 									//weeklyPlan View
 									$(`#project_monthly_${id}_${month}_${week}_${weeklyPlanId} .weekly_title`).click(function(event) {
 

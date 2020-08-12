@@ -17,4 +17,8 @@ public interface WeeklyPlanService {
 
 	public void updateWeeklyPlan(WeeklyPlanVO weeklyPlanVO) throws Exception;
 
+	public void completeWeeklyPlan(Map<String, Object> map)throws Exception;
+
+	public void notCompleteWeeklyPlan(Map<String, Object> map) throws Exception;
+
 }

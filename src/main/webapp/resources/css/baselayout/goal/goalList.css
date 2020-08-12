@@ -503,6 +503,18 @@
     padding-top: 7px;
     box-sizing: border-box;
 }
+.weeklyPlan_container .completed_on img{
+	width: 15px;
+    padding-top: 7px;
+    box-sizing: border-box;
+}
+.weeklyPlan_container .completed_on{
+	display: none;
+	cursor: pointer;
+}
+.weeklyPlan_container .completed{
+	cursor: pointer;
+}
 .week_container .weeklyPlan_week{
 	    padding-top: 6px;
 }

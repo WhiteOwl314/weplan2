@@ -45,4 +45,19 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 		weeklyPlanDAO.updateWeeklyPlan(weeklyPlanVO);
 	}
 
+	@Override
+	public void completeWeeklyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		weeklyPlanDAO.completeWeeklyPlan(map);
+		
+	}
+
+	@Override
+	public void notCompleteWeeklyPlan(
+			Map<String, Object> map
+	) throws Exception {
+		weeklyPlanDAO.notCompleteWeeklyPlan(map);
+	}
+
 }

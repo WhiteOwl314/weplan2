@@ -18,4 +18,8 @@ public interface WeeklyPlanDAO {
 
 	public void updateWeeklyPlan(WeeklyPlanVO weeklyPlanVO) throws DataAccessException;
 
+	public void completeWeeklyPlan(Map<String, Object> map) throws DataAccessException;
+
+	public void notCompleteWeeklyPlan(Map<String, Object> map) throws DataAccessException; 
+
 }

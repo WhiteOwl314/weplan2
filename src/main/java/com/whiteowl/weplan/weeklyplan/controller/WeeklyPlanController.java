@@ -15,5 +15,11 @@ public interface WeeklyPlanController {
 
 	public ResponseEntity updateWeeklyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ResponseEntity completeWeeklyPlan(int weeklyPlanId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
+	public ResponseEntity notCompleteWeeklyPlan(int weeklyPlanId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
+
 
 }
