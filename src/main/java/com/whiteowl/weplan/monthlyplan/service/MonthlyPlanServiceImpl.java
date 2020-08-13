@@ -96,4 +96,11 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 		return monthlyPlanDAO.getMonthlyPlanListByYear(map);
 	}
 
+	@Override
+	public void addMonthlyPlanNullYearlyId(
+			MonthlyPlanVO monthlyPlanVO
+	) throws Exception {
+		monthlyPlanDAO.addMonthlyPlanNullYearlyId(monthlyPlanVO);
+	}
+
 }

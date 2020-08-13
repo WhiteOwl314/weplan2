@@ -25,4 +25,6 @@ public interface MonthlyPlanDAO {
 
 	public JSONArray getMonthlyPlanListByYear(Map<String, Object> map) throws DataAccessException;
 
+	public void addMonthlyPlanNullYearlyId(MonthlyPlanVO monthlyPlanVO)throws DataAccessException;
+
 }

@@ -136,6 +136,17 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		return ja;
 	}
 
+	@Override
+	public void addMonthlyPlanNullYearlyId(
+			MonthlyPlanVO monthlyPlanVO
+	) throws DataAccessException {
+		int id = sqlSession.selectOne(
+				"mapper.monthlyPlan.selectNewMonthlyPlan_NO");
+		monthlyPlanVO.setId(id);
+		
+		sqlSession.insert("mapper.monthlyPlan.addMonthlyPlanNullYearlyId", monthlyPlanVO);
+	}
+
 
 
 }

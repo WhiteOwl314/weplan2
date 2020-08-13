@@ -10,8 +10,17 @@ table tr td{
 }
 
 #yearlyView_month_container .yearlyView_month{
-	width: 100px;
-	height: 100px;
+	width: 200px;
+	height: 200px;
 	border: 1px solid black;
 }
+#yearlyView_month_container .yearlyView_month .body{
+	height: 80px;
+	overflow: auto;
+}
+.yearlyView_month_monthlyPlan .monthly_completed_on{
+	display: none;
+}
+
+
 

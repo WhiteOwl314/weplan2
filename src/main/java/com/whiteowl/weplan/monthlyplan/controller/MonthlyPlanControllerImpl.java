@@ -51,14 +51,13 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String month = request.getParameter("month");
 		String member_id = request.getParameter("member_id");
-		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
+		
 		
 		
 		monthlyPlanVO.setTitle(title);
 		monthlyPlanVO.setContent(content);
 		monthlyPlanVO.setImportance(importance);
 		monthlyPlanVO.setMonth(month);
-		monthlyPlanVO.setYearlyPlan_id(yearlyPlan_id);
 		monthlyPlanVO.setMember_id(member_id);
 
 		String referer = request.getHeader("Referer");
@@ -69,7 +68,14 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			monthlyPlanService.addMonthlyPlan(monthlyPlanVO);
+
+			if(request.getParameter("yearlyPlan_id") != "") {
+				int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
+				monthlyPlanVO.setYearlyPlan_id(yearlyPlan_id);
+				monthlyPlanService.addMonthlyPlan(monthlyPlanVO);
+			} else {
+				monthlyPlanService.addMonthlyPlanNullYearlyId(monthlyPlanVO);
+			}
 
 			message = "<script>";
 			message += " alert('추가되었습니다.');";

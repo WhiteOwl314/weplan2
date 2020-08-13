@@ -177,5 +177,29 @@
       ]]>
 	</select>
 
+	<insert 
+		id="addMonthlyPlanNullYearlyId" 
+		parameterType="monthlyPlanVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_MONTHLY_PLAN(
+      		id,
+      		member_id,
+      		title,
+      		content,
+      		importance,
+      		month
+      	)
+      	VALUES (
+      		#{id},
+      		#{member_id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{month},'yyyy-mm')
+      	)
+      ]]>
+	</insert>
+	
 
 </mapper>

@@ -885,7 +885,7 @@
 							$(`#project_monthly_${id}_${month} .monthly_part_add`).click(function() {
 								
 								popupReset();	
-								let title = "YearlyPlan 추가";
+								let title = "Monthly Plan 추가";
 								let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
 								$('.layerpop .startDate_container').css('display','none');
 								$('.layerpop .limitDate_container').css('display','none');

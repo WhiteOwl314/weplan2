@@ -25,5 +25,7 @@ public interface MonthlyPlanService {
 
 	public JSONArray getMonthlyPlanListByYear(Map<String, Object> map) throws Exception;
 
+	public void addMonthlyPlanNullYearlyId(MonthlyPlanVO monthlyPlanVO) throws Exception;
+
 
 }
