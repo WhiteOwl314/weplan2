@@ -201,5 +201,15 @@
       ]]>
 	</insert>
 	
+	  <update 
+	  	id="moveMonth" 
+		parameterType="monthlyPlanVO"
+	  >
+	    UPDATE W_MONTHLY_PLAN
+	  	SET month = TO_DATE(#{month},'yyyy-mm')
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
 
 </mapper>

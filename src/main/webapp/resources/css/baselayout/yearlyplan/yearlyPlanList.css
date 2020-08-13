@@ -10,17 +10,80 @@ table tr td{
 }
 
 #yearlyView_month_container .yearlyView_month{
-	width: 200px;
+	width: 260px;
 	height: 200px;
-	border: 1px solid black;
+	border: 1px solid #DCDCDC;
+	margin-top: 10px;
+	margin-left: 10px;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 3px 2px 4px -1px rgba(0,0,0,.06);
 }
 #yearlyView_month_container .yearlyView_month .body{
-	height: 80px;
+	height: 145px;	
 	overflow: auto;
 }
 .yearlyView_month_monthlyPlan .monthly_completed_on{
 	display: none;
 }
+#yearlyView #yearlyView_header{
+	border-bottom: 1px solid #DCDCDC;
+	height: 90px;
+}
+#yearlyView_header #yearlyView_header_title{
+    padding-top: 35px;
+    padding-left: 40px;
+    font-size: 30px;
+    box-sizing: border-box;
+}
+#yearlyView_month_container{
+	padding: 30px 0px 30px 30px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.yearlyView_month .header{
+	height: 30px;
+	border-bottom: 1px solid #DCDCDC;
+}
+.yearlyView_month .header .header_text{
+	padding: 10px;
+	box-sizing: border-box;
+}
+#yearlyView_month_container .body_padding{
+	padding: 0px 10px 0px 10px;
+}
 
+#yearlyView_month_container .yearlyView_month_monthlyPlan{
+	padding: 10px 0px 0px 0px;
+	display: flex;
+}
+#yearlyView_month_container .yearlyView_month_monthlyPlan img{
+	width: 13px;
+    padding-top: 1.5px;
+    box-sizing: border-box;
+}
 
+#yearlyView_month_container .monthly_title{
+	font-size: 14px;
+    margin-left: 5px;
+    padding-top: 2.5px;
+}
+#yearlyView_month_container .monthly_title_container{
+	cursor: pointer;
+	width: 100%;
+}
+
+#yearlyView_month_container .monthly_part_add img{
+	margin-left: 10px;
+}
+#yearlyView_month_container .yearlyView_month_monthlyPlan{
+	position: relative;
+}
+#yearlyView_month_container .monthly_importance{
+	border-radius: 5px;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	right: 2px;
+	top: 11px;
+}
 

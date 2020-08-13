@@ -32,15 +32,25 @@
     
   </head>
     <body>
+    <div
+    	id="member_id"
+    	style="display:none;"
+    >
+    	${member.id }
+    </div>
     <div id="container">
       <div id="header">
          <tiles:insertAttribute name="header"/>
       </div>
-      <div id="sidebar-left">
-          <tiles:insertAttribute name="side"/> 
-      </div>
-      <div id="content">
-          <tiles:insertAttribute name="body"/>
+      <div
+      	id="body"
+      >
+		  <div id="sidebar-left">
+			  <tiles:insertAttribute name="side"/> 
+		  </div>
+		  <div id="content">
+			  <tiles:insertAttribute name="body"/>
+		  </div>
       </div>
       <div id="footer">
           <tiles:insertAttribute name="footer"/>

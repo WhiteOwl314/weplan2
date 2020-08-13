@@ -147,6 +147,16 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		sqlSession.insert("mapper.monthlyPlan.addMonthlyPlanNullYearlyId", monthlyPlanVO);
 	}
 
+	@Override
+	public void moveMonth(
+			MonthlyPlanVO monthlyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.monthlyPlan.moveMonth", 
+				monthlyPlanVO
+		);
+	}
+
 
 
 }

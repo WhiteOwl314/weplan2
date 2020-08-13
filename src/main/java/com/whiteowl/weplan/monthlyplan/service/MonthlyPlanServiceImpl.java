@@ -103,4 +103,11 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 		monthlyPlanDAO.addMonthlyPlanNullYearlyId(monthlyPlanVO);
 	}
 
+	@Override
+	public void moveMonth(
+			MonthlyPlanVO monthlyPlanVO
+	) throws Exception {
+		monthlyPlanDAO.moveMonth(monthlyPlanVO);
+	}
+
 }

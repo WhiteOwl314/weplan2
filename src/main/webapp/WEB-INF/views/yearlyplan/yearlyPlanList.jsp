@@ -11,14 +11,13 @@
 <div
 	id="yearlyView"
 >
-	</div>
 	<div
 		id="yearlyView_header"
 	>
 		<div
 			id="yearlyView_header_title"
 		>
-			${year }
+			${year }년
 		</div>
 	</div>
 	<div

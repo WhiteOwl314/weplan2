@@ -21,8 +21,8 @@ function getMonthlyPlanList(year) {
 
 $(document).ready(function() {
 	
-	let year = $.trim($('#yearlyView_header_title').text());
-	
+	let year = location.search.split("=")[1]; 
+		
 	//month 생성
 		for(let i=0; i<12; i++){
 			let month = "";
@@ -34,16 +34,24 @@ $(document).ready(function() {
 			$(`#yearlyView_month_container`).append(
 					`<div
 						id="yearlyView_month_${year}-${month}"
-						class="yearlyView_month"
+						class="yearlyView_month bucket"
 					>
 						<div
 							class="header"
 						>
-							${month} 월
+							<div
+								class="header_text"
+							>
+								${month} 월
+							</div>
 						</div>
 						<div
 							class="body"
 						>
+							<div
+								class="body_padding"
+							>
+							</div>
 						</div>
 						<div
 							class="monthly_part_add"
@@ -83,6 +91,48 @@ $(document).ready(function() {
 				});
 				
 			//MonthlyPlan-add
+				
+//			var monthlyPlan_id = "";
+//			var month = "";
+			//drop
+				$(`#yearlyView_month_${year}-${month}`).on({
+
+						'dragenter': function(event){
+							$(`#yearlyView_month_${year}-${month}`).addClass('is-selecting');
+						},
+						'dragleave': function(event){
+							$(`#yearlyView_month_${year}-${month}`).removeClass('is-selecting');
+						},
+						//브라우저 표중 동작 취소
+						'dragover': function(event){
+							event.preventDefault();
+						},
+						'drop': function(event){
+							
+							var dragId = event.originalEvent.dataTransfer.getData('text');
+							let _monthlyPlan_id = dragId.split('_')[4];
+							let fullMonth = year + "-" + month;
+
+							var moveEle = $(`#${dragId}`).get(0);
+							$(`#yearlyView_month_${year}-${month}`).removeClass('is-selecting');
+							$(`#yearlyView_month_${year}-${month} .body_padding`).append(moveEle);
+							var member_id = $.trim($('#member_id').text());
+
+							console.log(member_id);
+
+							$.ajax({
+								 url: `${contextPath}/weplan/monthlyPlan/moveMonth.do`,	
+								 data: { 
+									 id: _monthlyPlan_id,
+									 month: fullMonth,
+									 member_id: member_id
+								},
+								 method: "POST", 
+								 dataType: "json"
+							})
+						}
+				});
+			//drop
 
 		}
 	//month 생성
@@ -102,12 +152,10 @@ $(document).ready(function() {
 			let month = decodeURIComponent(monthlyPlanList[i].month);
 			let yearly_plan_id = decodeURIComponent(monthlyPlanList[i].yearly_plan_id);
 			
-			$(`#yearlyView_month_${month} .body`).append(
+			$(`#yearlyView_month_${month} .body_padding`).append(
 					`<div
 						id="yearlyView_month_monthlyPlan_${month}_${id}"
-						ondragstart="dragStart(event);" 
 						draggable="true" 
-						ondragend="dragEnd(event)"
 						class="yearlyView_month_monthlyPlan"
 					>
 						<div
@@ -133,11 +181,6 @@ $(document).ready(function() {
 								class="monthly_title"
 							>
 								${title}
-							</div>
-							<div
-								class="monthly_class"
-							>
-								monthly plan
 							</div>
 						</div>
 						<div
@@ -243,6 +286,23 @@ $(document).ready(function() {
 					popUpSetting(form_title, url);
 				});
 				//view
+
+				//drop
+					$(`#yearlyView_month_monthlyPlan_${month}_${id}`).on({
+							//드래그 시작 시 요소 id 저장
+							'dragstart': function(event){
+								  var _thisId = `yearlyView_month_monthlyPlan_${month}_${id}`;
+//								  monthlyPlan_id = _thisId.split('_')[4];
+								  $(`#yearlyView_month_monthlyPlan_${month}_${id}`).addClass('is-dragging');
+								  event.originalEvent.dataTransfer.setData('text', _thisId);
+							},
+							//드래그 종료
+							'dragend': function(event){
+								  $(`#yearlyView_month_monthlyPlan_${month}_${id}`).removeClass('is-dragging');
+							}
+					});
+				//drop
+
 			//특성
 		}
 		//위치시키기

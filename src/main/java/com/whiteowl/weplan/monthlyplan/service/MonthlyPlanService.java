@@ -27,5 +27,7 @@ public interface MonthlyPlanService {
 
 	public void addMonthlyPlanNullYearlyId(MonthlyPlanVO monthlyPlanVO) throws Exception;
 
+	void moveMonth(MonthlyPlanVO monthlyPlanVO) throws Exception; 
+
 
 }

@@ -125,7 +125,7 @@
 						class="side_icon"
 					>
 					<div class="side-menu-item-text">
-						Yealy Plan
+						Yearly View
 					</div>
 				</div>
 			</a>
@@ -135,7 +135,7 @@
 		<div id="side-menu-item_5">
 			<a 
 				id="sideMenu_monthlyPlan_a"
-				href="${contextPath}/monthlyPlan/monthlyPlanList.do"  
+				href="${contextPath}/weeklyPlan/monthlyView.do"  
 				class="no-underline"
 			>
 				<div 
@@ -148,7 +148,7 @@
 						class="side_icon"
 					>
 					<div class="side-menu-item-text">
-						Monthly Plan
+						Monthly View
 					</div>
 				</div>
 			</a>
@@ -170,7 +170,7 @@
 						class="side_icon"
 					>
 					<div class="side-menu-item-text">
-						Weekly Plan
+						Weekly View
 					</div>
 				</div>
 			</a>

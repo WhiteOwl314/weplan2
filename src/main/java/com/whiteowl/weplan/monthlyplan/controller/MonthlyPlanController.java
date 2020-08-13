@@ -24,6 +24,9 @@ public interface MonthlyPlanController {
 
 	public String getMonthlyPlanListByYear(String year, HttpServletRequest request) throws Exception;
 
+	public String moveMonth(int id, String month, String member_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception;
+
 
 
 }

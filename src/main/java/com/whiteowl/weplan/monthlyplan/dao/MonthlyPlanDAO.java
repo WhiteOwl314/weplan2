@@ -27,4 +27,6 @@ public interface MonthlyPlanDAO {
 
 	public void addMonthlyPlanNullYearlyId(MonthlyPlanVO monthlyPlanVO)throws DataAccessException;
 
+	public void moveMonth(MonthlyPlanVO monthlyPlanVO) throws DataAccessException;
+
 }

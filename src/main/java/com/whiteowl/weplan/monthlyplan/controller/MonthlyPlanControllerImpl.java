@@ -217,33 +217,22 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		
 		return jsonObj.toString();
 	}
+
 	@Override
 	@RequestMapping(
-			value="/monthlyplan/updateMonthlyPlan.do",
+			value="/monthlyPlan/moveMonth.do",
 			method = RequestMethod.POST
 	)
 	@ResponseBody
-	public ResponseEntity updateMonthlyPlan(
+	public String moveMonth(
+			@RequestParam("id") int id,
+			@RequestParam("month") String month,
+			@RequestParam("member_id") String member_id,
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
 		
-		int importance = Integer.parseInt(request.getParameter("importance"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String month = request.getParameter("month");
-		int id = Integer.parseInt(
-				request.getParameter("id")
-		);
-
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		
-		monthlyPlanVO.setImportance(importance);
-		monthlyPlanVO.setTitle(title);
-		monthlyPlanVO.setContent(content);
 		monthlyPlanVO.setId(id);
 		monthlyPlanVO.setMember_id(member_id);
 		monthlyPlanVO.setMonth(month);
@@ -255,23 +244,9 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
-		try {
-			monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);
-			
-			message = "<script>";
-			message += " alert('수정되었습니다.');";
-			message += " location.href='"+ referer +"'; ";
-			message +=" </script>";
-		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-		} catch (Exception e) {
-			message = " <script>";
-			message += " alert('실패했습니다.');";
-			message += " location.href='"+ referer +"'; ";
-			message +=" </script>";
-			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
-			e.printStackTrace();
-		}
-		return resEnt;
+		monthlyPlanService.moveMonth(monthlyPlanVO);
+
+		return "success";
 	}
 	
 	
@@ -330,5 +305,107 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return jsonObj.toString();
 	}
 	
+//	@Override
+//	@RequestMapping(
+//			value="/monthlyPlan/moveMonth.do",
+//			method = RequestMethod.GET	
+//	)
+//	@ResponseBody
+//	public ResponseEntity moveMonth(
+//			@RequestParam("id") int id,
+//			@RequestParam("month") String month,
+//			HttpServletRequest request,
+//			HttpServletResponse response
+//	)throws Exception {
+//		HttpSession session = request.getSession();
+//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+//		String member_id = (String)memberVO.getId();
+//		
+//		monthlyPlanVO.setId(id);
+//		monthlyPlanVO.setMember_id(member_id);
+//		monthlyPlanVO.setMonth(month);
+//		
+//		String referer = request.getHeader("Referer");
+//		
+//		String message;
+//		ResponseEntity resEnt=null;
+//		HttpHeaders responseHeaders = new HttpHeaders();
+//		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+//
+//		try {
+//			monthlyPlanService.moveMonth(monthlyPlanVO);
+//			
+//			message = "<script>";
+//			message += " alert('수정되었습니다.');";
+//			message += " location.href='"+ referer +"'; ";
+//			message +=" </script>";
+//		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+//		} catch (Exception e) {
+//			message = " <script>";
+//			message += " alert('실패했습니다.');";
+//			message += " location.href='"+ referer +"'; ";
+//			message +=" </script>";
+//			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+//			e.printStackTrace();
+//		}
+//		return resEnt;
+//	}
+
+	@Override
+	@RequestMapping(
+			value="/monthlyplan/updateMonthlyPlan.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public ResponseEntity updateMonthlyPlan(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String month = request.getParameter("month");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		monthlyPlanVO.setImportance(importance);
+		monthlyPlanVO.setTitle(title);
+		monthlyPlanVO.setContent(content);
+		monthlyPlanVO.setId(id);
+		monthlyPlanVO.setMember_id(member_id);
+		monthlyPlanVO.setMonth(month);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		try {
+			monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);
+			
+			message = "<script>";
+			message += " alert('수정되었습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		return resEnt;
+	}
 
 }
