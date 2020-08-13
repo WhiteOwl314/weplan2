@@ -187,6 +187,62 @@ $(document).ready(function() {
 					$(`#yearlyView_month_monthlyPlan_${month}_${id} .monthly_importance`).css("background-color", 'white');
 				}
 				/* IMPORTANCE */
+				
+				
+				//view
+				$(`#yearlyView_month_monthlyPlan_${month}_${id} .monthly_title_container`).click(function() {
+					popupReset();	
+					let form_title = "Monthly Plan";
+					let url = contextPath + "weplan/monthlyplan/updateMonthlyPlan.do";
+					let monthlyPlan = getMonthlyPlan(id);
+					$('.layerpop .startDate_container').css('display','none');
+					$('.layerpop .limitDate_container').css('display','none');
+					$('.layerpop .month_container').css('display','block');
+					
+					let title = decodeURIComponent( monthlyPlan.title );
+					let content = decodeURIComponent( monthlyPlan.content );
+					let importance = decodeURIComponent( monthlyPlan.importance );
+					let month = decodeURIComponent(monthlyPlan.month);
+					let isCompleted = decodeURIComponent(monthlyPlan.isCompleted);
+
+					/* IMPORTANCE */
+					if(importance=='1'){
+						$('.layerpop .importance1').prop("checked", true);
+					} else if (importance == '2'){
+						$('.layerpop .importance2').prop("checked", true);
+					} else if (importance == '3'){
+						$('.layerpop .importance3').prop("checked", true);
+					}
+					/* IMPORTANCE */
+
+					//title
+						$('.layerpop .layerpop_title').attr('value',title);
+					//title
+
+					//month
+					if(month === 'null'){
+						$('.layerpop .layerpop_month_form').attr('value','');
+					} else{
+						$('.layerpop .layerpop_month_form').attr('value',month);
+					}
+					//month
+
+					//content
+					if(content === 'null'){
+						$('.layerpop #layerpop_form_content').text('');
+					} else{
+						$('.layerpop #layerpop_form_content').text(content);
+					}
+					//content
+
+					//id
+					$('.layerpop .layerpop_id').attr('value',id);
+					//id
+									
+					putPlaceholderAtMonth();
+					popUpSetting(form_title, url);
+				});
+				//view
 			//특성
 		}
 		//위치시키기
