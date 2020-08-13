@@ -12,6 +12,16 @@
         <result property="content" column="content" />
         <result property="importance" column="importance" />
 	</resultMap>
+	<resultMap type="HashMap" id="monthHashMap">
+		<!-- property: dto / column: db필드명  -->
+		<result property="id" column="ID" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="importance" column="importance" />
+        <result property="month" column="month" />
+        <result property="isCompleted" column="isCompleted" />
+        <result property="yearly_plan_id" column="yearly_plan_id" />
+	</resultMap>
 	
 	<select 
 		id="monthlyPlanList" 
@@ -119,5 +129,53 @@
 	  		member_id = #{member_id}
 			AND ID = #{id}
 	  </update>
+
+	<select 
+		id="monthlyPlanListByMonth" 
+		resultMap="monthHashMap" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			isCompleted,
+			yearly_plan_id
+		FROM W_MONTHLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND MONTH = TO_DATE(#{month},'yyyy-mm')
+		ORDER BY credate DESC
+      ]]>
+	</select>
 	
+	<select 
+		id="getMonthlyPlanListByYear" 
+		resultType="monthlyPlanVO" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			isCompleted,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			yearly_plan_id as yearlyPlan_id
+		FROM W_MONTHLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND MONTH BETWEEN TO_DATE('${startDate}', 'YYYY-MM-DD') 
+                   AND TO_DATE('${limitDate}', 'YYYY-MM-DD') + 0.99999
+		ORDER BY credate ASC
+      ]]>
+	</select>
+
+
 </mapper>

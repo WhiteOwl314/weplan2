@@ -20,5 +20,10 @@ public interface MonthlyPlanController {
 
 	public ResponseEntity updateMonthlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public ModelAndView yearlyView(int year, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public String getMonthlyPlanListByYear(String year, HttpServletRequest request) throws Exception;
+
+
 
 }

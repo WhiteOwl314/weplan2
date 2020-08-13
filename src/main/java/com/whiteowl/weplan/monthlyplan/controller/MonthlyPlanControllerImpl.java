@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -265,6 +266,62 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			e.printStackTrace();
 		}
 		return resEnt;
+	}
+	
+	
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/yearlyView.do",
+			method = RequestMethod.GET
+	)
+	public ModelAndView yearlyView(
+			@RequestParam("year") int year,
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		
+		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/monthlyPlan/yearlyView");
+
+		mav.addObject("year", year);
+		mav.addObject("member_id", member_id);
+
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/getMonthlyPlanListByYear.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getMonthlyPlanListByYear(
+			@RequestParam("year") String year,
+			HttpServletRequest request
+	) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		String startDate = year + "-01-01";
+		String limitDate = year + "-12-31";
+		map.put("startDate", startDate);
+		map.put("limitDate", limitDate);
+		
+		JSONArray jsonObj = monthlyPlanService.getMonthlyPlanListByYear(
+				map
+		);
+		
+		return jsonObj.toString();
 	}
 	
 

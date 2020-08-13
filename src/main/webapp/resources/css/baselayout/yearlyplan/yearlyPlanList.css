@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.auto{
+	overflow: auto;
+}
+.month-container {
+}
+table tr td{
+	width:10px;
+}
+
+#yearlyView_month_container .yearlyView_month{
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+}
+

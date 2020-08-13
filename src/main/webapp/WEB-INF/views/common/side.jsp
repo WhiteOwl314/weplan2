@@ -112,7 +112,7 @@
 		<div id="side-menu-item_4">
 			<a 
 				id="sideMenu_yearlyPlan_a"
-				href="${contextPath}/yearlyPlan/yearlyPlanList.do?year=0000"  
+				href="${contextPath}/monthlyPlan/yearlyView.do"  
 				class="no-underline"
 			>
 				<div 
@@ -221,7 +221,7 @@
  			/* 현재날짜로 세팅 */
  			var today = new Date();   
  			var year = today.getFullYear();
- 			var href = '${contextPath}/yearlyPlan/yearlyPlanList.do?year=' + year;
+ 			var href = '${contextPath}/monthlyPlan/yearlyView.do?year=' + year;
  			$('#sideMenu_yearlyPlan_a').attr('href',href);
  			/* 현재날짜로 세팅 */
 
