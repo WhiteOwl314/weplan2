@@ -538,6 +538,7 @@
 						
 						for(let i in monthList){
 							let month = decodeURIComponent(monthList[i]);
+							console.log(month);
 							
 								$(`#project_monthly_${id}`).append(
 										'<div' +

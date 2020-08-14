@@ -27,8 +27,29 @@
 			id="monthlyView_body_left"
 		>
 			<div
+				class="monthlyView_body_left_header"
+			>
+				<div
+					id="monthlyView_body_left_header_title"
+				>
+					Monthly Plan
+				</div>
+			</div>
+			<div
 				class="monthlyView_body_left_padding"
 			>
+			</div>
+			<div
+				id="monthlyView_body_left_add"
+			>
+				<div
+					id="monthlyView_body_left_add_button"
+				>
+					<img
+						alt="add_button" 
+						src="${contextPath }/resources/images/add-black-18dp.svg"
+					>
+				</div>
 			</div>
 		</div>
 		<div
@@ -41,3 +62,4 @@
 		</div>
 	</div>
 </div>
+<script src="${contextPath }/resources/javascript/baselayout/monthlyplan/monthlyPlanList.js"></script>

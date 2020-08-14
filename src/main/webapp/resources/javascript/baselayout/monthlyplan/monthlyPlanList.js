@@ -4,6 +4,7 @@
  */
 
 function getMonthlyPlanListByMonth(month) {
+		console.log(month);
 		let data;
 		//ajax 호출
 		var url = contextPath + "weplan/monthlyPlan/getMonthlyPlanListByMonth.do";
@@ -25,6 +26,36 @@ function getMonthlyPlanListByMonth(month) {
 
 $(document).ready(function() {
 	let month = location.search.split("=")[1]; 
+	
+	//monthlyPlanAdd
+
+		//hover 효과
+		$(`#monthlyView_body_left_add_button`).hover(
+				function() {
+						$(`#monthlyView_body_left_add_button img`).css('background-color', '#e2e2e2');
+				},function(){
+						$(`#monthlyView_body_left_add_button img`).css('background-color', '#F7F7F7');
+				}
+		);
+		//hover 효과
+		
+		//popUp
+		$(`#monthlyView_body_left_add_button`).click(function() {
+			
+			popupReset();	
+			let title = "Monthly Plan 추가";
+			let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+			$('.layerpop .startDate_container').css('display','none');
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .month_container').css('display','block');
+			$('.month_container .layerpop_month_form').attr('value',`${month}`);
+			checkInitialImportance();
+			putPlaceholderAtMonth();
+			popUpSetting(title, url);
+		});
+		//popUp
+		
+	//monthlyPlanAdd
 	
 	//monthlyPlan 리스트 생성
 		//조회
@@ -177,6 +208,11 @@ $(document).ready(function() {
 	//monthlyPlan 리스트 생성
 	
 	//week 생성
+		//이 달에는 몇개의 주가 있을까?
+//		let weekList = getWeekByMonth(month);
+//		console.log(weekList);
+		//이 달에는 몇개의 주가 있을까?
+
 	//week 생성
 	
 	//weeklyPlan 배치

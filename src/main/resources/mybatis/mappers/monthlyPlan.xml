@@ -230,7 +230,7 @@
 		WHERE 
 			isdelete = '0' 
 			AND member_id = #{member_id}
-			AND MONTH >= TO_DATE('${month}-01', 'YYYY-MM-DD')
+			AND MONTH >= TO_DATE('${month}-01', 'YYYY-MM-DD') 
 			AND MONTH <= TO_DATE('${month}-30', 'YYYY-MM-DD') 
 		ORDER BY credate ASC
       ]]>

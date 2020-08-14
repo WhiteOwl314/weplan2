@@ -250,18 +250,20 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 	}
 	
 	
-	@Override
 	@RequestMapping(
 			value="/monthlyPlan/yearlyView.do",
 			method = RequestMethod.GET
 	)
 	public ModelAndView yearlyView(
-			@RequestParam("year") int year,
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
 		
+		
 		request.setCharacterEncoding("utf-8");
+
+		String year = request.getParameter("year");
+
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
@@ -408,7 +410,6 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return resEnt;
 	}
 
-	@Override
 	@RequestMapping(
 			value="/monthlyPlan/getMonthlyPlanListByMonth.do",
 			method = RequestMethod.POST,
@@ -416,9 +417,10 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 	)
 	@ResponseBody
 	public String getMonthlyPlanListByMonth(
-			@RequestParam("month") String month,
 			HttpServletRequest request
 	) throws Exception {
+		
+		String month = request.getParameter("month");
 
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
