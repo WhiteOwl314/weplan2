@@ -26,5 +26,7 @@ public interface WeeklyPlanController {
 
 	public String getWeeklyPlanListByOnlyMonth(HttpServletRequest request) throws Exception;
 
+	public String moveWeek(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 
 }

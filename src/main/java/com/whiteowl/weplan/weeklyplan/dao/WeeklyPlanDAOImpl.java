@@ -168,4 +168,14 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 		return ja;
 	}
 
+	@Override
+	public void moveWeek(
+			WeeklyPlanVO weeklyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.weeklyPlan.moveWeek",
+				weeklyPlanVO
+		);
+	}
+
 }

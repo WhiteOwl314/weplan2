@@ -148,4 +148,16 @@
       ]]>
 	</select>
 
+	  <update 
+	  	id="moveWeek" 
+		parameterType="weeklyPlanVO"
+	  >
+	    UPDATE W_weekly_plan
+	  	SET 
+	  		week = #{week}
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
+	
 </mapper>

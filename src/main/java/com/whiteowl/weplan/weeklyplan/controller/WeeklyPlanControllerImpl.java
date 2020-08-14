@@ -342,6 +342,39 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		
 		return jsonObj.toString();
 	}
+
+	@Override
+	@RequestMapping(
+			value="/weeklyPlan/moveWeek.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public String moveWeek(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		int week = Integer.parseInt(request.getParameter("week"));
+		String member_id = request.getParameter("member_id");
+
+		
+		weeklyPlanVO.setId(id);
+		weeklyPlanVO.setMember_id(member_id);
+		weeklyPlanVO.setWeek(week);
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		weeklyPlanService.moveWeek(weeklyPlanVO);
+
+		return "success";
+	}
 	
 	
 }

@@ -363,6 +363,43 @@ $(document).ready(function() {
 			})
 			//WeeklyPlan-add
 
+			//drop
+				$(`#monthlyView_week_${month}_${week}`).on({
+
+						'dragenter': function(event){
+							$(`#monthlyView_week_${month}_${week}`).addClass('is-selecting');
+						},
+						'dragleave': function(event){
+							$(`#monthlyView_week_${month}_${week}`).removeClass('is-selecting');
+						},
+						//브라우저 표중 동작 취소
+						'dragover': function(event){
+							event.preventDefault();
+						},
+						'drop': function(event){
+							
+							var dragId = event.originalEvent.dataTransfer.getData('text');
+							let _weeklyPlanId = dragId.split('_')[5];
+
+							var moveEle = $(`#${dragId}`).get(0);
+							$(`#monthlyView_week_${month}_${week}`).removeClass('is-selecting');
+							$(`#monthlyView_week_${month}_${week} .content`).append(moveEle);
+							var member_id = $.trim($('#member_id').text());
+
+							$.ajax({
+								 url: `${contextPath}/weplan/weeklyPlan/moveWeek.do`,	
+								 data: { 
+									 id: _weeklyPlanId,
+									 week: week,
+									 member_id: member_id
+								},
+								 method: "POST", 
+								 dataType: "json"
+							})
+						}
+				});
+			//drop
+
 		}
 		//week-container
 	//week 생성
@@ -382,6 +419,7 @@ $(document).ready(function() {
 						`<div
 							id="monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}"
 							class="weeklyPlan_container"
+							draggable="true" 
 						>
 							<div
 								class="completed"
@@ -465,6 +503,22 @@ $(document).ready(function() {
 					popUpSetting(title, url);
 				});
 				//weeklyPlan View
+
+				//drop
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}`).on({
+							//드래그 시작 시 요소 id 저장
+							'dragstart': function(event){
+								  var _thisId = `monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}`;
+//								  monthlyPlan_id = _thisId.split('_')[4];
+								  $(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}`).addClass('is-dragging');
+								  event.originalEvent.dataTransfer.setData('text', _thisId);
+							},
+							//드래그 종료
+							'dragend': function(event){
+								  $(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}`).removeClass('is-dragging');
+							}
+					});
+				//drop
 
 			//특성
 		}

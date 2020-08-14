@@ -86,4 +86,7 @@ table tr td{
 	right: 2px;
 	top: 11px;
 }
+#yearlyView_month_container .header_text{
+	font-size: 13px;
+}
 

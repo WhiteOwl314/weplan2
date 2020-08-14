@@ -67,4 +67,12 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 		return weeklyPlanDAO.getWeeklyPlanListByOnlyMonth(map);
 	}
 
+	@Override
+	public void moveWeek(
+			WeeklyPlanVO weeklyPlanVO
+	) throws Exception {
+		weeklyPlanDAO.moveWeek(weeklyPlanVO);
+		
+	}
+
 }

@@ -225,6 +225,14 @@
  			$('#sideMenu_yearlyPlan_a').attr('href',href);
  			/* 현재날짜로 세팅 */
 
+ 			/* 현재날짜로 세팅 */
+ 			var today = new Date();   
+ 			var year = today.getFullYear();
+ 			var fullMonth = today.getMonth() + 1;
+ 			var href = '${contextPath}/weeklyPlan/monthlyView.do?month=' + year + "-" + fullMonth;
+ 			$('#sideMenu_monthlyPlan_a').attr('href',href);
+ 			/* 현재날짜로 세팅 */
+
 	    }
 		
 		/* 사이드메뉴에 마우스 올렸을때 */
