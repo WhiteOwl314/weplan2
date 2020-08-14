@@ -108,7 +108,8 @@ function getWeeklyPlanListByMonth(month) {
 }
 
 $(document).ready(function() {
-	let month = location.search.split("=")[1]; 
+	let month = addZero(location.search.split("=")[1]); 
+	console.log(month);
 	
 	//monthlyPlanAdd
 
