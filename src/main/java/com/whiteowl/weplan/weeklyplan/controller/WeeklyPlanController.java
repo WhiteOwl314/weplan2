@@ -24,5 +24,7 @@ public interface WeeklyPlanController {
 
 	public ModelAndView monthlyView(String month, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
+	public String getWeeklyPlanListByOnlyMonth(HttpServletRequest request) throws Exception;
+
 
 }

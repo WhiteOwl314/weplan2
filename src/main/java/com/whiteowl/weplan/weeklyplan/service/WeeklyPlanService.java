@@ -21,4 +21,6 @@ public interface WeeklyPlanService {
 
 	public void notCompleteWeeklyPlan(Map<String, Object> map) throws Exception;
 
+	public JSONArray getWeeklyPlanListByOnlyMonth(Map<String, Object> map)throws Exception;
+
 }

@@ -60,4 +60,11 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 		weeklyPlanDAO.notCompleteWeeklyPlan(map);
 	}
 
+	@Override
+	public JSONArray getWeeklyPlanListByOnlyMonth(
+			Map<String, Object> map
+	) throws Exception {
+		return weeklyPlanDAO.getWeeklyPlanListByOnlyMonth(map);
+	}
+
 }

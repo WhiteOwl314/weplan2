@@ -131,4 +131,41 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 		
 	}
 
+	@Override
+	public JSONArray getWeeklyPlanListByOnlyMonth(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		List<WeeklyPlanVO> weeklyPlanList = sqlSession.selectList(
+				"mapper.weeklyPlan.getWeeklyPlanListByOnlyMonth",
+				map
+		);
+		
+		for (WeeklyPlanVO weeklyPlanVO : weeklyPlanList) {
+			JSONObject data = new JSONObject();
+			
+			int id = weeklyPlanVO.getId();
+			String title = weeklyPlanVO.getTitle();
+			String content = weeklyPlanVO.getContent();
+			String isCompleted = weeklyPlanVO.getIsCompleted();
+			int importance = weeklyPlanVO.getImportance();
+			String month = weeklyPlanVO.getMonth();
+			int week = weeklyPlanVO.getWeek();
+			int yearly_plan_id = weeklyPlanVO.getYearly_plan_id();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("month", month);
+			data.put("week", week);
+			data.put("yearly_plan_id", yearly_plan_id);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
+
 }

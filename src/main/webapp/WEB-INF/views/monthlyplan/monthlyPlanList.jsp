@@ -62,4 +62,5 @@
 		</div>
 	</div>
 </div>
+
 <script src="${contextPath }/resources/javascript/baselayout/monthlyplan/monthlyPlanList.js"></script>

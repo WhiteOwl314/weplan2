@@ -24,6 +24,26 @@ function getMonthlyPlanListByMonth(month) {
 		return data;
 }
 
+function getWeeklyPlanListByMonth(month) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/weeklyplan/getWeeklyPlanListByOnlyMonth.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				month : month
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+}
+
 $(document).ready(function() {
 	let month = location.search.split("=")[1]; 
 	
@@ -122,6 +142,7 @@ $(document).ready(function() {
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed`).css("display",'none');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed_on`).css("display",'block');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_title`).css("text-decoration","line-through");
+						console.log("complete 실행됨")
 						location.href = url;
 					});
 					//monthlyPlan-complete
@@ -131,6 +152,7 @@ $(document).ready(function() {
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed`).css("display",'block');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed_on`).css("display",'none');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_title`).css("text-decoration","none");
+						console.log("complete_on 실행됨")
 						location.href = url;
 					});
 					//monthlyPlan-complete_on
@@ -209,12 +231,83 @@ $(document).ready(function() {
 	
 	//week 생성
 		//이 달에는 몇개의 주가 있을까?
-//		let weekList = getWeekByMonth(month);
-//		console.log(weekList);
+		let weekList = getWeekByMonth(month);
 		//이 달에는 몇개의 주가 있을까?
+		
+		//week-container
+		for(var i in weekList){
+			let thisWeekMap = weekList[i];
+			let week = thisWeekMap.get("week");
+			let weekFirstDay = thisWeekMap.get("weekFirstDay");
+			let weekFirstDayGetDate = weekFirstDay.split("-")[2];
+			let weekLastDay = thisWeekMap.get("weekLastDay");
+			let weekLastDayGetDate = weekLastDay.split("-")[2];
+			
+			$(`#monthlyView_body_right .monthlyView_body_right_padding`).append(
+					`<div
+						id= "monthlyView_week_${month}_${week}"
+						class="week_container"
+					>
+						<div
+							class="header"
+						>
+							<div
+								class="weeklyPlan_week"
+							>
+								${week} 주차
+							</div>
+							<div
+								class="weeklyPlan_date"
+							>
+								${weekFirstDayGetDate} - ${weekLastDayGetDate}
+							</div>
+						</div>
+						<div
+							class="content"
+						>
+						</div>
+						<div
+							class="weekly_part_add"
+						>
+							<img
+								alt="add_button" 
+								src="${contextPath }/weplan/resources/images/add-black-18dp.svg"
+							>
+						</div>
+					</div>`
+			);
+			
+			//WeeklyPlan-add
+			$(`#monthlyView_week_${month}_${week} .weekly_part_add`).hover(
+					function() {
+						$(`#monthlyView_week_${month}_${week} .weekly_part_add img`).css('background-color', '#e2e2e2');
+						$(`#monthlyView_week_${month}_${week} .weekly_part_add img`).css('border-radius', '5px');
+					},
+					function() {
+						$(`#monthlyView_week_${month}_${week} .weekly_part_add img`).css('background-color', '#F7F7F7');
+					}
+			)
+			$(`#monthlyView_week_${month}_${week} .weekly_part_add`).click(function() {
+				popupReset();	
+				let title = "WeeklyPlan 추가";
+				let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
+				$('.layerpop .startDate_container').css('display','none');
+				$('.layerpop .limitDate_container').css('display','none');
+				$('.layerpop .month_container').css('display','block');
+				$('.month_container .layerpop_month_form').attr('value',month);
+				$('#layerpop_week').attr('value',week);
+				checkInitialImportance();
+				popUpSetting(title, url);
+			})
+			//WeeklyPlan-add
 
+		}
+		//week-container
 	//week 생성
 	
 	//weeklyPlan 배치
+		let weeklyPlanList = getWeeklyPlanListByMonth(month);
+		console.log(weeklyPlanList);
+		
 	//weeklyPlan 배치
 });
