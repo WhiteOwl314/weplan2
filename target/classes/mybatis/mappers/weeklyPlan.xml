@@ -159,5 +159,32 @@
 	  		member_id = #{member_id}
 			AND ID = #{id}
 	  </update>
+
+	<insert 
+		id="addWeeklyPlanNullYearlyPlanId" 
+		parameterType="weeklyPlanVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_weekly_plan(
+      		id,
+      		member_id,
+      		title,
+      		content,
+      		importance,
+      		month,
+      		week
+      	)
+      	VALUES (
+      		#{id},
+      		#{member_id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{month},'yyyy-mm'),
+      		#{week}
+      	)
+      ]]>
+	</insert>
+	
 	
 </mapper>

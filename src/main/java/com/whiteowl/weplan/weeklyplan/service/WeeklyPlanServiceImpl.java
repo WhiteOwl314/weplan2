@@ -75,4 +75,11 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 		
 	}
 
+	@Override
+	public void addWeeklyPlanNullYearlyPlanId(
+			WeeklyPlanVO weeklyPlanVO
+	) throws Exception {
+		weeklyPlanDAO.addWeeklyPlanNullYearlyPlanId(weeklyPlanVO);
+	}
+
 }

@@ -178,4 +178,18 @@ public class WeeklyPlanDAOImpl implements WeeklyPlanDAO{
 		);
 	}
 
+	@Override
+	public void addWeeklyPlanNullYearlyPlanId(
+			WeeklyPlanVO weeklyPlanVO
+	) throws DataAccessException {
+		int id = sqlSession.selectOne(
+				"mapper.weeklyPlan.selectNewWeeklyPlan_NO");
+		weeklyPlanVO.setId(id);
+		
+		sqlSession.selectList(
+				"mapper.weeklyPlan.addWeeklyPlanNullYearlyPlanId",
+				weeklyPlanVO
+		);
+	}
+
 }

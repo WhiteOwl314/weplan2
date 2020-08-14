@@ -24,6 +24,8 @@ public interface WeeklyPlanDAO {
 
 	public JSONArray getWeeklyPlanListByOnlyMonth(Map<String, Object> map) throws DataAccessException;
 
-	public void moveWeek(WeeklyPlanVO weeklyPlanVO) throws DataAccessException; 
+	public void moveWeek(WeeklyPlanVO weeklyPlanVO) throws DataAccessException;
+
+	public void addWeeklyPlanNullYearlyPlanId(WeeklyPlanVO weeklyPlanVO) throws DataAccessException; 
 
 }

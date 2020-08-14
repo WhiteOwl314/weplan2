@@ -77,15 +77,14 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String month = request.getParameter("month");
 		String member_id = request.getParameter("member_id");
-		int yearly_plan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		int week = Integer.parseInt(request.getParameter("week"));
+		
 		
 		
 		weeklyPlanVO.setTitle(title);
 		weeklyPlanVO.setContent(content);
 		weeklyPlanVO.setImportance(importance);
 		weeklyPlanVO.setMonth(month);
-		weeklyPlanVO.setYearly_plan_id(yearly_plan_id);
 		weeklyPlanVO.setMember_id(member_id);
 		weeklyPlanVO.setWeek(week);
 
@@ -97,7 +96,14 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			weeklyPlanService.addWeeklyPlan(weeklyPlanVO);
+
+			if(request.getParameter("yearlyPlan_id") == "") {
+				weeklyPlanService.addWeeklyPlanNullYearlyPlanId(weeklyPlanVO);
+			} else {
+				int yearly_plan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
+				weeklyPlanVO.setYearly_plan_id(yearly_plan_id);
+				weeklyPlanService.addWeeklyPlan(weeklyPlanVO);
+			}
 
 			message = "<script>";
 			message += " alert('추가되었습니다.');";

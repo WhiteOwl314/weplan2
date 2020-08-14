@@ -25,4 +25,6 @@ public interface WeeklyPlanService {
 
 	public void moveWeek(WeeklyPlanVO weeklyPlanVO) throws Exception;
 
+	public void addWeeklyPlanNullYearlyPlanId(WeeklyPlanVO weeklyPlanVO)throws Exception;
+
 }
