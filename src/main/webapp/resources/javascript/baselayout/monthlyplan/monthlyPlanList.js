@@ -68,7 +68,6 @@ function popUp_getWeeklyPlan(id) {
 }
 
 function getMonthlyPlanListByMonth(month) {
-		console.log(month);
 		let data;
 		//ajax 호출
 		var url = contextPath + "weplan/monthlyPlan/getMonthlyPlanListByMonth.do";
@@ -158,6 +157,7 @@ $(document).ready(function() {
 			$(`#monthlyView_body_left .monthlyView_body_left_padding`).append(
 					`<div
 						id="monthlyView_monthlyPlan_${id}"
+						class="monthlyView_monthlyPlan"
 					>
 						<div
 							class="monthly_completed"
@@ -206,7 +206,6 @@ $(document).ready(function() {
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed`).css("display",'none');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed_on`).css("display",'block');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_title`).css("text-decoration","line-through");
-						console.log("complete 실행됨")
 						location.href = url;
 					});
 					//monthlyPlan-complete
@@ -216,7 +215,6 @@ $(document).ready(function() {
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed`).css("display",'block');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_completed_on`).css("display",'none');
 						$(`#monthlyView_monthlyPlan_${id} .monthly_title`).css("text-decoration","none");
-						console.log("complete_on 실행됨")
 						location.href = url;
 					});
 					//monthlyPlan-complete_on
@@ -371,7 +369,6 @@ $(document).ready(function() {
 	
 	//weeklyPlan 배치
 		let weeklyPlanList = getWeeklyPlanListByMonth(month);
-		console.log(weeklyPlanList);
 
 		for(let i in weeklyPlanList){
 			let weeklyPlanId = decodeURIComponent( weeklyPlanList[i].id ); 

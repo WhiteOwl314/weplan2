@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+#monthlyView_header{
+	height: 90px;
+	border-bottom: 1px solid #DCDCDC;
+}
+#monthlyView_header_title{
+	padding-top: 35px;
+	padding-left: 40px;
+	font-size: 30px;
+	box-sizing: border-box;
+}
+#monthlyView_body{
+	display: flex;
+}
+#monthlyView_body_left{
+	width: 20%;
+    height: 600px;
+    border-right: 1px solid #DCDCDC;
+    background-color: #f7f7f7;
+}
+#monthlyView_body_left .monthlyView_body_left_header{
+}
+#monthlyView_body_left_header_title{
+	padding: 10px;
+}
+#monthlyView_body_left_add_button img{
+	margin-left: 7px;
+}
+#monthlyView_body_left_body{
+	height: 100%;
+	overflow: auto;
+}
+#monthlyView_body_left_body .monthlyView_body_left_padding{
+	padding: 0px 10px 10px 10px;
+	box-sizing: border-box;
+}
+#monthlyView_body_left_body .monthlyView_monthlyPlan {
+	display: flex;
+}
+#monthlyView_body_left_body .monthlyView_monthlyPlan .monthly_title{
+	font-size: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 2.7px 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 6px;
+}
+#monthlyView_body_left_body .monthlyView_monthlyPlan img{
+	width: 11px;
+	padding-top: 2.5px;
+}
+#monthlyView_body_left_body .monthly_completed_on{
+	display: none;
+}
+#monthlyView_body_left_body .monthly_title_container{
+	width: 100%;
+}
+
+
+
+
+

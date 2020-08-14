@@ -17,7 +17,7 @@
 		<div
 			id="monthlyView_header_title"
 		>
-			${month }월
+			${month }
 		</div>
 	</div>
 	<div
@@ -36,19 +36,23 @@
 				</div>
 			</div>
 			<div
-				class="monthlyView_body_left_padding"
-			>
-			</div>
-			<div
-				id="monthlyView_body_left_add"
+				id="monthlyView_body_left_body"
 			>
 				<div
-					id="monthlyView_body_left_add_button"
+					class="monthlyView_body_left_padding"
 				>
-					<img
-						alt="add_button" 
-						src="${contextPath }/resources/images/add-black-18dp.svg"
+				</div>
+				<div
+					id="monthlyView_body_left_add"
+				>
+					<div
+						id="monthlyView_body_left_add_button"
 					>
+						<img
+							alt="add_button" 
+							src="${contextPath }/resources/images/add-black-18dp.svg"
+						>
+					</div>
 				</div>
 			</div>
 		</div>
