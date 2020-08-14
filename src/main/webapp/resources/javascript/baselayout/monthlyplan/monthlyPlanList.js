@@ -407,11 +407,6 @@ $(document).ready(function() {
 								>
 									${title}
 								</div>
-								<div
-									class="weekly_class"
-								>
-									weekly plan
-								</div>
 							</div>
 							<div
 								class="weekly_importance

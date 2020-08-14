@@ -15,7 +15,6 @@
 }
 #monthlyView_body_left{
 	width: 20%;
-    height: 600px;
     border-right: 1px solid #DCDCDC;
     background-color: #f7f7f7;
 }
@@ -58,7 +57,57 @@
 	width: 100%;
 }
 
+#monthlyView_body_right{
+	width: 100%;
+}
+#monthlyView_body_right .monthlyView_body_right_padding{
+	height: 600px;
+	padding-left: 20px;
+	padding-right: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+#monthlyView_body_right .week_container{
+	width: 45%;
+    height: 180px;
+    border: 1px solid #DCDCDC;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 3px 2px 4px -1px rgba(0,0,0,.06);
+}
 
+#monthlyView_body_left_add_button{
+	cursor: pointer;
+}
+#monthlyView_body_left_add_button img{
+	border-radius: 5px;
+}
+#monthlyView_body_right .week_container .header{
+	padding-left: 10px;
+	
+}
 
+#monthlyView_body_right .weeklyPlan_container{
+	height: 20px;
+}
+#monthlyView_body_right .weekly_text{
+	font-size: 12px;
+}
+#monthlyView_body_right .weeklyPlan_container img{
+	width: 11px;
+    padding-top: 3px;
+    box-sizing: border-box;
+}
+#monthlyView_body_right .week_container .weekly_title{
+	padding-top: 4px;
+    margin-left: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+#monthlyView_body_right .weekly_part_add{
+	cursor: pointer;
+}
 
 
