@@ -184,6 +184,7 @@
 			},
 		});
 		//ajax 호출
+		console.log(data);
 		return data;
 	}
 	function getMonthList(yearlyPlan_id) {
@@ -526,6 +527,7 @@
 						let url = contextPath + "weplan/yearlyPlan/monthlyPlanList.do?id=" + id;
 						//ajax 호출하고 map List 으로 리턴 
 						let monthlyPlanList = getMonthlyPlanList(id);
+						console.log(monthlyPlanList);
 						//ajax 호출하고 map List 으로 리턴 
 						
 						$(this).css('display','none');

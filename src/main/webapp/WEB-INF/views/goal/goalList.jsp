@@ -112,3 +112,4 @@
 	</div>
 
 </div>
+	<script src="${contextPath }/resources/javascript/baselayout/goal/goalList.js"></script>

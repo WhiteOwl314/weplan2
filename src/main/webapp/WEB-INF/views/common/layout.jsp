@@ -87,8 +87,6 @@
 	<script src="${contextPath }/resources/javascript/baselayout/absolutevalue/absoluteValueList.js"></script>
 	<script src="${contextPath }/resources/javascript/inbox_button.js"></script>
 	<script src="${contextPath }/resources/javascript/resizer.js"></script>
-	<script src="${contextPath }/resources/javascript/baselayout/goal/goalList.js"></script>
-	<script src="${contextPath }/resources/javascript/baselayout/yearlyplan/yearlyPlanList.js"></script>
 
     
   </body>

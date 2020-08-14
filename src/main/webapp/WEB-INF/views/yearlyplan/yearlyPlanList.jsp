@@ -29,3 +29,4 @@
 		</div>
 	</div>
 </div>
+<script src="${contextPath }/resources/javascript/baselayout/yearlyplan/yearlyPlanList.js"></script>
