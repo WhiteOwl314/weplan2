@@ -157,6 +157,42 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		);
 	}
 
+	@Override
+	public JSONArray getMonthlyPlanListByMonth(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		
+		List<MonthlyPlanVO> monthlyPlanList = sqlSession.selectList(
+			"mapper.monthlyPlan.getMonthlyPlanListByMonth", 
+			map
+		);
+		
+		for (MonthlyPlanVO monthlyPlanVO : monthlyPlanList) {
+			JSONObject data = new JSONObject();
+			
+			int id = monthlyPlanVO.getId();
+			String title = monthlyPlanVO.getTitle();
+			String content = monthlyPlanVO.getContent();
+			String isCompleted = monthlyPlanVO.getIsCompleted();
+			int importance = monthlyPlanVO.getImportance();
+			String month = monthlyPlanVO.getMonth();
+			int yearlyPlan_id = monthlyPlanVO.getYearlyPlan_id();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("month", month);
+			data.put("yearly_plan_id", yearlyPlan_id);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
+
 
 
 }

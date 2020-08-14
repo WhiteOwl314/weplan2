@@ -135,7 +135,7 @@
 		<div id="side-menu-item_5">
 			<a 
 				id="sideMenu_monthlyPlan_a"
-				href="${contextPath}/weeklyPlan/monthlyView.do"  
+				href="${contextPath}/weeklyPlan/monthlyView.do?month=2020-12"  
 				class="no-underline"
 			>
 				<div 

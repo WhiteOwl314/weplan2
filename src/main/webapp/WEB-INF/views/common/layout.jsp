@@ -89,6 +89,8 @@
 	<script src="${contextPath }/resources/javascript/resizer.js"></script>
 	<script src="${contextPath }/resources/javascript/baselayout/goal/goalList.js"></script>
 	<script src="${contextPath }/resources/javascript/baselayout/yearlyplan/yearlyPlanList.js"></script>
+	<script src="${contextPath }/resources/javascript/baselayout/monthlyplan/monthlyPlanList.js"></script>
+
     
   </body>
 </html>

@@ -110,4 +110,11 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 		monthlyPlanDAO.moveMonth(monthlyPlanVO);
 	}
 
+	@Override
+	public JSONArray getMonthlyPlanListByMonth(
+			Map<String, Object> map
+	) throws Exception {
+		return monthlyPlanDAO.getMonthlyPlanListByMonth(map);
+	}
+
 }

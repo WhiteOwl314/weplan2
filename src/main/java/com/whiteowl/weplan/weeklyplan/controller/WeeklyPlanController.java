@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.ModelAndView;
 
 public interface WeeklyPlanController {
 
@@ -20,6 +21,8 @@ public interface WeeklyPlanController {
 
 	public ResponseEntity notCompleteWeeklyPlan(int weeklyPlanId, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
+
+	public ModelAndView monthlyView(String month, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 }

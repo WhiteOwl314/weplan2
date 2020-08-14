@@ -212,4 +212,28 @@
 			AND ID = #{id}
 	  </update>
 
+	<select 
+		id="getMonthlyPlanListByMonth" 
+		resultType="monthlyPlanVO" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			isCompleted,
+			TO_CHAR(month, 'YYYY-MM') AS month,
+			yearly_plan_id as yearlyPlan_id
+		FROM W_MONTHLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND MONTH >= TO_DATE('${month}-01', 'YYYY-MM-DD')
+			AND MONTH <= TO_DATE('${month}-30', 'YYYY-MM-DD') 
+		ORDER BY credate ASC
+      ]]>
+	</select>
+
 </mapper>

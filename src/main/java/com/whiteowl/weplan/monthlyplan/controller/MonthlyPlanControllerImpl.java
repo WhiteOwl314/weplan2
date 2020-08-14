@@ -408,4 +408,31 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return resEnt;
 	}
 
+	@Override
+	@RequestMapping(
+			value="/monthlyPlan/getMonthlyPlanListByMonth.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getMonthlyPlanListByMonth(
+			@RequestParam("month") String month,
+			HttpServletRequest request
+	) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("month", month);
+		
+		JSONArray jsonObj = monthlyPlanService.getMonthlyPlanListByMonth(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
+
 }
