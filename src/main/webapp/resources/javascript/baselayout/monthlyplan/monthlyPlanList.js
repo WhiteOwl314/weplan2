@@ -2,6 +2,70 @@
  * 
  * 
  */
+function popUp_getWeeklyPlan(id) {
+	var url = contextPath + "weplan/weeklyPlan/popUpWeeklyPlanView.do";
+	$.ajax({
+		url : url,
+		dataType :"json",
+		type : "POST",
+		data : {
+			id : id
+		},
+		success : function(result) {
+			let id = decodeURIComponent( result.id );
+			let title = decodeURIComponent( result.title );
+			let content = decodeURIComponent( result.content );
+			let importance = decodeURIComponent( result.importance );
+			let month = decodeURIComponent(result.month);
+			let yearly_plan_id = decodeURIComponent(result.yearly_plan_id);
+			let week = decodeURIComponent(result.week);
+			
+			/* IMPORTANCE */
+			if(importance=='1'){
+				$('.layerpop .importance1').prop("checked", true);
+			} else if (importance == '2'){
+				$('.layerpop .importance2').prop("checked", true);
+			} else if (importance == '3'){
+				$('.layerpop .importance3').prop("checked", true);
+			}
+			/* IMPORTANCE */
+
+			//title
+				$('.layerpop .layerpop_title').attr('value',title);
+			//title
+
+			//month
+			if(month === 'null'){
+				$('.layerpop .layerpop_month_form').attr('value', '');
+			} else{
+				$('.layerpop .layerpop_month_form').attr('value', month);
+			}
+			//month
+
+			//content
+			if(content === 'null'){
+				$('.layerpop #layerpop_form_content').text('');
+			} else{
+				$('.layerpop #layerpop_form_content').text(content);
+			}
+			//content
+
+			//id
+			$('.layerpop .layerpop_id').attr('value',id);
+			//id
+
+			//yearlyPlan_id
+			$('.layerpop #layerpop_yearlyPlan_id').attr('value',yearly_plan_id);
+			//yearlyPlan_id
+
+			//week
+			$('.layerpop #layerpop_week').attr('value',week);
+			//week
+		},
+
+	})
+	
+}
 
 function getMonthlyPlanListByMonth(month) {
 		console.log(month);
@@ -308,6 +372,110 @@ $(document).ready(function() {
 	//weeklyPlan 배치
 		let weeklyPlanList = getWeeklyPlanListByMonth(month);
 		console.log(weeklyPlanList);
+
+		for(let i in weeklyPlanList){
+			let weeklyPlanId = decodeURIComponent( weeklyPlanList[i].id ); 
+			let title = decodeURIComponent( weeklyPlanList[i].title );
+			let content = decodeURIComponent( weeklyPlanList[i].content );
+			let importance = decodeURIComponent( weeklyPlanList[i].importance );
+			let isCompleted = decodeURIComponent(weeklyPlanList[i].isCompleted);
+			let week = decodeURIComponent(weeklyPlanList[i].week);
+			
+			$(`#monthlyView_week_${month}_${week} .content`).append(
+						`<div
+							id="monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId}"
+							class="weeklyPlan_container"
+						>
+							<div
+								class="completed"
+							>
+								<img
+									alt="checkbox"
+									src="${contextPath }weplan/resources/images/iconmonstr-checkbox-11.svg"
+								>
+							</div>
+							<div
+								class="completed_on"
+							>
+								<img
+									alt="checkbox_on"
+									src="${contextPath }weplan/resources/images/iconmonstr-checkbox-9.svg"
+								>
+							</div>
+							<div
+								class="weekly_title"
+							>
+								<div
+									class="weekly_text"
+								>
+									${title}
+								</div>
+								<div
+									class="weekly_class"
+								>
+									weekly plan
+								</div>
+							</div>
+							<div
+								class="weekly_importance
+							>
+							</div>
+						</div>`
+			);
+			//특성
+
+				//weeklyPlan-initial
+				if(isCompleted == 1){
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed`).css("display",'none');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'block');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","line-through");
+				}
+				//weeklyPlan-initial
+
+				//weeklyPlan-complete
+				$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed`).click(function(event) {
+					var url = contextPath + "weplan/weeklyPlan/completeWeeklyPlan.do?id=" + weeklyPlanId;
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed`).css("display",'none');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'block');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","line-through");
+					location.href = url;
+				});
+				//weeklyPlan-complete
+				
+				//weeklyPlan-complete_on
+				$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed_on`).click(function(event) {
+					var url = contextPath + "weplan/weeklyPlan/notCompleteWeeklyPlan.do?id=" + weeklyPlanId;
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed`).css("display",'block');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .completed_on`).css("display",'none');
+					$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .weekly_text`).css("text-decoration","none");
+					location.href = url;
+				});
+				//weeklyPlan-complete_on
+						
+				//weeklyPlan View
+				$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .weekly_title`).click(function(event) {
+
+					//popUp reset
+					popupReset();
+					
+					$('.layerpop .limitDate_container').css('display','none');
+					$('.layerpop .startDate_container').css('display','none');
+
+					//popUp_폼 on
+					let title = "Weekly Plan";
+					let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
+					
+					//프로젝트 정보 가져오기
+					//팝업 요소에 프로젝트 정보 삽입
+					popUp_getWeeklyPlan(weeklyPlanId);
+					
+					//팝업 띄우기
+					popUpSetting(title, url);
+				});
+				//weeklyPlan View
+
+			//특성
+		}
 		
 	//weeklyPlan 배치
 });
