@@ -343,14 +343,24 @@ public class TaskControllerImpl implements TaskController{
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
 		
-		String month = request.getParameter("month");
+		String fullMonth = request.getParameter("month");
+		
+		String year = fullMonth.split("-")[0];
+		String month = fullMonth.split("-")[1];
+		
+		
+		
 		String week = request.getParameter("week");
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/task/weeklyView");
+		
+		
 
 		mav.addObject("member_id", member_id);
+		mav.addObject("year", year);
 		mav.addObject("month", month);
+		mav.addObject("fullMonth", fullMonth);
 		mav.addObject("week", week);
 		
 		return mav;

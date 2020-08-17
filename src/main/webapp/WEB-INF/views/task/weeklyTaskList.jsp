@@ -20,7 +20,7 @@
 		<div
 			id="weeklyView_header_title"
 		>
-			${month }
+			${year }년 ${month }월 ${week }주
 		</div>
 	</div>
 	<div
@@ -35,7 +35,7 @@
 				<div
 					id="weeklyView_body_left_header_title"
 				>
-					Monthly Plan
+					Weekly Plan
 				</div>
 			</div>
 			<div

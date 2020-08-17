@@ -52,7 +52,6 @@ $('document').ready(function() {
 		 var date = today.getDate();
 		 var fullDate = year + "-" + fullMonth + "-" + date;
 		 var thisWeek =  getWeekByDate(fullDate);
-		 console.log(thisWeek);
 
 		 var href = `${contextPath}weplan/task/weeklyView.do?month=${year}-${fullMonth}&week=${thisWeek}`;
 		 $('#sideMenu_weeklyView_a').attr('href',href);

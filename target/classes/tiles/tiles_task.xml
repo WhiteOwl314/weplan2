@@ -16,4 +16,10 @@
 		<put-attribute name="title" value="WEEKLY TASK LIST" />
 		<put-attribute name="body" value="/WEB-INF/views/task/weeklyTaskList.jsp" />
 	</definition>
+
+	<definition name="/task/weeklyView" extends="baseLayout">
+		<put-attribute name="title" value="WEEKLY TASK LIST" />
+		<put-attribute name="body" value="/WEB-INF/views/task/weeklyTaskList.jsp" />
+	</definition>
+
 </tiles-definitions>

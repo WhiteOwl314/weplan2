@@ -313,11 +313,18 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
 
+		String fullMonth = month;
+		
+		String year = fullMonth.split("-")[0];
+		String month2 = fullMonth.split("-")[1];
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/weeklyPlan/monthlyView");
 
 		mav.addObject("member_id", member_id);
-		mav.addObject("month", month);
+		mav.addObject("month", month2);
+		mav.addObject("year", year);
+		mav.addObject("fullMonth",fullMonth);
 		
 		return mav;
 	}
