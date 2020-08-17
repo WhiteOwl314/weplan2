@@ -13,6 +13,41 @@ var contextPath = window.location.protocol + "//" + window.location.host + "/";
 		return number;
 	}
 
+	function getWeekByDate(date) {
+		let dateArray = date.split('-');
+		let cYear = dateArray[0];
+		let cMonth = dateArray[1];
+		let cDate = dateArray[2];
+		let fullMonth = cYear + "-" + (cMonth*1+1);
+		let weekInfo = getWeekByMonth(fullMonth);
+
+		let dateObject = new Date(cYear, cMonth-1, cDate);
+		
+		for(var i in weekInfo){
+			let thisWeek = weekInfo[i];
+			let week = thisWeek.get('week');
+			let weekFirstDay = thisWeek.get('weekFirstDay').split('-');
+			let weekLastDay = thisWeek.get('weekLastDay').split('-');
+			
+			let weekFirstDayObject = new Date(
+					weekFirstDay[0], 
+					weekFirstDay[1]-1,
+					weekFirstDay[2])
+			let weekLastDayObject = new Date(
+					weekLastDay[0], 
+					weekLastDay[1]-1,
+					weekLastDay[2])
+			
+			if(
+					dateObject.getTime() >= weekFirstDayObject.getTime() 
+					&& dateObject.getTime()<=weekLastDayObject.getTime()
+			){
+				return week;
+			} 
+		}
+		
+	}
+	
 
 	function getWeekByMonth(month) {
 		let monthArray = month.split('-');

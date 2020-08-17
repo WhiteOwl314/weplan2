@@ -6,3 +6,38 @@
 	text-align: center;
 	box-sizing: border-box;
 }
+
+   .no-underline{
+      text-decoration:none;
+   }
+   .side_icon{
+   	width:35px;
+   	display: block; 
+   	margin: 0px auto; 
+   	padding-top: 3px;
+   	filter: opacity(.57) drop-shadow(0 0 0 #000000);
+   }
+   .side_icon2{
+   	width:33px;
+   	display: block; 
+   	margin: 0px auto; 
+   	padding-top: 3px;
+   }
+   #side_menu-yealyPlan .side-menu-item-text{
+   	padding-top: 5px;
+   }
+   
+   .side-menu-item{
+   	box-sizing: border-box;
+   }
+   .side-menu-item-text{
+   	font-weight: bold;
+   	color: #3B3B3B;
+   }
+	/* 마우스 클릭하고있을때 */
+	.side-menu-item:active{
+		background-color: #A75A21;
+	}
+	#side_menu-absoluteValueList .side-menu-item-text{
+		font-size: 9px;
+	}

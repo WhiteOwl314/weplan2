@@ -20,14 +20,12 @@ public interface MonthlyPlanController {
 
 	public ResponseEntity updateMonthlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public ModelAndView yearlyView(int year, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
 	public String getMonthlyPlanListByYear(String year, HttpServletRequest request) throws Exception;
 
 	public String moveMonth(int id, String month, String member_id, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 
-	public String getMonthlyPlanListByMonth(String month, HttpServletRequest request) throws Exception;
+	public ModelAndView yearlyView(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 
 

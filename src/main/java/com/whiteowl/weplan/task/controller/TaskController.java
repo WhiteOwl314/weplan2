@@ -18,4 +18,6 @@ public interface TaskController {
 	ResponseEntity addInboxTask(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	ModelAndView viewTask(int taskNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public ModelAndView weeklyView(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

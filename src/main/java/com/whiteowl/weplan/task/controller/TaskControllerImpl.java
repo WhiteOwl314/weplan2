@@ -330,6 +330,31 @@ public class TaskControllerImpl implements TaskController{
 		taskService.popUpTaskView(task_id, response);
 	}
 	
+	@Override
+	@RequestMapping(
+			value="/task/weeklyView.do",
+			method = RequestMethod.GET
+	)
+	public ModelAndView weeklyView(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		String month = request.getParameter("month");
+		String week = request.getParameter("week");
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/task/weeklyView");
+
+		mav.addObject("member_id", member_id);
+		mav.addObject("month", month);
+		mav.addObject("week", week);
+		
+		return mav;
+	}
 
 
 }

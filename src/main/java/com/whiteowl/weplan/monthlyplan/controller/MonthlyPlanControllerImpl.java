@@ -250,6 +250,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 	}
 	
 	
+	@Override
 	@RequestMapping(
 			value="/monthlyPlan/yearlyView.do",
 			method = RequestMethod.GET
@@ -258,16 +259,12 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		
-		
-		request.setCharacterEncoding("utf-8");
-
-		String year = request.getParameter("year");
-
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
 		
+		String year = request.getParameter("year");
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/monthlyPlan/yearlyView");
 
@@ -307,52 +304,6 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		return jsonObj.toString();
 	}
 	
-//	@Override
-//	@RequestMapping(
-//			value="/monthlyPlan/moveMonth.do",
-//			method = RequestMethod.GET	
-//	)
-//	@ResponseBody
-//	public ResponseEntity moveMonth(
-//			@RequestParam("id") int id,
-//			@RequestParam("month") String month,
-//			HttpServletRequest request,
-//			HttpServletResponse response
-//	)throws Exception {
-//		HttpSession session = request.getSession();
-//		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-//		String member_id = (String)memberVO.getId();
-//		
-//		monthlyPlanVO.setId(id);
-//		monthlyPlanVO.setMember_id(member_id);
-//		monthlyPlanVO.setMonth(month);
-//		
-//		String referer = request.getHeader("Referer");
-//		
-//		String message;
-//		ResponseEntity resEnt=null;
-//		HttpHeaders responseHeaders = new HttpHeaders();
-//		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
-//
-//		try {
-//			monthlyPlanService.moveMonth(monthlyPlanVO);
-//			
-//			message = "<script>";
-//			message += " alert('수정되었습니다.');";
-//			message += " location.href='"+ referer +"'; ";
-//			message +=" </script>";
-//		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
-//		} catch (Exception e) {
-//			message = " <script>";
-//			message += " alert('실패했습니다.');";
-//			message += " location.href='"+ referer +"'; ";
-//			message +=" </script>";
-//			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
-//			e.printStackTrace();
-//		}
-//		return resEnt;
-//	}
-
 	@Override
 	@RequestMapping(
 			value="/monthlyplan/updateMonthlyPlan.do",
