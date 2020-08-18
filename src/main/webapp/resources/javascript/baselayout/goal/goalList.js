@@ -252,13 +252,11 @@
 		$.ajax({
 			url : url,
 			dataType :"json",
-			type : "POST",
+			type : "GET",
 			data : {
 				id : project_id
 			},
 			success : function(result) {
-				
-				
 				
 				//초기화
 				$('.project_detail .project_detail_body').html('');
@@ -899,6 +897,9 @@
 				
 
 			},
+			error: function (){
+				location.href=`${contextPath}weplan/main`;
+			}
 
 		})
 		

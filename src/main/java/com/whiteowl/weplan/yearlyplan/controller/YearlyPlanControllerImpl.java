@@ -46,28 +46,35 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		int request_year = 0;
-		
-		if(year == 0000) {
-			Calendar cal = Calendar.getInstance();
-			request_year = cal.get(cal.YEAR);
-		} else {
-			request_year = year;
+		try {
+			
+			int request_year = 0;
+			
+			if(year == 0000) {
+				Calendar cal = Calendar.getInstance();
+				request_year = cal.get(cal.YEAR);
+			} else {
+				request_year = year;
+			}
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			map.put("member_id", member_id);
+			map.put("request_year", request_year);
+			
+			List yearlyPlanList = yearlyPlanService.yearlyPlanList(map);
+			ModelAndView mav = new ModelAndView("/yearlyPlan/yearlyPlanList");
+			mav.addObject("yearlyPlanList", yearlyPlanList);
+			return mav;
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
 		}
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("member_id", member_id);
-		map.put("request_year", request_year);
-		
-		List yearlyPlanList = yearlyPlanService.yearlyPlanList(map);
-		ModelAndView mav = new ModelAndView("/yearlyPlan/yearlyPlanList");
-		mav.addObject("yearlyPlanList", yearlyPlanList);
-		return mav;
 	}
 
 	@Override
@@ -213,11 +220,6 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
 		
 		String message;
@@ -227,8 +229,23 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("member_id", member_id);
-		map.put("yearlyPlan_id", yearlyPlan_id);
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("yearlyPlan_id", yearlyPlan_id);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+		
 		
 		try {
 			
@@ -264,11 +281,6 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
 		
 		String message;
@@ -278,9 +290,23 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("member_id", member_id);
-		map.put("yearlyPlanId", yearlyPlanId);
-		
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("yearlyPlanId", yearlyPlanId);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+
 		try {
 			
 			yearlyPlanService.completeYearlyPlan(map);

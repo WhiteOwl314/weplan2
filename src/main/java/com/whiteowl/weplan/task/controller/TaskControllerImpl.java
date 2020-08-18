@@ -46,14 +46,21 @@ public class TaskControllerImpl implements TaskController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		String viewName = (String)request.getAttribute("viewName");
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		List inboxTasksList = taskService.listInboxTasks(member_id);
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("inboxTasksList", inboxTasksList);
-		return mav;
+		try {
+			String viewName = (String)request.getAttribute("viewName");
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+
+			List inboxTasksList = taskService.listInboxTasks(member_id);
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("inboxTasksList", inboxTasksList);
+			return mav;
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
 	}
 	
 	@Override
@@ -251,27 +258,33 @@ public class TaskControllerImpl implements TaskController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		String date = "";
-		
-		if(request.getParameter("date") == null) {
-			Date today = new Date();
-		    SimpleDateFormat Simpleformat = new SimpleDateFormat("yyyy-MM-dd");
-		    date = Simpleformat.format(today);
-		} else {
-			date = request.getParameter("date");
+		try {
+			String date = "";
+			
+			if(request.getParameter("date") == null) {
+				Date today = new Date();
+				SimpleDateFormat Simpleformat = new SimpleDateFormat("yyyy-MM-dd");
+				date = Simpleformat.format(today);
+			} else {
+				date = request.getParameter("date");
+			}
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			List weeklyTaskList = taskService.weeklyTaskList(member_id, date);
+			ModelAndView mav = new ModelAndView("/task/weeklyTaskList");
+			mav.addObject("weeklyTaskList", weeklyTaskList);
+			
+	//		월요일 가져오기
+			Map dayList = taskService.returnMondaySunday(date);
+			mav.addObject("dayList", dayList);
+			return mav;
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
 		}
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		List weeklyTaskList = taskService.weeklyTaskList(member_id, date);
-		ModelAndView mav = new ModelAndView("/task/weeklyTaskList");
-		mav.addObject("weeklyTaskList", weeklyTaskList);
-		
-//		월요일 가져오기
-		Map dayList = taskService.returnMondaySunday(date);
-		mav.addObject("dayList", dayList);
-		return mav;
 	}
 	
 	@RequestMapping(
@@ -339,31 +352,38 @@ public class TaskControllerImpl implements TaskController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
 		
-		String fullMonth = request.getParameter("month");
-		
-		String year = fullMonth.split("-")[0];
-		String month = fullMonth.split("-")[1];
-		
-		
-		
-		String week = request.getParameter("week");
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			
+			String fullMonth = request.getParameter("month");
+			
+			String year = fullMonth.split("-")[0];
+			String month = fullMonth.split("-")[1];
+			
+			
+			
+			String week = request.getParameter("week");
 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/task/weeklyView");
-		
-		
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/task/weeklyView");
+			
+			
 
-		mav.addObject("member_id", member_id);
-		mav.addObject("year", year);
-		mav.addObject("month", month);
-		mav.addObject("fullMonth", fullMonth);
-		mav.addObject("week", week);
-		
-		return mav;
+			mav.addObject("member_id", member_id);
+			mav.addObject("year", year);
+			mav.addObject("month", month);
+			mav.addObject("fullMonth", fullMonth);
+			mav.addObject("week", week);
+			
+			return mav;
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
 	}
 
 

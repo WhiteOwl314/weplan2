@@ -43,16 +43,22 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		List absoluteValueList = absoluteValueService
-				.absoluteValueList(member_id);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/absoluteValue/absoluteValueList");
-		mav.addObject("absoluteValueList", absoluteValueList);
-		return mav;
-		
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			List absoluteValueList = absoluteValueService
+					.absoluteValueList(member_id);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/absoluteValue/absoluteValueList");
+			mav.addObject("absoluteValueList", absoluteValueList);
+			return mav;
+		}catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
+
 	}
 	
 	@Override
@@ -119,31 +125,40 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception {
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
 		
-		absoluteValueVO = 
-				absoluteValueService.absoluteValueView(
-						member_id,
-						absoluteValueID
-				);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member_id", member_id);
-		map.put("absoluteValue_id", absoluteValueID);
-		
-		List<GoalVO> goalList = 
-				absoluteValueService.linkingGoalList(
-						map
-				);
-		
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/absoluteValue/absoluteValueView");
-		mav.addObject("absoluteValue", absoluteValueVO);
-		mav.addObject("goalList", goalList);
-		return mav;
+		try {
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			
+			absoluteValueVO = 
+					absoluteValueService.absoluteValueView(
+							member_id,
+							absoluteValueID
+					);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("member_id", member_id);
+			map.put("absoluteValue_id", absoluteValueID);
+			
+			List<GoalVO> goalList = 
+					absoluteValueService.linkingGoalList(
+							map
+					);
+			
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/absoluteValue/absoluteValueView");
+			mav.addObject("absoluteValue", absoluteValueVO);
+			mav.addObject("goalList", goalList);
+			return mav;
+
+		}catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
 		
 
 		
@@ -233,22 +248,36 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
-		
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		
+
+		HttpSession session;
+		MemberVO memberVO;
+		String member_id;
 		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			session = request.getSession();
+			memberVO = (MemberVO)session.getAttribute("member");
+			member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("absoluteValue_id", absoluteValue_id);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
 		
-		map.put("member_id", member_id);
-		map.put("absoluteValue_id", absoluteValue_id);
+		
 		
 		try {
 			

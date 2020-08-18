@@ -10,6 +10,7 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
+<%@ page errorPage="error/viewErrorMessage.jsp" %>
 
 <div
 	id="weeklyView"

@@ -42,16 +42,24 @@ public class GoalControllerImpl implements GoalController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
+		try {
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
 
-		List goalList = goalService.goalList(member_id);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/goal/goalList");
-		mav.addObject("goalList", goalList);
-		
-		return mav;
+			List goalList = goalService.goalList(member_id);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/goal/goalList");
+			mav.addObject("goalList", goalList);
+			
+			return mav;
+
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
 	}
 	
 	@Override
@@ -194,11 +202,6 @@ public class GoalControllerImpl implements GoalController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
 		
 		String message;
@@ -206,10 +209,30 @@ public class GoalControllerImpl implements GoalController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		
-		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("member_id", member_id);
-		map.put("goal_id", goal_id);
+		HttpSession session ;
+		MemberVO memberVO ;
+		String member_id ;
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		
+		try {
+			
+			session = request.getSession();
+			memberVO = (MemberVO)session.getAttribute("member");
+			member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("goal_id", goal_id);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
 		
 		try {
 			
@@ -234,7 +257,7 @@ public class GoalControllerImpl implements GoalController{
 	@Override
 	@RequestMapping(
 			value="/goal/yearlyPlanList.do",
-			method = RequestMethod.POST,
+			method = RequestMethod.GET,
 			produces = "application/json; charset=utf8"
 	)
 	@ResponseBody
@@ -242,13 +265,18 @@ public class GoalControllerImpl implements GoalController{
 			@RequestParam("id") int goal_id,
 			HttpServletRequest request
 	) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String referer = request.getHeader("Referer");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+			
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("member");
 		String member_id = (String)memberVO.getId();
-	
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_id", member_id);
 		map.put("goal_id", goal_id);
+
 		JSONArray jsonObj = goalService.yearlyPlanList(
 				map
 		);
@@ -269,22 +297,31 @@ public class GoalControllerImpl implements GoalController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
-		
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("member_id", member_id);
-		map.put("goal_id", goal_id);
+
+		try {
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("goal_id", goal_id);
+		} catch (Exception e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
 		
 		try {
 			

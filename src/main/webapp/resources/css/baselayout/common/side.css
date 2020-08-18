@@ -31,7 +31,7 @@
    	box-sizing: border-box;
    }
    .side-menu-item-text{
-   	font-weight: bold;
+   	font-weight: 500;
    	color: #3B3B3B;
    }
 	/* 마우스 클릭하고있을때 */

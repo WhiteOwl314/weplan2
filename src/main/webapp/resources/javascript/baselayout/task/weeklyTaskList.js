@@ -1,6 +1,30 @@
 /**
  * 
  */
+	function getWeeklyPlanListbyOnlyMonth(month) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/weeklyplan/getWeeklyPlanListbyOnlyMonth.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				month : month
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		console.log(data);
+		
+		
+		
+		return data;
+	}
+	
 
 $(document).ready(function() {
 	let locationSearch = addZero(location.search);
@@ -35,6 +59,15 @@ $(document).ready(function() {
 		//popUp
 
 	//weeklyPlanAdd
+	
+	//weeklyPlanList
+		//weeklyPlanList 가져오기
+		let weeklyPlanList = getWeeklyPlanListbyOnlyMonth(searchMonth);
+		//weeklyPlanList 가져오기
+
+		//weeklyPlanList 배치하기
+		//weeklyPlanList 배치하기
+	//weeklyPlanList
 		
 	
 })	

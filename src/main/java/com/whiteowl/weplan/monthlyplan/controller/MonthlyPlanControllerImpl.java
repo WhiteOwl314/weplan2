@@ -105,13 +105,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
-		
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -119,8 +113,23 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("member_id", member_id);
-		map.put("monthlyPlanId", monthlyPlanId);
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("monthlyPlanId", monthlyPlanId);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+
 		
 		try {
 			
@@ -154,13 +163,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
-		
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-
 		String referer = request.getHeader("Referer");
-		
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -168,8 +171,23 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("member_id", member_id);
-		map.put("monthlyPlanId", monthlyPlanId);
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("monthlyPlanId", monthlyPlanId);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+		
 		
 		try {
 			
@@ -259,19 +277,25 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			HttpServletRequest request,
 			HttpServletResponse response
 	) throws Exception{
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
-		
 		String year = request.getParameter("year");
 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/monthlyPlan/yearlyView");
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/monthlyPlan/yearlyView");
 
-		mav.addObject("year", year);
-		mav.addObject("member_id", member_id);
-
+			mav.addObject("year", year);
+			mav.addObject("member_id", member_id);
 		return mav;
+		} catch (NullPointerException e) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("main");
+			return mav;
+		}
+		
+
 	}
 	
 	@Override
@@ -315,6 +339,12 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 			HttpServletResponse response
 	) throws Exception{
 		request.setCharacterEncoding("utf-8");
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 		
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String title = request.getParameter("title");
@@ -324,23 +354,30 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 				request.getParameter("id")
 		);
 
-		HttpSession session = request.getSession();
-		MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		String member_id = (String)memberVO.getId();
+		try {
+			
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			monthlyPlanVO.setMember_id(member_id);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+
 		
 		monthlyPlanVO.setImportance(importance);
 		monthlyPlanVO.setTitle(title);
 		monthlyPlanVO.setContent(content);
 		monthlyPlanVO.setId(id);
-		monthlyPlanVO.setMember_id(member_id);
 		monthlyPlanVO.setMonth(month);
 		
-		String referer = request.getHeader("Referer");
-		
-		String message;
-		ResponseEntity resEnt=null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
 		try {
 			monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);

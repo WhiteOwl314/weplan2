@@ -18,8 +18,9 @@ public interface GoalController {
 
 	public ResponseEntity deleteGoal(int goal_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public String yearlyPlanList(int goal_id, HttpServletRequest request) throws Exception;
-
 	public ResponseEntity completeGoal(int goal_id, HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	
+	public String yearlyPlanList(int goal_id, HttpServletRequest request) throws Exception;
 
 }
