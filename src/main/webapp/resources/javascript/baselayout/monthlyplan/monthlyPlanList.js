@@ -2,6 +2,27 @@
  * 
  * 
  */
+
+	function getMonthlyPlan(monthlyPlanId) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/monthlyPlan/getMonthlyPlan.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : monthlyPlanId
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+	}
+
 function popUp_getWeeklyPlan(id) {
 	var url = contextPath + "weplan/weeklyPlan/popUpWeeklyPlanView.do";
 	$.ajax({

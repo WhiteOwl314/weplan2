@@ -9,6 +9,7 @@
 %>    
 <div
 	class="project"
+	id="projectList_container"
 >
 	<div
 		class="project_header"
@@ -61,51 +62,59 @@
 				class="project_detail"
 			>
 				<div
-					class="project_detail_header"
+					id="project_detail_header_container"
 				>
 					<div
-						class="project_detail_completed"
-						
-					>
-						<img  alt="checkbox" 
-							src="${contextPath }/resources/images/iconmonstr-checkbox-11.svg"
-						>
-					</div>
-					<div
-						class="project_detail_title"
+						class="project_detail_header"
 					>
 						<div
-							class="project_detail_text"
+							class="project_detail_completed"
+							
+						>
+							<img  alt="checkbox" 
+								src="${contextPath }/resources/images/iconmonstr-checkbox-11.svg"
+							>
+						</div>
+						<div
+							class="project_detail_title"
+						>
+							<div
+								class="project_detail_text"
+							>
+							</div>
+							<div
+								class="project_detail_class"
+							>
+							</div>
+						</div>
+						<div
+							class="project_detail_startDate"
 						>
 						</div>
 						<div
-							class="project_detail_class"
+							class="project_detail_limitDate"
+						>
+						</div>
+						<div
+							class="project_detail_importance"
 						>
 						</div>
 					</div>
-					<div
-						class="project_detail_startDate"
-					>
-					</div>
-					<div
-						class="project_detail_limitDate"
-					>
-					</div>
-					<div
-						class="project_detail_importance"
-					>
-					</div>
 				</div>
 				<div
-					class="project_detail_body"
+					id="project_detail_body_container"
 				>
-				</div>
-				<div
-					class="project_detail_add"
-				>
-					<img  alt="add_button" 
-						src="${contextPath }/resources/images/add-black-18dp.svg"
+					<div
+						class="project_detail_body"
 					>
+					</div>
+					<div
+						class="project_detail_add"
+					>
+						<img  alt="add_button" 
+							src="${contextPath }/resources/images/add-black-18dp.svg"
+						>
+					</div>
 				</div>
 			</div>
 		</div>

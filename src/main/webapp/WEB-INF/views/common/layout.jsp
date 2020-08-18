@@ -31,64 +31,65 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
 	<!-- Font -->
     
-  </head>
-    <body>
-    <div
-    	id="member_id"
-    	style="display:none;"
-    >
-    	${member.id }
-    </div>
-    <div id="container">
-      <div id="header">
-         <tiles:insertAttribute name="header"/>
-      </div>
-      <div
-      	id="body"
-      >
-		  <div id="sidebar-left">
-			  <tiles:insertAttribute name="side"/> 
-		  </div>
-		  <div id="content">
-			  <tiles:insertAttribute name="body"/>
-		  </div>
-      </div>
-      <div id="footer">
-          <tiles:insertAttribute name="footer"/>
-      </div>
-    
+</head>
+<body>
+	<div
+		id="member_id"
+		style="display:none;"
+	>
+		${member.id }
+	</div>
+<div id="container">
+	<div
+		id="container_flex"
+	>
+		<div id="header">
+			<tiles:insertAttribute name="header"/>
+		</div>
+		<div
+			id="body"
+		>
+			<div id="sidebar-left">
+				<tiles:insertAttribute name="side"/> 
+			</div>
+			<div id="content">
+				<tiles:insertAttribute name="body"/>
+			</div>
+		</div>
+	</div>
+
 	<!-- 팝업뜰때 배경 -->
 	<div id="mask" class="mask"></div>
 	<!-- 팝업뜰때 배경 -->
 
-      <div 
-      	class="inbox_button" 
-      >
-      	<img 
-      		alt="Inbox_button_img" 
-      		src="${contextPath }/resources/images/add-white-18dp.svg"
-      		class="Inbox_button_img"
-      	>
-      </div>
-      <div 
-      	class="inbox_button_on" 
-      >
-      	<img 
-      		alt="Inbox_button_img" 
-      		src="${contextPath }/resources/images/clear-white-18dp.svg"
-      		class="Inbox_button_img"
-      	>
-      </div>
-		<jsp:include page="/WEB-INF/views/common/popUpForm.jsp"/>
-      
-    </div>
+	<div 
+	class="inbox_button" 
+	>
+	<img 
+	alt="Inbox_button_img" 
+	src="${contextPath }/resources/images/add-white-18dp.svg"
+	class="Inbox_button_img"
+	>
+	</div>
+	<div 
+	class="inbox_button_on" 
+	>
+	<img 
+	alt="Inbox_button_img" 
+	src="${contextPath }/resources/images/clear-white-18dp.svg"
+	class="Inbox_button_img"
+	>
+	</div>
+	<jsp:include page="/WEB-INF/views/common/popUpForm.jsp"/>
 
-	<script src="${contextPath }/resources/javascript/baselayout/common.js"></script>
-	<script src="${contextPath }/resources/javascript/popUp.js"></script>
-	<script src="${contextPath }/resources/javascript/baselayout/absolutevalue/absoluteValueList.js"></script>
-	<script src="${contextPath }/resources/javascript/inbox_button.js"></script>
-	<script src="${contextPath }/resources/javascript/resizer.js"></script>
+</div>
 
-    
-  </body>
+<script src="${contextPath }/resources/javascript/baselayout/common.js"></script>
+<script src="${contextPath }/resources/javascript/popUp.js"></script>
+<script src="${contextPath }/resources/javascript/baselayout/absolutevalue/absoluteValueList.js"></script>
+<script src="${contextPath }/resources/javascript/inbox_button.js"></script>
+<script src="${contextPath }/resources/javascript/resizer.js"></script>
+
+
+</body>
 </html>

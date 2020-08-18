@@ -7,15 +7,9 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-</head>
-<body>
-	
 	<div
 		class="content"
+		id="absoluteValueList_container"
 	>
 		<div
 			class="header"
@@ -132,7 +126,3 @@
 		</div>
 		
 	</div>
-    
-	
-</body>
-</html>
