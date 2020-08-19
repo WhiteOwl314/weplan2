@@ -82,4 +82,11 @@ public class WeeklyPlanServiceImpl implements WeeklyPlanService{
 		weeklyPlanDAO.addWeeklyPlanNullYearlyPlanId(weeklyPlanVO);
 	}
 
+	@Override
+	public JSONArray getWeeklyPlanListbyMonthAndWeek(
+			Map<String, Object> map
+	) throws Exception {
+		return weeklyPlanDAO.getWeeklyPlanListbyMonthAndWeek(map);
+	}
+
 }

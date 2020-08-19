@@ -14,6 +14,7 @@
         <result property="importance" column="importance" />
         <result property="isTask" column="isTask" />
         <result property="limitDate" column="limitDate" />
+        <result property="startDate" column="startDate" />
 	</resultMap>
 	
 	<resultMap type="taskVO" id="taskResult2">
@@ -106,13 +107,20 @@
 	  </select>
 	  
 	  
-	  <update id="updateTask" parameterType="java.util.Map">
+	  <update 
+	  	id="updateTask" 
+	  	parameterType="taskVO"
+	  >
 	  	UPDATE W_TASK
-	  	SET importance = #{importance},
+	  	SET 
+	  		importance = #{importance},
 	  		title = #{title},
 	  		content = #{content},
-	  		limitdate = TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi')
-	  	WHERE TASK_NO = #{taskNO}
+	  		limitdate = TO_DATE(#{limitDate},'yyyy-mm-dd hh24:mi'),
+	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd hh24:mi')
+	  	WHERE 
+	  		TASK_NO = #{id}
+	  		AND member_id = #{member_id}
 	  </update>
 	  
 	  <update id="updateTaskNullDate" parameterType="java.util.Map">
@@ -170,4 +178,63 @@
 			SELECT  nvl(max(TASK_NO), 0) + 1 from W_TASK	
 		]]>
 	</select> 
+
+
+	<select 
+		id="getTaskListByMonthAndWeek" 
+		resultMap="taskResult" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			TASK_NO,
+			title,
+			content,
+			isCompleted,
+			importance,
+			TO_CHAR(startDate,'yyyy-mm-dd') as startDate,
+			TO_CHAR(limitDate,'yyyy-mm-dd') as limitDate
+		FROM W_TASK 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+			AND limitDate >= TO_DATE(#{firstDay},'yyyy-mm-dd')
+			AND LIMITDATE <= TO_DATE(#{lastDay},'yyyy-mm-dd')
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
+	  <update id="notCompleteTask" parameterType="java.util.Map">
+	    UPDATE W_TASK
+	  	SET isCompleted = '0'
+	  	WHERE 
+	  		TASK_NO = #{id}
+	  		AND member_id = #{member_id}
+	  </update>
+
+	  <select 
+	  	id="popUpGetTask" 
+	  	resultMap="taskResult"   
+	  	parameterType="java.util.Map"
+	  >
+		  <![CDATA[
+			SELECT 
+				TASK_NO,
+				TASK_LEVEL,
+				title,
+				content,
+				isCompleted,
+				importance,
+				isTask,
+				TO_CHAR(limitdate, 'YYYY-MM-DD HH24:MI') AS limitdate,
+				TO_CHAR(startDate, 'YYYY-MM-DD HH24:MI') AS startDate
+			FROM W_TASK 
+			WHERE 
+				TASK_NO = #{id} 
+				AND isdelete = '0'
+				AND member_id = #{member_id}
+			ORDER BY limitDate ASC
+		  ]]>
+	  </select>
+	  
 </mapper>

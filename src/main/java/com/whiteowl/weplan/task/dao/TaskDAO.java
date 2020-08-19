@@ -4,6 +4,7 @@ package com.whiteowl.weplan.task.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
@@ -18,8 +19,6 @@ public interface TaskDAO {
 
 	public TaskVO selectTask(int taskNO) throws DataAccessException;
 
-	public void updateTask(Map<String, Object> taskMap) throws DataAccessException;
-
 	public void updateTaskNullDate(Map<String, Object> taskMap) throws DataAccessException;
 
 	public void removeTask(int taskNO) throws DataAccessException;
@@ -33,5 +32,13 @@ public interface TaskDAO {
 	public void moveDate(int task_id, String newLimitDate) throws DataAccessException;
 
 	public JSONObject popUpTaskView(String task_id) throws DataAccessException;
+
+	public JSONArray getTaskListByMonthAndWeek(Map<String, Object> map) throws DataAccessException;
+
+	public void notCompleteTask(Map<String, Object> map) throws DataAccessException;
+
+	public JSONObject popUpGetTask(Map<String, Object> map) throws DataAccessException;
+
+	public void updateTask(TaskVO taskVO) throws DataAccessException;
 
 }

@@ -431,4 +431,36 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 	}
 	
 	
+	@Override
+	@RequestMapping(
+			value="/weeklyplan/getWeeklyPlanListbyMonthAndWeek.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getWeeklyPlanListbyMonthAndWeek(
+			HttpServletRequest request
+	) throws Exception {
+		
+		String month = request.getParameter("month");
+		int week = Integer.parseInt(request.getParameter("week"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		map.put("member_id", member_id);
+		map.put("week", week);
+		map.put("month", month);
+		
+		JSONArray jsonObj = weeklyPlanService.getWeeklyPlanListbyMonthAndWeek(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
+	
+	
 }

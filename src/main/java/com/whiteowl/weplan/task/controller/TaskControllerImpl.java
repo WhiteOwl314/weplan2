@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -137,32 +139,51 @@ public class TaskControllerImpl implements TaskController{
 	) throws Exception {
 		
 		request.setCharacterEncoding("utf-8");
-		Map<String, Object> taskMap = new HashMap<String, Object>();
-		Enumeration enu = request.getParameterNames();
-		
-		String limitDate = request.getParameter("date") + " " + request.getParameter("time") ;
-		taskMap.put("limitDate", limitDate);
-		
-		while(enu.hasMoreElements()) {
-			String name = (String) enu.nextElement();
-			String value = request.getParameter(name);
-			taskMap.put(name, value);
-		}
-		
 		String referer = request.getHeader("Referer");
 		
-		String taskNO = (String)taskMap.get("taskNO");
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+		
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			taskVO.setMember_id(member_id);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+		
+		
+		int importance = Integer.parseInt(request.getParameter("importance"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String startDate = request.getParameter("startDate");
+		String startTime = request.getParameter("startTime");
+		String limitDate = request.getParameter("limitDate");
+		String limitTime = request.getParameter("limitTime");
+		int id = Integer.parseInt(
+				request.getParameter("id")
+		);
+		
+		taskVO.setId(id);
+		taskVO.setTitle(title);
+		taskVO.setContent(content);
+		taskVO.setImportance(importance);
+		taskVO.setStartDate(startDate + " " + startTime);
+		taskVO.setLimitDate(limitDate + " " + limitTime);
+
 		try {
 			
-			if(limitDate.equals("0000-00-00 00:00") || limitDate.equals(" ")) {
-				taskService.updateTaskNullDate(taskMap);
-			} else {
-				taskService.updateTask(taskMap);
-			}
+			taskService.updateTask(taskVO);
 
 			message = "<script>";
 			message += " alert('할일이 수정되었습니다.');";
@@ -236,6 +257,62 @@ public class TaskControllerImpl implements TaskController{
 
 			message = "<script>";
 			message += " alert('할일을 완료했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+		} catch (Exception e) {
+			message = " <script>";
+			message += " alert('실패했습니다.');";
+			message += " location.href='"+ referer +"'; ";
+			message +=" </script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		return resEnt;
+	}
+	
+	
+	@RequestMapping(value="/task/notCompleteTask.do", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity notCompleteTask(
+			@RequestParam("id") int taskNO,
+			HttpServletRequest request,
+			HttpServletResponse response
+	)throws Exception {
+		response.setContentType("text/html; charset=UTF-8");
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
+		
+		String referer = request.getHeader("Referer");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("id", taskNO);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message = " location.href='" + url + "'; ";
+			message = " <script>";
+			resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
+		
+		try {
+			
+			taskService.notCompleteTask(map);
+
+			message = "<script>";
+			message += " alert('완료했습니다.');";
 			message += " location.href='"+ referer +"'; ";
 			message +=" </script>";
 		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
@@ -386,5 +463,62 @@ public class TaskControllerImpl implements TaskController{
 		}
 	}
 
+	@Override
+	@RequestMapping(
+			value="/task/getTaskListByMonthAndWeek.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getTaskListByMonthAndWeek(
+			HttpServletRequest request
+	) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		String firstDay = request.getParameter("firstDay");
+		String lastDay = request.getParameter("lastDay");
+
+		map.put("member_id", member_id);
+		map.put("firstDay", firstDay);
+		map.put("lastDay", lastDay);
+
+		
+		JSONArray jsonObj = taskService.getTaskListByMonthAndWeek(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
+
+	@Override
+	@RequestMapping(
+			value="/task/popUpGetTask.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String popUpGetTask(
+			@RequestParam("id") int taskId,
+			HttpServletRequest request
+	) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		map.put("id", taskId);
+		
+		JSONObject jsonObj = taskService.popUpGetTask(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
 
 }

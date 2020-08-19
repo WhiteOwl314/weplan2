@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
 import com.whiteowl.weplan.task.vo.TaskVO;
@@ -18,7 +20,7 @@ public interface TaskService {
 
 	public TaskVO viewTask(int taskNO) throws Exception;
 
-	public void updateTask(Map<String, Object> taskMap) throws Exception;
+	public void updateTask(TaskVO taskVO) throws Exception;
 
 	public void updateTaskNullDate(Map<String, Object> taskMap) throws Exception;
 
@@ -35,5 +37,11 @@ public interface TaskService {
 	public void moveDate(int task_id, String newLimitDate) throws Exception;
 
 	public void popUpTaskView(String task_id, HttpServletResponse response) throws Exception;
+
+	public JSONArray getTaskListByMonthAndWeek(Map<String, Object> map) throws Exception;
+
+	public void notCompleteTask(Map<String, Object> map) throws Exception;
+
+	public JSONObject popUpGetTask(Map<String, Object> map) throws Exception;
 
 }

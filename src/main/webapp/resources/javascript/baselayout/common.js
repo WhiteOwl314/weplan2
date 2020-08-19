@@ -18,7 +18,7 @@ var contextPath = window.location.protocol + "//" + window.location.host + "/";
 		let cYear = dateArray[0];
 		let cMonth = dateArray[1];
 		let cDate = dateArray[2];
-		let fullMonth = cYear + "-" + (cMonth*1+1);
+		let fullMonth = cYear + "-" + (cMonth*1);
 		let weekInfo = getWeekByMonth(fullMonth);
 
 		let dateObject = new Date(cYear, cMonth-1, cDate);
@@ -117,11 +117,11 @@ var contextPath = window.location.protocol + "//" + window.location.host + "/";
         	
         	let weekFirstDayString = 
         		weekFirstDay.getFullYear() + "-" 
-        		+ addZero(weekFirstDay.getMonth()) + "-"
+        		+ addZero(weekFirstDay.getMonth()*1+1) + "-"
         		+ addZero(weekFirstDay.getDate());
         	let weekLastDayString = 
         		weekLastDay.getFullYear() + "-" 
-        		+ addZero(weekLastDay.getMonth()) + "-"
+        		+ addZero(weekLastDay.getMonth()*1+1) + "-"
         		+ addZero(weekLastDay.getDate());
         	
         	map.set("week",i+1);

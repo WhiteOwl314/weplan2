@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -49,12 +50,6 @@ public class TaskDAOImpl implements TaskDAO{
 	@Override
 	public TaskVO selectTask(int taskNO) throws DataAccessException {
 		return sqlSession.selectOne("mapper.task.selectTask", taskNO);
-	}
-
-	@Override
-	public void updateTask(Map<String, Object> taskMap) throws DataAccessException {
-		sqlSession.update("mapper.task.updateTask", taskMap);
-		
 	}
 
 	@Override
@@ -118,6 +113,86 @@ public class TaskDAOImpl implements TaskDAO{
 		data.put("limitDate", limitDate);
 		
 		return data;
+	}
+
+	@Override
+	public JSONArray getTaskListByMonthAndWeek(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		List<TaskVO> TaskList = sqlSession.selectList(
+				"mapper.task.getTaskListByMonthAndWeek",
+				map
+		);
+		
+		for (TaskVO taskVO : TaskList) {
+			JSONObject data = new JSONObject();
+			
+			int id = taskVO.getId();
+			String title = taskVO.getTitle();
+			String content = taskVO.getContent();
+			String isCompleted = taskVO.getIsCompleted();
+			int importance = taskVO.getImportance();
+			String startDate = taskVO.getStartDate();
+			String limitDate = taskVO.getLimitDate();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("startDate", startDate);
+			data.put("limitDate", limitDate);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
+
+	@Override
+	public void notCompleteTask(
+			Map<String, Object> map
+	) throws DataAccessException {
+		sqlSession.update("mapper.task.notCompleteTask", map);
+	}
+
+	@Override
+	public JSONObject popUpGetTask(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONObject data = new JSONObject();
+		
+		TaskVO task = sqlSession.selectOne("mapper.task.popUpGetTask", map);
+		int id = task.getId();
+		int level = task.getLevel();
+		String title = task.getTitle();
+		String content = task.getContent();
+		String isCompleted = task.getIsCompleted();
+		int importance = task.getImportance();
+		String isTask = task.getIsTask();
+		String limitDate = task.getLimitDate();
+		String startDate = task.getStartDate();
+
+		data.put("id", id);
+		data.put("level", level);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("isCompleted", isCompleted);
+		data.put("importance", importance);
+		data.put("isTask",isTask);
+		data.put("limitDate", limitDate);
+		data.put("startDate", startDate);
+		
+		return data;
+	}
+
+	@Override
+	public void updateTask(
+			TaskVO taskVO
+	) throws DataAccessException {
+		sqlSession.update("mapper.task.updateTask", taskVO);
+		
 	}
 
 

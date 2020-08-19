@@ -13,6 +13,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -50,11 +52,6 @@ public class TaskServiceImpl implements TaskService{
 	public TaskVO viewTask(int taskNO) throws Exception {
 		TaskVO taskVO = taskDAO.selectTask(taskNO);
 		return taskVO;
-	}
-
-	@Override
-	public void updateTask(Map<String, Object> taskMap) throws Exception {
-		taskDAO.updateTask(taskMap);
 	}
 
 	@Override
@@ -322,6 +319,32 @@ public class TaskServiceImpl implements TaskService{
 		PrintWriter out = response.getWriter();
 		out.println(taskDAO.popUpTaskView(task_id));
 		out.close();
+	}
+
+	@Override
+	public JSONArray getTaskListByMonthAndWeek(
+			Map<String, Object> map
+	) throws Exception {
+		return taskDAO.getTaskListByMonthAndWeek(map);
+	}
+
+	@Override
+	public void notCompleteTask(
+			Map<String, Object> map
+	) throws Exception {
+		taskDAO.notCompleteTask(map);
+	}
+
+	@Override
+	public JSONObject popUpGetTask(
+			Map<String, Object> map
+	) throws Exception {
+		return taskDAO.popUpGetTask(map);
+	}
+
+	@Override
+	public void updateTask(TaskVO taskVO) throws Exception {
+		taskDAO.updateTask(taskVO);	
 	}
 	
 

@@ -20,4 +20,9 @@ public interface TaskController {
 	ModelAndView viewTask(int taskNO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ModelAndView weeklyView(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
+	public String getTaskListByMonthAndWeek(HttpServletRequest request) throws Exception;
+
+	String popUpGetTask(int taskId, HttpServletRequest request) throws Exception;
+
 }
