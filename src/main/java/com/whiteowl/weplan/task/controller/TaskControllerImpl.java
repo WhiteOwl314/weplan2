@@ -78,16 +78,34 @@ public class TaskControllerImpl implements TaskController{
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		int importance = Integer.parseInt(request.getParameter("importance"));
-		String startDate = request.getParameter("startDate") + " " + request.getParameter("startTime") ;
-		String limitDate = request.getParameter("limitDate") + " " + request.getParameter("limitTime") ;
+		String startDate = request.getParameter("startDate"); 
+		String startTime = request.getParameter("startTime");
+		String limitDate = request.getParameter("limitDate");
+		String limitTime = request.getParameter("limitTime");
 		String member_id = request.getParameter("member_id");
 		
+		if(startDate.equals("")) {
+			taskVO.setStartDate("");
+		} else if (startTime.equals("")) {
+			taskVO.setStartDate(startDate + " " + "00:00");
+		} else {
+			String fullStartDate = request.getParameter("startDate") + " " + request.getParameter("startTime") ;
+			taskVO.setStartDate(fullStartDate);
+		}
+		
+		if(limitDate.equals("")) {
+			taskVO.setLimitDate("");
+		} else if (limitTime.equals("")) {
+			taskVO.setLimitDate(limitDate + " " + "00:00");
+		} else {
+			String fullLimitDate = request.getParameter("limitDate") + " " + request.getParameter("limitTime") ;
+			taskVO.setLimitDate(fullLimitDate);
+		}
+
 		
 		taskVO.setTitle(title);
 		taskVO.setContent(content);
 		taskVO.setImportance(importance);
-		taskVO.setLimitDate(limitDate);
-		taskVO.setStartDate(startDate);
 		taskVO.setMember_id(member_id);
 		
 		String referer = request.getHeader("Referer");

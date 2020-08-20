@@ -388,6 +388,38 @@ $(document).ready(function() {
 					</div>`
 			)
 			
+			
+			
+			//weeklyPlanAdd
+
+				//hover 효과
+				$(`#weeklyView_day_${FullthisDay} .day_part_add`).hover(
+						function() {
+								$(`#weeklyView_day_${FullthisDay} .day_part_add img`).css('background-color', '#e2e2e2');
+						},function(){
+								$(`#weeklyView_day_${FullthisDay} .day_part_add img`).css('background-color', '#F7F7F7');
+						}
+				);
+				//hover 효과
+				
+				//popUp
+				$(`#weeklyView_day_${FullthisDay} .day_part_add`).click(function() {
+					
+					popupReset();	
+					let title = "Task 추가";
+					let url = contextPath + "weplan/task/addInboxTask.do";
+					onTimeForm();
+					checkInitialImportance();
+					putPlaceholderAtDates();
+					putPlaceholderAtTimes();
+					
+					$('.layerpop_limitDate_container .layerpop_limitDate_form').attr('value',FullthisDay);	
+					popUpSetting(title, url);
+				});
+				//popUp
+
+			//weeklyPlanAdd
+			
 		}
 		
 	//day 생성
