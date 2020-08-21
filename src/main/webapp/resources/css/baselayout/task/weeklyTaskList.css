@@ -1,1 +1,165 @@
 @charset "UTF-8";
+#weeklyView{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+#weeklyView_header{
+	height: 80px;
+	border-bottom: 1px solid #DCDCDC;
+	position: absolute;
+	width: 100%;
+	background-color: white;
+	z-index: 10;
+}
+#weeklyView_header_title{
+	padding-top: 35px;
+	padding-left: 40px;
+	font-size: 30px;
+	box-sizing: border-box;
+}
+#weeklyView_body{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding-top: 80px;
+	box-sizing: border-box;
+}
+#weeklyView_body_left{
+	width: 20%;
+	border-right: 1px solid #DCDCDC;
+	background-color: #f7f7f7;
+	position: relative;
+}
+#weeklyView_body_left .weeklyView_body_left_header{
+	position: absolute;
+	background-color: #f7f7f7;
+	height: 36px;
+	width: 100%;
+}
+#weeklyView_body_left_header_title{
+	padding: 10px;
+}
+#weeklyView_body_left_body{
+	height: 100%;
+	overflow: auto;
+	padding-top: 36px;
+	box-sizing: border-box;
+}
+#weeklyView_body_left_body .weeklyView_body_left_padding{
+	padding: 0px 10px 10px 10px;
+	box-sizing: border-box;
+}
+#weeklyView_body_left_body .weeklyView_weeklyPlan{
+	display: flex;
+}
+
+#weeklyView_body_left_body .weeklyView_weeklyPlan img{
+	width: 11px;
+	padding-top: 2.5px;
+}
+#weeklyView_body_left_body .weeklyView_weeklyPlan .completed_on{
+	display: none;
+}
+	
+#weeklyView_body_left_body .weekly_title_container{
+	width: 100%;
+}
+	
+#weeklyView_body_left_body .weekly_title{
+	font-size: 14px;
+	overflow: hidden;
+	cursor: pointer;
+	padding: 2.7px 0px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 6px;
+}
+	
+#weeklyView_body_left_add{
+	padding-left: 10px;
+}
+
+#weeklyView_body_right{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+#weeklyView_body_right .weeklyView_body_right_padding{
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+#weeklyView_body_right #day_container_border{
+	border: 1px solid #DCDCDC;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 3px 2px 4px 2px rgba(0,0,0,.06);
+}
+#weeklyView_body_right .day_container{
+	width: 100%;
+	height: 100%;
+	border-right: 1px solid #DCDCDC;
+	position: relative;
+}
+#weeklyView_body_right .day_container .header{
+	border-bottom: 1px solid #DCDCDC;
+	box-sizing: border-box;
+	height: 35px;
+	text-align: center;
+	position: absolute;
+	background-color: white;
+	width: 100%;
+}
+#weeklyView_body_right .day_container .content{
+	padding-top: 35px;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	padding-bottom: 20px;
+}
+#weeklyView_body_right .day_container .header .weeklyView_weekOfDate{
+	font-size: 14px;
+	padding-top: 5px;	
+}
+#weeklyView_body_right .day_container .header .weeklyView_day{
+	font-size: 10px;
+	padding-top: 0.5px;
+}
+#weeklyView_body_right .day_container .day_part_add{
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	height: 20px;
+	cursor: pointer;
+}
+#weeklyView_body_right .day_container .day_part_add img{
+	margin-left: 10px;
+	width: 16px;
+}
+	
+#weeklyView_body_right .day_container .completed_on{
+	display: none;
+}
+#weeklyView_body_right .task_container{
+	display: flex;
+}
+#weeklyView_body_right .task_container img{
+	width: 11px;
+	padding-top: 4px;
+	padding-left: 5px;
+	cursor: pointer;
+}
+#weeklyView_body_right .task_container .task_title{
+	padding-top: 4px;
+	margin-left: 6px;
+	cursor: pointer;
+	width: 100%;
+}
+#weeklyView_body_right .task_container .task_text{
+	font-size: 12px;
+}
+	

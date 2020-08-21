@@ -66,6 +66,10 @@
 			<div
 				class="weeklyView_body_right_padding"
 			>
+				<div
+					id="day_container_border"
+				>
+				</div>
 			</div>
 		</div>
 	</div>

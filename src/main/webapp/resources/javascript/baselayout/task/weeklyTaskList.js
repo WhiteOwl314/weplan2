@@ -355,11 +355,13 @@ $(document).ready(function() {
 		
 		let processedFirstDay = weekFirstDay.split('-')[2]*1;
 		
+		let weekOfDateArray = ['월','화','수','목','금','토','일']
+		
 		for(let i=0 ; i<7; i++){
 			let thisDay = (processedFirstDay + i);
 			let FullthisDay = processedFullMonth + "-" + (processedFirstDay + i);
 			
-			$(`#weeklyView_body_right .weeklyView_body_right_padding`).append(
+			$(`#weeklyView_body_right .weeklyView_body_right_padding #day_container_border`).append(
 					`<div
 						id= "weeklyView_day_${FullthisDay}"
 						class="day_container"
@@ -367,6 +369,11 @@ $(document).ready(function() {
 						<div
 							class="header"
 						>
+							<div
+								class="weeklyView_weekOfDate"
+							>
+								${weekOfDateArray[i]}
+							</div>
 							<div
 								class="weeklyView_day"
 							>
@@ -427,7 +434,6 @@ $(document).ready(function() {
 	//taskList 
 		//조회
 			let taskList = getTaskListByMonthAndWeek(weekFirstDay, weekLastDay);
-			console.log(taskList);
 		//조회
 		//배치
 			for(let i in taskList){
@@ -439,12 +445,11 @@ $(document).ready(function() {
 				let startDate = decodeURIComponent(taskList[i].startDate);
 				let limitDate = decodeURIComponent( taskList[i].limitDate ); 
 
-				console.log(limitDate);
-				
 				$(`#weeklyView_day_${limitDate} .content`).append(
 
 						`<div
 							id="weeklyView_day_task_${limitDate}_${taskId}"
+							class="task_container"
 						>
 							<div
 								class="completed"
