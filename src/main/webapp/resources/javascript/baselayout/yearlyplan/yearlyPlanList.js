@@ -22,6 +22,23 @@ function getMonthlyPlanList(year) {
 $(document).ready(function() {
 	
 	let year = location.search.split("=")[1]; 
+	
+	//arrow_search
+		//left
+			$('#yearlyView_header_arrow_left').click(function(){
+				let changedYear = year*1-1
+				let url = contextPath + `weplan/monthlyPlan/yearlyView.do?year=${changedYear}`;
+				location.href= url;
+			})
+		//left
+		//right
+			$('#yearlyView_header_arrow_right').click(function(){
+				let changedYear = year*1+1
+				let url = contextPath + `weplan/monthlyPlan/yearlyView.do?year=${changedYear}`;
+				location.href= url;
+			})
+		//right
+	//arrow_search
 		
 	//month 생성
 		for(let i=0; i<12; i++){

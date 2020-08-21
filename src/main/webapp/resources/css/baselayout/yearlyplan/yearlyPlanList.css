@@ -38,6 +38,8 @@ table tr td{
 	width: 100%;
 	background-color: white;
 	z-index: 10;
+	display: flex;
+	justify-content: space-between;
 }
 #yearlyView_header #yearlyView_header_title{
     padding-top: 35px;
@@ -106,4 +108,42 @@ table tr td{
 #yearlyView_month_container .header_text{
 	font-size: 13px;
 }
-
+#yearlyView_header_search{
+	margin-right: 45px;
+	display: flex;
+	margin-top: 37px;
+}
+#yearlyView_search{
+	display: flex;
+	border: 2px solid rgb(223, 225, 230);
+	border-radius: 4px;
+	height: 20px;
+}
+#yearlyView_header_arrow{
+	display: flex;
+	margin-left: 10px;
+	margin-top: -3px;
+}
+#yearlyView_header_arrow img{
+	width: 30px;
+}
+#yearlyView_search #yearlyView_search_year{
+	border: none;
+	margin-top: 2.3px;
+	width: 70px;
+	padding-left: 10px;
+}
+#yearlyView_search #yearlyView_search_year:focus{
+	outline:none;
+}
+#yearlyView_search_year_button{
+	border: none;
+	background-color: white;
+	width: 25px;
+	height: 20px;
+}
+#yearlyView_search_year_button img{
+	width: 15px;
+	padding-top: 1px;
+	filter: opacity(.4) drop-shadow(0 0 0 #6d6d6d);
+}

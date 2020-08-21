@@ -19,6 +19,61 @@
 		>
 			${year }년
 		</div>
+		<div
+			id="yearlyView_header_search"
+		>
+			<div	
+				id="yearlyView_header_search_container"
+			>
+				<form
+					action="${contextPath}/monthlyPlan/yearlyView.do"
+					method="get"
+					id="yearlyView_search"
+				>
+					 <div>
+						<input 
+							type="text" 
+							placeholder="year"
+							name="year"
+							id="yearlyView_search_year"
+						/>
+					 </div>
+					 <div>
+						 <button
+						 	type="submit"
+						 	form="yearlyView_search"
+						 	id="yearlyView_search_year_button"
+						 >
+							<img 
+								alt="검색"
+								src="${contextPath}/resources/images/search-black-18dp.svg"
+								class="icon"
+							/>
+						 </button>
+					 </div>
+				</form>
+			</div>
+			<div
+				id="yearlyView_header_arrow"
+			>
+				<div
+					id="yearlyView_header_arrow_left"
+				>
+					<img 
+						alt="left" 
+						src="${contextPath}/resources/images/arrow_left-black-18dp.svg"
+					>
+				</div>
+				<div
+					id="yearlyView_header_arrow_right"
+				>
+					<img 
+						alt="right" 
+						src="${contextPath}/resources/images/arrow_right-black-18dp.svg"
+					>
+				</div>	
+			</div>
+		</div>
 	</div>
 	<div
 		id="yearlyView_body"
