@@ -5,6 +5,12 @@
 
 	/* 레이어팝업 */
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
+	
+	function todayYear(){
+		let today = new Date();
+		let year = today.getFullYear(); // 년도
+		return year;
+	}
 
 	//오늘날짜 반환
 	function today() {

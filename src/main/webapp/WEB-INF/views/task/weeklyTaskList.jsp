@@ -23,6 +23,69 @@
 		>
 			${year }년 ${month }월 ${week }주
 		</div>
+		<div
+			id="weeklyView_header_search"
+		>
+			<div	
+				id="weeklyView_header_search_container"
+			>
+				<form
+					action="${contextPath}/task/weeklyView.do"
+					method="get"
+					id="weeklyView_search"
+				>
+					 <div>
+						<input 
+							type="text" 
+							placeholder="month"
+							name="month"
+							id="weeklyView_search_month"
+						/>
+					 </div>
+					 <div>
+						<input 
+							type="text" 
+							placeholder="week"
+							name="week"
+							id="weeklyView_search_week"
+						/>
+					 </div>
+					 <div>
+						 <button
+							 type="submit"
+							 form="weeklyView_search"
+							 id="weeklyView_search_week_button"
+						 >
+							<img 
+								alt="검색"
+								src="${contextPath}/resources/images/search-black-18dp.svg"
+								class="icon"
+							/>
+						 </button>
+					 </div>
+				</form>
+			</div>
+			<div
+				id="weeklyView_header_arrow"
+			>
+				<div
+					id="weeklyView_header_arrow_left"
+				>
+					<img 
+						alt="left" 
+							src="${contextPath}/resources/images/arrow_left-black-18dp.svg"
+						>
+				</div>
+				<div
+					id="weeklyView_header_arrow_right"
+				>
+					<img 
+						alt="right" 
+						src="${contextPath}/resources/images/arrow_right-black-18dp.svg"
+					>
+				</div>	
+			</div>
+		</div>
 	</div>
 	<div
 		id="weeklyView_body"

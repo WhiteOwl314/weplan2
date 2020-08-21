@@ -207,7 +207,95 @@ function getTaskListByMonthAndWeek(firstDay,lastDay){
 $(document).ready(function() {
 	let locationSearch = addZero(location.search);
 	let searchMonth = locationSearch.split("&")[0].split("=")[1];
+	let partYear = searchMonth.split('-')[0];
+	let partMonth = searchMonth.split('-')[1];
 	let searchWeek =  locationSearch.split("&")[1].split("=")[1];
+	console.log(searchWeek);
+
+	$('#weeklyView_search_month').attr('placeholder',todayMonth());
+	$('#weeklyView_search_week').attr('placeholder','1');
+
+	//arrow_search
+		//left
+			$('#weeklyView_header_arrow_left').click(function(){
+				if(searchWeek == 1){
+					if(partMonth == '01'){
+						let changedYear = partYear*1-1;
+						let changedMonth = 12;
+						let changedFullMonth = changedYear + "-" + changedMonth;
+						let weekInfo = getWeekByMonth(changedFullMonth);
+						let lastWeek ;
+						
+						for(i in weekInfo){
+							lastWeek = i*1+1;
+						}
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=${lastWeek}`;
+						location.href= url;
+					} else {
+						let changedYear = partYear;
+						let changedMonth = addZero(partMonth*1-1);
+						let changedFullMonth = changedYear + "-" + changedMonth;
+						let weekInfo = getWeekByMonth(changedFullMonth);
+						let lastWeek ;
+						
+						for(i in weekInfo){
+							lastWeek = i*1+1;
+						}
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=${lastWeek}`;
+						location.href= url;
+					}
+				} else {
+						let changedYear = partYear;
+						let changedMonth = partMonth;
+						let changedFullMonth = changedYear + "-" + changedMonth;
+						let changedWeek = searchWeek*1-1
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=${changedWeek}`;
+						location.href= url;
+				}
+			})
+		//left
+		//right
+			$('#weeklyView_header_arrow_right').click(function(){
+				console.log(searchMonth);
+				let weekInfo = getWeekByMonth(searchMonth);
+				console.log(weekInfo);
+				let lastWeek ;
+				for(i in weekInfo){
+					lastWeek = i*1+1;
+				}
+				console.log(lastWeek);
+				if(searchWeek == lastWeek){
+					if(partMonth == '12'){
+						console.log('성공');
+						let changedYear = partYear*1+1;
+						let changedMonth = '01';
+						let changedFullMonth = changedYear + "-" + changedMonth;
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=1`;
+						location.href= url;
+					} else {
+						let changedYear = partYear;
+						let changedMonth = addZero(partMonth*1+1);
+						let changedFullMonth = changedYear + "-" + changedMonth;
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=1`;
+						location.href= url;
+					}
+				} else {
+						let changedYear = partYear;
+						let changedMonth = partMonth;
+						let changedFullMonth = changedYear + "-" + changedMonth;
+						let changedWeek = searchWeek*1+1
+
+						let url = contextPath + `weplan/task/weeklyView.do?month=${changedFullMonth}&week=${changedWeek}`;
+						location.href= url;
+				}
+			})
+		//right
+	//arrow_search
 	
 	//weeklyPlanAdd
 

@@ -22,6 +22,8 @@ function getMonthlyPlanList(year) {
 $(document).ready(function() {
 	
 	let year = location.search.split("=")[1]; 
+
+	$('#yearlyView_search_year').attr('placeholder',todayYear());
 	
 	//arrow_search
 		//left
