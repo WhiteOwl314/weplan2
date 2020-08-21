@@ -12,6 +12,8 @@
 	width: 100%;
 	background-color: white;
 	z-index: 10;
+	display: flex;
+	justify-content: space-between;
 }
 #monthlyView_header_title{
 	padding-top: 35px;
@@ -132,4 +134,43 @@
 	cursor: pointer;
 }
 
+#monthlyView_header_search{
+	margin-right: 45px;
+	display: flex;
+	margin-top: 37px;
+}
+#monthlyView_search{
+	display: flex;
+	border: 2px solid rgb(223, 225, 230);
+	border-radius: 4px;
+	height: 20px;
+}
+#monthlyView_header_arrow{
+	display: flex;
+	margin-left: 10px;
+	margin-top: -3px;
+}
+#monthlyView_header_arrow img{
+	width: 30px;
+}
+#monthlyView_search #monthlyView_search_month{
+	border: none;
+	margin-top: 2.3px;
+	width: 120px;
+	padding-left: 10px;
+}
+#monthlyView_search #monthlyView_search_month:focus{
+	outline:none;
+}
+#monthlyView_search_month_button{
+	border: none;
+	background-color: white;
+	width: 25px;
+	height: 20px;
+}
+#monthlyView_search_month_button img{
+	width: 15px;
+	padding-top: 1px;
+	filter: opacity(.4) drop-shadow(0 0 0 #6d6d6d);
+}
 

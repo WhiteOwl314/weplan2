@@ -19,6 +19,61 @@
 		>
 			${year}년 ${month }월
 		</div>
+		<div
+			id="monthlyView_header_search"
+		>
+			<div	
+				id="monthlyView_header_search_container"
+			>
+				<form
+					action="${contextPath}/weeklyPlan/monthlyView.do"
+					method="get"
+					id="monthlyView_search"
+				>
+					 <div>
+						<input 
+							type="text" 
+							placeholder="month"
+							name="month"
+							id="monthlyView_search_month"
+						/>
+					 </div>
+					 <div>
+						 <button
+							 type="submit"
+							 form="monthlyView_search"
+							 id="monthlyView_search_month_button"
+						 >
+							<img 
+								alt="검색"
+								src="${contextPath}/resources/images/search-black-18dp.svg"
+								class="icon"
+							/>
+						 </button>
+					 </div>
+				</form>
+			</div>
+			<div
+				id="monthlyView_header_arrow"
+			>
+				<div
+					id="monthlyView_header_arrow_left"
+				>
+					<img 
+						alt="left" 
+							src="${contextPath}/resources/images/arrow_left-black-18dp.svg"
+						>
+				</div>
+				<div
+					id="monthlyView_header_arrow_right"
+				>
+					<img 
+						alt="right" 
+						src="${contextPath}/resources/images/arrow_right-black-18dp.svg"
+					>
+				</div>	
+			</div>
+		</div>
 	</div>
 	<div
 		id="monthlyView_body"

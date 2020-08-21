@@ -130,6 +130,46 @@ function getWeeklyPlanListByMonth(month) {
 
 $(document).ready(function() {
 	let month = addZero(location.search.split("=")[1]); 
+	let partYear = month.split('-')[0];
+	let partMonth = month.split('-')[1];
+
+	$('#monthlyView_search_month').attr('placeholder',todayMonth());
+
+
+	//arrow_search
+		//left
+			$('#monthlyView_header_arrow_left').click(function(){
+				if(partMonth == '01'){
+					let changedYear = partYear*1-1
+					let changedMonth = 12;
+					let changedFullMonth = changedYear + "-" + changedMonth; 
+					let url = contextPath + `weplan/weeklyPlan/monthlyView.do?month=${changedFullMonth}`;
+					location.href= url;
+				} else {
+					let changedMonth = addZero(partMonth*1-1);
+					let changedFullMonth = partYear + "-" + changedMonth; 
+					let url = contextPath + `weplan/weeklyPlan/monthlyView.do?month=${changedFullMonth}`;
+					location.href= url;
+				}
+			})
+		//left
+		//right
+			$('#monthlyView_header_arrow_right').click(function(){
+				if(partMonth == '12'){
+					let changedYear = partYear*1+1
+					let changedMonth = '01';
+					let changedFullMonth = changedYear + "-" + changedMonth; 
+					let url = contextPath + `weplan/weeklyPlan/monthlyView.do?month=${changedFullMonth}`;
+					location.href= url;
+				} else {
+					let changedMonth = addZero(partMonth*1+1);
+					let changedFullMonth = partYear + "-" + changedMonth; 
+					let url = contextPath + `weplan/weeklyPlan/monthlyView.do?month=${changedFullMonth}`;
+					location.href= url;
+				}
+			})
+		//right
+	//arrow_search
 	
 	//monthlyPlanAdd
 
