@@ -126,11 +126,12 @@ table tr td{
 }
 #yearlyView_header_arrow img{
 	width: 30px;
+	cursor: pointer;
 }
 #yearlyView_search #yearlyView_search_year{
 	border: none;
 	margin-top: 2.3px;
-	width: 70px;
+	width: 30px;
 	padding-left: 10px;
 }
 #yearlyView_search #yearlyView_search_year:focus{

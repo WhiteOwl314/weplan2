@@ -12,8 +12,6 @@ public interface YearlyPlanController {
 
 	public ResponseEntity addYearlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	public String popUpYearlyPlanView(int yearlyPlan_id) throws Exception;
-
 	public ResponseEntity updateYearlyPlan(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 	public ResponseEntity deleteYearlyPlan(int yearlyPlan_id, HttpServletRequest request, HttpServletResponse response)
@@ -25,5 +23,7 @@ public interface YearlyPlanController {
 	public String monthlyPlanList(int yearlyPlan_id, HttpServletRequest request) throws Exception;
 
 	public String getMonthList(int yearlyPlan_id, HttpServletRequest request) throws Exception;
+
+	String popUpYearlyPlanView(int yearlyPlan_id, HttpServletRequest request) throws Exception;
 
 }

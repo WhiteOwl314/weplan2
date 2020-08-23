@@ -14,7 +14,7 @@ public interface GoalService {
 
 	public void addGoal(GoalVO goalVO) throws Exception;
 
-	public JSONObject popUpGoalView(int goal_id) throws Exception;
+	public JSONObject popUpGoalView(Map<String, Object> map) throws Exception;
 
 	public void updateGoal(GoalVO goalVO) throws Exception;
 
@@ -25,5 +25,11 @@ public interface GoalService {
 	public JSONArray yearlyPlanList(Map<String, Object> map) throws Exception;
 
 	public void completeGoal(Map<String, Object> map) throws Exception;
+
+	public void addGoalNullAbsoluteValue(GoalVO goalVO) throws Exception;
+
+	public void updateGoalWithAbsoluteValue(GoalVO goalVO) throws Exception;
+
+	public JSONArray getGoalAllList(Map<String, Object> map) throws Exception;
 
 }

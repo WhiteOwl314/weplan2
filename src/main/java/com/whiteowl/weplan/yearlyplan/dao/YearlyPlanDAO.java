@@ -15,7 +15,7 @@ public interface YearlyPlanDAO {
 
 	public void addYearlyPlan(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
 
-	public JSONObject popUpYearlyPlanView(int yearlyPlan_id) throws DataAccessException;
+	public JSONObject popUpYearlyPlanView(Map<String, Object> map) throws DataAccessException;
 
 	public void updateYearlyPlan(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
 
@@ -26,5 +26,9 @@ public interface YearlyPlanDAO {
 	public JSONArray monthlyPlanList(Map<String, Object> map) throws DataAccessException;
 
 	public JSONArray getMonthList(Map<String, Object> map) throws DataAccessException;
+
+	public void addYearlyPlanNullGoalId(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
+
+	public void updateYearlyPlanWithGoalId(YearlyPlanVO yearlyPlanVO) throws DataAccessException;  
 
 }

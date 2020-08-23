@@ -53,33 +53,6 @@ public class GoalDAOImpl implements GoalDAO{
 	}
 
 	@Override
-	public JSONObject popUpGoalView(
-			int goal_id
-	) throws DataAccessException {
-		JSONObject data = new JSONObject();
-		
-		GoalVO goalVO = sqlSession.selectOne(
-				"mapper.goal.popUpGoalView", 
-				goal_id
-		);
-		int id = goalVO.getId();
-		String title = goalVO.getTitle();
-		String content = goalVO.getContent();
-		int importance = goalVO.getImportance();
-		String limitDate = goalVO.getLimitDate();
-		String startDate = goalVO.getStartDate();
-
-		data.put("id", id);
-		data.put("title", title);
-		data.put("content", content);
-		data.put("importance", importance);
-		data.put("limitDate", limitDate);
-		data.put("startDate", startDate);
-		
-		return data;
-	}
-
-	@Override
 	public void updateGoal(
 			GoalVO goalVO
 	) throws DataAccessException {
@@ -156,6 +129,93 @@ public class GoalDAOImpl implements GoalDAO{
 				"mapper.goal.completeGoal",
 				map
 		);
+	}
+
+	@Override
+	public void addGoalNullAbsoluteValue(
+			GoalVO goalVO
+	) throws DataAccessException {
+		int goal_NO = selectNewGoal_NO();
+		goalVO.setId(goal_NO);
+		sqlSession.insert(
+				"mapper.goal.addGoalNullAbsoluteValue" ,
+				goalVO
+		);
+	}
+
+	@Override
+	public JSONObject popUpGoalView(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONObject data = new JSONObject();
+		
+		GoalVO goalVO = sqlSession.selectOne(
+				"mapper.goal.popUpGoalView", 
+				map
+		);
+		int id = goalVO.getId();
+		String title = goalVO.getTitle();
+		String content = goalVO.getContent();
+		int importance = goalVO.getImportance();
+		String limitDate = goalVO.getLimitDate();
+		String startDate = goalVO.getStartDate();
+		int absolute_value_id =goalVO.getAbsolute_value_id(); 
+
+		data.put("id", id);
+		data.put("title", title);
+		data.put("content", content);
+		data.put("importance", importance);
+		data.put("limitDate", limitDate);
+		data.put("startDate", startDate);
+		data.put("absolute_value_id", absolute_value_id);
+		
+		return data;
+	}
+
+	@Override
+	public void updateGoalWithAbsoluteValue(
+			GoalVO goalVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.goal.updateGoalWithAbsoluteValue",
+				goalVO
+		);
+	}
+
+	@Override
+	public JSONArray getGoalAllList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		
+		List<GoalVO> goalList = sqlSession.selectList(
+			"mapper.goal.getGoalAllList", 
+			map
+		);
+		
+		for (GoalVO goalVO : goalList) {
+			JSONObject data = new JSONObject();
+			
+			int id = goalVO.getId();
+			String title = goalVO.getTitle();
+			String content = goalVO.getContent();
+			String isCompleted = goalVO.getIsCompleted();
+			int importance = goalVO.getImportance();
+			String startDate = goalVO.getStartDate();
+			String limitDate = goalVO.getLimitDate();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("startDate", startDate);
+			data.put("limitDate", limitDate);
+			
+			ja.add(data);
+		}
+		return ja;
 	}
 
 }

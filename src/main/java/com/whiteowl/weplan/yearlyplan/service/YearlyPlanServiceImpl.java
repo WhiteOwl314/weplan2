@@ -37,10 +37,10 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 
 	@Override
 	public JSONObject popUpYearlyPlanView(
-			int yearlyPlan_id
+			Map<String, Object> map
 	) throws Exception {
 		return yearlyPlanDAO
-				.popUpYearlyPlanView(yearlyPlan_id);
+				.popUpYearlyPlanView(map);
 	}
 
 	@Override
@@ -79,6 +79,21 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 	) throws Exception {
 		return yearlyPlanDAO
 				.getMonthList(map);
+	}
+
+	@Override
+	public void addYearlyPlanNullGoalId(
+			YearlyPlanVO yearlyPlanVO
+	) throws Exception {
+		yearlyPlanDAO.addYearlyPlanNullGoalId(yearlyPlanVO);
+		
+	}
+
+	@Override
+	public void updateYearlyPlanWithGoalId(
+			YearlyPlanVO yearlyPlanVO
+	) throws Exception {
+		yearlyPlanDAO.updateYearlyPlanWithGoalId(yearlyPlanVO);
 	}
 
 }

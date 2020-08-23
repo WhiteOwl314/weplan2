@@ -37,15 +37,6 @@ public class GoalServiceImpl implements GoalService{
 	}
 
 	@Override
-	public JSONObject popUpGoalView(
-			int goal_id
-	) throws Exception {
-		return goalDAO.popUpGoalView(
-				goal_id
-				);
-	}
-
-	@Override
 	public void updateGoal(
 			GoalVO goalVO
 	) throws Exception {
@@ -82,6 +73,36 @@ public class GoalServiceImpl implements GoalService{
 			Map<String, Object> map
 	) throws Exception {
 		goalDAO.completeGoal(map);
+	}
+
+	@Override
+	public void addGoalNullAbsoluteValue(
+			GoalVO goalVO
+	) throws Exception {
+		goalDAO.addGoalNullAbsoluteValue(goalVO);
+		
+	}
+
+	@Override
+	public JSONObject popUpGoalView(
+			Map<String, Object> map
+	) throws Exception {
+		return goalDAO.popUpGoalView(
+				map
+		);
+	}
+
+	@Override
+	public void updateGoalWithAbsoluteValue(GoalVO goalVO) throws Exception {
+		goalDAO.updateGoalWithAbsoluteValue(goalVO);
+		
+	}
+
+	@Override
+	public JSONArray getGoalAllList(
+			Map<String, Object> map
+	) throws Exception {
+		return goalDAO.getGoalAllList(map);
 	}
 
 }

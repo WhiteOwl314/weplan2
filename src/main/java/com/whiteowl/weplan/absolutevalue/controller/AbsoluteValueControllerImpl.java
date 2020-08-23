@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -300,6 +301,29 @@ public class AbsoluteValueControllerImpl implements AbsoluteValueController{
 
 	}
 
+	@Override
+	@RequestMapping(
+			value="/absoluteValue/getAbsoluteValueList.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getAbsoluteValueList(
+			HttpServletRequest request
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		
+		JSONArray jsonObj = absoluteValueService.getAbsoluteValueList(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
 	
 
 }

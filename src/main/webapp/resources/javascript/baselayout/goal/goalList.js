@@ -91,7 +91,6 @@
 			},
 		});
 		//ajax 호출
-		console.log(data);
 		return data;
 	}
 	function getMonthList(yearlyPlan_id) {
@@ -174,11 +173,13 @@
 				var importance = decodeURIComponent( result.importance );
 				var limitDate = decodeURIComponent(result.limitDate);
 				var startDate = decodeURIComponent(result.startDate);
+				var absolute_value_id = decodeURIComponent(result.absolute_value_id);
 
 				$('.project_detail_title .project_detail_text').html(title);
 				$('.project_detail_title .project_detail_text').attr('id',`project_${id}`)
 				$('.project_detail_title .project_detail_class').html('project');
 				$('.project_detail_header .project_detail_completed').css('display','block')
+
 
 				//startDate
 				if(startDate === 'null'){
@@ -231,9 +232,19 @@
 				);
 				$('.project_detail .project_detail_add').click(function(event) {
 					popupReset();	
-					let title = "YearlyPlan 추가";
+					let title = "Goal 추가";
 					let url = contextPath + "weplan/yearlyPlan/addYearlyPlan.do";
-					$('#layerpop_goal_id').attr('value',id);
+					displayPopUpFormProjectId();
+					getProjectAllList();
+
+					//goalId
+					if(goal_id === 'null'){
+					} else{
+						console.log(goal_id);
+						$('#layerpop_projectId_select').val(goal_id);
+					}
+					//goalId
+					
 					checkInitialImportance();
 					putPlaceholderAtDates();
 					popUpSetting(title, url);
@@ -325,7 +336,7 @@
 									+ ' <div'
 										+ ' class="project_yearly_class"'
 									+ ' >'
-										+ 'yearly plan'
+										+ 'goal'
 									+ ' </div>'
 								+ ' </div>'
 								+ ' <div'
@@ -374,7 +385,7 @@
 					$('.project_yearly_container .monthly_ent_add').click(function(event) {
 
 						popupReset();	
-						let title = "YearlyPlan 추가";
+						let title = "Monthly Goal 추가";
 						let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
 						$('.layerpop .startDate_container').css('display','none');
 						$('.layerpop .limitDate_container').css('display','none');
@@ -401,15 +412,20 @@
 
 
 						//popUp_폼 on
-						let title = "Yearly Plan";
+						let title = "Goal";
 						let url = contextPath + "weplan/yearlyPlan/updateYearlyPlan.do";
+
+						//popUp reset
+						popupReset();
+
+						displayPopUpFormProjectId();
+
+						getProjectAllList();
 						
 						//프로젝트 정보 가져오기
 						//팝업 요소에 프로젝트 정보 삽입
 						popUp_getYearlyPlan(id);
 
-						//popUp reset
-						popupReset();
 						
 						//팝업 띄우기
 						popUpSetting(title, url);
@@ -923,6 +939,15 @@
 				var importance = decodeURIComponent( result.importance );
 				var limitDate = decodeURIComponent(result.limitDate);
 				var startDate = decodeURIComponent(result.startDate);
+				var absolute_value_id = decodeURIComponent(result.absolute_value_id);
+
+				//absoluteValueId
+				if(absolute_value_id === 'null'){
+				} else{
+					console.log(absolute_value_id);
+					$('#layerpop_absoluteValueId_select').val(absolute_value_id);
+				}
+				//absoluteValueId
 				
 				/* IMPORTANCE */
 				if(importance=='1'){
@@ -989,6 +1014,15 @@
 				let importance = decodeURIComponent( result.importance );
 				let limitDate = decodeURIComponent(result.limitDate);
 				let startDate = decodeURIComponent(result.startDate);
+				var goal_id = decodeURIComponent(result.goal_id);
+
+				//absoluteValueId
+				if(goal_id === 'null'){
+				} else{
+					console.log(goal_id);
+					$('#layerpop_projectId_select').val(goal_id);
+				}
+				//absoluteValueId
 				
 				/* IMPORTANCE */
 				if(importance=='1'){
@@ -1058,6 +1092,9 @@
 
 		popupReset();	
 
+		displayPopUpFormAbsoluteValueId();
+		getAbsoluteValueList();
+
 		let title = "Project";
 		let url = contextPath + "weplan/goal/updateGoal.do";
 
@@ -1083,6 +1120,8 @@
 	$('.project_add .project_button').click(function(event) {
 
 		popupReset();	
+		displayPopUpFormAbsoluteValueId();
+		getAbsoluteValueList();
 		let title = "Project 추가";
 		let url = contextPath + "weplan/goal/addGoal.do";
 		checkInitialImportance();

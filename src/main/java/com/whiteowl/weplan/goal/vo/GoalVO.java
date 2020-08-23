@@ -13,6 +13,8 @@ public class GoalVO {
 	private String limitDate;
 	private String startDate;
 	private String member_id;
+	private int absolute_value_id;
+
 	public int getId() {
 		return id;
 	}
@@ -60,6 +62,12 @@ public class GoalVO {
 	}
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
+	}
+	public int getAbsolute_value_id() {
+		return absolute_value_id;
+	}
+	public void setAbsolute_value_id(int absolute_value_id) {
+		this.absolute_value_id = absolute_value_id;
 	}
 	
 	

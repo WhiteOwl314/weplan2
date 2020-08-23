@@ -75,7 +75,7 @@
 	<select 
   		id="popUpYearlyPlanView" 
   		resultMap="yearlyPlanVOResult"   
-  		parameterType="int"
+  		parameterType="java.util.Map"
   	>
       <![CDATA[
 		SELECT 
@@ -84,12 +84,13 @@
 			content,
 			importance,
 			TO_CHAR(STARTDATE, 'YYYY-MM-DD') AS startDate,
-			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate
+			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate,
+			goal_id
 		FROM W_YEARLY_PLAN 
 		WHERE 
 			isdelete = '0' 
-			AND isCompleted = '0' 
 			AND ID = #{yearlyPlan_id}
+			AND member_id = #{member_id}
 		ORDER BY credate DESC
       ]]>
 	</select>
@@ -104,7 +105,8 @@
 	  		title = #{title},
 	  		content = #{content},
 	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd'),
-	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd')
+	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd'),
+	  		goal_id = null
 	  	WHERE 
 	  		isdelete = '0'  
 			AND ID = #{id}
@@ -174,5 +176,47 @@
       ]]>
 	</select>
 
+	<insert id="addYearlyPlanNullGoalId" parameterType="yearlyPlanVO" >
+      <![CDATA[
+      	INSERT INTO W_YEARLY_PLAN(
+      		member_id,
+      		ID,
+      		title,
+      		content,
+      		importance,
+      		startDate,
+      		limitDate,
+      		goal_id
+      	)
+      	VALUES (
+      		#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{startDate},'yyyy-mm-dd'),
+      		TO_DATE(#{limitDate},'yyyy-mm-dd'),
+      		null
+      	)
+      ]]>
+	</insert>
+
+	<update 
+		id="updateYearlyPlanWithGoalId"
+		parameterType="yearlyPlanVO"
+	>
+	  	UPDATE W_YEARLY_PLAN
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd'),
+	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd'),
+	  		goal_id = #{goal_id}
+	  	WHERE 
+	  		isdelete = '0'  
+			AND ID = #{id}
+			AND member_id = #{member_id}
+	</update>
 
 </mapper>

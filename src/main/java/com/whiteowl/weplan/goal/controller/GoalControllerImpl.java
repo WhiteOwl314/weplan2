@@ -80,6 +80,7 @@ public class GoalControllerImpl implements GoalController{
 		String startDate = request.getParameter("startDate");
 		String limitDate = request.getParameter("limitDate");
 		String member_id = request.getParameter("member_id");
+		int absolute_value_id = Integer.parseInt(request.getParameter("absolute_value_id"));
 		
 		
 		goalVO.setTitle(title);
@@ -98,7 +99,12 @@ public class GoalControllerImpl implements GoalController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			goalService.addGoal(goalVO);
+			if(absolute_value_id != 0) {
+				goalVO.setAbsolute_value_id(absolute_value_id);
+				goalService.addGoal(goalVO);
+			} else {
+				goalService.addGoalNullAbsoluteValue(goalVO);
+			}
 			message = "<script>";
 			message += " alert('추가되었습니다.');";
 			message += " location.href='"+ referer +"'; ";
@@ -124,11 +130,21 @@ public class GoalControllerImpl implements GoalController{
 	)
 	@ResponseBody
 	public String popUpGoalView(
-			@RequestParam("id") int goal_id
+			@RequestParam("id") int goal_id,
+			HttpServletRequest request
 	) throws Exception {
+
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		Map<String, Object> map = new HashMap<String, Object>();
 		
+		map.put("member_id", member_id);
+		map.put("goal_id", goal_id);
+
 		JSONObject jsonObj = goalService.popUpGoalView(
-				goal_id
+				map
 		);
 		
 		return jsonObj.toString();
@@ -155,6 +171,7 @@ public class GoalControllerImpl implements GoalController{
 		int id = Integer.parseInt(
 				request.getParameter("id")
 		);
+		int absolute_value_id = Integer.parseInt(request.getParameter("absolute_value_id"));
 		
 		goalVO.setImportance(importance);
 		goalVO.setTitle(title);
@@ -172,7 +189,13 @@ public class GoalControllerImpl implements GoalController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
 		try {
+			if(absolute_value_id == 0) {
 				goalService.updateGoal(goalVO);
+			} else {
+				
+				goalVO.setAbsolute_value_id(absolute_value_id);
+				goalService.updateGoalWithAbsoluteValue(goalVO);
+			}
 			
 			message = "<script>";
 			message += " alert('수정되었습니다.');";
@@ -344,5 +367,28 @@ public class GoalControllerImpl implements GoalController{
 
 	}
 
+	@Override
+	@RequestMapping(
+			value="/goal/getGoalAllList.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getGoalAllList(
+			HttpServletRequest request
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		
+		JSONArray jsonObj = goalService.getGoalAllList(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
 
 }

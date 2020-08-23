@@ -1,7 +1,75 @@
 /**
  * 
  */
+function displayPopUpFormAbsoluteValueId(){
+	$('#layerpop_absoluteValueId').css('display','block');
+}
+function displayPopUpFormProjectId(){
+	$('#layerpop_projectId').css('display','block');
+}
+function displayPopUpFormGoalId(){
+	$('#layerpop_goalId').css('display','block');
+}
 
+function getProjectAllList(){
+
+	let data;
+	//ajax 호출
+	var url = contextPath + "weplan/goal/getGoalAllList.do";
+	$.ajax({
+		url : url,
+		dataType :"json",
+		type : "POST",
+		async: false,
+		success : function(result) {
+			data = result;
+			
+			for(let i in data){
+				let goalVO = data[i];
+				let goalId = decodeURIComponent( goalVO.id );
+				let title = decodeURIComponent( goalVO.title );
+				let content = decodeURIComponent( goalVO.content );
+				let importance = decodeURIComponent( goalVO.importance );
+
+				$(`#layerpop_projectId_select`).append(
+					`<option value="${goalId}">${title}</option>`
+				)
+			}
+				
+		},
+	});
+	//ajax 호출
+}
+
+function getAbsoluteValueList(){
+
+	let data;
+	//ajax 호출
+	var url = contextPath + "weplan/absoluteValue/getAbsoluteValueList.do";
+	$.ajax({
+		url : url,
+		dataType :"json",
+		type : "POST",
+		async: false,
+		success : function(result) {
+			data = result;
+			
+			for(let i in data){
+				let absoluteValueVO = data[i];
+				let absoluteValueId = decodeURIComponent( absoluteValueVO.id );
+				let title = decodeURIComponent( absoluteValueVO.title );
+				let content = decodeURIComponent( absoluteValueVO.content );
+				let importance = decodeURIComponent( absoluteValueVO.importance );
+
+				$(`#layerpop_absoluteValueId_select`).append(
+					`<option value="${absoluteValueId}">${title}</option>`
+				)
+			}
+				
+		},
+	});
+	//ajax 호출
+}
 
 	/* 레이어팝업 */
 	var contextPath = window.location.protocol + "//" + window.location.host + "/";
@@ -69,9 +137,9 @@
 		var maskWidth = $(window).width();
 
 		//문서영역의 크기 
-		console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
-		//브라우저에서 문서가 보여지는 영역의 크기
-		console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        
+/*/*		console.log( "document 사이즈:"+ $(document).width() + "*" + $(document).height()); 
+*/		//브라우저에서 문서가 보여지는 영역의 크기
+/*		console.log( "window 사이즈:"+ $(window).width() + "*" + $(window).height());        */
 
 		//마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
 		$('#mask').css({
@@ -112,6 +180,12 @@
 		$('.layerpop .layerpop_month_form').attr('value','');
 		$('#layerpop_yearlyPlan_id').attr('value','');
 		$('#layerpop_week').attr('value','');
+		$('#layerpop_absoluteValueId').css('display','none');
+		$('#layerpop_absoluteValueId_select').val('0');
+		$('#layerpop_projectId').css('display','none');
+		$('#layerpop_projectId_select').val('0');
+		$('#layerpop_goalId').css('display','none');
+		$('#layerpop_goalId_select').val('0');
 	}
 	function changeTitle(title) {
 		$('.layerpop .title').text(title);

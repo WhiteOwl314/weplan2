@@ -104,7 +104,6 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		yearlyPlanVO.setStartDate(startDate);
 		yearlyPlanVO.setLimitDate(limitDate);
 		yearlyPlanVO.setMember_id(member_id);
-		yearlyPlanVO.setGoal_id(goal_id);
 		
 		
 		
@@ -116,7 +115,12 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 
 		try {
-			yearlyPlanService.addYearlyPlan(yearlyPlanVO);
+			if(goal_id != 0) {
+				yearlyPlanVO.setGoal_id(goal_id);
+				yearlyPlanService.addYearlyPlan(yearlyPlanVO);
+			} else {
+				yearlyPlanService.addYearlyPlanNullGoalId(yearlyPlanVO);
+			}
 
 			message = "<script>";
 			message += " alert('추가되었습니다.');";
@@ -142,11 +146,21 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 	)
 	@ResponseBody
 	public String popUpYearlyPlanView(
-			@RequestParam("id") int yearlyPlan_id
+			@RequestParam("id") int yearlyPlan_id,
+			HttpServletRequest request
 	) throws Exception {
 		
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("member_id", member_id);
+		map.put("yearlyPlan_id", yearlyPlan_id);
+
 		JSONObject jsonObj = yearlyPlanService.popUpYearlyPlanView(
-				yearlyPlan_id
+				map
 		);
 		
 		return jsonObj.toString();
@@ -173,7 +187,8 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		int id = Integer.parseInt(
 				request.getParameter("id")
 		);
-		
+		int goal_id = Integer.parseInt(request.getParameter("goal_id"));
+
 		yearlyPlanVO.setImportance(importance);
 		yearlyPlanVO.setTitle(title);
 		yearlyPlanVO.setContent(content);
@@ -190,7 +205,12 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
 
 		try {
-			yearlyPlanService.updateYearlyPlan(yearlyPlanVO);
+			if(goal_id == 0) {
+				yearlyPlanService.updateYearlyPlan(yearlyPlanVO);
+			} else {
+				yearlyPlanVO.setGoal_id(goal_id);
+				yearlyPlanService.updateYearlyPlanWithGoalId(yearlyPlanVO);
+			}
 			
 			message = "<script>";
 			message += " alert('수정되었습니다.');";
@@ -327,6 +347,7 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 		return resEnt;
 
 	}
+
 	@Override
 	@RequestMapping(
 			value="/yearlyPlan/monthlyPlanList.do",

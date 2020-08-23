@@ -14,8 +14,6 @@ public interface YearlyPlanService {
 
 	public void addYearlyPlan(YearlyPlanVO yearlyPlanVO)throws Exception;
 
-	public JSONObject popUpYearlyPlanView(int yearlyPlan_id) throws Exception;
-
 	public void updateYearlyPlan(YearlyPlanVO yearlyPlanVO) throws Exception;
 
 	public void deleteYearlyPlan(Map<String, Object> map) throws Exception;
@@ -25,5 +23,11 @@ public interface YearlyPlanService {
 	public JSONArray monthlyPlanList(Map<String, Object> map) throws Exception;
 
 	public JSONArray getMonthList(Map<String, Object> map) throws Exception;
+
+	public void addYearlyPlanNullGoalId(YearlyPlanVO yearlyPlanVO) throws Exception;
+
+	public void updateYearlyPlanWithGoalId(YearlyPlanVO yearlyPlanVO) throws Exception;
+
+	JSONObject popUpYearlyPlanView(Map<String, Object> map) throws Exception;
 
 }

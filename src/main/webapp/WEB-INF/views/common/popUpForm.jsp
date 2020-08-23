@@ -52,6 +52,30 @@
 							<input class="layerpop_title" type="text" name="title" >
 						</div>
 						<div
+							id="layerpop_absoluteValueId"
+						>
+							<label for="layerpop_absoluteValueId_select">Absolute Value:</label>
+							<select id="layerpop_absoluteValueId_select" name="absolute_value_id">
+								<option value="0">없음</option>
+							</select>
+						</div>
+						<div
+							id="layerpop_projectId"
+						>
+							<label for="layerpop_projectId_select">Project:</label>
+							<select id="layerpop_projectId_select" name="goal_id">
+								<option value="0">없음</option>
+							</select>
+						</div>
+						<div
+							id="layerpop_goalId"
+						>
+							<label for="layerpop_goalId_select">Goal:</label>
+							<select id="layerpop_goalId_select" name="absoluteValueId">
+								<option value="0">없음</option>
+							</select>
+						</div>
+						<div
 							class="layerpop_form_container startDate_container"
 						>
 							<div
@@ -153,7 +177,6 @@
 					</div>
 					<input type="hidden" name="member_id" value="${ member.id }">
 					<input type="hidden" name="id" class="layerpop_id">
-					<input id="layerpop_goal_id" type="hidden" name="goal_id">
 					<input id="layerpop_yearlyPlan_id" type="hidden" name="yearlyPlan_id">
 					<input id="layerpop_week" type="hidden" name="week">
 				</form>

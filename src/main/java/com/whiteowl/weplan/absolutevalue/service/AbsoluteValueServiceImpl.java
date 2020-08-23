@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,13 @@ implements AbsoluteValueService{
 		return absoluteValueDAO.linkingGoalList(
 				map
 				);
+	}
+
+	@Override
+	public JSONArray getAbsoluteValueList(
+			Map<String, Object> map
+	) throws Exception {
+		return absoluteValueDAO.getAbsoluteValueList(map);
 	}
 
 }

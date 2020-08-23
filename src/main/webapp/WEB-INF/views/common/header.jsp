@@ -166,7 +166,6 @@
 					 	<a
 					 		href="${contextPath}/task/listInboxTasks.do"
 					 	>
-					 		작업
 					 	</a>
 					 </div>
 				 </a>
@@ -175,27 +174,6 @@
 		<div
 			class="menu2"
 		>
-			 <div
-				 class="search_container"
-			 >
-				 <div
-					 class="search_div"
-				 >
-					 <form>
-						 <div>
-							<img 
-								alt="검색"
-								src="${contextPath}/resources/images/search-black-18dp.svg"
-								class="icon"
-							/>
-						 </div>
-						 <div>
-							<input type="text" placeholder="검색"/>
-						 </div>
-					 </form>
-				 </div>
-			 </div>
-
 			 <div
 				 class="settings_container"
 			 >

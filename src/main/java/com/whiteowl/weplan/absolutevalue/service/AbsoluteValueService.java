@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.whiteowl.weplan.absolutevalue.vo.AbsoluteValueVO;
@@ -25,5 +26,7 @@ public interface AbsoluteValueService {
 	public void deleteAbsoluteValue(Map<String, Object> map) throws Exception;
 
 	public List<GoalVO> linkingGoalList(Map<String, Object> map) throws Exception;
+
+	public JSONArray getAbsoluteValueList(Map<String, Object> map) throws Exception;
 
 }

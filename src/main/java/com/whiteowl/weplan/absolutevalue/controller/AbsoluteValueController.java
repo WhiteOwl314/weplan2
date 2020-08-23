@@ -25,4 +25,6 @@ public interface AbsoluteValueController {
 	public ResponseEntity deleteAbsoluteValue(int absoluteValue_id, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
+	public String getAbsoluteValueList(HttpServletRequest request) throws Exception;
+
 }

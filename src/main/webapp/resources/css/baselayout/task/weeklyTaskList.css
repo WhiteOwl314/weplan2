@@ -11,12 +11,63 @@
 	width: 100%;
 	background-color: white;
 	z-index: 10;
+	display: flex;
+	justify-content: space-between;
 }
 #weeklyView_header_title{
 	padding-top: 35px;
 	padding-left: 40px;
 	font-size: 30px;
 	box-sizing: border-box;
+}
+#weeklyView_header_search{
+	margin-right: 45px;
+	display: flex;
+	margin-top: 37px;
+}
+#weeklyView_search_month{
+	border: none;
+	margin-top: 2.3px;
+	width: 50px;
+	padding-left: 10px;
+}
+#weeklyView_search_month:focus{
+	outline: none;
+}
+#weeklyView_search_week{
+	border: none;
+	margin-top: 2.3px;
+	width: 10px;
+	padding-left: 10px;
+}
+#weeklyView_search_week:focus{
+	outline: none;
+}
+#weeklyView_search_week_button{
+	border: none;
+	background-color: white;
+	width: 25px;
+	height: 20px;
+}
+#weeklyView_search_week_button img{
+	width: 15px;
+	padding-top: 1px;
+	filter: opacity(.4) drop-shadow(0 0 0 #6d6d6d);
+}
+#weeklyView_search{
+	display: flex;
+	border: 2px solid rgb(223, 225, 230);
+	border-radius: 4px;
+	height: 20px;
+}
+#weeklyView_header_arrow{
+	display: flex;
+	margin-left: 10px;
+	margin-top: -3px;
+}
+#weeklyView_header_arrow img{
+	width: 30px;
+	cursor: pointer;
 }
 #weeklyView_body{
 	display: flex;

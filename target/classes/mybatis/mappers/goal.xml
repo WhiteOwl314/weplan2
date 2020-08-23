@@ -65,7 +65,8 @@
       		content,
       		importance,
       		startDate,
-      		limitDate
+      		limitDate,
+      		absolute_value_id
       	)
       	VALUES (
       		#{member_id},
@@ -74,15 +75,16 @@
       		#{content},
       		#{importance},
       		TO_DATE(#{startDate},'yyyy-mm-dd'),
-      		TO_DATE(#{limitDate},'yyyy-mm-dd')
+      		TO_DATE(#{limitDate},'yyyy-mm-dd'),
+      		#{absolute_value_id}
       	)
       ]]>
 	</insert>
 	
 	<select 
   		id="popUpGoalView" 
-  		resultMap="goalVOResult"   
-  		parameterType="int"
+  		resultType="goalVO"   
+  		parameterType="java.util.Map"
   	>
       <![CDATA[
 		SELECT 
@@ -92,12 +94,13 @@
 			isCompleted,
 			importance,
 			TO_CHAR(limitdate, 'YYYY-MM-DD') AS limitdate,
-			TO_CHAR(startdate, 'YYYY-MM-DD') AS startdate
+			TO_CHAR(startdate, 'YYYY-MM-DD') AS startdate,
+			absolute_value_id
 		FROM W_GOAL 
 		WHERE 
 			isdelete = '0' 
-			AND isCompleted = '0' 
 			AND ID = #{goal_id}
+			AND MEMBER_ID = #{member_id}
 		ORDER BY credate DESC
       ]]>
 	</select>
@@ -113,10 +116,12 @@
 	  		title = #{title},
 	  		content = #{content},
 	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd'),
-	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd')
+	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd'),
+	  		absolute_value_id = null
 	  	WHERE 
 	  		isdelete = '0'  
 			AND ID = #{id}
+			AND member_id = #{member_id}
 	</update>
 	
 	<update 
@@ -180,5 +185,73 @@
 	  		member_id = #{member_id}
 			AND ID = #{goal_id}
 	  </update>
+
+	<insert 
+		id="addGoalNullAbsoluteValue" 
+		parameterType="goalVO" 
+	>
+      <![CDATA[
+      	INSERT INTO W_GOAL(
+      		member_id,
+      		id,
+      		title,
+      		content,
+      		importance,
+      		startDate,
+      		limitDate,
+      		absolute_value_id
+      	)
+      	VALUES (
+      		#{member_id},
+      		#{id},
+      		#{title},
+      		#{content},
+      		#{importance},
+      		TO_DATE(#{startDate},'yyyy-mm-dd'),
+      		TO_DATE(#{limitDate},'yyyy-mm-dd'),
+      		null
+      	)
+      ]]>
+	</insert>
+	
+	<update 
+		id="updateGoalWithAbsoluteValue"
+		parameterType="goalVO"
+	>
+	  	UPDATE W_GOAL
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		startDate = TO_DATE(#{startDate},'yyyy-mm-dd'),
+	  		limitDate = TO_DATE(#{limitDate},'yyyy-mm-dd'),
+	  		absolute_value_id = #{absolute_value_id}
+	  	WHERE 
+	  		isdelete = '0'  
+			AND ID = #{id}
+			AND member_id = #{member_id}
+	</update>
+	
+	<select 
+		id="getGoalAllList" 
+		resultMap="goalVOResult" 
+		parameterType="String"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			isCompleted,
+			importance,
+			TO_CHAR(limitdate, 'YYYY-MM-DD') AS limitdate,
+			TO_CHAR(startDate, 'YYYY-MM-DD') AS startdate
+		FROM W_GOAL 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+		ORDER BY credate ASC
+      ]]>
+	</select>
 	
 </mapper>

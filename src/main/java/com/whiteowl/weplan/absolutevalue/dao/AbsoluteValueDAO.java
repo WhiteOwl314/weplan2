@@ -3,6 +3,7 @@ package com.whiteowl.weplan.absolutevalue.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.dao.DataAccessException;
 
@@ -24,4 +25,6 @@ public interface AbsoluteValueDAO {
 	public void deleteAbsoluteValue(Map<String, Object> map) throws DataAccessException;
 
 	public List<GoalVO> linkingGoalList(Map<String, Object> map) throws DataAccessException;
+
+	public JSONArray getAbsoluteValueList(Map<String, Object> map) throws DataAccessException;
 }

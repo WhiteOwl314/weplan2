@@ -152,11 +152,12 @@
 }
 #monthlyView_header_arrow img{
 	width: 30px;
+	cursor: pointer;
 }
 #monthlyView_search #monthlyView_search_month{
 	border: none;
 	margin-top: 2.3px;
-	width: 120px;
+	width: 50px;
 	padding-left: 10px;
 }
 #monthlyView_search #monthlyView_search_month:focus{

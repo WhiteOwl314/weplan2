@@ -53,13 +53,13 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 
 	@Override
 	public JSONObject popUpYearlyPlanView(
-			int yearlyPlan_id
+			Map<String, Object> map
 	) throws DataAccessException {
 		JSONObject data = new JSONObject();
 		
 		YearlyPlanVO yearlyPlanVO = sqlSession.selectOne(
 				"mapper.yearlyPlan.popUpYearlyPlanView", 
-				yearlyPlan_id
+				map
 		);
 		int id = yearlyPlanVO.getId();
 		String title = yearlyPlanVO.getTitle();
@@ -67,6 +67,7 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		int importance = yearlyPlanVO.getImportance();
 		String startDate = yearlyPlanVO.getStartDate();
 		String limitDate = yearlyPlanVO.getLimitDate();
+		int goal_id = yearlyPlanVO.getGoal_id();
 
 		data.put("id", id);
 		data.put("title", title);
@@ -74,6 +75,7 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		data.put("importance", importance);
 		data.put("startDate", startDate);
 		data.put("limitDate", limitDate);
+		data.put("goal_id", goal_id);
 		
 		return data;
 	}
@@ -158,6 +160,29 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 		}
 
 		return ja;
+	}
+
+	@Override
+	public void addYearlyPlanNullGoalId(
+			YearlyPlanVO yearlyPlanVO
+	) throws DataAccessException {
+		int yearlyPlan_NO = selectNewYearlyPlan_NO();
+		yearlyPlanVO.setId(yearlyPlan_NO);
+		
+		sqlSession.insert(
+				"mapper.yearlyPlan.addYearlyPlanNullGoalId",
+				yearlyPlanVO
+		);
+	}
+
+	@Override
+	public void updateYearlyPlanWithGoalId(
+			YearlyPlanVO yearlyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.yearlyPlan.updateYearlyPlanWithGoalId",
+				yearlyPlanVO
+		);
 	}
 	
 

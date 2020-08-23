@@ -15,7 +15,7 @@ public interface GoalDAO {
 
 	public void addGoal(GoalVO goalVO) throws DataAccessException;
 
-	public JSONObject popUpGoalView(int goal_id) throws DataAccessException;
+	public JSONObject popUpGoalView(Map<String, Object> map) throws DataAccessException;
 
 	public void updateGoal(GoalVO goalVO) throws DataAccessException;
 
@@ -26,5 +26,11 @@ public interface GoalDAO {
 	public JSONArray yearlyPlanList(Map<String, Object> map) throws DataAccessException;
 
 	public void completeGoal(Map<String, Object> map) throws DataAccessException;
+
+	public void addGoalNullAbsoluteValue(GoalVO goalVO) throws DataAccessException;
+
+	public void updateGoalWithAbsoluteValue(GoalVO goalVO) throws DataAccessException;
+
+	public JSONArray getGoalAllList(Map<String, Object> map) throws DataAccessException;
 
 }
