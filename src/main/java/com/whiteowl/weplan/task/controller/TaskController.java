@@ -25,4 +25,6 @@ public interface TaskController {
 
 	String popUpGetTask(int taskId, HttpServletRequest request) throws Exception;
 
+	String moveTaskAjax(HttpServletRequest request, HttpServletResponse response) throws Exception;
+
 }

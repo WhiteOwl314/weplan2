@@ -372,6 +372,43 @@ $(document).ready(function() {
 			)
 			
 			
+			//drop
+				$(`#weeklyView_day_${FullthisDay}`).on({
+
+						'dragenter': function(event){
+							$(`#weeklyView_day_${FullthisDay}`).addClass('is-selecting');
+						},
+						'dragleave': function(event){
+							$(`#weeklyView_day_${FullthisDay}`).removeClass('is-selecting');
+						},
+						//브라우저 표중 동작 취소
+						'dragover': function(event){
+							event.preventDefault();
+						},
+						'drop': function(event){
+							
+							var dragId = event.originalEvent.dataTransfer.getData('text');
+							let _taskId = dragId.split('_')[4];
+							console.log(_taskId);
+
+							var moveEle = $(`#${dragId}`).get(0);
+							$(`#weeklyView_day_${FullthisDay}`).removeClass('is-selecting');
+							$(`#weeklyView_day_${FullthisDay} .content`).append(moveEle);
+							var member_id = $.trim($('#member_id').text());
+
+							$.ajax({
+								 url: `${contextPath}/weplan/task/moveTaskAjax.do`,	
+								 data: { 
+									 id: _taskId,
+									 day: FullthisDay,
+									 member_id: member_id
+								},
+								 method: "POST", 
+								 dataType: "json"
+							})
+						}
+				});
+			//drop
 			
 			//weeklyPlanAdd
 
@@ -417,6 +454,7 @@ $(document).ready(function() {
 						`<div
 							id="weeklyView_day_task_${limitDate}_${taskId}"
 							class="task_container"
+							draggable="true" 
 						>
 							<div
 								class="completed"
@@ -491,7 +529,6 @@ $(document).ready(function() {
 							//드래그 시작 시 요소 id 저장
 							'dragstart': function(event){
 								  var _thisId = `weeklyView_day_task_${limitDate}_${taskId}`;
-//								  monthlyPlan_id = _thisId.split('_')[4];
 								  $(`#weeklyView_day_task_${limitDate}_${taskId}`).addClass('is-dragging');
 								  event.originalEvent.dataTransfer.setData('text', _thisId);
 							},

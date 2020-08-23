@@ -46,4 +46,8 @@ public interface TaskService {
 
 	public void addTaskWithYearlyPlanId(TaskVO taskVO) throws Exception;
 
+	public void updateTaskWithYearlyPlanId(TaskVO taskVO) throws Exception;
+
+	public void moveTaskAjax(TaskVO taskVO) throws Exception;
+
 }

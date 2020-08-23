@@ -53,6 +53,7 @@
 						</div>
 						<div
 							id="layerpop_absoluteValueId"
+							class="layerpop_connectionForm"
 						>
 							<label for="layerpop_absoluteValueId_select">Absolute Value:</label>
 							<select id="layerpop_absoluteValueId_select" name="absolute_value_id">
@@ -61,6 +62,7 @@
 						</div>
 						<div
 							id="layerpop_projectId"
+							class="layerpop_connectionForm"
 						>
 							<label for="layerpop_projectId_select">Project:</label>
 							<select id="layerpop_projectId_select" name="goal_id">
@@ -69,6 +71,7 @@
 						</div>
 						<div
 							id="layerpop_goalId"
+							class="layerpop_connectionForm"
 						>
 							<label for="layerpop_goalId_select">Goal:</label>
 							<select id="layerpop_goalId_select" name="yearlyPlan_id">

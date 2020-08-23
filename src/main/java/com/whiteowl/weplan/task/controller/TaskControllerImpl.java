@@ -197,17 +197,39 @@ public class TaskControllerImpl implements TaskController{
 		int id = Integer.parseInt(
 				request.getParameter("id")
 		);
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		
 		taskVO.setId(id);
 		taskVO.setTitle(title);
 		taskVO.setContent(content);
 		taskVO.setImportance(importance);
-		taskVO.setStartDate(startDate + " " + startTime);
-		taskVO.setLimitDate(limitDate + " " + limitTime);
+
+		if(startDate.equals("")) {
+			taskVO.setStartDate("");
+		} else if (startTime.equals("")) {
+			taskVO.setStartDate(startDate + " " + "00:00");
+		} else {
+			String fullStartDate = request.getParameter("startDate") + " " + request.getParameter("startTime") ;
+			taskVO.setStartDate(fullStartDate);
+		}
+		
+		if(limitDate.equals("")) {
+			taskVO.setLimitDate("");
+		} else if (limitTime.equals("")) {
+			taskVO.setLimitDate(limitDate + " " + "00:00");
+		} else {
+			String fullLimitDate = request.getParameter("limitDate") + " " + request.getParameter("limitTime") ;
+			taskVO.setLimitDate(fullLimitDate);
+		}
 
 		try {
 			
-			taskService.updateTask(taskVO);
+			if(yearlyPlan_id == 0) {
+				taskService.updateTask(taskVO);
+			} else {
+				taskVO.setYearly_plan_id(yearlyPlan_id);
+				taskService.updateTaskWithYearlyPlanId(taskVO);
+			}
 
 			message = "<script>";
 			message += " alert('할일이 수정되었습니다.');";
@@ -543,6 +565,39 @@ public class TaskControllerImpl implements TaskController{
 		);
 		
 		return jsonObj.toString();
+	}
+
+	@Override
+	@RequestMapping(
+			value="/task/moveTaskAjax.do",
+			method = RequestMethod.POST
+	)
+	@ResponseBody
+	public String moveTaskAjax(
+			HttpServletRequest request,
+			HttpServletResponse response
+	) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		String member_id = request.getParameter("member_id");
+		String day = request.getParameter("day");
+
+		
+		taskVO.setId(id);
+		taskVO.setMember_id(member_id);
+		taskVO.setLimitDate(day+" 00:00");
+		
+		String referer = request.getHeader("Referer");
+		
+		String message;
+		ResponseEntity resEnt=null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");		
+
+		taskService.moveTaskAjax(taskVO);
+
+		return "success";
 	}
 
 }

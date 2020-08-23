@@ -353,6 +353,21 @@ public class TaskServiceImpl implements TaskService{
 	) throws Exception {
 		taskDAO.addTaskWithYearlyPlanId(taskVO);
 	}
+
+	@Override
+	public void updateTaskWithYearlyPlanId(
+			TaskVO taskVO
+	) throws Exception {
+		taskDAO.updateTaskWithYearlyPlanId(taskVO);
+		
+	}
+
+	@Override
+	public void moveTaskAjax(
+			TaskVO taskVO
+	) throws Exception {
+		taskDAO.moveTaskAjax(taskVO);
+	}
 	
 
 }
