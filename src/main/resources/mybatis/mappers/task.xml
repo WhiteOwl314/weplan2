@@ -197,7 +197,8 @@
 			isCompleted,
 			importance,
 			TO_CHAR(startDate,'yyyy-mm-dd') as startDate,
-			TO_CHAR(limitDate,'yyyy-mm-dd') as limitDate
+			TO_CHAR(limitDate,'yyyy-mm-dd') as limitDate,
+			yearly_plan_id
 		FROM W_TASK 
 		WHERE 
 			isdelete = '0' 
@@ -231,7 +232,8 @@
 				importance,
 				isTask,
 				TO_CHAR(limitdate, 'YYYY-MM-DD HH24:MI') AS limitdate,
-				TO_CHAR(startDate, 'YYYY-MM-DD HH24:MI') AS startDate
+				TO_CHAR(startDate, 'YYYY-MM-DD HH24:MI') AS startDate,
+				yearly_plan_id
 			FROM W_TASK 
 			WHERE 
 				TASK_NO = #{id} 

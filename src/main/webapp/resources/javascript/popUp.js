@@ -1,6 +1,131 @@
 /**
  * 
  */
+function popUp_getTask(id){
+	
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/task/popUpGetTask.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : id
+			},
+			async: false,
+			success : function(result) {
+				let id = decodeURIComponent( result.id );
+				let title = decodeURIComponent( result.title );
+				let content = decodeURIComponent( result.content );
+				let importance = decodeURIComponent( result.importance );
+				let preLimitDate = decodeURIComponent(result.limitDate).split(' ');
+				let preStartDate = decodeURIComponent(result.startDate).split(' ');
+				let yearly_plan_id = decodeURIComponent(result.yearly_plan_id);
+				
+				let limitDate = preLimitDate[0];
+				let limitTime = preLimitDate[1];
+				let startDate = preStartDate[0];
+				let startTime = preStartDate[1];
+
+				console.log(yearly_plan_id);
+				//goalId
+				if(yearly_plan_id === 'null'){
+				} else{
+					$('#layerpop_goalId_select').val(yearly_plan_id);
+				}
+				//goalId
+				
+				/* IMPORTANCE */
+				if(importance=='1'){
+					$('.layerpop .importance1').prop("checked", true);
+				} else if (importance == '2'){
+					$('.layerpop .importance2').prop("checked", true);
+				} else if (importance == '3'){
+					$('.layerpop .importance3').prop("checked", true);
+				}
+				/* IMPORTANCE */
+
+				//title
+					$('.layerpop .layerpop_title').attr('value',title);
+				//title
+
+				//content
+				if(content === 'null'){
+					$('.layerpop #layerpop_form_content').text('');
+				} else{
+					$('.layerpop #layerpop_form_content').text(content);
+				}
+				//content
+
+				//id
+				$('.layerpop .layerpop_id').attr('value',id);
+				//id
+
+				//startDate
+				if(startDate === 'null'){
+					$('.layerpop .layerpop_startDate_form').attr('value','');
+				} else{
+					$('.layerpop .layerpop_startDate_form').attr('value',startDate);
+				}
+				//startDate
+
+				//limitDate
+				if(limitDate === 'null'){
+					$('.layerpop .layerpop_limitDate_form').attr('value','');
+				} else{
+					$('.layerpop .layerpop_limitDate_form').attr('value',limitDate);
+				}
+				//limitDate
+
+				//startTime
+				if(startTime === 'null'){
+					$('.layerpop_startDate_container .layerpop_Time_form').attr('value','');
+				} else{
+					$('.layerpop_startDate_container .layerpop_Time_form').attr('value',startTime);
+				}
+				//startTime
+
+				//limitTime
+				if(limitTime === 'null'){
+					$('.layerpop_limitDate_container .layerpop_Time_form').attr('value','');
+				} else{
+					$('.layerpop_limitDate_container .layerpop_Time_form').attr('value',limitTime);
+				}
+				//limitTime
+			},
+		});
+		//ajax 호출
+}
+function popUpTaskView(taskId){
+	
+	//popUp reset
+	popupReset();
+	
+	//popUp_폼 on
+	let title = "Task";
+	let url = contextPath + "weplan/task/updateTask.do";
+
+	onTimeForm();
+	putPlaceholderAtDates();
+	putPlaceholderAtTimes();
+
+	displayPopUpFormGoalId()
+
+	//goalList 가져오기
+		getGoalAllList();
+	//goalList 가져오기
+	
+	//프로젝트 정보 가져오기
+	//팝업 요소에 프로젝트 정보 삽입
+	popUp_getTask(taskId);
+
+
+
+	//팝업 띄우기
+	popUpSetting(title, url);
+}
+
 function popUpTaskAdd(day){
 	
 		popupReset();	

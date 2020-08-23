@@ -173,6 +173,7 @@ public class TaskDAOImpl implements TaskDAO{
 		String isTask = task.getIsTask();
 		String limitDate = task.getLimitDate();
 		String startDate = task.getStartDate();
+		int yearly_plan_id = task.getYearly_plan_id();
 
 		data.put("id", id);
 		data.put("level", level);
@@ -183,6 +184,7 @@ public class TaskDAOImpl implements TaskDAO{
 		data.put("isTask",isTask);
 		data.put("limitDate", limitDate);
 		data.put("startDate", startDate);
+		data.put("yearly_plan_id", yearly_plan_id);
 		
 		return data;
 	}
