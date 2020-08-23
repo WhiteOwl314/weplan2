@@ -195,5 +195,13 @@ public class TaskDAOImpl implements TaskDAO{
 		
 	}
 
+	@Override
+	public void addTaskWithYearlyPlanId(TaskVO taskVO) throws DataAccessException {
+		int task_NO = selectNewTask_NO();
+		taskVO.setId(task_NO);
+		sqlSession.insert("mapper.task.addTaskWithYearlyPlanId" ,taskVO);
+	}
+
+
 
 }

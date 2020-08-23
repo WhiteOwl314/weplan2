@@ -29,4 +29,6 @@ public interface WeeklyPlanService {
 
 	public JSONArray getWeeklyPlanListbyMonthAndWeek(Map<String, Object> map) throws Exception;
 
+	public void updateWeeklyPlanWithYearlyPlanId(WeeklyPlanVO weeklyPlanVO) throws Exception;
+
 }

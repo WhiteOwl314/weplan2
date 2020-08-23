@@ -83,6 +83,7 @@ public class TaskControllerImpl implements TaskController{
 		String limitDate = request.getParameter("limitDate");
 		String limitTime = request.getParameter("limitTime");
 		String member_id = request.getParameter("member_id");
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		
 		if(startDate.equals("")) {
 			taskVO.setStartDate("");
@@ -115,7 +116,12 @@ public class TaskControllerImpl implements TaskController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
-			taskService.addInboxTask(taskVO);
+			if(yearlyPlan_id == 0) {
+				taskService.addInboxTask(taskVO);
+			} else {
+				taskVO.setYearly_plan_id(yearlyPlan_id);
+				taskService.addTaskWithYearlyPlanId(taskVO);
+			}
 			
 			message = "<script>";
 			message += " alert('할일이 추가되었습니다.');";

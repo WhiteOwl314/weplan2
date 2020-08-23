@@ -44,4 +44,6 @@ public interface TaskService {
 
 	public JSONObject popUpGetTask(Map<String, Object> map) throws Exception;
 
+	public void addTaskWithYearlyPlanId(TaskVO taskVO) throws Exception;
+
 }

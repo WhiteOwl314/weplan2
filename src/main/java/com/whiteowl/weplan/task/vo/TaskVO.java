@@ -17,6 +17,7 @@ public class TaskVO {
 	private String isDelete;
 	private String member_id;
 	private String day_of_week;
+	private int yearly_plan_id;
 	
 	public TaskVO() {
 		
@@ -101,6 +102,14 @@ public class TaskVO {
 
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
+	}
+
+	public int getYearly_plan_id() {
+		return yearly_plan_id;
+	}
+
+	public void setYearly_plan_id(int yearly_plan_id) {
+		this.yearly_plan_id = yearly_plan_id;
 	}
 	
 	

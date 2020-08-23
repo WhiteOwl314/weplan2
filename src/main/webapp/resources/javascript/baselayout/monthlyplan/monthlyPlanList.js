@@ -185,17 +185,7 @@ $(document).ready(function() {
 		
 		//popUp
 		$(`#monthlyView_body_left_add_button`).click(function() {
-			
-			popupReset();	
-			let title = "Monthly Plan 추가";
-			let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
-			$('.layerpop .startDate_container').css('display','none');
-			$('.layerpop .limitDate_container').css('display','none');
-			$('.layerpop .month_container').css('display','block');
-			$('.month_container .layerpop_month_form').attr('value',`${month}`);
-			checkInitialImportance();
-			putPlaceholderAtMonth();
-			popUpSetting(title, url);
+			popUpMonthlyGoalAddByMonth(month);
 		});
 		//popUp
 		
@@ -294,56 +284,7 @@ $(document).ready(function() {
 				
 				//view
 				$(`#monthlyView_monthlyPlan_${id} .monthly_title_container`).click(function() {
-					popupReset();	
-					let form_title = "Monthly Plan";
-					let url = contextPath + "weplan/monthlyplan/updateMonthlyPlan.do";
-					let monthlyPlan = getMonthlyPlan(id);
-					$('.layerpop .startDate_container').css('display','none');
-					$('.layerpop .limitDate_container').css('display','none');
-					$('.layerpop .month_container').css('display','block');
-					
-					let title = decodeURIComponent( monthlyPlan.title );
-					let content = decodeURIComponent( monthlyPlan.content );
-					let importance = decodeURIComponent( monthlyPlan.importance );
-					let month = decodeURIComponent(monthlyPlan.month);
-					let isCompleted = decodeURIComponent(monthlyPlan.isCompleted);
-
-					/* IMPORTANCE */
-					if(importance=='1'){
-						$('.layerpop .importance1').prop("checked", true);
-					} else if (importance == '2'){
-						$('.layerpop .importance2').prop("checked", true);
-					} else if (importance == '3'){
-						$('.layerpop .importance3').prop("checked", true);
-					}
-					/* IMPORTANCE */
-
-					//title
-						$('.layerpop .layerpop_title').attr('value',title);
-					//title
-
-					//month
-					if(month === 'null'){
-						$('.layerpop .layerpop_month_form').attr('value','');
-					} else{
-						$('.layerpop .layerpop_month_form').attr('value',month);
-					}
-					//month
-
-					//content
-					if(content === 'null'){
-						$('.layerpop #layerpop_form_content').text('');
-					} else{
-						$('.layerpop #layerpop_form_content').text(content);
-					}
-					//content
-
-					//id
-					$('.layerpop .layerpop_id').attr('value',id);
-					//id
-									
-					putPlaceholderAtMonth();
-					popUpSetting(form_title, url);
+					popUpMonthlyGoalView(id);
 				});
 				//view
 
@@ -411,16 +352,7 @@ $(document).ready(function() {
 					}
 			)
 			$(`#monthlyView_week_${month}_${week} .weekly_part_add`).click(function() {
-				popupReset();	
-				let title = "WeeklyPlan 추가";
-				let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
-				$('.layerpop .startDate_container').css('display','none');
-				$('.layerpop .limitDate_container').css('display','none');
-				$('.layerpop .month_container').css('display','block');
-				$('.month_container .layerpop_month_form').attr('value',month);
-				$('#layerpop_week').attr('value',week);
-				checkInitialImportance();
-				popUpSetting(title, url);
+				popUpWeeklyGoalAddByMonthAndWeek(month, week);
 			})
 			//WeeklyPlan-add
 
@@ -545,23 +477,7 @@ $(document).ready(function() {
 						
 				//weeklyPlan View
 				$(`#monthlyView_week_weeklyPlan_${month}_${week}_${weeklyPlanId} .weekly_title`).click(function(event) {
-
-					//popUp reset
-					popupReset();
-					
-					$('.layerpop .limitDate_container').css('display','none');
-					$('.layerpop .startDate_container').css('display','none');
-
-					//popUp_폼 on
-					let title = "Weekly Plan";
-					let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
-					
-					//프로젝트 정보 가져오기
-					//팝업 요소에 프로젝트 정보 삽입
-					popUp_getWeeklyPlan(weeklyPlanId);
-					
-					//팝업 띄우기
-					popUpSetting(title, url);
+					popUpWeeklyGoalViewByWeeklyGoalId(weeklyPlanId);
 				});
 				//weeklyPlan View
 

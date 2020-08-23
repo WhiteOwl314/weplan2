@@ -28,6 +28,8 @@ public interface WeeklyPlanDAO {
 
 	public void addWeeklyPlanNullYearlyPlanId(WeeklyPlanVO weeklyPlanVO) throws DataAccessException;
 
-	public JSONArray getWeeklyPlanListbyMonthAndWeek(Map<String, Object> map) throws DataAccessException; 
+	public JSONArray getWeeklyPlanListbyMonthAndWeek(Map<String, Object> map) throws DataAccessException;
+
+	public void updateWeeklyPlanWithYearlyPlanId(WeeklyPlanVO weeklyPlanVO) throws DataAccessException; 
 
 }

@@ -79,6 +79,7 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		String month = request.getParameter("month");
 		String member_id = request.getParameter("member_id");
 		int week = Integer.parseInt(request.getParameter("week"));
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		
 		
 		
@@ -98,11 +99,10 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 
 		try {
 
-			if(request.getParameter("yearlyPlan_id") == "") {
+			if(yearlyPlan_id == 0) {
 				weeklyPlanService.addWeeklyPlanNullYearlyPlanId(weeklyPlanVO);
 			} else {
-				int yearly_plan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
-				weeklyPlanVO.setYearly_plan_id(yearly_plan_id);
+				weeklyPlanVO.setYearly_plan_id(yearlyPlan_id);
 				weeklyPlanService.addWeeklyPlan(weeklyPlanVO);
 			}
 
@@ -170,6 +170,7 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		int id = Integer.parseInt(
 				request.getParameter("id")
 		);
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		
 		try {
 			HttpSession session = request.getSession();
@@ -195,7 +196,12 @@ public class WeeklyPlanControllerImpl implements WeeklyPlanController{
 		
 
 		try {
-			weeklyPlanService.updateWeeklyPlan(weeklyPlanVO);
+			if(yearlyPlan_id == 0) {
+				weeklyPlanService.updateWeeklyPlan(weeklyPlanVO);
+			} else {
+				weeklyPlanVO.setYearly_plan_id(yearlyPlan_id);
+				weeklyPlanService.updateWeeklyPlanWithYearlyPlanId(weeklyPlanVO);
+			}
 			
 			message = "<script>";
 			message += " alert('수정되었습니다.');";

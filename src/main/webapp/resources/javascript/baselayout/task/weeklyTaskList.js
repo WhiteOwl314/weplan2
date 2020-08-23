@@ -311,16 +311,7 @@ $(document).ready(function() {
 		
 		//popUp
 		$(`#weeklyView_body_left_add_button`).click(function() {
-			
-				popupReset();	
-				let title = "WeeklyPlan 추가";
-				let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
-				$('.layerpop .startDate_container').css('display','none');
-				$('.layerpop .limitDate_container').css('display','none');
-				$('.month_container .layerpop_month_form').attr('value',searchMonth);
-				$('#layerpop_week').attr('value',searchWeek);
-				checkInitialImportance();
-				popUpSetting(title, url);
+				popUpWeeklyGoalAddByMonthAndWeek(searchMonth, searchWeek);
 		});
 		//popUp
 
@@ -407,23 +398,7 @@ $(document).ready(function() {
 											
 									//weeklyPlan View
 									$(`#weeklyView_weeklyPlan_${id} .weekly_title`).click(function(event) {
-
-										//popUp reset
-										popupReset();
-										
-										$('.layerpop .limitDate_container').css('display','none');
-										$('.layerpop .startDate_container').css('display','none');
-
-										//popUp_폼 on
-										let title = "Weekly Plan";
-										let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
-										
-										//프로젝트 정보 가져오기
-										//팝업 요소에 프로젝트 정보 삽입
-										popUp_getWeeklyPlan(id);
-										
-										//팝업 띄우기
-										popUpSetting(title, url);
+										popUpWeeklyGoalViewByWeeklyGoalId(id);
 									});
 									//weeklyPlan View
 			}
@@ -499,17 +474,7 @@ $(document).ready(function() {
 				
 				//popUp
 				$(`#weeklyView_day_${FullthisDay} .day_part_add`).click(function() {
-					
-					popupReset();	
-					let title = "Task 추가";
-					let url = contextPath + "weplan/task/addInboxTask.do";
-					onTimeForm();
-					checkInitialImportance();
-					putPlaceholderAtDates();
-					putPlaceholderAtTimes();
-					
-					$('.layerpop_limitDate_container .layerpop_limitDate_form').attr('value',FullthisDay);	
-					popUpSetting(title, url);
+					popUpTaskAdd(FullthisDay);
 				});
 				//popUp
 

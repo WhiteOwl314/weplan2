@@ -99,7 +99,7 @@
 				<div
 					id="weeklyView_body_left_header_title"
 				>
-					Weekly Plan
+					Weekly Goal
 				</div>
 			</div>
 			<div

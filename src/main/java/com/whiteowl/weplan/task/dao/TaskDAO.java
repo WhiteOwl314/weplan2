@@ -41,4 +41,6 @@ public interface TaskDAO {
 
 	public void updateTask(TaskVO taskVO) throws DataAccessException;
 
+	public void addTaskWithYearlyPlanId(TaskVO taskVO) throws DataAccessException;
+
 }

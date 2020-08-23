@@ -1,6 +1,368 @@
 /**
  * 
  */
+function popUpTaskAdd(day){
+	
+		popupReset();	
+		let title = "Task 추가";
+		let url = contextPath + "weplan/task/addInboxTask.do";
+		onTimeForm();
+		checkInitialImportance();
+		putPlaceholderAtDates();
+		putPlaceholderAtTimes();
+
+		displayPopUpFormGoalId()
+
+		//goalList 가져오기
+			getGoalAllList();
+		//goalList 가져오기
+
+		$('.layerpop_limitDate_container .layerpop_limitDate_form').attr('value',day);	
+		popUpSetting(title, url);
+}
+
+
+	function popUp_getWeeklyPlan(id) {
+		var url = contextPath + "weplan/weeklyPlan/popUpWeeklyPlanView.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : id
+			},
+			success : function(result) {
+				let id = decodeURIComponent( result.id );
+				let title = decodeURIComponent( result.title );
+				let content = decodeURIComponent( result.content );
+				let importance = decodeURIComponent( result.importance );
+				let month = decodeURIComponent(result.month);
+				let yearly_plan_id = decodeURIComponent(result.yearly_plan_id);
+				let week = decodeURIComponent(result.week);
+				
+				//goalId
+				if(yearly_plan_id === 'null'){
+				} else{
+					$('#layerpop_goalId_select').val(yearly_plan_id);
+				}
+				//goalId
+
+				/* IMPORTANCE */
+				if(importance=='1'){
+					$('.layerpop .importance1').prop("checked", true);
+				} else if (importance == '2'){
+					$('.layerpop .importance2').prop("checked", true);
+				} else if (importance == '3'){
+					$('.layerpop .importance3').prop("checked", true);
+				}
+				/* IMPORTANCE */
+
+				//title
+					$('.layerpop .layerpop_title').attr('value',title);
+				//title
+
+				//month
+				if(month === 'null'){
+					$('.layerpop .layerpop_month_form').attr('value', '');
+				} else{
+					$('.layerpop .layerpop_month_form').attr('value', month);
+				}
+				//month
+
+				//content
+				if(content === 'null'){
+					$('.layerpop #layerpop_form_content').text('');
+				} else{
+					$('.layerpop #layerpop_form_content').text(content);
+				}
+				//content
+
+				//id
+				$('.layerpop .layerpop_id').attr('value',id);
+				//id
+
+				//yearlyPlan_id
+				$('.layerpop #layerpop_yearlyPlan_id').attr('value',yearly_plan_id);
+				//yearlyPlan_id
+
+				//week
+				$('.layerpop #layerpop_week').attr('value',week);
+				//week
+			},
+
+		})
+		
+	}
+
+function popUpWeeklyGoalViewByWeeklyGoalId(weeklyGoalId){
+	
+			//popUp reset
+			popupReset();
+			
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .startDate_container').css('display','none');
+
+			//popUp_폼 on
+			let title = "Weekly Plan";
+			let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
+			
+
+			displayPopUpFormGoalId()
+
+			//goalList 가져오기
+				getGoalAllList();
+			//goalList 가져오기
+
+			//프로젝트 정보 가져오기
+			//팝업 요소에 프로젝트 정보 삽입
+			popUp_getWeeklyPlan(weeklyGoalId);
+
+			//팝업 띄우기
+			popUpSetting(title, url);
+}
+
+function popUpWeeklyGoalView(goalId, weeklyGoalId){
+	
+			//popUp reset
+			popupReset();
+			
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .startDate_container').css('display','none');
+
+			//popUp_폼 on
+			let title = "Weekly Plan";
+			let url = contextPath + "weplan/weeklyPlan/updateWeeklyPlan.do";
+			
+			//프로젝트 정보 가져오기
+			//팝업 요소에 프로젝트 정보 삽입
+			popUp_getWeeklyPlan(weeklyGoalId);
+
+			displayPopUpFormGoalId()
+
+			//goalList 가져오기
+				getGoalAllList();
+			//goalList 가져오기
+
+			//goalId
+			if(goalId === 'null'){
+			} else{
+				$('#layerpop_goalId_select').val(goalId);
+			}
+			//goalId
+			
+			//팝업 띄우기
+			popUpSetting(title, url);
+}
+
+function popUpWeeklyGoalAddByMonthAndWeek(month, week){
+	
+	console.log(week);
+	console.log(month);
+	popupReset();	
+	let title = "Weekly Goal 추가";
+	let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
+	$('.layerpop .startDate_container').css('display','none');
+	$('.layerpop .limitDate_container').css('display','none');
+	$('.month_container .layerpop_month_form').attr('value',month);
+
+	$('#layerpop_week').attr('value',week);
+
+	displayPopUpFormGoalId()
+
+	//goalList 가져오기
+		getGoalAllList();
+	//goalList 가져오기
+
+	checkInitialImportance();
+	popUpSetting(title, url);
+}
+
+function popUpWeeklyGoalAdd(goalId, month, week){
+	
+	popupReset();	
+	let title = "Weekly Goal 추가";
+	let url = contextPath + "weplan/weeklyplan/addWeeklyPlan.do";
+	$('.layerpop .startDate_container').css('display','none');
+	$('.layerpop .limitDate_container').css('display','none');
+	$('.month_container .layerpop_month_form').attr('value',month);
+	$('#layerpop_week').attr('value',week);
+	displayPopUpFormGoalId()
+
+	//goalList 가져오기
+		getGoalAllList();
+	//goalList 가져오기
+
+	//goalId
+	if(goalId === 'null'){
+	} else{
+		$('#layerpop_goalId_select').val(goalId);
+	}
+	//goalId
+	checkInitialImportance();
+	popUpSetting(title, url);
+}
+
+function popUpMonthlyGoalAddByMonth(month){
+			popupReset();	
+			let title = "Monthly Goal 추가";
+			let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+			$('.layerpop .startDate_container').css('display','none');
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .month_container').css('display','block');
+			$('.month_container .layerpop_month_form').attr('value',month);
+
+			displayPopUpFormGoalId()
+
+			//goalList 가져오기
+				getGoalAllList();
+			//goalList 가져오기
+
+			checkInitialImportance();
+			putPlaceholderAtMonth();
+			popUpSetting(title, url);
+}
+function popUpMOnthlyGoalAdd(goalId){
+	popupReset();	
+	let title = "Monthly Goal 추가";
+	let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+	$('.layerpop .startDate_container').css('display','none');
+	$('.layerpop .limitDate_container').css('display','none');
+	$('.layerpop .month_container').css('display','block');
+	displayPopUpFormGoalId()
+
+	//goalList 가져오기
+		getGoalAllList();
+	//goalList 가져오기
+
+	//goalId
+	if(goalId === 'null'){
+	} else{
+		$('#layerpop_goalId_select').val(goalId);
+	}
+	//goalId
+
+	checkInitialImportance();
+	putPlaceholderAtMonth();
+	popUpSetting(title, url);
+}
+
+function popUpMonthlyGoalAdd(goalId, month){
+			popupReset();	
+			let title = "Monthly Goal 추가";
+			let url = contextPath + "weplan/monthlyplan/addMonthlyPlan.do";
+			$('.layerpop .startDate_container').css('display','none');
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .month_container').css('display','block');
+			$('.month_container .layerpop_month_form').attr('value',month);
+
+			displayPopUpFormGoalId()
+
+			//goalList 가져오기
+				getGoalAllList();
+			//goalList 가져오기
+
+			//goalId
+			if(goalId === 'null'){
+			} else{
+				$('#layerpop_goalId_select').val(goalId);
+			}
+			//goalId
+
+			checkInitialImportance();
+			putPlaceholderAtMonth();
+			popUpSetting(title, url);
+}
+	function getMonthlyPlan(monthlyPlanId) {
+		let data;
+		//ajax 호출
+		var url = contextPath + "weplan/monthlyPlan/getMonthlyPlan.do";
+		$.ajax({
+			url : url,
+			dataType :"json",
+			type : "POST",
+			data : {
+				id : monthlyPlanId
+			},
+			async: false,
+			success : function(result) {
+				data = result;
+			},
+		});
+		//ajax 호출
+		return data;
+	}
+
+function popUpMonthlyGoalView(id){
+	
+			popupReset();	
+			let form_title = "Monthly Goal";
+			let url = contextPath + "weplan/monthlyplan/updateMonthlyPlan.do";
+			let monthlyPlan = getMonthlyPlan(id);
+			$('.layerpop .startDate_container').css('display','none');
+			$('.layerpop .limitDate_container').css('display','none');
+			$('.layerpop .month_container').css('display','block');
+			
+			
+			let yearlyPlan_id = id;
+			let title = decodeURIComponent( monthlyPlan.title );
+			let content = decodeURIComponent( monthlyPlan.content );
+			let importance = decodeURIComponent( monthlyPlan.importance );
+			let month = decodeURIComponent(monthlyPlan.month);
+			let isCompleted = decodeURIComponent(monthlyPlan.isCompleted);
+
+			displayPopUpFormGoalId()
+
+			//goalList 가져오기
+				getGoalAllList();
+			//goalList 가져오기
+
+			$('#layerpop_goalId_select').val('0');
+
+			//goalId
+			if(id === 'null'){
+			} else{
+				$('#layerpop_goalId_select').val(yearlyPlan_id);
+			}
+			//goalId
+
+			/* IMPORTANCE */
+			if(importance=='1'){
+				$('.layerpop .importance1').prop("checked", true);
+			} else if (importance == '2'){
+				$('.layerpop .importance2').prop("checked", true);
+			} else if (importance == '3'){
+				$('.layerpop .importance3').prop("checked", true);
+			}
+			/* IMPORTANCE */
+
+			//title
+				$('.layerpop .layerpop_title').attr('value',title);
+			//title
+
+			//month
+			if(month === 'null'){
+				$('.layerpop .layerpop_month_form').attr('value','');
+			} else{
+				$('.layerpop .layerpop_month_form').attr('value',month);
+			}
+			//month
+
+			//content
+			if(content === 'null'){
+				$('.layerpop #layerpop_form_content').text('');
+			} else{
+				$('.layerpop #layerpop_form_content').text(content);
+			}
+			//content
+
+			//id
+			$('.layerpop .layerpop_id').attr('value',id);
+			//id
+							
+			putPlaceholderAtMonth();
+			popUpSetting(form_title, url);
+}
+
 function displayPopUpFormAbsoluteValueId(){
 	$('#layerpop_absoluteValueId').css('display','block');
 }

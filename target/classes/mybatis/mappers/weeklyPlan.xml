@@ -94,7 +94,8 @@
 	  	SET 
 	  		importance = #{importance},
 	  		title = #{title},
-	  		content = #{content}
+	  		content = #{content},
+	  		yearly_plan_id = null
 	  	WHERE 
 	  		member_id = #{member_id}
 			AND ID = #{id}
@@ -211,5 +212,19 @@
       ]]>
 	</select>
 
+	  <update 
+	  	id="updateWeeklyPlanWithYearlyPlanId" 
+		parameterType="weeklyPlanVO"
+	  >
+	    UPDATE W_weekly_plan
+	  	SET 
+	  		importance = #{importance},
+	  		title = #{title},
+	  		content = #{content},
+	  		yearly_plan_id = #{yearly_plan_id}
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
 	
 </mapper>
