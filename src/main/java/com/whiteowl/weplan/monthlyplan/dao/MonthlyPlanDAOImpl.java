@@ -68,6 +68,7 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		int importance = monthlyPlanVO.getImportance();
 		String month = monthlyPlanVO.getMonth();
 		String isCompleted = monthlyPlanVO.getIsCompleted(); 
+		int yearlyPlan_id = monthlyPlanVO.getYearlyPlan_id();
 		
 		data.put("id", id);
 		data.put("title", title);
@@ -75,6 +76,7 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 		data.put("importance", importance);
 		data.put("month", month);
 		data.put("isCompleted", isCompleted);
+		data.put("yearlyPlan_id", yearlyPlan_id);
 		
 		return data;
 	}
@@ -191,6 +193,17 @@ public class MonthlyPlanDAOImpl implements MonthlyPlanDAO{
 			ja.add(data);
 		}
 		return ja;
+	}
+
+	@Override
+	public void updateMonthlyPlanWithYearlyPlanId(
+			MonthlyPlanVO monthlyPlanVO
+	) throws DataAccessException {
+		sqlSession.update(
+				"mapper.monthlyPlan.updateMonthlyPlanWithYearlyPlanId", 
+				monthlyPlanVO
+		);
+		
 	}
 
 

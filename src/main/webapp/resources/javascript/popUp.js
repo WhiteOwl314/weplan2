@@ -11,6 +11,37 @@ function displayPopUpFormGoalId(){
 	$('#layerpop_goalId').css('display','block');
 }
 
+function getGoalAllList(){
+
+	let data;
+	//ajax 호출
+	var url = contextPath + "weplan/yearlyPlan/getYearlyPlanAllList.do";
+	$.ajax({
+		url : url,
+		dataType :"json",
+		type : "POST",
+		async: false,
+		success : function(result) {
+			data = result;
+			
+			for(let i in data){
+				let yearlyPlanVO = data[i];
+				let yearlyPlanId = decodeURIComponent( yearlyPlanVO.id );
+				let title = decodeURIComponent( yearlyPlanVO.title );
+				let content = decodeURIComponent( yearlyPlanVO.content );
+				let importance = decodeURIComponent( yearlyPlanVO.importance );
+				let goal_id = decodeURIComponent( yearlyPlanVO.goal_id );
+
+				$(`#layerpop_goalId_select`).append(
+					`<option value="${yearlyPlanId}">${title}</option>`
+				)
+			}
+				
+		},
+	});
+	//ajax 호출
+}
+
 function getProjectAllList(){
 
 	let data;

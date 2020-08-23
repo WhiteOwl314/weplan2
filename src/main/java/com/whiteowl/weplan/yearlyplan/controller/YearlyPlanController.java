@@ -26,4 +26,6 @@ public interface YearlyPlanController {
 
 	String popUpYearlyPlanView(int yearlyPlan_id, HttpServletRequest request) throws Exception;
 
+	String getYearlyPlanAllList(HttpServletRequest request) throws Exception;
+
 }

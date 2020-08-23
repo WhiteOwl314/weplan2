@@ -29,6 +29,8 @@ public interface YearlyPlanDAO {
 
 	public void addYearlyPlanNullGoalId(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
 
-	public void updateYearlyPlanWithGoalId(YearlyPlanVO yearlyPlanVO) throws DataAccessException;  
+	public void updateYearlyPlanWithGoalId(YearlyPlanVO yearlyPlanVO) throws DataAccessException;
+
+	public JSONArray getYearlyPlanAllList(Map<String, Object> map) throws DataAccessException;  
 
 }

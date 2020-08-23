@@ -51,6 +51,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		int importance = Integer.parseInt(request.getParameter("importance"));
 		String month = request.getParameter("month");
 		String member_id = request.getParameter("member_id");
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 		
 		
 		
@@ -69,8 +70,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 
 		try {
 
-			if(request.getParameter("yearlyPlan_id") != "") {
-				int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
+			if(yearlyPlan_id != 0) {
 				monthlyPlanVO.setYearlyPlan_id(yearlyPlan_id);
 				monthlyPlanService.addMonthlyPlan(monthlyPlanVO);
 			} else {
@@ -353,6 +353,7 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		int id = Integer.parseInt(
 				request.getParameter("id")
 		);
+		int yearlyPlan_id = Integer.parseInt(request.getParameter("yearlyPlan_id"));
 
 		try {
 			
@@ -380,7 +381,12 @@ public class MonthlyPlanControllerImpl implements MonthlyPlanController{
 		
 
 		try {
-			monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);
+			if(yearlyPlan_id == 0) {
+				monthlyPlanService.updateMonthlyPlan(monthlyPlanVO);
+			} else {
+				monthlyPlanVO.setYearlyPlan_id(yearlyPlan_id);
+				monthlyPlanService.updateMonthlyPlanWithYearlyPlanId(monthlyPlanVO);
+			}
 			
 			message = "<script>";
 			message += " alert('수정되었습니다.');";

@@ -401,5 +401,28 @@ public class YearlyPlanControllerImpl implements YearlyPlanController{
 	}
 
 	
+	@Override
+	@RequestMapping(
+			value="/yearlyPlan/getYearlyPlanAllList.do",
+			method = RequestMethod.POST,
+			produces = "application/json; charset=utf8"
+	)
+	@ResponseBody
+	public String getYearlyPlanAllList(
+			HttpServletRequest request
+	) throws Exception {
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO)session.getAttribute("member");
+		String member_id = (String)memberVO.getId();
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member_id", member_id);
+		
+		JSONArray jsonObj = yearlyPlanService.getYearlyPlanAllList(
+				map
+		);
+		
+		return jsonObj.toString();
+	}
 
 }

@@ -71,7 +71,7 @@
 							id="layerpop_goalId"
 						>
 							<label for="layerpop_goalId_select">Goal:</label>
-							<select id="layerpop_goalId_select" name="absoluteValueId">
+							<select id="layerpop_goalId_select" name="yearlyPlan_id">
 								<option value="0">없음</option>
 							</select>
 						</div>
@@ -177,7 +177,6 @@
 					</div>
 					<input type="hidden" name="member_id" value="${ member.id }">
 					<input type="hidden" name="id" class="layerpop_id">
-					<input id="layerpop_yearlyPlan_id" type="hidden" name="yearlyPlan_id">
 					<input id="layerpop_week" type="hidden" name="week">
 				</form>
 			</div>

@@ -184,6 +184,44 @@ public class YearlyPlanDAOImpl implements YearlyPlanDAO{
 				yearlyPlanVO
 		);
 	}
+
+	@Override
+	public JSONArray getYearlyPlanAllList(
+			Map<String, Object> map
+	) throws DataAccessException {
+		JSONArray ja = new JSONArray();
+		
+		
+		List<YearlyPlanVO> yearlyPlanList = sqlSession.selectList(
+			"mapper.yearlyPlan.getYearlyPlanAllList", 
+			map
+		);
+		
+		for (YearlyPlanVO yearlyPlanVO : yearlyPlanList) {
+			JSONObject data = new JSONObject();
+			
+			int id = yearlyPlanVO.getId();
+			String title = yearlyPlanVO.getTitle();
+			String content = yearlyPlanVO.getContent();
+			String isCompleted = yearlyPlanVO.getIsCompleted();
+			int importance = yearlyPlanVO.getImportance();
+			String startDate = yearlyPlanVO.getStartDate();
+			String limitDate = yearlyPlanVO.getLimitDate();
+			int goal_id = yearlyPlanVO.getGoal_id();
+			
+			data.put("id", id);
+			data.put("title", title);
+			data.put("content", content);
+			data.put("isCompleted", isCompleted);
+			data.put("importance", importance);
+			data.put("startDate", startDate);
+			data.put("limitDate", limitDate);
+			data.put("goal_id", goal_id);
+			
+			ja.add(data);
+		}
+		return ja;
+	}
 	
 
 }

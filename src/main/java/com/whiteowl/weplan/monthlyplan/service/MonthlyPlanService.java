@@ -29,7 +29,9 @@ public interface MonthlyPlanService {
 
 	void moveMonth(MonthlyPlanVO monthlyPlanVO) throws Exception;
 
-	public JSONArray getMonthlyPlanListByMonth(Map<String, Object> map) throws Exception; 
+	public JSONArray getMonthlyPlanListByMonth(Map<String, Object> map) throws Exception;
+
+	void updateMonthlyPlanWithYearlyPlanId(MonthlyPlanVO monthlyPlanVO) throws Exception; 
 
 
 }

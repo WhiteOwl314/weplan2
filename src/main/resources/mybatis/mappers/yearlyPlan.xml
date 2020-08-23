@@ -12,6 +12,7 @@
         <result property="importance" column="importance" />
         <result property="startDate" column="startDate" />
         <result property="limitDate" column="limitDate" />
+        <result property="goal_id" column="goal_id" />
 	</resultMap>
 	
 	<select 
@@ -218,5 +219,28 @@
 			AND ID = #{id}
 			AND member_id = #{member_id}
 	</update>
+
+	<select 
+		id="getYearlyPlanAllList" 
+		resultMap="yearlyPlanVOResult" 
+		parameterType="java.util.Map"
+	>
+      <![CDATA[
+		SELECT 
+			ID,
+			title,
+			content,
+			importance,
+			TO_CHAR(STARTDATE, 'YYYY-MM-DD') AS startDate,
+			TO_CHAR(LIMITDATE, 'YYYY-MM-DD') AS limitDate,
+			goal_id
+		FROM W_YEARLY_PLAN 
+		WHERE 
+			isdelete = '0' 
+			AND member_id = #{member_id}
+		ORDER BY credate DESC
+      ]]>
+	</select>
+	
 
 </mapper>

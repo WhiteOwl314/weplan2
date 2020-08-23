@@ -117,4 +117,11 @@ public class MonthlyPlanServiceImpl implements MonthlyPlanService{
 		return monthlyPlanDAO.getMonthlyPlanListByMonth(map);
 	}
 
+	@Override
+	public void updateMonthlyPlanWithYearlyPlanId(
+			MonthlyPlanVO monthlyPlanVO
+	) throws Exception {
+		monthlyPlanDAO.updateMonthlyPlanWithYearlyPlanId(monthlyPlanVO);
+	}
+
 }

@@ -96,4 +96,11 @@ public class YearlyPlanServiceImpl implements YearlyPlanService{
 		yearlyPlanDAO.updateYearlyPlanWithGoalId(yearlyPlanVO);
 	}
 
+	@Override
+	public JSONArray getYearlyPlanAllList(
+			Map<String, Object> map
+	) throws Exception {
+		return yearlyPlanDAO.getYearlyPlanAllList(map);
+	}
+
 }

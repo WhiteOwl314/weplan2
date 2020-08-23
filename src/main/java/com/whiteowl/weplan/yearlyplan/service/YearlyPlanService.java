@@ -30,4 +30,6 @@ public interface YearlyPlanService {
 
 	JSONObject popUpYearlyPlanView(Map<String, Object> map) throws Exception;
 
+	public JSONArray getYearlyPlanAllList(Map<String, Object> map) throws Exception;
+
 }

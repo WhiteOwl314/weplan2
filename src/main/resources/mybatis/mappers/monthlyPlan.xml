@@ -107,7 +107,8 @@
 			content,
 			importance,
 			TO_CHAR(month, 'YYYY-MM') AS month,
-			isCompleted
+			isCompleted,
+			yearly_plan_id as yearlyPlan_id
 		FROM W_MONTHLY_PLAN 
 		WHERE 
 	  		member_id = #{member_id}
@@ -115,6 +116,7 @@
 		ORDER BY credate DESC
       ]]>
 	</select>
+
 	  <update 
 	  	id="updateMonthlyPlan" 
 		parameterType="monthlyPlanVO"
@@ -124,7 +126,8 @@
 	  		title = #{title},
 	  		content = #{content},
 	  		importance = #{importance},
-	  		month = TO_DATE(#{month},'yyyy-mm')
+	  		month = TO_DATE(#{month},'yyyy-mm'),
+	  		yearly_plan_id = null
 	  	WHERE 
 	  		member_id = #{member_id}
 			AND ID = #{id}
@@ -235,5 +238,21 @@
 		ORDER BY credate ASC
       ]]>
 	</select>
+
+	  <update 
+	  	id="updateMonthlyPlanWithYearlyPlanId" 
+		parameterType="monthlyPlanVO"
+	  >
+	    UPDATE W_MONTHLY_PLAN
+	  	SET 
+	  		title = #{title},
+	  		content = #{content},
+	  		importance = #{importance},
+	  		month = TO_DATE(#{month},'yyyy-mm'),
+	  		yearly_plan_id = #{yearlyPlan_id}
+	  	WHERE 
+	  		member_id = #{member_id}
+			AND ID = #{id}
+	  </update>
 
 </mapper>

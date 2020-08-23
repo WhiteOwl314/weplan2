@@ -374,15 +374,15 @@
 					//popUp-add
 					
 						//hover 효과
-						$('.project_yearly_container .monthly_ent_add').hover(function() {
-							$('.project_yearly_container .monthly_ent_add img').css('background-color', '#e2e2e2');
-							$('.project_yearly_container .monthly_ent_add img').css('border-radius', '5px');
+						$(`#project_yearly_container_${id} .monthly_ent_add`).hover(function() {
+							$(`#project_yearly_container_${id} .monthly_ent_add img`).css('background-color', '#e2e2e2');
+							$(`#project_yearly_container_${id} .monthly_ent_add img`).css('border-radius', '5px');
 						},function(){
-							$('.project_yearly_container .monthly_ent_add img').css('background-color', '#F7F7F7');
+							$(`#project_yearly_container_${id} .monthly_ent_add img`).css('background-color', '#F7F7F7');
 						});
 						//hover 효과
 					
-					$('.project_yearly_container .monthly_ent_add').click(function(event) {
+					$(`#project_yearly_container_${id} .monthly_ent_add`).click(function(event) {
 
 						popupReset();	
 						let title = "Monthly Goal 추가";
@@ -390,7 +390,19 @@
 						$('.layerpop .startDate_container').css('display','none');
 						$('.layerpop .limitDate_container').css('display','none');
 						$('.layerpop .month_container').css('display','block');
-						$('#layerpop_yearlyPlan_id').attr('value',id);
+						displayPopUpFormGoalId()
+
+						//goalList 가져오기
+							getGoalAllList();
+						//goalList 가져오기
+
+						//goalId
+						if(id === 'null'){
+						} else{
+							$('#layerpop_goalId_select').val(id);
+						}
+						//goalId
+
 						checkInitialImportance();
 						putPlaceholderAtMonth();
 						popUpSetting(title, url);
@@ -765,7 +777,7 @@
 												' <div' +
 													' class="monthly_class"' +
 												' >' +
-													"monthly plan" +
+													"monthly goal" +
 												' </div>' +
 											' </div>' +
 											' <div' +
@@ -815,7 +827,20 @@
 								$('.layerpop .limitDate_container').css('display','none');
 								$('.layerpop .month_container').css('display','block');
 								$('.month_container .layerpop_month_form').attr('value',month);
-								$('#layerpop_yearlyPlan_id').attr('value',id);
+
+								displayPopUpFormGoalId()
+
+								//goalList 가져오기
+									getGoalAllList();
+								//goalList 가져오기
+
+								//goalId
+								if(id === 'null'){
+								} else{
+									$('#layerpop_goalId_select').val(id);
+								}
+								//goalId
+
 								checkInitialImportance();
 								putPlaceholderAtMonth();
 								popUpSetting(title, url);
@@ -851,12 +876,25 @@
 								$('.layerpop .month_container').css('display','block');
 								
 								
-								let id = decodeURIComponent( monthlyPlan.id );
+								let yearlyPlan_id = id;
 								let title = decodeURIComponent( monthlyPlan.title );
 								let content = decodeURIComponent( monthlyPlan.content );
 								let importance = decodeURIComponent( monthlyPlan.importance );
 								let month = decodeURIComponent(monthlyPlan.month);
 								let isCompleted = decodeURIComponent(monthlyPlan.isCompleted);
+
+								displayPopUpFormGoalId()
+
+								//goalList 가져오기
+									getGoalAllList();
+								//goalList 가져오기
+
+								//goalId
+								if(id === 'null'){
+								} else{
+									$('#layerpop_goalId_select').val(yearlyPlan_id);
+								}
+								//goalId
 
 								/* IMPORTANCE */
 								if(importance=='1'){
@@ -889,7 +927,7 @@
 								//content
 
 								//id
-								$('.layerpop .layerpop_id').attr('value',id);
+								$('.layerpop .layerpop_id').attr('value',monthlyPlanId);
 								//id
 												
 								putPlaceholderAtMonth();
