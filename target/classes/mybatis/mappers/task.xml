@@ -45,7 +45,7 @@
 			isTask
 		FROM W_TASK 
 		WHERE limitdate IS NULL AND isdelete = '0' AND isCompleted = '0' AND member_id = #{member_id}
-		ORDER BY credate DESC
+		ORDER BY credate ASC
       ]]>
 	</select>
 	
@@ -143,10 +143,12 @@
 	  	WHERE TASK_NO = #{taskNO}
 	  </update>
 	  
-	  <update id="completeTask" parameterType="int">
+	  <update id="completeTask" parameterType="java.util.Map">
 	    UPDATE W_TASK
 	  	SET isCompleted = '1'
-	  	WHERE TASK_NO = #{taskNO}
+	  	WHERE 
+	  		TASK_NO = #{taskNO}
+	  		AND member_id = #{member_id}
 	  </update>
 	  
 	<select id="weeklyTaskList" resultMap="taskResult2" parameterType="java.util.Map">

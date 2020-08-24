@@ -296,10 +296,29 @@ public class TaskControllerImpl implements TaskController{
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");	
 		
 		String referer = request.getHeader("Referer");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			HttpSession session = request.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			String member_id = (String)memberVO.getId();
+			map.put("member_id", member_id);
+			map.put("taskNO", taskNO);
+		} catch (NullPointerException e) {
+			String oldUrl = request.getRequestURL().toString();
+			String[] oldUrlArray = oldUrl.split("weplan");
+			String url = oldUrlArray[0] + "weplan/main";
+			message = "<script>";
+			message += " location.href='"+ url +"'; ";
+			message +=" </script>";
+		    resEnt = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEnt;
+		}
 		
 		try {
 			
-			taskService.completeTask(taskNO);
+			taskService.completeTask(map);
 
 			message = "<script>";
 			message += " alert('할일을 완료했습니다.');";

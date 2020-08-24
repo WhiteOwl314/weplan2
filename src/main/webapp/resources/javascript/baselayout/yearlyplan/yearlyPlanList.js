@@ -170,7 +170,7 @@ $(document).ready(function() {
 	
 	//monthlyPlan 생성
 		//List 받아오기
-		let monthlyPlanList = getMonthlyPlanList(2020);
+		let monthlyPlanList = getMonthlyPlanList(year);
 		//List 받아오기
 
 		//위치시키기

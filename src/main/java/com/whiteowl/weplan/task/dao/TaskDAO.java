@@ -23,8 +23,6 @@ public interface TaskDAO {
 
 	public void removeTask(int taskNO) throws DataAccessException;
 
-	public void completeTask(int taskNO) throws DataAccessException;
-
 	public List selectAllInboxTaskList(String member_id) throws DataAccessException;
 
 	public List weelkyTaskList(String member_id, String date, String day2) throws DataAccessException;
@@ -46,5 +44,7 @@ public interface TaskDAO {
 	public void updateTaskWithYearlyPlanId(TaskVO taskVO) throws DataAccessException;
 
 	public void moveTaskAjax(TaskVO taskVO) throws DataAccessException;
+
+	public void completeTask(Map<String, Object> map) throws DataAccessException;
 
 }

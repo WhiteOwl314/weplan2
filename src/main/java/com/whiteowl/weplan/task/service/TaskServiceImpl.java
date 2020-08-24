@@ -67,8 +67,10 @@ public class TaskServiceImpl implements TaskService{
 	}
 
 	@Override
-	public void completeTask(int taskNO) throws Exception {
-		taskDAO.completeTask(taskNO);
+	public void completeTask(
+			Map<String, Object> map	
+	) throws Exception {
+		taskDAO.completeTask(map);
 		
 	}
 

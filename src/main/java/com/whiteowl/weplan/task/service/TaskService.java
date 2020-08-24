@@ -26,8 +26,6 @@ public interface TaskService {
 
 	public void removeTask(int taskNO) throws Exception;
 
-	public void completeTask(int taskNO) throws Exception;
-
 	public List listInboxTasks(String member_id) throws DataAccessException;
 
 	public List weeklyTaskList(String member_id, String date) throws Exception;
@@ -49,5 +47,7 @@ public interface TaskService {
 	public void updateTaskWithYearlyPlanId(TaskVO taskVO) throws Exception;
 
 	public void moveTaskAjax(TaskVO taskVO) throws Exception;
+
+	void completeTask(Map<String, Object> map) throws Exception;
 
 }

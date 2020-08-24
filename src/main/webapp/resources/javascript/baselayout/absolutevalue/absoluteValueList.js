@@ -20,7 +20,13 @@ function absoluteValue_update_setPopUP(absoluteValueID){
 			let importance = decodeURIComponent( result.importance );
 			$('.layerpop .layerpop_id').val(result.id);
 			$('.layerpop .layerpop_title').val(title);
-			$('.layerpop .layerpop_content').val(content);
+				//content
+				if(content === 'null'){
+					$('.layerpop #layerpop_form_content').text('');
+				} else{
+					$('.layerpop #layerpop_form_content').text(content);
+				}
+				//content
 			
 			/* 중요도 초기값 */
 			if(importance=='1'){
@@ -47,12 +53,12 @@ function absoluteValue_update_popUP_Open(absoluteValueID) {
 
 
 
-// 처음 클릭
+/*// 처음 클릭
 $('.absoluteValue-item-container').click(function() {
 	var id = $(this).attr("id");
 	location.href=`${contextPath }weplan/absoluteValue/absoluteValueView.do?id=` + id;
 });
-
+*/
 
 //수정클릭
 $(".content .header .menu .update").click(function() {
@@ -89,8 +95,8 @@ $(".content .header .menu .update_on").click(function() {
 	$('.absoluteValue-item-container').off('click');
 	$('.absoluteValue-item-container').click(function() {
 		var id = $(this).attr("id");
-		location.href=`${contextPath }weplan/absoluteValue/absoluteValueView.do?id=` + id;
-	});
+/*		location.href=`${contextPath }weplan/absoluteValue/absoluteValueView.do?id=` + id;
+*/	});
 
 });
 
