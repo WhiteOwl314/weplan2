@@ -10,8 +10,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-<title>로그인창</title>
 <c:choose>
 	<c:when test="${result=='loginFailed' }">
 	  <script>
@@ -28,39 +26,71 @@
 </head>
 
 <body>
-<form name="frmLogin" method="post"  action="${contextPath}/member/login2.do">
-   <table border="1"  width="80%" align="center" >
-      <tr align="center">
-         <td>아이디</td>
-         <td>비밀번호</td>
-      </tr>
-      <tr align="center">
-         <td>
-	    <input type="text" name="id" value="" size="20">
-	 </td>
-         <td>
-	    <input type="password" name="pwd" value="" size="20">
-	 </td>
-      </tr>
-      <tr align="center">
-         <td colspan="2">
-            <input type="submit" value="로그인" > 
-         </td>
-      </tr>
-   </table>
-   	<a
-   		href="${contextPath }/member/find_id_form.do"
-   	>
-   		<span title="아이디 찾기" id="find_id_btn">아이디 찾기</span>
-   	</a>
-  	<a
-   		href="${contextPath }/member/find_pw_form.do"
-   	>
-   		<span title="비밀번호 찾기" id="find_pw_form">비밀번호 찾기</span>
-   	</a>
-   	
-   	<a href="${contextPath }/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
-</form>
+<div
+	id="form_container"
+>
+	<div
+		id="form_header"
+	>
+		<div
+			id="form_header_title"
+		>
+			WEEKTASK
+		</div>
+	</div>
+	<div
+		id="form_body"
+	>
+		<form name="frmLogin" method="post"  action="${contextPath}/member/login2.do">
+			<div
+				id="form_main"
+			>
+				<div
+					id="form_main_form"
+				>
+					<div
+						id="form_main_id"
+					>
+						<input type="text" name="id" value="" size="20" placeholder="아이디">
+					</div>
+					<div
+						id="form_main_pw"
+					>
+						<input type="password" name="pwd" value="" size="20" placeholder="비밀번호">
+					</div>
+					<div
+						id="form_main_submit"
+					>
+						<input type="submit" value="로그인" > 
+					</div>
+				</div>
+			</div>
+			<div
+				id="form_sub"
+			>
+			   <a
+				   href="${contextPath }/member/find_id_form.do"
+				   id="form_sub_findId"
+			   >
+				   <div title="아이디 찾기" id="find_id_btn">아이디 찾기</div>
+			   </a>
+			  <a
+				   href="${contextPath }/member/find_pw_form.do"
+				   id="form_sub_findPw"
+			   >
+				   <div title="비밀번호 찾기" id="find_pw_form">비밀번호 찾기</div>
+			   </a>
+			   
+			   <a 
+			   	href="${contextPath }/member/memberForm.do"
+				   id="form_sub_memberForm"
+			   >
+			   	<div style="text-align:center">회원가입</div>
+			   </a>
+			</div>
+		</form>
+	</div>
+</div>
 
 
 </body>

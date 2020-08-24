@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 	<definition name="/weeklyPlan/monthlyView" extends="baseLayout">
-		<put-attribute name="title" value="Monthly View" />
+		<put-attribute name="title" value="WEEKTASK | MONTH VIEW" />
 		<put-attribute name="body" value="/WEB-INF/views/monthlyplan/monthlyPlanList.jsp" />
 	</definition>
 </tiles-definitions>

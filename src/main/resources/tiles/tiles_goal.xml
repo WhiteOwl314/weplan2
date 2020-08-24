@@ -4,7 +4,7 @@
 "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 	<definition name="/goal/goalList" extends="baseLayout">
-		<put-attribute name="title" value="Goal List" />
+		<put-attribute name="title" value="WEEKTASK | PROJECT LIST" />
 		<put-attribute name="body" value="/WEB-INF/views/goal/goalList.jsp" />
 	</definition>
 </tiles-definitions>

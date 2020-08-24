@@ -5,20 +5,20 @@
 
 <tiles-definitions>
 	<definition name="/task/listInboxTasks" extends="baseLayout">
-		<put-attribute name="title" value="Inbox" />
+		<put-attribute name="title" value="WEEKTASK | INBOX" />
 		<put-attribute name="body" value="/WEB-INF/views/task/listInboxTasks.jsp" />
 	</definition>
 	<definition name="/task/viewTask" extends="baseLayout">
-		<put-attribute name="title" value="task" />
+		<put-attribute name="title" value="WEEKTASK | TASK" />
 		<put-attribute name="body" value="/WEB-INF/views/task/viewTask.jsp" />
 	</definition>
 	<definition name="/task/weeklyTaskList" extends="baseLayout">
-		<put-attribute name="title" value="WEEKLY TASK LIST" />
+		<put-attribute name="title" value="WEEKTASK | WEEK VIEW" />
 		<put-attribute name="body" value="/WEB-INF/views/task/weeklyTaskList.jsp" />
 	</definition>
 
 	<definition name="/task/weeklyView" extends="baseLayout">
-		<put-attribute name="title" value="WEEKLY TASK LIST" />
+		<put-attribute name="title" value="WEEKTASK | WEEK VIEW" />
 		<put-attribute name="body" value="/WEB-INF/views/task/weeklyTaskList.jsp" />
 	</definition>
 

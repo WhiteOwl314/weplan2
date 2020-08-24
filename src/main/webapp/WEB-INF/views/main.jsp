@@ -9,7 +9,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>WEPLAN</title>
+	<title>WEEKTASK</title>
+    <link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="${contextPath }/resources/css/baselayout/member/loginForm.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div id="content">
