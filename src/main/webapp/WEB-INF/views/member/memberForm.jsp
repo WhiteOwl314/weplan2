@@ -10,8 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>회원 가입창</title>
+    <link href="${contextPath }/resources/css/baselayout/member/memberForm.css" rel="stylesheet" type="text/css">
 	<style>
 	   .text_center{
 		 text-align:center;
@@ -84,7 +83,7 @@
 	
 </head>
 <body>
-	<div>
+	<%-- <div>
 		<div>
 			<div>
 				<h3>Member Join Form</h3>
@@ -94,7 +93,7 @@
 					<p>
 						<label>ID</label> 
 						<input type="text" id="id" name="id" required> 
-						<span id="id_check"></span>
+						<div id="id_check"></div>
 					</p>
 					<p>
 						<label>Password</label> 
@@ -120,6 +119,71 @@
 				</form>
 			</div>
 		</div>
+	</div> --%>
+<div
+	id="form_container"
+>
+	<div
+		id="form_header"
+	>
+		<div
+			id="form_header_title"
+		>
+			회원가입
+		</div>
 	</div>
+	<div
+		id="form_body"
+	>
+		<form  id="joinForm" action="${contextPath}/member/join_member.do" method="post">
+			<div
+				id="form_main"
+			>
+				<div
+					id="form_main_form"
+				>
+					<div
+						id="form_main_id"
+					>
+						아이디
+						<input id="id" type="text" name="id" value="" size="20" required >
+						<div id="id_check"></div>
+					</div>
+					<div
+						id="form_main_pw"
+					>
+						비밀번호
+						<input id="pw" name="pwd" type="password" required size="20" >
+					</div>
+					<div
+						id="form_main_conformPw"
+					>
+						비밀번호 확인
+						<input id="pw2" type="password" required value="" size="20" >
+					</div>
+					<div
+						id="form_main_email"
+					>
+						<label>Email</label>
+						<input type="text" id="email" name="email" required placeholder="이메일 인증 후 로그인이 가능합니다.">
+						<div id="email_check"></div>
+					</div>
+					<div
+						id="form_main_name"
+					>
+						<label>Name</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div
+						id="form_main_submit"
+					>
+						<input type="submit"id="joinBtn" value="회원가입" > 
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
 	
 </body>

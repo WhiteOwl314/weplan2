@@ -103,17 +103,17 @@ public class MemberServiceImpl implements MemberService{
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.naver.com";
 		String hostSMTPid = "parksj914@naver.com";
-		String hostSMTPpwd = "RJScnr1533!";
+		String hostSMTPpwd = "";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "parksj914@naver.com";
-		String fromName = "SeongJu";
-		String subject = "이메일 발송 테스트";
+		String fromName = "WEEKTASK";
+		String subject = "WEEKTASK 회원가입 이메일 인증";
 		String msg = "";
 
 		if(div.equals("join")) {
 			// 회원가입 메일 내용
-			subject = "Spring Homepage 회원가입 인증 메일입니다.";
+			subject = "WEEKTASK 회원가입 인증 메일입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
 			msg += member.getId() + "님 회원가입을 환영합니다.</h3>";
@@ -124,7 +124,7 @@ public class MemberServiceImpl implements MemberService{
 			msg += "<input type='hidden' name='approval_key' value='" + member.getApproval_key() + "'>";
 			msg += "<input type='submit' value='인증'></form><br/></div>";
 		} else if (div.equals("find_pw")) {
-			subject = "WEPLAN 임시 비밀번호 입니다.";
+			subject = "WEEKTASK 임시 비밀번호 입니다.";
 			msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
 			msg += "<h3 style='color: blue;'>";
 			msg += member.getId() + "님의 임시 비밀번호입니다. 비밀번호를 변경하여 사용하세요.</h3>";
