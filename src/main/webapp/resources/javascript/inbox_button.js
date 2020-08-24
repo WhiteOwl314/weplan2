@@ -10,15 +10,7 @@ $(document).ready(function(){
 		$(this).css('display','none')
 
 		$('.inbox_button_on').css('display','block')
-		
-		popupReset();	
-		let title = "Task 추가";
-		let url = contextPath + "weplan/task/addInboxTask.do";
-		onTimeForm();
-		checkInitialImportance();
-		putPlaceholderAtDates();
-		putPlaceholderAtTimes();
-		popUpSetting(title, url);
+		popUpTaskAddWithoutDay();
 	});
 	/* inbox 버튼 */
 

@@ -1,6 +1,24 @@
 /**
  * 
  */
+function popUpTaskAddWithoutDay(){
+	
+		popupReset();	
+		let title = "Task 추가";
+		let url = contextPath + "weplan/task/addInboxTask.do";
+		onTimeForm();
+		checkInitialImportance();
+		putPlaceholderAtDates();
+		putPlaceholderAtTimes();
+
+		displayPopUpFormGoalId()
+
+		//goalList 가져오기
+			getGoalAllList();
+		//goalList 가져오기
+
+		popUpSetting(title, url);
+}
 function popUp_getTask(id){
 	
 		let data;
