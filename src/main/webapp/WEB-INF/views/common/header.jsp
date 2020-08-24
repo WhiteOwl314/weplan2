@@ -144,7 +144,7 @@
 				class="logo_container"
 			>
 				<a 
-					href="${contextPath}/main.do"
+					href="${contextPath}/task/listInboxTasks.do"
 					class="logo-a"
 				>
 						<img 

@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="${contextPath }/resources/css/reset.css" rel="stylesheet" type="text/css">
+<link href="${contextPath }/resources/css/baselayout/member/mypage.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function(){
@@ -34,22 +36,27 @@
 		}));
 	})
 </script>
-<title>마이페이지</title>
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">
-		<div class="w3-container w3-card-4">
+		<div class="w3-container">
 			<div class="w3-center w3-large w3-margin-top">
-				<h3>My Page</h3>
+				<h3>마이페이지</h3>
 			</div>
-			<div>
+			<div
+				id="myPage_formContainer"
+			>
 				<form id="myForm" action="${contextPath }/member/update_mypage.do" method="post">
-					<p>
-						<label>ID</label> 
+					<p
+						id="myPage_id"
+					>
+						<label>아이디</label> 
 						<input class="w3-input" type="text" id="id" name="id" readonly value="${ member.id }"> 
 					</p>
-					<p>
-						<label>Email</label> 
+					<p
+						id="myPage_pw"
+					>
+						<label>이메일</label> 
 						<input class="w3-input" type="text" id="email" name="email" value="${ member.email }" required> 
 					</p>
 					<p class="w3-center">
@@ -60,18 +67,26 @@
 				<form id="pwForm" action="../member/update_pw.do" method="post">	
 					<input type="hidden" name="id" value="${ member.id }">
 					<p>
-						<label>Password</label>
+						<label>기존 비밀번호</label>
 						<input class="w3-input" id="old_pw" name="old_pw" type="password" required>
-					</p>
-					<p>
-						<label>New Password</label> 
+					</p
+					>
+					<p
+						id="myPage_newPw"
+					>
+						<label>새 비밀번호</label> 
 						<input class="w3-input" id="pwd" name="pwd" type="password" required>
 					</p>
-					<p>
-						<label>Confirm</label>
+					<p
+						id="myPage_conformPw"
+					>
+						<label>비밀번호 확인</label>
 						<input class="w3-input" type="password" id="pw2" type="password" required>
 					</p>
-					<p class="w3-center">
+					<p 
+						class="w3-center"
+						id=""
+					>
 						<button type="submit" id="joinBtn" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">비밀번호 변경</button>
 					</p>
 				</form>

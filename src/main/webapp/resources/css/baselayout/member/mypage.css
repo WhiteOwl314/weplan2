@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+html,body {
+	width: 100%;
+	height: 100%;
+}
+#myPage_formContainer{
+	margin-top: 50px;
+}
+#myPage_id{
+	
+}
+#myPage_pw{
+	margin-top: 30px;
+}
+#pwForm{
+	margin-top:30px;
+}
+#myPage_newPw{
+	margin-top:30px;
+}
+#myPage_conformPw{
+	margin-top:30px;
+}
